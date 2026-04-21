@@ -7,6 +7,8 @@ import Image from 'next/image'
 import { extractIdFromSlug } from '@/lib/slug'
 import Navbar from '@/components/Navbar'
 import CommentBox from "@/components/CommentBox";
+import Logo from "@/components/Logo";
+import { Calendar, Clock, Eye } from "lucide-react"
 
 export default function BlogDetail() {
   const params = useParams()
@@ -15,6 +17,9 @@ export default function BlogDetail() {
   const [blog, setBlog] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [openComments, setOpenComments] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
 
   useEffect(() => {
     if (params.id) {
@@ -66,6 +71,7 @@ export default function BlogDetail() {
   const calculateReadTime = (content) => {
     const wordsPerMinute = 200
     const wordCount = content.split(' ').length
+    const isLongTitle = blog.title.length > 80
     return Math.ceil(wordCount / wordsPerMinute)
   }
 
@@ -105,160 +111,368 @@ export default function BlogDetail() {
   const dateInfo = formatDate(blog.createdAt)
   const readTime = calculateReadTime(blog.content)
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
-      <Navbar variant="blog" />
-      {/* Header */}
-      <header className="sticky top-0 z-40 bg-white/30 backdrop-blur-lg border-b border-white/20 shadow-md">
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
-       {/* Back Button */}
-      <Link href="/"
-             className="group relative flex items-center gap-2 px-6 py-2.5 rounded-xl font-semibold 
-             text-white bg-[#5678FF]
-             border border-white/20 shadow-md backdrop-blur-md
-             transition-all duration-300 hover:scale-105 hover:shadow-lg hover:bg-[#4567EE]"
->
-       {/* Left Arrow Icon */}
-       <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 border border-white/10 group-hover:bg-white/30 transition-all duration-300">
-           <svg
-                className="w-4 h-4 text-white"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                viewBox="0 0 24 24"
-            >
-                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-       </span>
+ 
+return (
+  <div className="min-h-screen bg-gradient-to-br from-slate-100 via-pink-100 to-gray-300">
+    <Navbar variant="blog" />
 
-     <span className="relative z-10 tracking-wide">
-         Back to Home
-      </span>
+  
 
-        {/* Shine Effect */}
-         <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent 
-                   opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-xl blur-sm"></span>
-      </Link>
+  {/* Featured Image */}
 
-          </div>
-        </div>
-      </header>
+<div className="mt-6 px-6 md:px-10 w-full">
+ 
 
-      {/* Main Content */}
+  <div className="flex items-center gap-4">
+
+    {/* Left Line */}
+    <div className="flex-1 h-[4px] bg-white"></div>
+
+    {/* Center Label */}
+    <span className="text-xs tracking-widest uppercase text-gray-600 bg-white px-3 py-1 border border-gray-300 shadow-sm">
+      Featured Post
+    </span>
+
+    {/* Right Line */}
+    <div className="flex-1 h-[4px] bg-white"></div>
+
+  </div>
+</div>
+
+
+  {/* Main Content */}
       <main className="max-w-6xl mx-auto px-4 py-4">
-        {/* Featured Image Hero */}
-        {blog.featuredImage && (
-          <div className="relative h-[500px] rounded-2xl overflow-hidden mb-6 shadow-xl group border border-gray-200">
-            <Image
-              src={blog.featuredImage}
-              alt={blog.title}
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-700"
-              priority
-              quality={95}
-            />
-            
-            {/* Featured Badge */}
-            {blog.featured && (
-              <div className="absolute top-6 right-6">
-                <span className="bg-yellow-400 text-black px-4 py-2 rounded-full text-sm font-bold shadow-xl">
-                  ⭐ Featured Post
-                </span>
-              </div>
-            )}
-          </div>
-        )}
+      
 
-        {/* Blog Title and Meta Section */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 border border-gray-100">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+{/* hero */}
+
+
+{blog.featuredImage && (
+  <div className="relative rounded-3xl overflow-hidden mb-8 border border-gray-200 shadow-xl min-h-[70vh] md:min-h-[660px]">
+
+    {/* 🔥 BACKGROUND */}
+    <div className="absolute inset-0">
+      <Image
+        src={blog.featuredImage}
+        alt="bg"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover blur-[2px]"
+      />
+    </div>
+
+    {/* ✅ OVERLAY */}
+    <div className="absolute inset-0 bg-black/10" />
+
+    {/* 🔥 CONTENT */}
+
+    <div className="
+   relative z-10 
+grid grid-cols-1 md:grid-cols-2 items-center 
+
+py-12 px-6 md:py-16 md:px-10 
+pb-24 md:pb-28  
+
+gap-6 md:gap-8
+     ">
+{/* py-12 px-6 md:py-16 md:px-10 gap-6 */}
+
+      {/* LEFT */}
+      <div className="space-y-4 text-black mt-6 md:mt-10">
+
+        <Logo size={28} />
+
+        {/* TITLE */}
+        <div className="
+       
+ px-3 py-2
+    rounded-lg
+    bg-white/60 backdrop-blur-sm
+    shadow-[inset_0_1px_2px_rgba(0,0,0,0.06)]
+    border border-white/40
+    max-w-full sm:max-w-[90%]
+    w-fit
+
+          ">
+
+          {/* <h1 className="text-xl md:text-3xl font-medium leading-snug text-gray-900">
             {blog.title}
-          </h1>
-          
-          {/* Meta Information */}
-          <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-gray-200">
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white font-bold text-lg shadow-lg">
-                {(blog.author?.name || 'Admin').charAt(0).toUpperCase()}
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-gray-500">Author</p>
-                <p className="text-base font-bold text-gray-900">{blog.author?.name || 'Admin'}</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center space-x-3 text-gray-700">
-              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              <div>
-                <p className="text-sm font-semibold text-gray-500">Published</p>
-                <p className="text-base font-bold text-gray-900">{dateInfo.short}</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center space-x-3 text-gray-700">
-              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <div>
-                <p className="text-sm font-semibold text-gray-500">Read Time</p>
-                <p className="text-base font-bold text-gray-900">{readTime} min read</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center space-x-3 text-gray-700">
-              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-              </svg>
-              <div>
-                <p className="text-sm font-semibold text-gray-500">Views</p>
-                <p className="text-base font-bold text-gray-900">{blog.views || 0}</p>
-              </div>
-            </div>
-          </div>
+          </h1> */}
+           <h1 className="text-xl md:text-3xl font-medium leading-snug text-gray-900 break-words">
+    {blog.title}
+  </h1>
         </div>
 
-        {/* Excerpt Section */}
-        {blog.excerpt && (
-          <div className="mb-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4 border-l-4 border-blue-600">
-            <p className="text-base text-gray-800 leading-relaxed italic">
-              {blog.excerpt}
-            </p>
-          </div>
-        )}
+        {/* 🔥 META SECTION */}
+        <div className="mt-6 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
 
-        {/* Tags Section */}
-        {blog.tags && blog.tags.length > 0 && (
-          <div className="mb-6">
-            <div className="flex flex-wrap gap-2">
-              {blog.tags.map((tag, index) => (
-                <span 
-                  key={index}
-                  className="text-xs bg-gray-800 text-white px-3 py-1.5 rounded-full font-medium hover:bg-gray-700 transition-all cursor-pointer"
-                >
-                  #{tag}
+          {/* AUTHOR */}
+          <div className="group relative">
+            <div 
+            
+        className="
+w-12 h-12 sm:w-14 sm:h-14
+flex items-center justify-center
+rounded-[12px]
+bg-white/70 backdrop-blur-lg
+border border-white/40
+shadow-[1px_1px_5px_#c9cacf,-1px_-1px_5px_#f4f5f7]
+transition-all duration-300
+
+hover:shadow-[inset_1px_1px_4px_#c9cacf,inset_-1px_-1px_4px_#f4f5f7]
+hover:bg-gradient-to-br hover:from-blue-400 hover:to-indigo-300
+hover:text-white
+
+cursor-pointer
+">
+              <div className="flex flex-col items-center leading-tight">
+                <span className="text-gray-700 group-hover:text-white font-semibold text-sm">
+                  {(blog.author?.name || 'Admin').charAt(0).toUpperCase()}
                 </span>
-              ))}
+                <span className="text-[10px] text-gray-500 group-hover:text-white/80 mt-1">
+                  Author
+                </span>
+              </div>
+            </div>
+
+            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-5
+              opacity-0 translate-y-2 scale-95
+              group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100
+              transition-all duration-300">
+
+              <div className="px-3 py-1.5 text-xs font-medium text-gray-700 rounded-[12px]
+                bg-[#e0e0e0]
+                shadow-[4px_4px_10px_#b8b9be,-4px_-4px_10px_#ffffff] whitespace-nowrap">
+                {blog.author?.name || 'Admin'}
+              </div>
             </div>
           </div>
-        )}
 
-        {/* Blog Content */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 border border-gray-100">
+          {/* DATE */}
+          <div className="group relative">
+                  <div 
+            
+      className="
+w-14 h-14 flex items-center justify-center
+rounded-[12px]
+bg-white/70 backdrop-blur-lg
+border border-white/40
+shadow-[1px_1px_5px_#c9cacf,-1px_-1px_5px_#f4f5f7]
+transition-all duration-300
+
+hover:shadow-[inset_1px_1px_4px_#c9cacf,inset_-1px_-1px_4px_#f4f5f7]
+hover:bg-gradient-to-br hover:from-blue-400 hover:to-indigo-300
+hover:text-white
+
+cursor-pointer
+"  >
+
+              <div className="flex flex-col items-center leading-tight">
+                <Calendar className="w-4 h-4 text-gray-700 group-hover:text-white" />
+                <span className="text-[10px] text-gray-500 group-hover:text-white/80 mt-1">
+                  Published
+                </span>
+              </div>
+            </div>
+
+            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-3
+              opacity-0 translate-y-2 scale-95
+              group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100
+              transition-all duration-300">
+
+              <div className="px-3 py-1.5 text-xs font-medium text-gray-700 rounded-[12px]
+                bg-[#e0e0e0]
+                shadow-[4px_4px_10px_#b8b9be,-4px_-4px_10px_#ffffff] whitespace-nowrap">
+                {dateInfo.full}
+              </div>
+            </div>
+          </div>
+
+          {/* READ TIME */}
+          <div className="group relative">
+                   <div 
+            
+      className="
+w-14 h-14 flex items-center justify-center
+rounded-[12px]
+bg-white/70 backdrop-blur-lg
+border border-white/40
+shadow-[1px_1px_5px_#c9cacf,-1px_-1px_5px_#f4f5f7]
+transition-all duration-300
+
+hover:shadow-[inset_1px_1px_4px_#c9cacf,inset_-1px_-1px_4px_#f4f5f7]
+hover:bg-gradient-to-br hover:from-blue-400 hover:to-indigo-300
+hover:text-white
+
+cursor-pointer
+">
+              <div className="flex flex-col items-center leading-tight">
+                <Clock className="w-4 h-4 text-gray-700 group-hover:text-white" />
+                <span className="text-[10px] text-gray-500 group-hover:text-white/80 mt-1">
+                  Duration
+                </span>
+              </div>
+            </div>
+
+            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-3
+              opacity-0 translate-y-2 scale-95
+              group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100
+              transition-all duration-300">
+
+              <div className="px-3 py-1.5 text-xs font-medium text-gray-700 rounded-[12px]
+                bg-[#e0e0e0]
+                shadow-[4px_4px_10px_#b8b9be,-4px_-4px_10px_#ffffff] whitespace-nowrap">
+                {readTime} min read
+              </div>
+            </div>
+          </div>
+
+          {/* VIEWS */}
+          <div className="group relative">
+                  <div 
+            
+      className="
+w-14 h-14 flex items-center justify-center
+rounded-[12px]
+bg-white/70 backdrop-blur-lg
+border border-white/40
+shadow-[1px_1px_5px_#c9cacf,-1px_-1px_5px_#f4f5f7]
+transition-all duration-300
+
+hover:shadow-[inset_1px_1px_4px_#c9cacf,inset_-1px_-1px_4px_#f4f5f7]
+hover:bg-gradient-to-br hover:from-blue-400 hover:to-indigo-300
+hover:text-white
+
+cursor-pointer
+">
+              
+              <div className="flex flex-col items-center leading-tight">
+                <Eye className="w-4 h-4 text-gray-700 group-hover:text-white" />
+                <span className="text-[10px] text-gray-500 group-hover:text-white/80 mt-1">
+                  Views
+                </span>
+              </div>
+            </div>
+
+            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-3
+              opacity-0 translate-y-2 scale-95
+              group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100
+              transition-all duration-300">
+
+              <div className="px-3 py-1.5 text-xs font-medium text-gray-700 rounded-[12px]
+                bg-[#e0e0e0]
+                shadow-[4px_4px_10px_#b8b9be,-4px_-4px_10px_#ffffff] whitespace-nowrap">
+                {blog.views || 0} views
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* RIGHT IMAGE */}
+      <div className="relative w-full flex items-center justify-center
+       h-[220px] sm:h-[260px] md:h-[380px] ">
+        <div className="relative w-full h-full rounded-2xl overflow-hidden 
+          shadow-[0_25px_60px_rgba(0,0,0,0.35)] 
+          transform perspective-1000 transition-all duration-500 
+          hover:rotate-y-6 hover:-rotate-x-2 hover:scale-105
+          bg-white/10">
+
+         <div className="px-4 sm:px-6 md:px-10 py-8 md:py-10">
+  <Image
+    src={blog.featuredImage}
+    alt={blog.title}
+    fill
+    className="object-cover"
+  />
+</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+)}
+        {/* Blog Content real */}
+        {/* <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 border border-gray-100">
           <div className="prose prose-lg max-w-none">
             <div className="text-base text-gray-800 leading-relaxed whitespace-pre-wrap space-y-3" style={{ fontFamily: 'Poppins, sans-serif' }}>
               {blog.content}
             </div>
           </div>
-        </div>
+        </div> */}
 
-      {/* Comment Section */}
-      <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl shadow-lg p-6 border border-gray-200 mb-12">
-              < CommentBox postId={id} />
+{/* <div className="relative z-30 -mt-35"> */}
+<div className="relative z-30 -mt-20 sm:-mt-24 md:-mt-24 mb-16">
+  
+  <div className="max-w-4xl mx-auto bg-white px-4 sm:px-6 md:px-10 py-8 md:py-10 border border-gray-200">
+    
+    <div className="prose prose-lg max-w-none">
+      <div 
+        className="text-base text-gray-800 leading-relaxed whitespace-pre-wrap space-y-5"
+        style={{ fontFamily: 'Poppins, sans-serif' }}
+      >
+        {blog.content}
       </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+{/* Blog Content  */}
+
+   
+      {/* 1 Comment Section */}
+
+
+{/* 💬 Floating Comment Button */}
+<div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
+  <button
+    onClick={() => setOpenComments(true)}
+    className="flex items-center gap-2 px-5 py-3 rounded-full 
+    bg-gradient-to-r from-blue-500 to-indigo-600 text-white 
+    shadow-xl hover:scale-105 transition-all duration-300"
+  >
+    💬 <span className="font-medium">Comments</span>
+  </button>
+</div>
+
+{openComments && (
+  <div className="fixed inset-0 z-50 flex justify-end bg-black/40 backdrop-blur-sm">
+    
+    {/* Slide Panel */}
+    <div className="w-full sm:w-[380px] md:w-[420px]
+     h-full 
+    bg-white shadow-2xl p-6 flex flex-col 
+    animate-slideIn">
+
+      {/* Header */}
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-lg font-semibold text-gray-800">
+          💬 Comments
+        </h2>
+        <button
+          onClick={() => setOpenComments(false)}
+          className="text-gray-500 hover:text-black text-xl"
+        >
+          ✕
+        </button>
+      </div>
+
+      {/* Your ORIGINAL CommentBox */}
+      <div className="flex-1 overflow-y-auto pr-2">
+        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl shadow-inner p-4 border border-gray-200">
+          <CommentBox postId={id} />
+        </div>
+      </div>
+
+    </div>
+  </div>
+)}
+
 
         {/* Additional Information */}
         <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl shadow-lg p-6 border border-gray-200">
@@ -321,6 +535,46 @@ export default function BlogDetail() {
         </div>
       </main>
 
+
+{/* 🔙 Back Button Section (Below Navbar) */}
+
+
+
+ <div className="max-w-6xl mx-auto px-4 md:px-6 mt-4">
+  <div className="flex items-center">
+
+    <Link
+      href="/"
+      className="group flex items-center gap-2 px-5 py-2.5 rounded-xl 
+      font-semibold text-white 
+      bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600
+      shadow-md hover:shadow-xl
+      transition-all duration-300 hover:scale-105"
+    >
+
+      {/* Icon */}
+
+ 
+      <span className="flex items-center justify-center w-8 h-8 rounded-full 
+        bg-white/20 group-hover:bg-white/30 transition">
+        <svg
+          className="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </span>
+
+      Back to Home
+    </Link>
+
+  </div>
+</div> 
+
+
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-8 mt-12">
         <div className="max-w-6xl mx-auto px-6 text-center">
@@ -331,3 +585,10 @@ export default function BlogDetail() {
     </div>
   )
 }
+
+
+
+
+
+
+

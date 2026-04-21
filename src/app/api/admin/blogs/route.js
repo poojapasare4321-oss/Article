@@ -22,6 +22,12 @@ export async function GET() {
 
     // Get all blogs (including drafts) for admin
     const allBlogs = await blogs.find({}).sort({ createdAt: -1 }).toArray()
+// const allBlogs = await blogs
+//   .find({})
+//   .sort({ createdAt: -1 })
+//   .limit(5)
+//   .toArray()
+
     
     // Get author info for each blog
     const blogsWithAuthors = await Promise.all(
@@ -42,7 +48,9 @@ export async function GET() {
     return NextResponse.json(blogsWithAuthors)
   } catch (error) {
     console.error('Error fetching admin blogs:', error)
-    return NextResponse.json({ error: 'Failed to fetch blogs' }, { status: 500 })
+   // return NextResponse.json({ error: 'Failed to fetch blogs' }, { status: 500 })
+return NextResponse.json([], { status: 500 })
+
   } finally {
     if (client) {
       await client.close()

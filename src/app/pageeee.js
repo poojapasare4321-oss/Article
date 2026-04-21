@@ -10,22 +10,38 @@ import {
   Youtube,
   Mail,
   ArrowUp,
+
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Loader from "@/components/Loader";
+import PencilLoader from "@/components/PencilLoader";
 import Navbar from "@/components/Navbar";
 import { useMemo } from "react";
 
+
+
 // Utility function to create URL-friendly slugs
+// function createSlug(title) {
+//   return title
+//     .toLowerCase()
+//     .replace(/[^a-z0-9\s-]/g, "") // Remove special characters
+//     .replace(/\s+/g, "-") // Replace spaces with hyphens
+//     .replace(/-+/g, "-") // Replace multiple hyphens with single hyphen
+//     .trim(); // Remove leading/trailing spaces
+// }
 function createSlug(title) {
+  if (!title || typeof title !== "string") return "";
+
   return title
     .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, "") // Remove special characters
-    .replace(/\s+/g, "-") // Replace spaces with hyphens
-    .replace(/-+/g, "-") // Replace multiple hyphens with single hyphen
-    .trim(); // Remove leading/trailing spaces
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .trim();
 }
+
 
 export default function Home() {
   const [blogs, setBlogs] = useState([]);
@@ -101,15 +117,28 @@ export default function Home() {
   const fetchBlogs = async () => {
     try {
       const response = await fetch("/api/blogs");
-      const data = await response.json();
-      console.log("Fetched blogs:", data);
-      console.log("Number of blogs:", data.length);
+      // const data = await response.json();
+      // console.log("Fetched blogs:", data);
+      // console.log("Number of blogs:", data.length);
 
-      setBlogs(data);
-      const featured = data.filter((blog) => blog.featured).slice(0, 1);
-      console.log("Featured blogs:", featured);
-      console.log("Number of featured blogs:", featured.length);
-      setFeaturedBlogs(featured);
+      // setBlogs(data);
+      // const featured = data.filter((blog) => blog.featured).slice(0, 1);
+      // console.log("Featured blogs:", featured);
+      // console.log("Number of featured blogs:", featured.length);
+      // setFeaturedBlogs(featured);
+      const data = await response.json();
+
+if (!Array.isArray(data)) {
+  console.error("API Error:", data);
+  setBlogs([]);
+  setFeaturedBlogs([]);
+  return;
+}
+
+setBlogs(data);
+
+const featured = data.filter((blog) => blog.featured).slice(0, 1);
+setFeaturedBlogs(featured);
     } catch (error) {
       console.error("Error fetching blogs:", error);
     } finally {
@@ -195,9 +224,9 @@ export default function Home() {
     activeCategory === "All"
       ? blogs
       : blogs.filter(
-          (blog) =>
-            blog.category?.toLowerCase() === activeCategory.toLowerCase(),
-        );
+        (blog) =>
+          blog.category?.toLowerCase() === activeCategory.toLowerCase(),
+      );
 
   const [bubbles, setBubbles] = useState([]);
 
@@ -270,6 +299,8 @@ export default function Home() {
       count: "650",
     },
   ];
+
+
 
   return (
     <div className="bg-background min-h-screen ">
@@ -533,86 +564,6 @@ export default function Home() {
         </div>
       </section>
 
-<section className="bg-[#f5f5f5] py-8 px-4 sm:px-6 lg:px-8">
-  <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-    {/* LEFT SMALL CARDS */}
-    <div className="flex flex-col gap-6">
-
-      {/* Card 1 */}
-      <div className="bg-gradient-to-br from-teal-700 to-teal-500 text-white p-6 rounded-3xl flex justify-between items-center">
-        <div>
-          <p className="text-sm opacity-80">Pill Identifier</p>
-          <h3 className="text-lg font-semibold">
-            Identify an unknown tablet or capsule
-          </h3>
-        </div>
-        <button className="w-10 h-10 bg-white text-teal-700 rounded-full flex items-center justify-center">
-          →
-        </button>
-      </div>
-
-      {/* Card 2 */}
-      <div className="bg-gradient-to-br from-teal-700 to-teal-500 text-white p-6 rounded-3xl flex justify-between items-center">
-        <div>
-          <p className="text-sm opacity-80">GLP-1 Resource</p>
-          <h3 className="text-lg font-semibold">
-            Compare places to buy Ozempic online
-          </h3>
-        </div>
-        <button className="w-10 h-10 bg-white text-teal-700 rounded-full flex items-center justify-center">
-          →
-        </button>
-      </div>
-
-      {/* Card 3 */}
-      <div className="bg-gradient-to-br from-teal-700 to-teal-400 text-white p-6 rounded-3xl flex justify-between items-center">
-        <div>
-          <p className="text-sm opacity-80">FindCare</p>
-          <h3 className="text-lg font-semibold">
-            Find local doctors who accept your insurance
-          </h3>
-        </div>
-        <button className="w-10 h-10 bg-white text-teal-700 rounded-full flex items-center justify-center">
-          →
-        </button>
-      </div>
-
-    </div>
-
-    {/* RIGHT BIG CARD */}
-    <div className="lg:col-span-2 bg-gradient-to-br from-teal-700 to-teal-400 rounded-3xl p-8 sm:p-12 flex flex-col justify-between relative overflow-hidden">
-
-      {/* TEXT */}
-      <div className="max-w-md text-white">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-          Drug Directory: A to Z
-        </h2>
-        <p className="text-white/90 mb-6">
-          Learn everything you need to know about specific prescriptions and over-the-counter medications.
-        </p>
-
-        <button className="bg-white text-teal-700 px-6 py-3 rounded-full font-semibold hover:scale-105 transition">
-          Search drugs
-        </button>
-      </div>
-
-      {/* IMAGE */}
-      <div className="absolute bottom-0 right-0 w-48 sm:w-64 lg:w-80">
-        <img
-          src="/medicine.png"   // 👉 replace with your image
-          alt="medicine"
-          className="w-full object-contain"
-        />
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-{/* puju 1*/}
-
       {/* Featured Story Section */}
       {loading ? (
         /* -------------------- LOADING SKELETON -------------------- */
@@ -776,59 +727,163 @@ export default function Home() {
               </Link>
             ))}
           </div>
-        </section>
-      ) : (
-        /* -------------------- NO FEATURED STORY -------------------- */
-        <section className="py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg
-                  className="w-8 h-8 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-medium text-blue-800 mb-3">
-                No Featured Story Yet
-              </h3>
-              <p className="text-base text-blue-700">
-                Check back soon for featured blog posts!
-              </p>
-            </div>
-          </div>
-        </section>
-      )}
 
-      {/* Recent Articles Section */}
+         </section>
+
+      ) : (
+
+        <div className="relative overflow-hidden">
+
+          {/*  BACKGROUND LAYERS (NEW - SAFE ADD) */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-purple-50/60 to-blue-100/70"></div>
+
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-10 left-1/4 w-[28rem] h-[28rem] bg-blue-400/30 rounded-full blur-[120px]"></div>
+            <div className="absolute bottom-10 right-1/3 w-[22rem] h-[22rem] bg-purple-400/30 rounded-full blur-[120px]"></div>
+
+
+
+          </div>
+
+          {/*ORIGINAL CODE */}
+          <div className="
+        
+         bg-background
+          animated-bg
+        py-4 flex items-start justify-center">
+
+            <div
+              className="group w-full max-w-lg mx-auto  relative 
+                             bg-gradient-to-br from-blue-50 via-white to-blue-200/60
+                             bg-white/70 backdrop-blur-xl 
+                              rounded-3xl 
+                                  border border-gray-200/60
+                                  shadow-[0_10px_30px_rgba(0,0,0,0.08)]
+                                p-5 pt-[180px] sm:pt-[200px] text-center
+                                        transition-all duration-500
+                                    hover:-translate-y-2 
+                                 hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)]"
+            >
+
+              <div className="absolute top-0 left-1/2 -translate-x-1/2">
+                <div className="pencil-loader scale-75 sm:scale-90 md:scale-100"></div>
+              </div>
+
+              {/* 🏷️ TITLE SECTION */}
+              <h2 className="relative text-3xl font-semibold text-blue-900 mb-2 tracking-tight">
+                <span className="typing-title group-hover:text-blue-700 transition-colors duration-300">
+                  No Featured Story Yet
+                </span>
+
+                <span
+                  className="absolute left-0 -bottom-1 h-[3px] w-0 
+                              bg-gradient-to-r from-blue-500 to-cyan-400
+                                  transition-all duration-300
+                            group-hover:w-full"
+                ></span>
+              </h2>
+
+              {/* 📄 DESCRIPTION TEXT */}
+              <p
+                className="text-gray-500 text-sm leading-relaxed mb-6
+                       transition-all duration-300
+                     group-hover:text-gray-600"
+              >
+                Check back soon for{" "}
+                <span className="font-medium text-gray-700 group-hover:text-blue-600">
+                  featured blog posts
+                </span>
+                !
+              </p>
+
+              {/* 🔘 BUTTON SECTION */}
+              <button
+                className="
+                          mt-4 px-4 py-2 rounded-full 
+                                text-blue-600 font-medium
+                                     transition-all duration-500 ease-smooth
+                          border border-transparent
+                            group-hover:px-6 group-hover:py-3
+                            group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-indigo-600
+                                 group-hover:text-white
+                           group-hover:shadow-md
+                              "
+              >
+                <span className="relative">
+                  Explore Articles
+                  <span className="ml-1 animate-pulse group-hover:hidden">|</span>
+                </span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      )
+      }
+
+
       <section
         id="recent-articles"
-        className="py-6 md:py-10 px-4 sm:px-6 lg:px-8 bg-background"
+        className="flex justify-center items-start py-8 px-4
+            bg-gradient-to-br from-blue-50/80 via-purple-100 to-blue-100/70
+           bg-background"
       >
-        <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <div className="justify-center text-center pt-4 mb-6">
-              <h2
-                className="text-[42px] font-extrabold text-foreground mb-3"
-                style={{ fontFamily: "Poppins, sans-serif", fontWeight: 800 }}
-              >
-                Our Recent Articles
-              </h2>
-              <p className="body-large text-[#5271FF] mt-2">
-                Stay informed with our latest healthcare insights and expert
-                analysis
-              </p>
+        <div className="card-ui flex overflow-hidden">
+
+
+          {/* CARD WRAPPER */}
+          <div
+            className="group relative w-full max-w-xl
+    min-h-[240px] sm:min-h-[300px] md:min-h-[340px]
+    bg-gradient-to-br from-blue-100 via-white to-blue-300/60
+    backdrop-blur-xl
+    rounded-3xl
+    border border-gray-200/60
+    shadow-[0_10px_30px_rgba(0,0,0,0.08)]
+    flex overflow-hidden
+    transition-all duration-500
+    hover:-translate-y-2
+    hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)]"
+          >
+
+            {/* LEFT PANEL */}
+            <div
+
+              className="
+    w-0 group-hover:w-[45%] sm:group-hover:w-[40%]
+      bg-gradient-to-br from-indigo-500/80 via-purple-500/70 to-blue-400/80
+      flex items-center px-4
+        transform -translate-x-full
+  group-hover:translate-x-0
+ overflow-hidden
+  transition-all duration-900 ease-[cubic-bezier(0.22,1,0.36,1)]
+  z-10"
+            >
+
+              <div className="
+        text-white px-4
+
+  opacity-0 translate-x-[-10px]
+  group-hover:opacity-100 group-hover:translate-x-0
+
+  transition-all duration-700 delay-500
+      
+      ">
+                <h2 className="text-sm sm:text-base font-semibold leading-tight tracking-tight">
+                  No Articles Available
+                </h2>
+
+                <p className="text-[11px] sm:text-xs leading-relaxed opacity-90">
+                  Check back soon for the latest healthcare insights and expert analysis.
+                </p>
+              </div>
             </div>
-          </div>
+
+
+
+
 
           {/* Calculate sorted blogs (stable, no shuffle) */}
           {(() => {
@@ -871,7 +926,9 @@ export default function Home() {
                       {sortedBlogs
                         .slice(0, showAll ? sortedBlogs.length : 4)
                         .map((post) => (
+                          
                           <Link
+                          
                             key={post.id}
                             href={`/blogs/${createSlug(post.title)}-${post.id}`}
                             className="group"
@@ -956,90 +1013,167 @@ export default function Home() {
                       </button>
                     </div>
                   </>
+
+
+
                 ) : (
-                  <div className="text-center py-16">
-                    <h3 className="text-xl font-bold mb-3 text-primary">
-                      No articles yet
-                    </h3>
-                    <p className="text-muted-foreground">
-                      Check back soon for the latest healthcare insights and
-                      expert analysis.
-                    </p>
+
+
+
+            <div
+              className="
+  w-full group-hover:w-[65%] sm:group-hover:w-[70%]
+  transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]
+
+  p-4 flex items-center justify-center
+  "
+            >
+
+
+              {/* RIGHT INNER CARD */}
+              <div className="w-full h-full bg-white/40 backdrop-blur-lg rounded-2xl border border-white/40 shadow-lg p-4 flex flex-col gap-4">
+
+
+
+                <div className="flex justify-center items-center h-[200px]">
+
+                  <div className="loader">
+                    <div>
+                      <ul>
+                        {[...Array(5)].map((_, i) => (
+                          <li key={i}>
+                            <svg viewBox="0 0 90 120">
+                              <path
+                                // d="M90,0 L90,120 L11,120 C4.92,120 0,115.07 0,109 L0,11 C0,4.92 4.92,0 11,0 L90,0 Z"
+                                d="M90,0 L90,120 L0,120 C0,120 0,120 0,110 L0,10 C0,0 0,0 10,0 L90,0 Z"
+                                fill="currentColor"
+                              />
+                              <line x1="20" y1="30" x2="70" y2="30" stroke="#93c5fd" strokeWidth="4" />
+                              <line x1="20" y1="50" x2="70" y2="50" stroke="#93c5fd" strokeWidth="4" />
+                              <line x1="20" y1="70" x2="70" y2="70" stroke="#93c5fd" strokeWidth="4" />
+                              <line x1="20" y1="90" x2="55" y2="90" stroke="#93c5fd" strokeWidth="4" />
+                            </svg>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
+
+                </div>
+
+
+                {/* TEXT */}
+                <div className="text-center space-y-1 -mt-4">
+                  <h2 className="text-base sm:text-lg font-semibold  text-blue-900">
+                    Recent Articles
+                  </h2>
+
+                  <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
+                    Stay informed with the latest healthcare insights, research updates,
+                  and expert-backed analysis curated just for you.
+                  </p>
+                </div>
+
+              </div>
+            </div>
                 )}
-              </>
+                </>
             );
           })()}
+
+          </div>
         </div>
       </section>
 
-      {/* Trending Topics Section */}
-      <section className="py-6 md:py-10 bg-gradient-to-br from-background to-background/95">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Trending Topics
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Explore the most discussed healthcare topics and emerging trends
-            </p>
-          </div>
 
-          {/* Premium Topic Cards - Glass/Neumorphism Design */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
-            {categories.map((topic, index) => (
-              <div key={index} className="group cursor-pointer">
-                <div className="relative h-full bg-white/60 backdrop-blur-xl border border-white/50 rounded-2xl md:rounded-3xl p-5 md:p-6 text-center transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 hover:border-primary/40 overflow-hidden">
-                  {/* Gradient Highlight on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-secondary/0 group-hover:from-primary/10 group-hover:via-primary/5 group-hover:to-secondary/10 transition-all duration-500 rounded-2xl md:rounded-3xl pointer-events-none"></div>
+      <section className="py-10
+           bg-gradient-to-br from-white via-purple-100 to-blue-300
+         bg-background
+          ">
 
-                  {/* Content Container */}
-                  <div className="relative z-10 flex flex-col items-center justify-center h-full min-h-[140px] py-4">
-                    {/* Icon - Bigger, Floating */}
-                    <div className="mb-3 md:mb-4 transform group-hover:scale-125 group-hover:-translate-y-2 transition-all duration-500">
-                      <div className="relative w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20">
-                        <Image
-                          src={topic.image}
-                          alt={topic.name}
-                          fill
-                          className="object-contain drop-shadow-lg"
-                        />
+        <div className="card-ui flex items-center justify-center text-xl font-bold text-gray-800">
+          <div className="flex flex-col items-center gap-10
+             
+              ">
+
+            <div className="group flex flex-col items-center gap-4 w-full max-w-xl">
+
+              <div className="card  flex items-center justify-center">
+                <span className="z-10 text-center px-4 group-hover:opacity-0 transition-all duration-300 
+                    typewriter text-4xl font-bold text-blue-900
+                    ">Trending Topics</span>
+              </div>
+
+              <button className="
+      px-6 py-2.5 
+      bg-gradient-to-r from-blue-500 to-indigo-500 
+      text-white rounded-full shadow-md 
+      opacity-0 translate-y-2
+      group-hover:opacity-100 group-hover:translate-y-0
+      hover:scale-105 hover:shadow-lg
+      transition-all duration-300
+    ">
+                Explore Topics
+              </button>
+            </div>
+
+
+
+            {/* Premium Topic Cards - Glass/Neumorphism Design */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
+              {categories.map((topic, index) => (
+                <div key={index} className="group cursor-pointer">
+                  <div className="relative h-full bg-white/60 backdrop-blur-xl border border-white/50 rounded-2xl md:rounded-3xl p-5 md:p-6 text-center transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 hover:border-primary/40 overflow-hidden">
+                    {/* Gradient Highlight on Hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-secondary/0 group-hover:from-primary/10 group-hover:via-primary/5 group-hover:to-secondary/10 transition-all duration-500 rounded-2xl md:rounded-3xl pointer-events-none"></div>
+
+                    {/* Content Container */}
+                    <div className="relative z-10 flex flex-col items-center justify-center h-full min-h-[140px] py-4">
+                      {/* Icon - Bigger, Floating */}
+                      <div className="mb-3 md:mb-4 transform group-hover:scale-125 group-hover:-translate-y-2 transition-all duration-500">
+                        <div className="relative w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20">
+                          <Image
+                            src={topic.image}
+                            alt={topic.name}
+                            fill
+                            className="object-contain drop-shadow-lg"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Title - Clear Hierarchy */}
+                      <h3 className="font-bold text-foreground mb-1 md:mb-2 text-sm md:text-base group-hover:text-primary transition-colors duration-300">
+                        {topic.name}
+                      </h3>
+
+                      {/* Count - Below Title */}
+                      <p className="text-xs font-semibold text-gray-600 group-hover:text-gray-800 transition-colors duration-300 mb-2 md:mb-3">
+                        {topic.count} articles
+                      </p>
+
+                      {/* Bottom Accent Line - Animated */}
+                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-border to-transparent overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-primary via-secondary to-primary rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-center"></div>
                       </div>
                     </div>
 
-                    {/* Title - Clear Hierarchy */}
-                    <h3 className="font-bold text-foreground mb-1 md:mb-2 text-sm md:text-base group-hover:text-primary transition-colors duration-300">
-                      {topic.name}
-                    </h3>
-
-                    {/* Count - Below Title */}
-                    <p className="text-xs font-semibold text-gray-600 group-hover:text-gray-800 transition-colors duration-300 mb-2 md:mb-3">
-                      {topic.count} articles
-                    </p>
-
-                    {/* Bottom Accent Line - Animated */}
-                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-border to-transparent overflow-hidden">
-                      <div className="h-full bg-gradient-to-r from-primary via-secondary to-primary rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-center"></div>
-                    </div>
+                    {/* Neumorphism Shadow Effect */}
+                    <div
+                      className="absolute inset-0 rounded-2xl md:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                      style={{
+                        boxShadow:
+                          "inset 0 2px 4px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.1)",
+                      }}
+                    ></div>
                   </div>
-
-                  {/* Neumorphism Shadow Effect */}
-                  <div
-                    className="absolute inset-0 rounded-2xl md:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                    style={{
-                      boxShadow:
-                        "inset 0 2px 4px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.1)",
-                    }}
-                  ></div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Category Filter Section */}
+         {/* Category Filter Section */}
       <section className="relative py-10 md:py-16 bg-background overflow-hidden">
         {/* Animated Bokeh Lights */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -1068,11 +1202,10 @@ export default function Home() {
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
-                    activeCategory === cat
-                      ? "bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-lg scale-105"
-                      : "bg-muted text-foreground hover:bg-muted/80 border border-border hover:border-primary/30"
-                  }`}
+                  className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${activeCategory === cat
+                    ? "bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-lg scale-105"
+                    : "bg-muted text-foreground hover:bg-muted/80 border border-border hover:border-primary/30"
+                    }`}
                 >
                   {cat}
                 </button>
@@ -1130,17 +1263,26 @@ export default function Home() {
                       <button
                         key={index}
                         onClick={() => setCurrentIndex(index)}
-                        className={`rounded-full transition-all duration-300 ${
-                          currentIndex === index
-                            ? "bg-white w-8 h-2"
-                            : "bg-white/40 w-2 h-2 hover:bg-white/60"
-                        }`}
+                        className={`rounded-full transition-all duration-300 ${currentIndex === index
+                          ? "bg-white w-8 h-2"
+                          : "bg-white/40 w-2 h-2 hover:bg-white/60"
+                          }`}
                       ></button>
                     ))}
                   </div>
                 </div>
               )}
             </div>
+
+
+
+
+
+
+
+
+
+
 
             {/* Subscribe Box */}
             <div className="lg:col-span-1">
@@ -1361,3 +1503,357 @@ export default function Home() {
     </div>
   );
 }
+
+
+
+
+
+/* main book */
+.loader div {
+  width: 100%;
+  height: 100%;
+  border-radius: 13px;
+  position: relative;
+  z-index: 1;
+  perspective: 600px;
+  box-shadow: 0 4px 6px var(--shadow);
+  background-image: var(--background);
+   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* pages list */
+.loader div ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+ 
+  
+}
+
+/* pages */
+.loader div ul li {
+  --r: 180deg;
+  --o: 0;
+  --c: var(--page);
+
+  position: absolute;
+  top: 10%;
+  left: 10;
+
+  transform-origin: 100% 50%;
+  transform: translate(0, 0) rotateY(var(--r));
+
+  color: var(--c);
+  opacity: var(--o);
+  animation: var(--duration) ease infinite;
+}
+
+.loader div ul li svg {
+ width: 80px;
+  height: 105px;
+  display: block;
+}
+
+/* first page */
+.loader div ul li:first-child {
+  --r: 0deg;
+  --o: 1;
+}
+
+/* last page */
+.loader div ul li:last-child {
+  --o: 1;
+}
+
+/* page colors */
+.loader div ul li:nth-child(2),
+.loader div ul li:nth-child(3),
+.loader div ul li:nth-child(4),
+.loader div ul li:nth-child(5) {
+  --c: var(--page-fold);
+}
+
+/* animations */
+.loader div ul li:nth-child(2) {
+  animation-name: page-2;
+}
+
+.loader div ul li:nth-child(3) {
+  animation-name: page-3;
+}
+
+.loader div ul li:nth-child(4) {
+  animation-name: page-4;
+}
+
+.loader div ul li:nth-child(5) {
+  animation-name: page-5;
+}
+.loader div ul li svg {
+  color: var(--c);
+}
+
+/* keyframes */
+@keyframes page-2 {
+  0% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  35%,
+  100% {
+    opacity: 0;
+  }
+  50%,
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes page-3 {
+  15% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+  65%,
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes page-4 {
+  30% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  65%,
+  100% {
+    opacity: 0;
+  }
+  80%,
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes page-5 {
+  45% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+  65% {
+    opacity: 1;
+  }
+  80%,
+  100% {
+    opacity: 0;
+  }
+  95%,
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+
+
+/* treading topics */
+
+@keyframes typing {
+  0% { width: 0 }
+  50% { width: 15ch }  /* 👈 FIX (no border touch) */
+  100% { width: 0 }
+}
+
+@keyframes blink {
+  0%, 100% { border-color: transparent }
+  50% { border-color: #091f41 }
+}
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #070f1c;
+  width: 0;
+  display: inline-block;
+    max-width: max-content;
+  animation:
+    typing 4s steps(20, end) infinite,
+    blink 0.8s infinite;
+}
+
+
+/* main book */
+.loader div {
+  width: 100%;
+  height: 100%;
+  border-radius: 13px;
+  position: relative;
+  z-index: 1;
+  perspective: 600px;
+  box-shadow: 0 4px 6px var(--shadow);
+  background-image: var(--background);
+   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* pages list */
+.loader div ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+ 
+  
+}
+
+/* pages */
+.loader div ul li {
+  --r: 180deg;
+  --o: 0;
+  --c: var(--page);
+
+  position: absolute;
+  top: 10%;
+  left: 10;
+
+  transform-origin: 100% 50%;
+  transform: translate(0, 0) rotateY(var(--r));
+
+  color: var(--c);
+  opacity: var(--o);
+  animation: var(--duration) ease infinite;
+}
+
+.loader div ul li svg {
+ width: 80px;
+  height: 105px;
+  display: block;
+}
+
+/* first page */
+.loader div ul li:first-child {
+  --r: 0deg;
+  --o: 1;
+}
+
+/* last page */
+.loader div ul li:last-child {
+  --o: 1;
+}
+
+/* page colors */
+.loader div ul li:nth-child(2),
+.loader div ul li:nth-child(3),
+.loader div ul li:nth-child(4),
+.loader div ul li:nth-child(5) {
+  --c: var(--page-fold);
+}
+
+/* animations */
+.loader div ul li:nth-child(2) {
+  animation-name: page-2;
+}
+
+.loader div ul li:nth-child(3) {
+  animation-name: page-3;
+}
+
+.loader div ul li:nth-child(4) {
+  animation-name: page-4;
+}
+
+.loader div ul li:nth-child(5) {
+  animation-name: page-5;
+}
+.loader div ul li svg {
+  color: var(--c);
+}
+
+/* keyframes */
+@keyframes page-2 {
+  0% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  35%,
+  100% {
+    opacity: 0;
+  }
+  50%,
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes page-3 {
+  15% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+  65%,
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes page-4 {
+  30% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  65%,
+  100% {
+    opacity: 0;
+  }
+  80%,
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes page-5 {
+  45% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+  65% {
+    opacity: 1;
+  }
+  80%,
+  100% {
+    opacity: 0;
+  }
+  95%,
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+

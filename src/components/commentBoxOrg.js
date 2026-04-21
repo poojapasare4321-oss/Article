@@ -168,49 +168,21 @@ export default function CommentBox({ postId }) {
       <div className="bg-white/70 backdrop-blur-md p-6 rounded-2xl shadow-md border border-gray-200/40">
         <h3 className="text-2xl font-semibold mb-4 text-gray-800">Leave a Comment</h3>
         <form onSubmit={handleSubmit} className="space-y-4">
-
-          {/* name */}
-     
-     <div className="relative my-4 w-full">
-  <input
-    type="text"
-    value={name}
-    onChange={(e) => setName(e.target.value)}
-    placeholder=" "
-    className="peer w-full border-b-2 border-gray-300 bg-transparent px-2 py-2 outline-none focus:border-blue-500"
-  />
-
-  <label className="absolute left-2 -top-4 text-sm text-blue-500 transition-all duration-300
-    peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400
-    peer-focus:-top-4 peer-focus:text-sm peer-focus:text-blue-500">
-    Your Name *
-  </label>
-
-  <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-blue-500 transition-all duration-300 peer-focus:w-full"></span>
-</div>
-
-{/* mail */}
-<div className="relative my-4 w-full">
-  <input
-    type="email"
-    value={email}
-    onChange={(e) => setEmail(e.target.value)}
-    placeholder=" "
-    className="peer w-full border-b-2 border-gray-300 bg-transparent px-2 py-2 outline-none focus:border-blue-500"
-  />
-
-  <label className="absolute left-2 -top-4 text-sm text-blue-500 transition-all duration-300
-    peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400
-    peer-focus:-top-4 peer-focus:text-sm peer-focus:text-blue-500">
-    Your Email *
-  </label>
-
-  <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-blue-500 transition-all duration-300 peer-focus:w-full"></span>
-</div>
-
-{/* comment */}
-
- <textarea
+          <input
+            type="text"
+            placeholder="Name *"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          />
+          <input
+            type="email"
+            placeholder="Email (will not be published) *"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          />
+          <textarea
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             placeholder="Write your comment..."

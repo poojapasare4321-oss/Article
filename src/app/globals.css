@@ -15,6 +15,21 @@
     -webkit-line-clamp: 3;
     line-clamp: 3;
   }
+
+
+.card {
+  @apply relative
+   /* w-[90%] max-w-md h-[320px] */
+   w-[90%] max-w-xl h-[320px]
+  flex items-center justify-center 
+  text-xl font-bold text-gray-800 
+  rounded-3xl cursor-pointer overflow-hidden
+  backdrop-blur-xl border border-gray-200/60
+  shadow-[0_10px_30px_rgba(0,0,0,0.08)]
+  transition-all duration-500;
+
+  background: linear-gradient(to bottom right, #eff6ff, #ffffff, rgba(191,219,254,0.6));
+}
 }
 
 /* Typography Scale - Rank Method */
@@ -1040,7 +1055,7 @@ html {
   --card: oklch(0.145 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
+  --popover-foreground: oklch(98.511% 0.00011 271.152 / 0.448);
   --primary: oklch(0.985 0 0);
   --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.269 0 0);
@@ -1148,4 +1163,292 @@ html {
 .animate-fade-in {
   animation: fade-in 0.3s ease-in;
 }
+
+
+
+
+.typing-title {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #2563eb;
+  width: 0;
+  max-width: max-content;
+  animation: typingTitle 2s steps(30, end) forwards, blinkCursor 0.7s step-end 4;
+}
+
+@keyframes typingTitle {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blinkCursor {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.typing-title {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #2563eb;
+  max-width: max-content;
+
+  animation: typingLoop 3s steps(30, end) infinite,
+    blinkCursor 0.7s step-end infinite;
+}
+
+/* typing loop */
+@keyframes typingLoop {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  } /* deletes again */
+}
+
+/* blinking cursor */
+@keyframes blinkCursor {
+  50% {
+    border-color: transparent;
+  }
+}
+
+
+
+
+
+/* pencil */
+
+
+.pencil-loader {
+  position: relative;
+  height: 200px;
+  width: 200px;
+  /* border-bottom: 3px solid #ff3d00;
+   */
+   border-bottom: 3px solid #a855f7;
+  box-sizing: border-box;
+  animation: drawLine 4s linear infinite;
+  margin-top: -30px; /* mobile */
+}
+
+@media (min-width: 640px) {
+  .pencil-loader {
+    margin-top: -40px;
+  }
+}
+
+@media (min-width: 768px) {
+  .pencil-loader {
+    margin-top: -50px;
+  }
+}
+
+.pencil-loader::before {
+  content: "";
+  position: absolute;
+  left: calc(100% + 14px);
+  bottom: -6px;
+  width: 16px;
+  height: 100px;
+  border-radius: 20px 20px 50px 50px;
+  background-repeat: no-repeat;
+  background-image: 
+      linear-gradient(#a855f7 6px, transparent 0), /* mixed color */
+    linear-gradient(45deg, rgba(0, 0, 0, 0.02) 49%, white 51%),
+    linear-gradient(315deg, rgba(0, 0, 0, 0.02) 49%, white 51%),
+    linear-gradient(to bottom, #ffffff 10%, #a855f7 10%, #a855f7 90%, #ffffff 90%);
+  background-size: 3px 3px, 8px 8px, 8px 8px, 16px 88px;
+  background-position: center bottom, left 88px, right 88px, left top;
+  transform: rotate(25deg);
+  animation: pencilRot 4s linear infinite;
+} 
+
+
+@keyframes drawLine {
+  0%, 100% {
+    width: 0px;
+  }
+  45%, 55% {
+    width: 200px;
+  }
+}
+
+@keyframes pencilRot {
+  0%, 45% {
+    bottom: -6px;
+    left: calc(100% + 14px);
+    transform: rotate(25deg);
+  }
+
+  55%, 100% {
+    bottom: -12px;
+    left: calc(100% + 16px);
+    transform: rotate(220deg);
+  }
+}
+
+
+
+
+
+
+
+/* loader */
+
+
+
+.loader {
+  --background: linear-gradient(135deg, #23C4F8, #275EFE);
+  --shadow: rgba(39, 94, 254, 0.28);
+
+ --page: #dbeafe;       /* light blue */
+--page-fold: #bfdbfe;  /* slightly darker blue */
+
+/* --page: #ffffff;
+--page-fold: #f1f5ff; */
+
+  --duration: 3s;
+
+  width: 100%;
+  max-width: 180px;
+  aspect-ratio: 10 / 7;
+  position: relative;
+  margin-top: -60px;
+}
+
+/* shadow base */
+.loader:before,
+.loader:after {
+  --r: -6deg;
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  width: 120px;
+  top: 80%;
+  box-shadow: 0 16px 12px var(--shadow);
+  transform: rotate(var(--r));
+}
+
+.loader:before {
+  left: 4px;
+}
+
+.loader:after {
+  --r: 6deg;
+  right: 4px;
+}
+
+
+
+
+/* treading topics */
+
+@keyframes typing {
+  0% { width: 0 }
+  50% { width: 15ch }  /* 👈 FIX (no border touch) */
+  100% { width: 0 }
+}
+
+@keyframes blink {
+  0%, 100% { border-color: transparent }
+  50% { border-color: #091f41 }
+}
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #070f1c;
+  width: 0;
+  display: inline-block;
+    max-width: max-content;
+  animation:
+    typing 4s steps(20, end) infinite,
+    blink 0.8s infinite;
+}
+
+
+
+
+/* hover card */
+
+
+
+.card::before,
+.card::after {
+  content: "";
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: lightblue;
+  transition: all 0.5s;
+}
+
+.card::before {
+  top: 0;
+  right: 0;
+  border-radius: 0 15px 0 100%;
+}
+
+.card::after {
+  bottom: 0;
+  left: 0;
+  border-radius: 0 100% 0 15px;
+}
+
+.card:hover::before,
+.card:hover::after {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+}
+
+.card:hover::after {
+  content: "Explore the most discussed healthcare topics and emerging trends";
+  padding: 20px;
+  text-align: center;
+  white-space: pre-line;
+   display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; /* you missed this */
+
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+
+  background-color: lightblue;
+}
+
+
+/* comment animation */
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s ease-out;
+}
+
 
