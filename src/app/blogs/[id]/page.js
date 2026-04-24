@@ -191,7 +191,14 @@ export default function BlogDetail() {
                     <div key={i} className="group flex flex-col items-center min-h-[90px]" tabIndex={0}>
 
                       {/* button */}
-                      <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-white/70 backdrop-blur-lg border shadow transition-all duration-300 group-hover:-translate-y-1 hover:bg-gradient-to-br hover:from-blue-400 hover:to-indigo-300 hover:text-white cursor-pointer">
+                      {/* <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-white/70 backdrop-blur-lg border shadow transition-all duration-300 group-hover:-translate-y-1 hover:bg-gradient-to-br hover:from-blue-400 hover:to-indigo-300 hover:text-white cursor-pointer"> */}
+<div className="w-14 h-14 flex items-center justify-center rounded-xl 
+bg-white/70 backdrop-blur-lg border shadow 
+transition-all duration-300 
+md:group-hover:-translate-y-1 
+md:hover:bg-gradient-to-br md:hover:from-blue-400 md:hover:to-indigo-300 md:hover:text-white 
+cursor-pointer">
+
 
                         <div className="flex flex-col items-center text-xs">
                           <div className="text-gray-700 group-hover:text-white font-semibold">
@@ -203,11 +210,28 @@ export default function BlogDetail() {
                       </div>
 
                       {/* tooltip */}
-                      <div className="mt-2 opacity-0 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-40 group-focus:opacity-100 group-focus:max-h-40 transition-all duration-300">
+                      {/* <div className="mt-2 opacity-0 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-40 group-focus:opacity-100 group-focus:max-h-40 transition-all duration-300">
                         <div className="px-4 py-2 text-xs rounded-xl bg-white/40 backdrop-blur-xl border shadow-lg whitespace-nowrap">
                           {item.value}
                         </div>
-                      </div>
+                      </div> */}
+
+                      <div className="
+mt-3
+opacity-100 max-h-40 
+
+md:opacity-0 md:max-h-0 
+md:overflow-hidden 
+
+md:group-hover:opacity-100 md:group-hover:max-h-40 
+md:group-focus:opacity-100 md:group-focus:max-h-40 
+
+transition-all duration-300
+">
+  <div className="px-4 py-2 text-[11px] rounded-xl bg-white/40 backdrop-blur-xl border shadow-lg whitespace-nowrap">
+    {item.value}
+  </div>
+</div>
 
                     </div>
                   ))}
