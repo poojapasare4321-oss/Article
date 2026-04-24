@@ -68,6 +68,8 @@ export default function BlogDetail() {
     }
   }
 
+
+  
   const calculateReadTime = (content) => {
     const wordsPerMinute = 200
     const wordCount = content.split(' ').length
@@ -111,80 +113,34 @@ export default function BlogDetail() {
   const dateInfo = formatDate(blog.createdAt)
   const readTime = calculateReadTime(blog.content)
 
- 
-return (
-  <div className="min-h-screen bg-gradient-to-br from-slate-100 via-pink-100 to-gray-300">
-    <Navbar variant="blog" />
+
+
+
+
 
   
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-pink-100 to-gray-300">
+      <Navbar variant="blog" />
 
-  {/* Featured Image */}
-
-<div className="mt-6 px-6 md:px-10 w-full">
- 
-
-  <div className="flex items-center gap-4">
-
-    {/* Left Line */}
-    <div className="flex-1 h-[4px] bg-white"></div>
-
-    {/* Center Label */}
-    <span className="text-xs tracking-widest uppercase text-gray-600 bg-white px-3 py-1 border border-gray-300 shadow-sm">
-      Featured Post
-    </span>
-
-    {/* Right Line */}
-    <div className="flex-1 h-[4px] bg-white"></div>
-
-  </div>
-</div>
-
-
-  {/* Main Content */}
       <main className="max-w-6xl mx-auto px-4 py-4">
-      
 
-{/* hero */}
+        {/* HERO */}
+        {blog.featuredImage && (
+          <div className="relative rounded-3xl overflow-hidden mb-8 border shadow-xl min-h-[70vh] md:min-h-[600px]">
 
+            <Image src={blog.featuredImage} alt="bg" fill className="object-cover blur-[2px]" />
 
-{blog.featuredImage && (
-  <div className="relative rounded-3xl overflow-hidden mb-8 border border-gray-200 shadow-xl min-h-[70vh] md:min-h-[660px]">
+            <div className="absolute inset-0 bg-black/10" />
 
-    {/* 🔥 BACKGROUND */}
-    <div className="absolute inset-0">
-      <Image
-        src={blog.featuredImage}
-        alt="bg"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover blur-[2px]"
-      />
-    </div>
+            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 items-start gap-8 py-12 px-6 md:px-10">
 
-    {/* ✅ OVERLAY */}
-    <div className="absolute inset-0 bg-black/10" />
+              {/* LEFT */}
+              <div className="space-y-4 mt-6">
 
-    {/* 🔥 CONTENT */}
+                <Logo size={28} />
 
-    <div className="
-   relative z-10 
-grid grid-cols-1 md:grid-cols-2 items-center 
-
-py-12 px-6 md:py-16 md:px-10 
-pb-24 md:pb-28  
-
-gap-6 md:gap-8
-     ">
-{/* py-12 px-6 md:py-16 md:px-10 gap-6 */}
-
-      {/* LEFT */}
-      <div className="space-y-4 text-black mt-6 md:mt-10">
-
-        <Logo size={28} />
-
-        {/* TITLE */}
-        <div className="
+                  {/* <div className="
        
  px-3 py-2
     rounded-lg
@@ -194,185 +150,109 @@ gap-6 md:gap-8
     max-w-full sm:max-w-[90%]
     w-fit
 
-          ">
+          "></div> */}
 
-          {/* <h1 className="text-xl md:text-3xl font-medium leading-snug text-gray-900">
-            {blog.title}
-          </h1> */}
-           <h1 className="text-xl md:text-3xl font-medium leading-snug text-gray-900 break-words">
-    {blog.title}
-  </h1>
-        </div>
+                <div className="px-3 py-2 rounded-lg bg-white/60 backdrop-blur-sm 
+                 shadow-[inset_0_1px_2px_rgba(0,0,0,0.06)]
+                 border border-white/40
+                
+                ">
+                  <h1 className="text-xl md:text-3xl font-medium break-words">
+                    {blog.title}
+                  </h1>
+                </div>
 
-        {/* 🔥 META SECTION */}
-        <div className="mt-6 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                {/* META */}
+                <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-6 items-start">
 
-          {/* AUTHOR */}
-          <div className="group relative">
-            <div 
-            
-        className="
-w-12 h-12 sm:w-14 sm:h-14
-flex items-center justify-center
-rounded-[12px]
-bg-white/70 backdrop-blur-lg
-border border-white/40
-shadow-[1px_1px_5px_#c9cacf,-1px_-1px_5px_#f4f5f7]
-transition-all duration-300
+                  {/* reusable card */}
+                  {[
+                    {
+                      label: "Author",
+                      icon: (blog.author?.name || 'Admin').charAt(0),
+                      value: blog.author?.name || 'Admin'
+                    },
+                    {
+                      label: "Published",
+                      icon: <Calendar className="w-4 h-4" />,
+                      value: dateInfo.full
+                    },
+                    {
+                      label: "Duration",
+                      icon: <Clock className="w-4 h-4" />,
+                      value: `${readTime} min read`
+                    },
+                    {
+                      label: "Views",
+                      icon: <Eye className="w-4 h-4" />,
+                      value: `${blog.views || 0} views`
+                    }
+                  ].map((item, i) => (
+                    <div key={i} className="group flex flex-col items-center min-h-[90px]" tabIndex={0}>
 
-hover:shadow-[inset_1px_1px_4px_#c9cacf,inset_-1px_-1px_4px_#f4f5f7]
-hover:bg-gradient-to-br hover:from-blue-400 hover:to-indigo-300
-hover:text-white
+                      {/* button */}
+                      <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-white/70 backdrop-blur-lg border shadow transition-all duration-300 group-hover:-translate-y-1 hover:bg-gradient-to-br hover:from-blue-400 hover:to-indigo-300 hover:text-white cursor-pointer">
 
-cursor-pointer
-">
-              <div className="flex flex-col items-center leading-tight">
-                <span className="text-gray-700 group-hover:text-white font-semibold text-sm">
-                  {(blog.author?.name || 'Admin').charAt(0).toUpperCase()}
-                </span>
-                <span className="text-[10px] text-gray-500 group-hover:text-white/80 mt-1">
-                  Author
-                </span>
+                        <div className="flex flex-col items-center text-xs">
+                          <div className="text-gray-700 group-hover:text-white font-semibold">
+                            {typeof item.icon === 'string' ? item.icon : item.icon}
+                          </div>
+                          <span className="text-[10px] mt-1">{item.label}</span>
+                        </div>
+
+                      </div>
+
+                      {/* tooltip */}
+                      <div className="mt-2 opacity-0 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-40 group-focus:opacity-100 group-focus:max-h-40 transition-all duration-300">
+                        <div className="px-4 py-2 text-xs rounded-xl bg-white/40 backdrop-blur-xl border shadow-lg whitespace-nowrap">
+                          {item.value}
+                        </div>
+                      </div>
+
+                    </div>
+                  ))}
+
+                </div>
               </div>
-            </div>
 
-            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-5
-              opacity-0 translate-y-2 scale-95
-              group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100
-              transition-all duration-300">
+              {/* RIGHT IMAGE */}
+              {/* <div className="relative w-full h-[260px] md:h-[380px]">
+                 < div className="relative w-full h-full rounded-2xl overflow-hidden 
+          shadow-[0_25px_60px_rgba(0,0,0,0.35)] 
+          transform perspective-1000 transition-all duration-500 
+          hover:rotate-y-6 hover:-rotate-x-2 hover:scale-105
+          bg-white/10">
+                <Image src={blog.featuredImage} alt={blog.title} fill className="object-cover rounded-2xl shadow-xl" />
+              </div> */}
 
-              <div className="px-3 py-1.5 text-xs font-medium text-gray-700 rounded-[12px]
-                bg-[#e0e0e0]
-                shadow-[4px_4px_10px_#b8b9be,-4px_-4px_10px_#ffffff] whitespace-nowrap">
-                {blog.author?.name || 'Admin'}
-              </div>
-            </div>
-          </div>
+<div className="relative w-full h-[260px] md:h-[380px]">
 
-          {/* DATE */}
-          <div className="group relative">
-                  <div 
-            
-      className="
-w-14 h-14 flex items-center justify-center
-rounded-[12px]
-bg-white/70 backdrop-blur-lg
-border border-white/40
-shadow-[1px_1px_5px_#c9cacf,-1px_-1px_5px_#f4f5f7]
-transition-all duration-300
+  <div className="
+    relative w-full h-full rounded-2xl overflow-hidden
+    shadow-[0_20px_50px_rgba(0,0,0,0.25)]
+    transition-all duration-500
+    transform-gpu
+    [perspective:1000px]
+    hover:scale-105 hover:-rotate-x-2 hover:rotate-y-3
+  ">
 
-hover:shadow-[inset_1px_1px_4px_#c9cacf,inset_-1px_-1px_4px_#f4f5f7]
-hover:bg-gradient-to-br hover:from-blue-400 hover:to-indigo-300
-hover:text-white
+    <Image
+      src={blog.featuredImage}
+      alt={blog.title}
+      fill
+      className="object-cover"
+    />
 
-cursor-pointer
-"  >
+  </div>
 
-              <div className="flex flex-col items-center leading-tight">
-                <Calendar className="w-4 h-4 text-gray-700 group-hover:text-white" />
-                <span className="text-[10px] text-gray-500 group-hover:text-white/80 mt-1">
-                  Published
-                </span>
-              </div>
-            </div>
+</div>
 
-            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-3
-              opacity-0 translate-y-2 scale-95
-              group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100
-              transition-all duration-300">
 
-              <div className="px-3 py-1.5 text-xs font-medium text-gray-700 rounded-[12px]
-                bg-[#e0e0e0]
-                shadow-[4px_4px_10px_#b8b9be,-4px_-4px_10px_#ffffff] whitespace-nowrap">
-                {dateInfo.full}
-              </div>
-            </div>
-          </div>
+{/* hi 
 
-          {/* READ TIME */}
-          <div className="group relative">
-                   <div 
-            
-      className="
-w-14 h-14 flex items-center justify-center
-rounded-[12px]
-bg-white/70 backdrop-blur-lg
-border border-white/40
-shadow-[1px_1px_5px_#c9cacf,-1px_-1px_5px_#f4f5f7]
-transition-all duration-300
 
-hover:shadow-[inset_1px_1px_4px_#c9cacf,inset_-1px_-1px_4px_#f4f5f7]
-hover:bg-gradient-to-br hover:from-blue-400 hover:to-indigo-300
-hover:text-white
 
-cursor-pointer
-">
-              <div className="flex flex-col items-center leading-tight">
-                <Clock className="w-4 h-4 text-gray-700 group-hover:text-white" />
-                <span className="text-[10px] text-gray-500 group-hover:text-white/80 mt-1">
-                  Duration
-                </span>
-              </div>
-            </div>
-
-            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-3
-              opacity-0 translate-y-2 scale-95
-              group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100
-              transition-all duration-300">
-
-              <div className="px-3 py-1.5 text-xs font-medium text-gray-700 rounded-[12px]
-                bg-[#e0e0e0]
-                shadow-[4px_4px_10px_#b8b9be,-4px_-4px_10px_#ffffff] whitespace-nowrap">
-                {readTime} min read
-              </div>
-            </div>
-          </div>
-
-          {/* VIEWS */}
-          <div className="group relative">
-                  <div 
-            
-      className="
-w-14 h-14 flex items-center justify-center
-rounded-[12px]
-bg-white/70 backdrop-blur-lg
-border border-white/40
-shadow-[1px_1px_5px_#c9cacf,-1px_-1px_5px_#f4f5f7]
-transition-all duration-300
-
-hover:shadow-[inset_1px_1px_4px_#c9cacf,inset_-1px_-1px_4px_#f4f5f7]
-hover:bg-gradient-to-br hover:from-blue-400 hover:to-indigo-300
-hover:text-white
-
-cursor-pointer
-">
-              
-              <div className="flex flex-col items-center leading-tight">
-                <Eye className="w-4 h-4 text-gray-700 group-hover:text-white" />
-                <span className="text-[10px] text-gray-500 group-hover:text-white/80 mt-1">
-                  Views
-                </span>
-              </div>
-            </div>
-
-            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-3
-              opacity-0 translate-y-2 scale-95
-              group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100
-              transition-all duration-300">
-
-              <div className="px-3 py-1.5 text-xs font-medium text-gray-700 rounded-[12px]
-                bg-[#e0e0e0]
-                shadow-[4px_4px_10px_#b8b9be,-4px_-4px_10px_#ffffff] whitespace-nowrap">
-                {blog.views || 0} views
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      {/* RIGHT IMAGE */}
-      <div className="relative w-full flex items-center justify-center
+  <div className="relative w-full flex items-center justify-center
        h-[220px] sm:h-[260px] md:h-[380px] ">
         <div className="relative w-full h-full rounded-2xl overflow-hidden 
           shadow-[0_25px_60px_rgba(0,0,0,0.35)] 
@@ -391,41 +271,31 @@ cursor-pointer
         </div>
       </div>
 
-    </div>
-  </div>
-)}
-        {/* Blog Content real */}
-        {/* <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 border border-gray-100">
-          <div className="prose prose-lg max-w-none">
-            <div className="text-base text-gray-800 leading-relaxed whitespace-pre-wrap space-y-3" style={{ fontFamily: 'Poppins, sans-serif' }}>
+
+
+
+
+
+*/}
+
+
+
+       </div>
+
+            </div>
+         
+        )}
+
+        {/* CONTENT */}
+        <div className="relative z-30 -mt-24 md:-mt-28 mb-16">
+          <div className="max-w-4xl mx-auto bg-white px-6 py-10 border">
+            <div className="text-gray-800 whitespace-pre-wrap space-y-5">
               {blog.content}
             </div>
           </div>
-        </div> */}
-
-{/* <div className="relative z-30 -mt-35"> */}
-<div className="relative z-30 -mt-20 sm:-mt-24 md:-mt-24 mb-16">
-  
-  <div className="max-w-4xl mx-auto bg-white px-4 sm:px-6 md:px-10 py-8 md:py-10 border border-gray-200">
-    
-    <div className="prose prose-lg max-w-none">
-      <div 
-        className="text-base text-gray-800 leading-relaxed whitespace-pre-wrap space-y-5"
-        style={{ fontFamily: 'Poppins, sans-serif' }}
-      >
-        {blog.content}
-      </div>
-    </div>
-
-  </div>
-
-</div>
+        </div>
 
 
-{/* Blog Content  */}
-
-   
-      {/* 1 Comment Section */}
 
 
 {/* 💬 Floating Comment Button */}
@@ -475,62 +345,137 @@ cursor-pointer
 
 
         {/* Additional Information */}
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl shadow-lg p-6 border border-gray-200">
+        {/* <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl shadow-lg p-6 border border-gray-200">
           <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center" style={{ fontFamily: 'Poppins, sans-serif' }}>
             Post Information
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* Publication Status */}
-            <div className="text-center p-4 bg-white rounded-xl border-2 border-gray-200 hover:border-gray-400 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-              <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center">
-                <svg className="w-6 h-6 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <p className="text-sm font-bold text-gray-900 mb-1">
-                {blog.published ? 'Published' : 'Draft'}
-              </p>
-              <p className="text-xs text-gray-600 font-medium">Publication Status</p>
-            </div>
+          </h3> */}
 
-            {/* Last Updated */}
-            <div className="text-center p-4 bg-white rounded-xl border-2 border-gray-200 hover:border-gray-400 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-              <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center">
-                <svg className="w-6 h-6 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                </svg>
-              </div>
-              <p className="text-sm font-bold text-gray-900 mb-1">
-                {formatDate(blog.updatedAt || blog.createdAt).short}
-              </p>
-              <p className="text-xs text-gray-600 font-medium">Last Updated</p>
-            </div>
 
-            {/* Word Count */}
-            <div className="text-center p-4 bg-white rounded-xl border-2 border-gray-200 hover:border-gray-400 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-              <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center">
-                <svg className="w-6 h-6 text-purple-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-              <p className="text-sm font-bold text-gray-900 mb-1">
-                {blog.content.split(' ').length}
-              </p>
-              <p className="text-xs text-gray-600 font-medium">Word Count</p>
-            </div>
+<div className="
+max-w-5xl mx-auto">
 
-            {/* Category */}
-            <div className="text-center p-4 bg-white rounded-xl border-2 border-gray-200 hover:border-gray-400 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-              <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center">
-                <svg className="w-6 h-6 text-orange-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-                </svg>
-              </div>
-              <p className="text-sm font-bold text-gray-900 mb-1">
-                {blog.category || 'General'}
-              </p>
-              <p className="text-xs text-gray-600 font-medium">Category</p>
-            </div>
+
+<h2 className="text-2xl font-bold mb-8 text-center leading-[1.2] 
+bg-gradient-to-r from-gray-700 via-gray-500 to-gray-700 
+bg-clip-text text-transparent
+">
+  Post Information for
+  <span className="rotating-wrapper">
+    <span className="word">Publication Status</span>
+    <span className="word">Last Updated</span>
+    <span className="word">Word Count</span>
+    <span className="word">Category</span>
+  </span>
+</h2>
+
+
+          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"> */}
+          <div className="flex justify-center items-center">
+     
+           
+<div className="w-full flex justify-center">
+  {/* <div className="flex gap-4 h-[220px] md:h-[240px]"> */}
+  <div className="grid grid-cols-2 gap-4 md:flex md:gap-4 md:h-[240px]">
+
+    {[
+      {
+        label: "Publication Status",
+        value: blog.published ? "Published" : "Draft",
+        icon: (
+          <svg className="w-6 h-6 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        ),
+        color: "from-green-100 to-green-200",
+            hoverColor: "hover:from-green-50 hover:to-green-100"
+      },
+      {
+        label: "Last Updated",
+        value: formatDate(blog.updatedAt || blog.createdAt).short,
+        icon: (
+          <svg className="w-6 h-6 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+        ),
+        color: "from-blue-100 to-blue-200",
+         hoverColor: "hover:from-blue-50 hover:to-blue-100"
+      },
+      {
+        label: "Word Count",
+        value: blog.content.split(" ").length, 
+        icon: (
+          <svg className="w-6 h-6 text-purple-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        ),
+        color: "from-purple-100 to-purple-200",
+    hoverColor: "hover:from-purple-50 hover:to-purple-100"
+      },
+      {
+        label: "Category",
+        value: blog.category || "General",
+        icon: (
+          <svg className="w-6 h-6 text-orange-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+          </svg>
+        ),
+        color: "from-orange-100 to-orange-200",
+          hoverColor: "hover:from-orange-50 hover:to-orange-100"
+      }
+    ].map((card, index) => (
+
+      <div
+        key={index}
+    //     className="group w-[70px] hover:w-[200px]  rounded-2xl border border-gray-50 cursor-pointer overflow-hidden transition-all duration-500 ease-in-out flex flex-col items-center justify-center px-3 py-4 hover:shadow-xl
+      
+    // hover:bg-gradient-to-br hover:from-indigo-200 hover:to-purple-300
+        
+    //     "
+
+className="
+group 
+
+w-full
+md:w-[70px] md:hover:w-[200px]
+
+rounded-2xl border border-gray-50 cursor-pointer overflow-hidden 
+transition-all duration-500 ease-in-out flex flex-col items-center justify-center px-3 py-4 
+hover:shadow-xl
+hover:bg-gradient-to-br hover:from-indigo-200 hover:to-purple-300
+"
+
+      >
+
+        {/* ICON */}
+        <div className={`w-12 h-12 mb-2 bg-gradient-to-br ${card.color} rounded-full flex items-center justify-center transition-transform duration-500 group-hover:scale-110`}>
+          {card.icon}
+        </div>
+
+        {/* TEXT (hidden → visible on hover) */}
+        {/* <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 text-center"> */}
+<div className="
+opacity-100 md:opacity-0 
+md:group-hover:opacity-100 
+transition-all duration-500 text-center
+">
+          <p className="text-sm font-semibold text-gray-900 whitespace-nowrap">
+            {card.value}
+          </p>
+          <p className="text-xs text-gray-500 whitespace-nowrap">
+            {card.label}
+          </p>
+        </div>
+
+      </div>
+
+    ))}
+
+  </div>
+</div>
+
+
+
+
           </div>
         </div>
       </main>
@@ -585,6 +530,9 @@ cursor-pointer
     </div>
   )
 }
+
+
+
 
 
 

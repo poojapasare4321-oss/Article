@@ -1452,3 +1452,157 @@ html {
 }
 
 
+.loader {
+  display: inline-block;
+  height: 1.3em;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.words {
+  display: flex;
+  flex-direction: column;
+  animation: slide 8s infinite;
+}
+
+.word {
+  height: 1.3em;
+  line-height: 1.3em;
+  color: #956afa; /* same as your reference */
+  font-weight: 500;
+}
+
+
+/* 🔥 Smooth vertical rotating text */
+@keyframes rotateText {
+  0%, 20% {
+    transform: translateY(0%);
+  }
+  25%, 45% {
+    transform: translateY(-100%);
+  }
+  50%, 70% {
+    transform: translateY(-200%);
+  }
+  75%, 95% {
+    transform: translateY(-300%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.animate-rotateText {
+  animation: rotateText 10s infinite;
+}
+
+
+/* 🔥 Smooth vertical rotating text */
+/* @keyframes rotateText {
+  0%, 20% {
+    transform: translateY(0%);
+  }
+  25%, 45% {
+    transform: translateY(-100%);
+  }
+  50%, 70% {
+    transform: translateY(-200%);
+  }
+  75%, 95% {
+    transform: translateY(-300%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.animate-rotateText {
+  animation: rotateText 10s infinite;
+} */
+/* 
+@tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+/* Wrapper */
+.rotating-wrapper {
+  /* display: inline-block;
+  position: relative;
+  height: 1.2em;
+  width: 16ch;
+  overflow: hidden;
+  vertical-align: bottom; */
+   display: inline-block;
+  position: relative;
+  height: 1.2em;
+
+  width: 15ch;              /* 🔥 better than px */
+  overflow: hidden;
+
+  vertical-align: middle; /* 🔥 fixes alignment */
+  margin-left: 6px;  
+
+
+}
+
+/* Words */
+.word {
+  position: absolute;
+  left: 0;
+    top: 0;   
+  width: max-content;
+  white-space: nowrap;  
+  opacity: 0;
+  transform: translateY(100%);
+
+  background: linear-gradient(to right, #2563eb, #9333ea);
+  -webkit-background-clip: text;
+  color: transparent;
+
+  font-weight: 600;
+}
+
+/* 🔥 KEY IDEA: Each word has its OWN time slot */
+
+/* total cycle = 16s (4 words → 4s each) */
+
+.word:nth-child(1) {
+  animation: slideWord 16s infinite;
+}
+.word:nth-child(2) {
+  animation: slideWord 16s infinite 4s;
+}
+.word:nth-child(3) {
+  animation: slideWord 16s infinite 8s;
+}
+.word:nth-child(4) {
+  animation: slideWord 16s infinite 12s;
+}
+
+/* 🔥 PERFECT TIMING (no overlap) */
+@keyframes slideWord {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  5% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  25% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  30% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
