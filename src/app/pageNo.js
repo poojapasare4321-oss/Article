@@ -1,0 +1,5547 @@
+<div className="bg-gradient-to-r from-blue-50 to-blue-100 min-h-screen flex items-center justify-center">
+   {/* 📦 MAIN CARD CONTAINER */}
+  <div
+    className="group w-full max-w-xl 
+    bg-gradient-to-br from-blue-50 via-white to-blue-200/60
+    bg-white/70 backdrop-blur-xl 
+    rounded-3xl 
+    border border-gray-200/60
+    shadow-[0_10px_30px_rgba(0,0,0,0.08)]
+    p-10 text-center 
+    transition-all duration-500 ease-smooth
+    hover:-translate-y-2 
+    hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)]"
+  >
+    {/* 🔵 ICON SECTION (Top circle with emoji) */}
+    <div className="flex justify-center mb-6">
+      <div
+        className="w-16 h-16 flex items-center justify-center 
+        rounded-full bg-blue-100 shadow-sm
+        transition-all duration-300 ease-in-out
+        group-hover:scale-110 group-hover:bg-sky-200 
+        group-hover:shadow-lg group-hover:-translate-y-1
+        active:scale-95 active:shadow-inner
+        cursor-pointer"
+      >
+          {/* 📰 ICON (Emoji inside circle)
+        <span className="text-2xl transition-colors duration-300 group-hover:text-blue-700">
+          📰
+        </span> */}
+     
+<div className="relative w-full h-full">
+  <Image
+    src="/pen2.png"
+    alt="logo"
+    fill
+    className="object-cover group-hover:scale-110 transition-transform duration-300"
+  />
+</div>
+
+      </div>
+    </div>
+ {/* 🏷️ TITLE SECTION */}
+    <h2 className="relative text-3xl font-semibold text-blue-900 mb-2 tracking-tight">
+      <span className="typing-title group-hover:text-blue-700 transition-colors duration-300">
+        No Featured Story Yet
+      </span>
+
+      <span
+        className="absolute left-0 -bottom-1 h-[3px] w-0 
+        bg-gradient-to-r from-blue-500 to-cyan-400
+        transition-all duration-300
+        group-hover:w-full"
+      ></span>
+    </h2>
+
+ {/* 📄 DESCRIPTION TEXT */}
+    <p
+      className="text-gray-500 text-sm leading-relaxed mb-6
+      transition-all duration-300
+      group-hover:text-gray-600"
+    >
+      Check back soon for{" "}
+      <span className="font-medium text-gray-700 group-hover:text-blue-600">
+        featured blog posts
+      </span>
+      !
+    </p>
+
+  {/* 🔘 BUTTON SECTION */}
+    <button
+      className="
+      mt-4 px-4 py-2 rounded-full 
+      text-blue-600 font-medium
+      transition-all duration-500 ease-smooth
+      border border-transparent
+      group-hover:px-6 group-hover:py-3
+      group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-indigo-600
+      group-hover:text-white
+      group-hover:shadow-md
+      "
+    >
+      <span className="relative">
+        Explore Articles
+        <span className="ml-1 animate-pulse group-hover:hidden">|</span>
+      </span>
+    </button>
+  </div>
+</div>
+
+
+
+
+
+
+   ) : featuredBlogs.length > 0 ? (
+        /* -------------------- FEATURED STORY (NEW DESIGN) -------------------- */
+       
+        <section className="relative py-10 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#4facfe] to-[#00f2fe] overflow-hidden">
+  <div className="max-w-7xl mx-auto relative z-10">
+
+    {/* ======= TOP SMALL TAGS (Like "By creators", "For creators") ======= */}
+    <div className="flex justify-between items-center mb-6">
+      <span className="px-4 py-1 text-xs bg-white/20 backdrop-blur-md rounded-full text-white border border-white/30">
+        By creators
+      </span>
+
+      <span className="px-4 py-1 text-xs bg-white/20 backdrop-blur-md rounded-full text-white border border-white/30">
+        For creators
+      </span>
+    </div>
+
+    {/* ======= MAIN TITLE (LIKE AWWWARDS HEADING) ======= */}
+    <h1 className="text-3xl md:text-5xl font-bold text-black text-center mb-8 leading-tight">
+      Stories, thoughts,
+      <br />
+      ideas & more
+    </h1>
+
+    {/* ======= LOOP BLOGS ======= */}
+    {featuredBlogs.map((blog) => (
+      <Link
+        key={blog.id}
+        href={`/blogs/${createSlug(blog.title)}-${blog.id}`}
+        className="block group"
+      >
+        {/* ======= STACKED CARD EFFECT ======= */}
+        <div className="relative">
+
+          {/* BACK CARD 1 */}
+          {/* <div className="absolute top-6 left-6 w-full h-full bg-white/30 rounded-2xl"></div> */}
+<div className="absolute top-4 left-4 w-full h-full bg-white/30 rounded-2xl"></div>
+<div className="absolute top-2 left-2 w-full h-full bg-white/50 rounded-2xl"></div>
+          {/* BACK CARD 2 */}
+          {/* <div className="absolute top-3 left-3 w-full h-full bg-white/50 rounded-2xl"></div> */}
+<div className="absolute top-2 left-2 w-full h-full bg-white/50 rounded-2xl"></div>
+
+          {/* ======= MAIN CARD ======= */}
+          <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 transition-transform duration-500 group-hover:scale-[1.01]">
+
+            {/* ===== LEFT SIDE CONTENT ===== */}
+            <div className="p-6 lg:p-8 flex flex-col justify-between">
+
+              {/* CATEGORY + DATE */}
+              <div className="flex justify-between items-center mb-6">
+                <span className="text-xs font-semibold text-gray-600">
+                  {blog.category || "Wellness"}
+                </span>
+
+                <span className="text-xs text-gray-500">
+                  {blog.createdAt
+                    ? new Date(blog.createdAt).toLocaleDateString()
+                    : "Latest"}
+                </span>
+              </div>
+
+              {/* BLOG TITLE */}
+              <h2 className="text-2xl md:text-3xl font-bold text-black mb-4 leading-snug">
+                {blog.title}
+              </h2>
+
+              {/* EXCERPT */}
+              <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+                {blog.excerpt ||
+                  blog.content.substring(0, 150) + "..."}
+              </p>
+
+              {/* AUTHOR INFO */}
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+                  <span className="text-sm font-bold text-gray-700">
+                    {(blog.author?.name || "A")[0]}
+                  </span>
+                </div>
+
+                <div>
+                  <p className="text-sm font-semibold text-black">
+                    {blog.author?.name || "Admin"}
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    {blog.author?.role || "Healthcare Writer"}
+                  </p>
+                </div>
+              </div>
+
+              {/* READ MORE BUTTON */}
+              <button className="inline-flex items-center gap-2 text-sm font-semibold text-black hover:gap-3 transition-all">
+                Read more →
+              </button>
+            </div>
+
+            {/* ===== RIGHT SIDE IMAGE ===== */}
+            <div className="relative h-45 lg:h-[300px] overflow-hidden">
+
+              <img
+                src={blog.featuredImage || "/default-blog.jpg"}
+                alt={blog.title}
+                className="w-full h-full object-cover"
+              />
+
+              {/* CURVED IMAGE EFFECT (OPTIONAL LIKE AWWARDS) */}
+              <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px] rounded-l-[100px]"></div>
+            </div>
+
+          </div>
+        </div>
+      </Link>
+    ))}
+  </div>
+</section>
+      ) : (
+
+
+
+        // claude
+
+
+        // components/BlogHeroSection.tsx
+import Link from "next/link";
+import Image from "next/image";
+
+interface Blog {
+  id: string;
+  title: string;
+  category?: string;
+  createdAt?: string;
+  excerpt?: string;
+  content?: string;
+  featuredImage?: string;
+  author?: { name?: string; role?: string; avatar?: string };
+}
+
+function createSlug(t: string) {
+  return t.toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]/g, "");
+}
+
+export default function BlogHeroSection({
+  featuredBlogs,
+  pageTitle = "The Heading from ID",
+}: {
+  featuredBlogs: Blog[];
+  pageTitle?: string;
+}) {
+  const blog = featuredBlogs[0];
+  if (!blog) return null;
+
+  return (
+    <section
+      className="relative font-sans bg-gray-100 rounded-2xl overflow-visible"
+    >
+
+      {/* ── BLUE BAND ── compact height */}
+      <div className="relative bg-[#4a90d9] rounded-t-2xl px-8 pt-5 pb-16 overflow-hidden">
+
+        {/* Decorative shapes */}
+        <div className="pointer-events-none absolute -top-12 -right-12 w-44 h-44 border-[2.5px] border-white/20 rounded-[38px] rotate-[18deg]" />
+        <div className="pointer-events-none absolute -bottom-5 -left-9 w-32 h-32 border-2 border-white/15 rounded-[28px] -rotate-[13deg]" />
+
+        {/* Title centered */}
+        <div className="relative z-10 text-center">
+          <span className="block text-[10px] font-semibold tracking-[.13em] uppercase text-white/60 mb-1">
+            The Blog
+          </span>
+          <h1
+            className="text-[32px] md:text-[38px] font-black text-white leading-[1.1]"
+            style={{ fontFamily: "Fraunces, serif" }}
+          >
+            {pageTitle}
+          </h1>
+        </div>
+
+        {/* Pills at bottom edge of blue band */}
+        <div className="absolute bottom-4 left-0 right-0 flex justify-between px-7 z-10">
+          <span className="inline-flex items-center gap-2 bg-white border border-gray-200 shadow-sm px-4 py-1.5 rounded-full text-[11px] font-semibold text-gray-800">
+            <span className="w-0 h-0 border-t-[4px] border-b-[4px] border-l-[6px] border-transparent border-l-gray-800" />
+            By creators
+          </span>
+          <span className="inline-flex items-center gap-2 bg-white border border-gray-200 shadow-sm px-4 py-1.5 rounded-full text-[11px] font-semibold text-gray-800">
+            For creators
+            <span className="w-0 h-0 border-t-[4px] border-b-[4px] border-l-[6px] border-transparent border-l-gray-800" />
+          </span>
+        </div>
+      </div>
+
+      {/* ── CARD AREA — overlaps blue ── */}
+      <div className="px-5 pb-6 -mt-14 relative z-10">
+        <div className="relative">
+
+          {/* 3 stacked paper layers */}
+          <div className="absolute top-2.5 left-2.5 w-full h-full bg-[#bfc4d0] rounded-[18px]" />
+          <div className="absolute top-1 left-1 w-full h-full bg-[#d8dce6] rounded-[18px]" />
+
+          {/* Main card — grid, responsive */}
+          <Link href={`/blogs/${createSlug(blog.title)}-${blog.id}`} className="block group">
+            <div className="relative bg-[#f5f6f8] rounded-[18px] overflow-hidden grid grid-cols-1 md:grid-cols-2 transition-transform duration-300 group-hover:scale-[1.005]">
+
+              {/* LEFT */}
+              <div className="p-5 md:p-6 flex flex-col gap-3 justify-between">
+                <div className="flex flex-col gap-3">
+                  {/* Category + Date */}
+                  <div className="flex justify-between items-center">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#185FA5] bg-[#E6F1FB] px-2.5 py-1 rounded-full">
+                      {blog.category || "Wellness"}
+                    </span>
+                    <span className="text-[10px] text-gray-400 font-medium">
+                      {blog.createdAt
+                        ? new Date(blog.createdAt).toLocaleDateString("en-US", {
+                            month: "short", day: "numeric", year: "numeric",
+                          })
+                        : "Apr 20, 2025"}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h2
+                    className="text-[18px] md:text-[20px] font-bold text-gray-950 leading-snug"
+                    style={{ fontFamily: "Fraunces, serif" }}
+                  >
+                    {blog.title}
+                  </h2>
+
+                  {/* Excerpt */}
+                  <p className="text-[12px] text-gray-500 leading-relaxed line-clamp-3">
+                    {blog.excerpt || blog.content?.substring(0, 160) + "..."}
+                  </p>
+                </div>
+
+                {/* Author + button */}
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center gap-2">
+                    {blog.author?.avatar ? (
+                      <Image
+                        src={blog.author.avatar}      
+                        alt={blog.author.name || ""}
+                        width={30} height={30}
+                        className="rounded-full object-cover w-[30px] h-[30px] flex-shrink-0"
+                      />
+                    ) : (
+                      <div className="w-[30px] h-[30px] rounded-full bg-[#4a90d9] flex items-center justify-center text-white text-[11px] font-bold flex-shrink-0">
+                        {(blog.author?.name || "A")[0].toUpperCase()}
+                      </div>
+                    )}
+                    <div>
+                      <p className="text-[12px] font-semibold text-black leading-none">
+                        {blog.author?.name || "Admin"}
+                      </p>
+                      <p className="text-[10px] text-gray-400 mt-0.5">
+                        {blog.author?.role || "Healthcare Writer"}
+                      </p>
+                    </div>
+                  </div>
+                  <button className="inline-flex items-center gap-1.5 bg-black text-white text-[11px] font-bold px-4 py-2 rounded-full w-fit hover:bg-gray-800 transition-colors">
+                    Read more →
+                  </button>
+                </div>
+              </div>
+
+              {/* RIGHT — circular image */}
+              <div className="relative bg-[#d0e8f7] flex items-center justify-center overflow-hidden min-h-[200px] md:min-h-0">
+                <span className="absolute left-[-4px] top-[44%] w-[10px] h-[10px] rounded-full bg-black" />
+                <span className="absolute left-[-4px] bottom-[24%] w-[10px] h-[10px] rounded-full bg-black" />
+                <span className="absolute right-[-4px] top-[44%] w-[10px] h-[10px] rounded-full bg-black" />
+
+                <div className="w-[170px] h-[170px] rounded-full overflow-hidden border-[5px] border-white shadow-lg relative z-10">
+                  <Image
+                    src={blog.featuredImage || "/default-blog.jpg"}
+                    alt={blog.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+
+            </div>
+          </Link>
+        </div>
+
+        {/* Pagination */}
+        <div className="flex gap-2 mt-4">
+          {[1, 2, 3].map((n) => (
+            <button
+              key={n}
+              className={`w-[30px] h-[30px] rounded-full text-[11px] font-bold border transition-all
+                ${n === 1
+                  ? "bg-black text-white border-black"
+                  : "bg-transparent text-gray-600 border-black/20 hover:border-black/50"}`}
+            >
+              {n}
+            </button>
+          ))}
+        </div>
+      </div>
+
+    </section>
+  );
+}
+
+
+ui
+
+        <section className="bg-background py-16">
+
+  {/* GREEN SECTION */}
+  <div className="max-w-7xl mx-auto px-4">
+    <div className="bg-gradient-to-br from-blue-800 via-purple-500 to-blue-800/50
+     min-h-[500px] pt-28 pb-28 px-8 -mt-2 text-center">
+
+      <p className="text-xs text-black/60 mb-2">Featured Story</p>
+
+      <h1 className="text-3xl md:text-4xl font-bold leading-snug text-black">
+        {featuredBlogs[0]?.title}
+      </h1>
+
+<div className="flex justify-center gap-3 mt-6">
+  
+  {/* CATEGORY */}
+  <span className="px-4 py-1.5 text-sm bg-white/80 backdrop-blur border border-black/10 rounded-full">
+    {blog.category || "Wellness"}
+  </span>
+
+  {/* DATE */}
+  <span className="px-4 py-1.5 text-sm bg-white/80 backdrop-blur border border-black/10 rounded-full">
+    {blog.createdAt
+      ? new Date(blog.createdAt).toLocaleDateString()
+      : "Latest"}
+  </span>
+</div>
+    </div>
+  </div>
+
+  {/* CARD SECTION */}
+  <div className="max-w-5xl mx-auto px-4 -mt-40 relative z-10 space-y-28">
+
+    {featuredBlogs.map((blog,index) => (
+      <Link
+      key={blog.id}
+    href={`/blogs/${createSlug(blog.title)}-${blog.id}`}
+    className="block group"
+      >
+
+
+
+        <div className="relative isolate"style={{ zIndex: 50 - index }}>
+
+     
+          {/* STACKED EFFECT (TOP ONLY) */}
+          {/* <div className="absolute -top-6 left-10 right-10 h-8 bg-white border-t-2 border-black rounded-t-2xl -z-10"></div> */}
+          <div className="absolute -top-4 left-6 right-6 h-8 bg-white border-t-2 border-black rounded-t-4xl -z-20"></div>
+          
+          
+
+          {/* CARD */}
+          <div className="bg-white rounded-2xl border border-black rounded-t-2xl shadow-lg z-30 overflow-hidden">
+            <div className="grid md:grid-cols-2">
+
+              {/* CONTENT */}
+              <div className="p-10 md:p-12">
+
+                <p className="text-sm text-gray-600 mb-6">
+                  {blog.excerpt || blog.content.substring(0, 100) + "..."}
+                </p>
+
+                <button className="px-4 py-2 border border-black rounded-full text-sm hover:bg-black hover:text-white transition">
+                  Read More
+                </button>
+              </div>
+
+              {/* IMAGE */}
+              <div className="h-54 md:h-full">
+                <img
+                  src={blog.featuredImage || "/default-blog.jpg"}
+                  alt={blog.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </Link>
+    ))}
+
+  </div>
+</section>
+
+
+
+
+ui of page
+
+<section className="bg-background py-16">
+
+  {/* GREEN SECTION */}
+  <div className="max-w-7xl mx-auto px-4">
+
+    {featuredBlogs.slice(0, 1).map((blog) => (
+
+<div
+  key={blog.id}
+  className="relative bg-cover bg-center min-h-[500px] pt-28 pb-28 px-8 -mt-2 text-center"
+  style={{
+    backgroundImage: "url('/hero-bg.jpeg')",
+  }}
+>
+ {/* bg-gradient-to-br from-blue-800 via-purple-500 to-blue-800/50 */}
+        {/* <p className="text-xs text-black/60 mb-2 -mt-3 md:-mt-6">Featured Story</p> */}
+
+<p className="text-xs text-black/60 mb-2 relative -top-3 md:-top-4">
+  Featured Story
+</p>
+
+
+<h1 className="text-3xl md:text-5xl font-bold text-black leading-tight -mt-3 md:-mt-6 text-center max-w-2xl mx-auto">
+  {blog.title.split(" ").slice(0, Math.ceil(blog.title.split(" ").length / 2)).join(" ")}
+  <br />
+  {blog.title.split(" ").slice(Math.ceil(blog.title.split(" ").length / 2)).join(" ")}
+</h1>
+
+<div className="relative mt-10">
+
+  {/* LEFT PILL */}
+  <span className="absolute left-35 -top-1 px-4 py-1.5 text-sm bg-white/90 backdrop-blur border border-black rounded-full shadow">
+    {blog.category || "Wellness"}
+  </span>
+
+  {/* RIGHT PILL */}
+  <span className="absolute right-35 -top-1 px-4 py-1.5 text-sm bg-white/90 backdrop-blur border border-black rounded-full shadow">
+    {blog.createdAt
+      ? new Date(blog.createdAt).toLocaleDateString()
+      : "Latest"}
+  </span>
+
+</div>
+
+      </div>
+
+    ))}
+
+  </div>
+
+
+  {/* CARD SECTION (UNCHANGED UI, only variable renamed) */}
+  <div className="max-w-5xl mx-auto px-4 -mt-40 relative z-10 space-y-28">
+
+    {featuredBlogs.map((blogItem, index) => (
+      <Link
+        key={blogItem.id}
+        href={`/blogs/${createSlug(blogItem.title)}-${blogItem.id}`}
+        className="block group"
+      >
+
+        <div className="relative isolate" style={{ zIndex: 50 - index }}>
+
+          {/* <div className="absolute -top-4 left-6 right-6 h-8 bg-white border-t-2 border-black rounded-t-2xl -z-20"></div> */}
+
+          {/* BACK LAYER 2 (farthest) */}
+<div className="absolute -top-6 left-15 right-15 h-3 bg-white border border-black rounded-t-[50px] -z-30"></div>
+
+{/* BACK LAYER 1 (middle) */}
+<div className="absolute -top-3 left-8 right-8 h-3 bg-white border border-black rounded-t-[50px] -z-20"></div>
+
+          <div className="bg-white rounded-2xl border border-black rounded-t-3xl shadow-lg z-30 overflow-hidden min-h-[350px]">
+            <div className="grid md:grid-cols-2">
+
+              {/* CONTENT */}
+              <div className="p-12 md:p-14 mt-6">
+
+                <p className="text-sm text-black mb-6">
+                  {blogItem.excerpt || blogItem.content.substring(0, 100) + "..."}
+                </p>
+
+<div className="group flex items-center gap-4 mb-8 transition-all duration-300 hover:translate-y-[-4px]">
+
+  {/* Avatar */}
+  <div className="relative w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 p-[2px] transition-all duration-300 group-hover:scale-110">
+    
+    <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
+      <span className="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-purple-600">
+        {(blogItem.author?.name || "A").charAt(0).toUpperCase()}
+      </span>
+    </div>
+
+    {/* Glow effect */}
+    <div className="absolute inset-0 rounded-full bg-blue-400 opacity-0 blur-md group-hover:opacity-40 transition-all duration-300"></div>
+  </div>
+
+  {/* Text */}
+  <div className="transition-all duration-300">
+    <p className="text-sm font-semibold text-foreground group-hover:text-blue-600 transition-colors duration-300">
+      {blogItem.author?.name || "Admin"}
+    </p>
+
+    <p className="text-xs text-muted-foreground group-hover:tracking-wide transition-all duration-300">
+      {blogItem.author?.role || "Healthcare Writer"}
+    </p>
+  </div>
+
+</div>
+
+</div>
+
+              {/* IMAGE */}
+             
+<div className="h-full overflow-hidden">
+
+  <img
+    src={blogItem.featuredImage || "/default-blog.jpg"}
+    alt={blogItem.title}
+    className="w-full h-full object-cover 
+    rounded-l-[80px] md:rounded-l-[120px]"
+  />
+
+</div>
+
+            </div>
+          </div>
+
+        </div>
+
+
+
+        
+  {/* 🔥 OUTSIDE BUTTON WITH LINES */}
+  <div className="flex items-center justify-center my-10 gap-3">
+    
+    {/* Left Line */}
+    {/* <div className="flex-grow border-t-3 border-blue-700"></div> */}
+    <div className="flex-grow h-[1px] bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500"></div>
+
+    {/* Button */}
+   <button class="btn-iron group relative flex items-center justify-center h-[50px] px-5 text-[18px] uppercase rounded-xl overflow-hidden bg-blue-600 shadow-[0_7px_0_0_hsl(210,87%,36%)] active:translate-y-[7px] active:shadow-none transition-all duration-75">
+
+  {/* <!-- Default Text --> */}
+  <span class="btn-text absolute inset-0 flex items-center justify-center text-white font-bold tracking-[4px] text-[15px]">
+    READ MORE
+  </span>
+
+  {/* <!-- Animated Letters --> */}
+  <span class="flex gap-[2px]">
+    <i class="letter">R</i>
+    <i class="letter">E</i>
+    <i class="letter">A</i>
+    <i class="letter">D</i>
+    <i class="letter">&nbsp;</i>
+    <i class="letter">M</i>
+    <i class="letter">O</i>
+    <i class="letter">R</i>
+    <i class="letter">E</i>
+  </span>
+
+</button>
+    {/* Right Line */}
+    <div className="flex-grow h-[1px] bg-gradient-to-r from-pink-500 via-purple-500 to-blue-600"></div>
+
+  </div>
+      </Link>
+    ))}
+
+  </div>
+
+
+
+
+
+
+</section>
+
+
+article final card with responsiveness
+
+<section className="bg-background py-10 md:py-16">
+
+  {/* GREEN SECTION */}
+  <div className="max-w-7xl mx-auto px-4">
+
+    {featuredBlogs.slice(0, 1).map((blog) => (
+
+<div
+  key={blog.id}
+  className="relative bg-cover bg-center min-h-[350px] md:min-h-[500px] pt-20 md:pt-28 pb-20 md:pb-28 px-4 md:px-8 -mt-2 text-center"
+  style={{
+    backgroundImage: "url('/hero-bg.jpeg')",
+  }}
+>
+
+<p className="text-xs text-black/60 mb-2 md:mb-3">
+  Featured Story
+</p>
+
+<h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-black leading-tight text-center max-w-xl md:max-w-2xl mx-auto break-words">
+  {blog.title}
+</h1>
+
+<div className="relative mt-10 mb-16 md:mb-20 z-20">
+
+  {/* LEFT PILL */}
+  <span className="absolute left-10 sm:left-14 md:left-28 -top-8 px-3 md:px-4 py-1 text-xs md:text-sm bg-white/90 backdrop-blur border border-black rounded-full shadow whitespace-nowrap">
+    {blog.category || "Wellness"}
+  </span>
+
+  {/* RIGHT PILL */}
+  <span className="absolute right-10 sm:right-14 md:right-28 -top-8 px-3 md:px-4 py-1 text-xs md:text-sm bg-white/90 backdrop-blur border border-black rounded-full shadow whitespace-nowrap">
+    {blog.createdAt
+      ? new Date(blog.createdAt).toLocaleDateString()
+      : "Latest"}
+  </span>
+
+</div>
+      </div>
+
+    ))}
+
+  </div>
+
+
+  {/* CARD SECTION */}
+<div className="max-w-5xl mx-auto px-4 -mt-12 md:-mt-28 relative z-0 space-y-16 md:space-y-24">
+
+  {featuredBlogs.map((blogItem, index) => (
+    <Link
+      key={blogItem.id}
+      href={`/blogs/${createSlug(blogItem.title)}-${blogItem.id}`}
+      className="block group"
+    >
+
+<div className="relative isolate z-0">
+
+  {/* BACK LAYER 2 (hide on small screens) */}
+  <div className="hidden sm:block absolute -top-5 left-4 sm:left-8 md:left-12 right-4 sm:right-8 md:right-12 h-2 md:h-3 bg-white border border-black rounded-t-[40px] md:rounded-t-[50px] -z-30"></div>
+
+  {/* BACK LAYER 1 (visible everywhere) */}
+  <div className="absolute -top-2 left-4 sm:left-6 md:left-8 right-4 sm:right-6 md:right-8 h-2 md:h-3 bg-white border border-black rounded-t-[40px] md:rounded-t-[50px] -z-20"></div>
+
+  {/* MAIN CARD */}
+  <div className="bg-white rounded-2xl border border-black md:rounded-t-3xl shadow-lg overflow-hidden min-h-[300px] md:min-h-[350px]">
+
+  <div className="grid md:grid-cols-2">
+            
+              {/* CONTENT */}
+              <div className="p-6 md:p-12 mt-4 md:mt-6">
+
+                {/* <p className="text-sm text-black mb-4 md:mb-6"> */}
+                <p className="text-xs sm:text-sm md:text-base text-black mb-4 md:mb-6 break-words">
+                  
+                  {blogItem.excerpt || blogItem.content.substring(0, 100) + "..."}
+                </p>
+
+
+<div className="group flex items-center gap-2 sm:gap-3 md:gap-4 mb-5 md:mb-8 transition-all duration-300 md:hover:translate-y-[-4px]">
+
+  {/* Avatar */}
+  <div className="relative w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 p-[2px] transition-all duration-300 md:group-hover:scale-110">
+    
+    <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
+      <span className="text-[10px] sm:text-xs md:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-purple-600">
+        {(blogItem.author?.name || "A").charAt(0).toUpperCase()}
+      </span>
+    </div>
+
+    <div className="absolute inset-0 rounded-full bg-blue-400 opacity-0 blur-md md:group-hover:opacity-40 transition-all duration-300"></div>
+  </div>
+
+  {/* Text */}
+  <div>
+    <p className="text-xs sm:text-sm md:text-base font-semibold text-foreground md:group-hover:text-blue-600 transition-colors duration-300">
+      {blogItem.author?.name || "Admin"}
+    </p>
+
+    <p className="text-[10px] sm:text-xs text-muted-foreground">
+      {blogItem.author?.role || "Healthcare Writer"}
+    </p>
+  </div>
+
+</div>
+</div>
+
+              {/* IMAGE */}
+<div className="h-[200px] md:h-full overflow-hidden">
+
+  <img
+    src={blogItem.featuredImage || "/default-blog.jpg"}
+    alt={blogItem.title}
+    className="w-full h-full object-cover 
+    rounded-t-[40px] md:rounded-t-none md:rounded-l-[120px]"
+  />
+
+</div>
+
+            </div>
+          </div>
+
+        </div>
+
+  {/* BUTTON */}
+  <div className="flex items-center justify-center my-6 md:my-10 gap-2 md:gap-3">
+    
+    <div className="flex-grow h-[1px] bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500"></div>
+
+   <button className="btn-iron group relative flex items-center justify-center h-[45px] md:h-[50px] px-4 md:px-5 text-[14px] md:text-[18px] uppercase rounded-xl overflow-hidden bg-blue-600 shadow-[0_7px_0_0_hsl(210,87%,36%)] active:translate-y-[7px] active:shadow-none transition-all duration-75">
+
+  <span className="btn-text absolute inset-0 flex items-center justify-center text-white font-bold tracking-[3px] md:tracking-[4px] text-[13px] md:text-[15px]">
+    READ MORE
+  </span>
+
+  <span className="flex gap-[2px]">
+    <i className="letter">R</i>
+    <i className="letter">E</i>
+    <i className="letter">A</i>
+    <i className="letter">D</i>
+    <i className="letter">&nbsp;</i>
+    <i className="letter">M</i>
+    <i className="letter">O</i>
+    <i className="letter">R</i>
+    <i className="letter">E</i>
+  </span>
+
+</button>
+
+    <div className="flex-grow h-[1px] bg-gradient-to-r from-pink-500 via-purple-500 to-blue-600"></div>
+
+  </div>
+      </Link>
+    ))}
+
+  </div>
+
+</section>
+
+
+this is my section 
+
+
+<section className="bg-background py-10 md:py-16">
+
+ 
+
+{/* BLUE SECTION */}
+<div className="max-w-7xl mx-auto px-4">
+
+  <div
+    key={animateKey} // 🔥 important for re-animation
+    className="relative bg-cover bg-center min-h-[350px] md:min-h-[500px] pt-20 md:pt-28 pb-20 md:pb-28 px-4 md:px-8 -mt-2 text-center"
+    style={{
+      backgroundImage: "url('/hero-bg.jpeg')",
+    }}
+  >
+
+    <p className="text-xs text-black/60 mb-2 md:mb-3">
+      Featured Story
+    </p>
+
+<h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-black text-center max-w-2xl mx-auto leading-tight">
+  {currentBlog.title.split(" ").map((word, i) => (
+    <span
+      key={i}
+      className="inline-block animate-word"
+      style={{ animationDelay: `${i * 0.06}s` }}  // 👈 HERE
+    >
+      {word}&nbsp;
+    </span>
+  ))}
+</h1>
+    <div className="relative mt-10 mb-16 md:mb-20 z-20">
+
+      {/* LEFT PILL */}
+      <span className="absolute left-10 sm:left-14 md:left-28 -top-8 px-3 md:px-4 py-1 text-xs md:text-sm bg-white/90 backdrop-blur border border-black rounded-full shadow whitespace-nowrap">
+        {currentBlog.category || "Wellness"}
+      </span>
+
+      {/* RIGHT PILL */}
+      <span className="absolute right-10 sm:right-14 md:right-28 -top-8 px-3 md:px-4 py-1 text-xs md:text-sm bg-white/90 backdrop-blur border border-black rounded-full shadow whitespace-nowrap">
+        {currentBlog.createdAt
+          ? new Date(currentBlog.createdAt).toLocaleDateString()
+          : "Latest"}
+      </span>
+
+    </div>
+
+  </div>
+
+
+
+</div>
+
+  {/* CARD SECTION */}
+
+{/* CARD SECTION */}
+
+
+<div className="max-w-5xl mx-auto px-4 -mt-12 md:-mt-28 relative">
+
+  <div className="relative">
+
+    {visibleCards[0] && (
+      <Link
+        href={`/blogs/${createSlug(visibleCards[0].title)}-${visibleCards[0].id}`}
+        className="block"
+      >
+        <div className="relative">
+
+          {/* STACK BAR 2 */}
+          <div className="hidden sm:block absolute -top-5 left-10 md:left-20 right-10 md:right-20 h-2 md:h-3 bg-white border border-black rounded-t-[50px] opacity-80 z-0"></div>
+
+          {/* STACK BAR 1 */}
+          <div className="absolute -top-2 left-6 md:left-14 right-6 md:right-14 h-2 md:h-3 bg-white border border-black rounded-t-[50px] opacity-90 z-0"></div>
+
+          {/* 🔥 BACK CARD (NO GAP FIX) */}
+          <div className="
+            absolute top-0 left-0 right-0 z-10
+            bg-white border border-black
+            rounded-2xl md:rounded-t-3xl
+            h-[220px] sm:h-[240px] md:h-[280px] lg:h-[320px]
+            shadow-md
+          "></div>
+
+          {/* MAIN CARD */}
+          <div
+            className={`
+              relative z-20
+              bg-white border border-black shadow-lg overflow-hidden
+              rounded-2xl md:rounded-t-3xl
+              h-[220px] sm:h-[240px] md:h-[280px] lg:h-[320px]
+              ${isFalling ? "animate-fall" : ""}
+            `}
+          >
+
+            <div className="grid md:grid-cols-2 h-full">
+
+              {/* CONTENT */}
+              <div className="p-3 sm:p-4 md:p-6 flex flex-col justify-between">
+                <p className="text-xs sm:text-sm text-black line-clamp-3">
+                  {visibleCards[0].excerpt ||
+                    visibleCards[0].content.substring(0, 120) + "..."}
+                </p>
+
+                <div className="flex items-center gap-2 mt-auto">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-500 text-white text-xs sm:text-sm font-bold">
+                    {(visibleCards[0].author?.name || "A").charAt(0)}
+                  </div>
+
+                  <div>
+                    <p className="text-xs sm:text-sm font-semibold">
+                      {visibleCards[0].author?.name || "Admin"}
+                    </p>
+                    <p className="text-[10px] sm:text-xs text-gray-500">
+                      {visibleCards[0].author?.role || "Writer"}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* IMAGE */}
+              <div className="h-full overflow-hidden">
+                <img
+                  src={visibleCards[0].featuredImage || "/default-blog.jpg"}
+                  alt={visibleCards[0].title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </Link>
+    )}
+
+  </div>
+
+  <div className="mt-6 md:mt-10"></div>
+
+</div>
+
+
+
+</section>
+
+
+
+last final
+
+
+"use client";
+import {
+  User,
+  Calendar,
+  ArrowRight,
+  Instagram,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Youtube,
+  Mail,
+  ArrowUp,
+} from "lucide-react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import Navbar from "@/components/Navbar";
+import { useMemo } from "react";
+
+
+
+// Utility function to create URL-friendly slugs
+function createSlug(title) {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "") // Remove special characters
+    .replace(/\s+/g, "-") // Replace spaces with hyphens
+    .replace(/-+/g, "-") // Replace multiple hyphens with single hyphen
+    .trim(); // Remove leading/trailing spaces
+}
+
+// shiva
+
+export default function Home() {
+  const [blogs, setBlogs] = useState([]);
+  const [showAll, setShowAll] = useState(false);
+  const [featuredBlogs, setFeaturedBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [showSearchResults, setShowSearchResults] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+const [animateKey, setAnimateKey] = useState(0);
+  const [email, setEmail] = useState("");
+  const [subLoading, setSubLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("All");
+ 
+const [showCard, setShowCard] = useState(false);
+
+ const [activeIndex, setActiveIndex] = useState(0);
+const [isFalling, setIsFalling] = useState(false);
+
+
+const visibleCards =
+  blogs.length > 0
+    ? [
+        blogs[activeIndex],
+        blogs[(activeIndex + 1) % blogs.length],
+        blogs[(activeIndex + 2) % blogs.length],
+      ]
+    : [];
+
+const currentBlog = visibleCards[0] || {};
+
+
+
+
+  // Enhanced function to calculate blog ranking score
+  const calculateBlogScore = (blog) => {
+    let score = 0;
+
+    // Base score for featured blogs (highest priority)
+    if (blog.featured) score += 200;
+
+    // Score based on views (engagement indicator)
+    score += (blog.views || 0) * 0.2;
+
+    // Score based on content length (longer content = more valuable)
+    score += Math.min(blog.content.length / 50, 100);
+
+    // Score based on recency (newer posts get higher score)
+    const daysSinceCreated =
+      (new Date() - new Date(blog.createdAt)) / (1000 * 60 * 60 * 24);
+    score += Math.max(0, 50 - daysSinceCreated);
+
+    // Score based on category relevance
+    if (blog.category) score += 30;
+
+    // Score based on tags (more tags = more comprehensive)
+    if (blog.tags && blog.tags.length > 0) score += blog.tags.length * 8;
+
+    // Score based on author reputation (if author has more blogs)
+    if (blog.author && blog.author.blogCount) {
+      score += Math.min(blog.author.blogCount * 2, 40);
+    }
+
+    // Bonus for complete metadata
+    if (blog.excerpt) score += 15;
+    if (blog.featuredImage) score += 20;
+
+    // Small random factor for variety (reduced)
+    score += Math.random() * 5;
+
+    return Math.round(score);
+  };
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  // Close search results when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (showSearchResults && !event.target.closest("form")) {
+        setShowSearchResults(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showSearchResults]);
+
+
+//   const blogsArray = Array.isArray(data) ? data : data.blogs || [];
+
+// setBlogs(blogsArray);
+
+
+  // const fetchBlogs = async () => {
+  //   try {
+  //     const response = await fetch("/api/blogs");
+  //     const data = await response.json();
+  //     console.log("Fetched blogs:", data);
+  //     console.log("Number of blogs:", data.length);
+
+  //     setBlogs(data);
+  //     const featured = data.filter((blog) => blog.featured).slice(0, 1);
+  //     console.log("Featured blogs:", featured);
+  //     console.log("Number of featured blogs:", featured.length);
+  //     setFeaturedBlogs(featured);
+  //   } catch (error) {
+  //     console.error("Error fetching blogs:", error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  const fetchBlogs = async () => {
+  try {
+    const response = await fetch("/api/blogs");
+    const data = await response.json();
+
+    console.log("Fetched blogs:", data);
+
+    // normalize
+    const blogsArray = Array.isArray(data) ? data : data.blogs || [];
+
+    console.log("Number of blogs:", blogsArray.length);
+
+    // ✅ store ALL blogs
+    setBlogs(blogsArray);
+
+    // ✅ get ONLY ONE featured for hero
+    const featured = blogsArray.find((blog) => blog.featured);
+
+    // if no featured exists, fallback to first blog
+    setFeaturedBlogs(featured ? [featured] : blogsArray.slice(0, 1));
+
+  } catch (error) {
+    console.error("Error fetching blogs:", error);
+  } finally {
+    setLoading(false);
+  }
+};
+
+
+
+useEffect(() => {
+  if (blogs.length === 0) return;
+
+  const interval = setInterval(() => {
+    setIsFalling(true);
+
+    setTimeout(() => {
+      setActiveIndex((prev) => (prev + 1) % blogs.length);
+      setIsFalling(false);
+    }, 500); // match CSS animation
+  }, 3000);
+
+  return () => clearInterval(interval);
+}, [blogs.length]);
+
+
+
+  // Search functionality
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+
+    if (query.trim() === "") {
+      setSearchResults([]);
+      setShowSearchResults(false);
+      return;
+    }
+
+    const searchTerm = query.toLowerCase().trim();
+    const results = blogs.filter((blog) => {
+      const title = (blog.title || "").toLowerCase();
+      const content = (blog.content || "").toLowerCase();
+      const category = (blog.category || "").toLowerCase();
+      const excerpt = (blog.excerpt || "").toLowerCase();
+
+      return (
+        title.includes(searchTerm) ||
+        content.includes(searchTerm) ||
+        category.includes(searchTerm) ||
+        excerpt.includes(searchTerm)
+      );
+    });
+
+    setSearchResults(results);
+    setShowSearchResults(results.length > 0);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      handleSearch(searchQuery);
+    }
+  };
+
+  const handleSearchInputChange = (e) => {
+    const query = e.target.value;
+    handleSearch(query);
+  };
+
+  // Auto change between first 3 blogs cards
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentIndex((prevIndex) => (prevIndex + 1) % 3);
+  //   }, 3000); //
+  //   return () => clearInterval(interval);
+  // }, []);
+useEffect(() => {
+  if (blogs.length === 0) return;
+
+  const interval = setInterval(() => {
+    setCurrentIndex((prev) => (prev + 1) % blogs.length);
+    setAnimateKey((prev) => prev + 1); // re-trigger animation
+  }, 4000);
+
+  return () => clearInterval(interval);
+}, [blogs]);
+
+
+  const handleSubscribeSubmit = async (e) => {
+    e.preventDefault();
+    setSubLoading(true);
+    setSuccess(false);
+
+    // Basic email validation
+    if (!email || !email.includes("@")) {
+      alert("⚠️ Please enter a valid email address.");
+      setSubLoading(false);
+      return;
+    }
+
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      setEmail("");
+      setSuccess(true);
+    } catch (err) {
+      console.error("Error:", err);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setSubLoading(false);
+    }
+  };
+
+  const filteredBlogs =
+    activeCategory === "All"
+      ? blogs
+      : blogs.filter(
+          (blog) =>
+            blog.category?.toLowerCase() === activeCategory.toLowerCase(),
+        );
+
+  const [bubbles, setBubbles] = useState([]);
+
+  useEffect(() => {
+    const generated = Array.from({ length: 7 }).map((_, i) => ({
+      width: Math.random() * 240 + 120 + "px",
+      height: Math.random() * 240 + 120 + "px",
+      left: Math.random() * 100 + "%",
+      top: Math.random() * 100 + "%",
+      background: `hsl(${165 + i * 20}, 70%, 70%)`,
+      animationDuration: Math.random() * 8 + 10 + "s",
+      animationDelay: `${i * 0.6}s`,
+    }));
+
+    setBubbles(generated);
+  }, []);
+
+  const stats = [
+    {
+      image: "/books.png",
+      count: blogs.length,
+      label: "ARTICLES",
+    },
+    {
+      image: "/doctor.png",
+      count: "500+",
+      label: "EXPERTS",
+    },
+    {
+      image: "/people.png",
+      count: "250K+",
+      label: "MONTHLY READERS",
+    },
+    {
+      image: "/star.png",
+      count: "4.9",
+      label: "RATING",
+    },
+  ];
+
+  const categories = [
+    {
+      name: "COVID-19",
+      image: "/covid.png",
+      count: "2.5K",
+    },
+    {
+      name: "Mental Health",
+      image: "/brain.png",
+      count: "1.8K",
+    },
+    {
+      name: "Nutrition",
+      image: "/salad.png",
+      count: "1.2K",
+    },
+    {
+      name: "Exercise",
+      image: "/muscle.png",
+      count: "980",
+    },
+    {
+      name: "Prevention",
+      image: "/encrypted.png",
+      count: "750",
+    },
+    {
+      name: "Technology",
+      image: "/phone.png",
+      count: "650",
+    },
+  ];
+
+  return (
+    <div className="bg-background min-h-screen ">
+      {/* Navbar */}
+      <Navbar />
+
+      <section className="relative overflow-hidden bg-gradient-to-br from-blue-50/80 via-purple-50/60 to-blue-100/70 py-14 md:py-20">
+        {/* Soft Gradient Orbs */}
+        <div className="absolute inset-0 opacity-50">
+          <div
+            className="absolute top-10 left-1/4 w-[28rem] h-[28rem] rounded-full blur-[120px]"
+            style={{
+              background:
+                "linear-gradient(145deg, var(--primary) 0%, var(--secondary) 100%)",
+            }}
+          />
+          <div
+            className="absolute bottom-10 right-1/3 w-[22rem] h-[22rem] rounded-full blur-[120px]"
+            style={{
+              background:
+                "linear-gradient(145deg, var(--secondary) 0%, var(--accent) 100%)",
+            }}
+          />
+        </div>
+
+        {/* Floating Bubbles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {bubbles.map((bubble, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full opacity-20 animate-float"
+              style={bubble}
+            />
+          ))}
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-4">
+          {/* Badge */}
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/60 backdrop-blur-xl border border-white/70 shadow-md">
+              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span className="text-sm font-semibold text-gray-700 tracking-wide">
+                Trusted by healthcare professionals worldwide
+              </span>
+            </div>
+          </div>
+
+          {/* Headline */}
+          <div className="text-center max-w-4xl mx-auto">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-6">
+              <span className="block text-gray-900">Discover Healthcare</span>
+              <span
+                className="block 
+              bg-gradient-to-r 
+              from-emerald-600 
+              via-blue-600 
+              to-cyan-600 
+              bg-clip-text 
+              text-transparent 
+              animate-gradient-smooth"
+              >
+                Insights & Stories
+              </span>
+            </h1>
+
+            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-12">
+              Expert analysis, latest medical research, and practical healthcare
+              guidance—all in one place.
+            </p>
+
+            {/* Search Bar */}
+            <div className="max-w-2xl mx-auto">
+              <form onSubmit={handleSearchSubmit} className="relative group">
+                <div className="relative flex items-center bg-[#E8EEFB] rounded-full shadow-lg p-2 transition-all duration-300">
+                  {/* Search Icon */}
+                  <div className="ml-1 flex-shrink-0">
+                    <div className="w-10 h-10 bg-[#1E3A8A] rounded-full flex items-center justify-center">
+                      <svg
+                        className="w-5 h-5 text-white"
+                        stroke="currentColor"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Input Field */}
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={handleSearchInputChange}
+                    placeholder="Search articles, topics, or experts..."
+                    className="w-full pl-4 pr-32 bg-transparent text-gray-900 placeholder-gray-800 focus:outline-none text-lg font-medium h-12"
+                  />
+
+                  {/* Button */}
+                  <button
+                    type="submit"
+                    className="absolute right-2 px-8 py-2 bg-white text-[#1E3A8A] font-bold rounded-full shadow-sm hover:shadow-md transition-all duration-200"
+                  >
+                    Search
+                  </button>
+                </div>
+
+                {/* SEARCH DROPDOWN */}
+                {showSearchResults && searchResults.length > 0 && (
+                  <div className="absolute top-full left-0 right-0 mt-3 bg-white rounded-2xl border border-gray-200 shadow-2xl max-h-96 overflow-y-auto z-50 pb-4 custom-scroll">
+                    <div className="p-4">
+                      <div className="flex justify-between items-center mb-4 sticky top-0 bg-white py-2">
+                        <span className="text-sm font-semibold text-emerald-700">
+                          Found {searchResults.length} results
+                        </span>
+                        <button
+                          onClick={() => {
+                            setShowSearchResults(false);
+                            setSearchQuery("");
+                          }}
+                          className="text-gray-500 hover:text-emerald-700"
+                        >
+                          ✕
+                        </button>
+                      </div>
+
+                      <div className="space-y-3">
+                        {searchResults.map((blog) => (
+                          <Link
+                            key={blog.id}
+                            href={`/blogs/${createSlug(blog.title)}-${blog.id}`}
+                            onClick={() => {
+                              setShowSearchResults(false);
+                              setSearchQuery("");
+                            }}
+                            className="block p-3 rounded-xl transition-all hover:bg-emerald-50 border border-transparent hover:border-emerald-200"
+                          >
+                            <div className="flex gap-3">
+                              {blog.featuredImage && (
+                                <Image
+                                  src={blog.featuredImage}
+                                  alt={blog.title}
+                                  width={64}
+                                  height={64}
+                                  className="rounded-lg w-16 h-16 object-cover shadow-sm"
+                                />
+                              )}
+                              <div>
+                                <h4 className="font-semibold text-gray-900 text-sm line-clamp-2">
+                                  {blog.title}
+                                </h4>
+                                {blog.category && (
+                                  <p className="text-xs text-emerald-700 mt-1">
+                                    {blog.category}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* NO RESULTS */}
+                {showSearchResults &&
+                  searchResults.length === 0 &&
+                  searchQuery.trim() !== "" && (
+                    <div className="absolute top-full left-0 right-0 mt-3 bg-white rounded-2xl border border-gray-200 shadow-2xl p-10 text-center z-50">
+                      <h3 className="font-semibold text-gray-900 text-xl mb-2">
+                        No results found
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-6">
+                        Try different keywords or browse featured insights.
+                      </p>
+                      <button
+                        onClick={() => {
+                          setShowSearchResults(false);
+                          setSearchQuery("");
+                        }}
+                        className="px-5 py-2 bg-emerald-600 text-white text-sm rounded-lg hover:bg-emerald-700 transition-all"
+                      >
+                        Clear Search
+                      </button>
+                    </div>
+                  )}
+              </form>
+            </div>
+          </div>
+
+          {/* Stats Section - Glassmorphism Design */}
+          <div className="relative w-full max-w-5xl mx-auto mt-16 md:mt-24 px-4 md:px-6">
+            {/* Background Gradient with Soft Blur */}
+            <div className="absolute inset-0 -z-10 rounded-3xl overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-100/60 via-purple-100/50 to-blue-200/40 rounded-3xl blur-2xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-50/40 via-transparent to-purple-50/30 rounded-3xl"></div>
+            </div>
+
+            {/* Stats Cards Grid */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 relative z-10">
+              {stats.map((item, index) => (
+                <div
+                  key={index}
+                  className="relative group min-h-[220px] md:min-h-[260px] h-full"
+                >
+                  {/* Glass Card */}
+                  <div className="absolute inset-0 bg-white/70 backdrop-blur-xl rounded-2xl md:rounded-3xl border border-white/60 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 overflow-hidden">
+                    {/* Subtle inner glow */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+                    {/* Content Container - Centered Vertical Stack */}
+                    <div className="relative h-full py-8 md:py-10 px-4 md:px-6 flex flex-col items-center justify-center gap-1">
+                      {/* Icon Section - Top */}
+                      <div className="flex justify-center items-center mb-3 md:mb-4">
+                        <div className="relative w-16 h-16 md:w-20 md:h-20 group-hover:scale-110 transition-transform duration-500">
+                          <Image
+                            src={item.image}
+                            alt={item.label}
+                            fill
+                            className="object-contain drop-shadow-2xl"
+                            priority
+                          />
+                        </div>
+                      </div>
+
+                      {/* Number - Below Icon */}
+                      <div className="flex justify-center items-center mb-1 md:mb-2">
+                        <p
+                          className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-none text-center"
+                          style={{
+                            fontWeight: 900,
+                            textShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+                            letterSpacing: "-0.02em",
+                            lineHeight: "1.1",
+                          }}
+                        >
+                          {item.count}
+                        </p>
+                      </div>
+
+                      {/* Label - Below Number */}
+                      <div className="flex justify-center items-center">
+                        <p className="text-[10px] md:text-xs font-semibold text-gray-500 uppercase tracking-[0.12em] md:tracking-[0.15em] leading-tight whitespace-nowrap text-center">
+                          {item.label}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Soft shadow beneath card */}
+                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-[85%] h-3 bg-black/5 blur-xl rounded-full opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+{/* puju 1*/}
+
+      {/* Featured Story Section */}
+      {loading ? (
+        /* -------------------- LOADING SKELETON -------------------- */
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="animate-pulse">
+              <div className="flex items-center justify-center mb-8">
+                <div className="bg-gray-200 h-12 w-48 rounded-full"></div>
+              </div>
+
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div className="flex flex-col lg:flex-row">
+                  <div className="lg:w-1/2 p-8 lg:p-12">
+                    <div className="space-y-6">
+                      <div className="flex items-center space-x-4">
+                        <div className="bg-gray-200 h-6 w-20 rounded-full"></div>
+                        <div className="bg-gray-200 h-4 w-16 rounded-full"></div>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="bg-gray-200 h-8 w-full rounded"></div>
+                        <div className="bg-gray-200 h-8 w-3/4 rounded"></div>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="bg-gray-200 h-4 w-full rounded"></div>
+                        <div className="bg-gray-200 h-4 w-full rounded"></div>
+                        <div className="bg-gray-200 h-4 w-2/3 rounded"></div>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="bg-gray-200 h-10 w-10 rounded-full"></div>
+                        <div className="space-y-2">
+                          <div className="bg-gray-200 h-4 w-20 rounded"></div>
+                          <div className="bg-gray-200 h-3 w-16 rounded"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-8">
+                      <div className="bg-gray-200 h-12 w-40 rounded-xl"></div>
+                    </div>
+                  </div>
+
+                  <div className="lg:w-1/2">
+                    <div className="h-80 lg:h-full bg-gray-200"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section> 
+      ) : featuredBlogs.length > 0 ? (
+        /* -------------------- FEATURED STORY (NEW DESIGN) -------------------- */
+
+<section className="bg-background py-10 md:py-16">
+
+ 
+
+{/* BLUE SECTION */}
+<div className="max-w-7xl mx-auto px-4">
+
+  <div
+    key={animateKey} // 🔥 important for re-animation
+    className="relative bg-cover bg-center min-h-[350px] md:min-h-[500px] pt-20 md:pt-28 pb-20 md:pb-28 px-4 md:px-8 -mt-2 text-center"
+    style={{
+      backgroundImage: "url('/hero-bg.jpeg')",
+    }}
+  >
+
+    <p className="text-xs text-black/60 mb-2 md:mb-3">
+      Featured Story
+    </p>
+
+<h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-black text-center max-w-2xl mx-auto leading-tight">
+  {currentBlog.title.split(" ").map((word, i) => (
+    <span
+      key={i}
+      className="inline-block animate-word"
+      style={{ animationDelay: `${i * 0.06}s` }}  // 👈 HERE
+    >
+      {word}&nbsp;
+    </span>
+  ))}
+</h1>
+    <div className="relative mt-10 mb-16 md:mb-20 z-20">
+
+      {/* LEFT PILL */}
+      <span className="absolute left-10 sm:left-14 md:left-28 -top-8 px-3 md:px-4 py-1 text-xs md:text-sm bg-white/90 backdrop-blur border border-black rounded-full shadow whitespace-nowrap">
+        {currentBlog.category || "Wellness"}
+      </span>
+
+      {/* RIGHT PILL */}
+      <span className="absolute right-10 sm:right-14 md:right-28 -top-8 px-3 md:px-4 py-1 text-xs md:text-sm bg-white/90 backdrop-blur border border-black rounded-full shadow whitespace-nowrap">
+        {currentBlog.createdAt
+          ? new Date(currentBlog.createdAt).toLocaleDateString()
+          : "Latest"}
+      </span>
+
+    </div>
+
+  </div>
+
+
+
+</div>
+
+ 
+{/* CARD SECTION */}
+
+<div className="max-w-5xl mx-auto px-4 -mt-12 md:-mt-28 relative">
+
+  <div className="relative">
+
+    {visibleCards[0] && (
+      <div className="relative">
+
+        {/* 🔥 NEXT CARD (ALREADY PRESENT — NO GAP) */}
+        {visibleCards[1] && (
+          <div className="absolute top-0 left-0 right-0 z-10">
+            <div className="
+              bg-white border border-black shadow-md overflow-hidden
+              rounded-2xl md:rounded-t-3xl
+              h-[220px] sm:h-[240px] md:h-[280px] lg:h-[320px]
+            ">
+              <div className="grid md:grid-cols-2 h-full">
+
+                <div className="p-3 sm:p-4 md:p-6 flex flex-col justify-between">
+                  <p className="text-xs sm:text-sm text-black line-clamp-3">
+                    {visibleCards[1].excerpt ||
+                      visibleCards[1].content.substring(0, 120) + "..."}
+                  </p>
+
+                  <div className="flex items-center gap-2 mt-auto">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-500 text-white text-xs sm:text-sm font-bold">
+                      {(visibleCards[1].author?.name || "A").charAt(0)}
+                    </div>
+
+                    <div>
+                      <p className="text-xs sm:text-sm font-semibold">
+                        {visibleCards[1].author?.name || "Admin"}
+                      </p>
+                      <p className="text-[10px] sm:text-xs text-gray-500">
+                        {visibleCards[1].author?.role || "Writer"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="h-full overflow-hidden">
+                  <img
+                    src={visibleCards[1].featuredImage || "/default-blog.jpg"}
+                    alt={visibleCards[1].title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* STACK BARS */}
+        <div className="hidden sm:block absolute -top-5 left-10 md:left-20 right-10 md:right-20 h-2 md:h-3 bg-white border border-black rounded-t-[50px] opacity-80 z-0"></div>
+
+        <div className="absolute -top-2 left-6 md:left-14 right-6 md:right-14 h-2 md:h-3 bg-white border border-black rounded-t-[50px] opacity-90 z-0"></div>
+
+        {/* 🔥 MAIN CARD */}
+        <Link
+          href={`/blogs/${createSlug(visibleCards[0].title)}-${visibleCards[0].id}`}
+          className="block"
+        >
+          <div
+            className={`
+              relative z-20
+              bg-white border border-black shadow-lg overflow-hidden
+              rounded-2xl md:rounded-t-3xl
+              h-[220px] sm:h-[240px] md:h-[280px] lg:h-[320px]
+              ${isFalling ? "animate-fall" : ""}
+            `}
+          >
+
+            <div className="grid md:grid-cols-2 h-full">
+
+              <div className="p-3 sm:p-4 md:p-6 flex flex-col justify-between">
+                <p className="text-xs sm:text-sm text-black line-clamp-3">
+                  {visibleCards[0].excerpt ||
+                    visibleCards[0].content.substring(0, 120) + "..."}
+                </p>
+
+                <div className="flex items-center gap-2 mt-auto">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-500 text-white text-xs sm:text-sm font-bold">
+                    {(visibleCards[0].author?.name || "A").charAt(0)}
+                  </div>
+
+                  <div>
+                    <p className="text-xs sm:text-sm font-semibold">
+                      {visibleCards[0].author?.name || "Admin"}
+                    </p>
+                    <p className="text-[10px] sm:text-xs text-gray-500">
+                      {visibleCards[0].author?.role || "Writer"}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="h-full overflow-hidden">
+                <img
+                  src={visibleCards[0].featuredImage || "/default-blog.jpg"}
+                  alt={visibleCards[0].title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+            </div>
+
+          </div>
+        </Link>
+
+      </div>
+    )}
+
+  </div>
+
+  <div className="mt-6 md:mt-10"></div>
+
+</div>
+
+
+
+</section>
+
+      ) : (
+        /* -------------------- NO FEATURED STORY -------------------- */
+        <section className="py-16 bg-white">
+         
+        <div className="relative overflow-hidden">
+
+          {/*  BACKGROUND LAYERS (NEW - SAFE ADD) */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-purple-50/60 to-blue-100/70"></div>
+
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-10 left-1/4 w-[28rem] h-[28rem] bg-blue-400/30 rounded-full blur-[120px]"></div>
+            <div className="absolute bottom-10 right-1/3 w-[22rem] h-[22rem] bg-purple-400/30 rounded-full blur-[120px]"></div>
+
+
+
+          </div>
+
+          {/*ORIGINAL CODE */}
+          <div className="
+        
+         bg-background
+          animated-bg
+        py-4 flex items-start justify-center">
+
+            <div
+              className="group w-full max-w-lg mx-auto  relative 
+                             bg-gradient-to-br from-blue-50 via-white to-blue-200/60
+                             bg-white/70 backdrop-blur-xl 
+                              rounded-3xl 
+                                  border border-gray-200/60
+                                  shadow-[0_10px_30px_rgba(0,0,0,0.08)]
+                                p-5 pt-[180px] sm:pt-[200px] text-center
+                                        transition-all duration-500
+                                    hover:-translate-y-2 
+                                 hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)]"
+            >
+
+              <div className="absolute top-0 left-1/2 -translate-x-1/2">
+                <div className="pencil-loader scale-75 sm:scale-90 md:scale-100"></div>
+              </div>
+
+              {/* 🏷️ TITLE SECTION */}
+              <h2 className="relative text-3xl font-semibold text-blue-900 mb-2 tracking-tight">
+                <span className="typing-title group-hover:text-blue-700 transition-colors duration-300">
+                  No Featured Story Yet
+                </span>
+
+                <span
+                  className="absolute left-0 -bottom-1 h-[3px] w-0 
+                              bg-gradient-to-r from-blue-500 to-cyan-400
+                                  transition-all duration-300
+                            group-hover:w-full"
+                ></span>
+              </h2>
+
+              {/* 📄 DESCRIPTION TEXT */}
+              <p
+                className="text-gray-500 text-sm leading-relaxed mb-6
+                       transition-all duration-300
+                     group-hover:text-gray-600"
+              >
+                Check back soon for{" "}
+                <span className="font-medium text-gray-700 group-hover:text-blue-600">
+                  featured blog posts
+                </span>
+                !
+              </p>
+
+              {/* 🔘 BUTTON SECTION */}
+              <button
+                className="
+                          mt-4 px-4 py-2 rounded-full 
+                                text-blue-600 font-medium
+                                     transition-all duration-500 ease-smooth
+                          border border-transparent
+                            group-hover:px-6 group-hover:py-3
+                            group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-indigo-600
+                                 group-hover:text-white
+                           group-hover:shadow-md
+                              "
+              >
+                <span className="relative">
+                  Explore Articles
+                  <span className="ml-1 animate-pulse group-hover:hidden">|</span>
+                </span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+        </section>
+
+      )}
+ 
+      {/* Recent Articles Section */}
+      <section
+        id="recent-articles"
+        className="py-6 md:py-10 px-4 sm:px-6 lg:px-8 bg-background"
+      >
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <div className="justify-center text-center pt-4 mb-6">
+              <h2
+                className="text-[42px] font-extrabold text-foreground mb-3"
+                style={{ fontFamily: "Poppins, sans-serif", fontWeight: 800 }}
+              >
+                Our Recent Articles
+              </h2>
+              <p className="body-large text-[#5271FF] mt-2">
+                Stay informed with our latest healthcare insights and expert
+                analysis
+              </p>
+            </div>
+          </div>
+
+          {/* Calculate sorted blogs (stable, no shuffle) */}
+          {(() => {
+            const sortedBlogs = useMemo(() => {
+              return blogs
+                .map((blog, index) => ({
+                  ...blog,
+                  rank: index + 1,
+                  score: calculateBlogScore(blog),
+                }))
+                .sort((a, b) => b.score - a.score);
+            }, [blogs]);
+
+            return (
+              <>
+                {/* Loading Skeleton */}
+                {loading ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {Array.from({ length: 4 }).map((_, index) => (
+                      <div
+                        key={index}
+                        className="bg-card rounded-xl shadow-md border border-border p-4 animate-pulse"
+                      >
+                        <div className="h-48 bg-muted rounded-lg mb-4"></div>
+                        <div className="h-4 bg-muted w-3/4 rounded mb-3"></div>
+                        <div className="h-4 bg-muted w-1/2 rounded mb-3"></div>
+                        <div className="h-3 bg-muted w-full rounded mb-2"></div>
+                        <div className="h-3 bg-muted w-4/5 rounded mb-6"></div>
+                        <div className="flex justify-between">
+                          <div className="h-3 w-1/4 bg-muted rounded"></div>
+                          <div className="h-3 w-1/4 bg-muted rounded"></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : sortedBlogs.length > 0 ? (
+                  <>
+                    {/* Blog Cards Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                      {sortedBlogs
+                        .slice(0, showAll ? sortedBlogs.length : 4)
+                        .map((post) => (
+                          <Link
+                            key={post.id}
+                            href={`/blogs/${createSlug(post.title)}-${post.id}`}
+                            className="group"
+                          >
+                            <article className="bg-card rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-border hover:border-primary/20">
+                              {/* Image */}
+                              <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10">
+                                <img
+                                  src={post.featuredImage || "/placeholder.svg"}
+                                  alt={post.title}
+                                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                />
+                                <div className="absolute top-3 left-3">
+                                  <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary/90 text-primary-foreground text-xs font-semibold rounded-full">
+                                    {post.category || "Healthcare"}
+                                  </span>
+                                </div>
+                              </div>
+
+                              {/* Content */}
+                              <div className="p-5 flex flex-col h-full">
+                                <h3 className="text-lg font-bold text-foreground mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                                  {post.title}
+                                </h3>
+
+                                <p className="text-sm text-muted-foreground mb-4 line-clamp-2 flex-grow">
+                                  {post.excerpt ||
+                                    post.content?.substring(0, 120) + "..."}
+                                </p>
+
+                                {/* Meta Info */}
+                                <div className="space-y-3 pt-4 border-t border-border">
+                                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                                    <User className="w-4 h-4" />
+                                    <span>{post.author?.name || "Admin"}</span>
+                                  </div>
+                                  <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                                      <Calendar className="w-4 h-4" />
+                                      <span>
+                                        {new Date(
+                                          post.createdAt,
+                                        ).toLocaleDateString("en-US", {
+                                          month: "short",
+                                          day: "numeric",
+                                          year: "numeric",
+                                        })}
+                                      </span>
+                                    </div>
+                                    <span className="text-xs font-medium text-primary">
+                                      {Math.ceil(post.content.length / 500)} min
+                                      read
+                                    </span>
+                                  </div>
+                                </div>
+
+                                {/* Read More */}
+                                <button className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary group/link">
+                                  Read More
+                                  <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                                </button>
+                              </div>
+                            </article>
+                          </Link>
+                        ))}
+                    </div>
+
+                    {/* View All / Show Less Button */}
+                    <div className="flex justify-center mt-16">
+                      <button
+                        onClick={() => {
+                          if (showAll) {
+                            const section =
+                              document.getElementById("recent-articles");
+                            section?.scrollIntoView({ behavior: "smooth" });
+                          }
+                          setShowAll(!showAll);
+                        }}
+                        className="px-8 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                      >
+                        {showAll ? "Show Less" : "View All Articles"}
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <div className="text-center py-16">
+                    <h3 className="text-xl font-bold mb-3 text-primary">
+                      No articles yet
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Check back soon for the latest healthcare insights and
+                      expert analysis.
+                    </p>
+                  </div>
+                )}
+              </>
+            );
+          })()}
+        </div>
+      </section>
+
+      {/* Trending Topics Section */}
+      <section className="py-6 md:py-10 bg-gradient-to-br from-background to-background/95">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+              Trending Topics
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Explore the most discussed healthcare topics and emerging trends
+            </p>
+          </div>
+
+          {/* Premium Topic Cards - Glass/Neumorphism Design */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
+            {categories.map((topic, index) => (
+              <div key={index} className="group cursor-pointer">
+                <div className="relative h-full bg-white/60 backdrop-blur-xl border border-white/50 rounded-2xl md:rounded-3xl p-5 md:p-6 text-center transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 hover:border-primary/40 overflow-hidden">
+                  {/* Gradient Highlight on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-secondary/0 group-hover:from-primary/10 group-hover:via-primary/5 group-hover:to-secondary/10 transition-all duration-500 rounded-2xl md:rounded-3xl pointer-events-none"></div>
+
+                  {/* Content Container */}
+                  <div className="relative z-10 flex flex-col items-center justify-center h-full min-h-[140px] py-4">
+                    {/* Icon - Bigger, Floating */}
+                    <div className="mb-3 md:mb-4 transform group-hover:scale-125 group-hover:-translate-y-2 transition-all duration-500">
+                      <div className="relative w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20">
+                        <Image
+                          src={topic.image}
+                          alt={topic.name}
+                          fill
+                          className="object-contain drop-shadow-lg"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Title - Clear Hierarchy */}
+                    <h3 className="font-bold text-foreground mb-1 md:mb-2 text-sm md:text-base group-hover:text-primary transition-colors duration-300">
+                      {topic.name}
+                    </h3>
+
+                    {/* Count - Below Title */}
+                    <p className="text-xs font-semibold text-gray-600 group-hover:text-gray-800 transition-colors duration-300 mb-2 md:mb-3">
+                      {topic.count} articles
+                    </p>
+
+                    {/* Bottom Accent Line - Animated */}
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-border to-transparent overflow-hidden">
+                      <div className="h-full bg-gradient-to-r from-primary via-secondary to-primary rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-center"></div>
+                    </div>
+                  </div>
+
+                  {/* Neumorphism Shadow Effect */}
+                  <div
+                    className="absolute inset-0 rounded-2xl md:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    style={{
+                      boxShadow:
+                        "inset 0 2px 4px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.1)",
+                    }}
+                  ></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Category Filter Section */}
+      <section className="relative py-10 md:py-16 bg-background overflow-hidden">
+        {/* Animated Bokeh Lights */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-primary/5 blur-3xl animate-pulse"></div>
+          <div
+            className="absolute bottom-20 right-10 w-40 h-40 rounded-full bg-secondary/5 blur-3xl animate-bounce"
+            style={{ animationDelay: "0.5s" }}
+          ></div>
+        </div>
+
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 z-10">
+          <div className="bg-card border border-border backdrop-blur-sm rounded-3xl px-8 py-10 shadow-lg">
+            <h2 className="text-center text-3xl md:text-4xl font-bold text-foreground mb-8">
+              Explore by Category
+            </h2>
+
+            <div className="flex flex-wrap justify-center items-center gap-3">
+              {[
+                "All",
+                "Wellness",
+                "Nutrition",
+                "Mental Health",
+                "Technology",
+                "Research",
+              ].map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
+                    activeCategory === cat
+                      ? "bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-lg scale-105"
+                      : "bg-muted text-foreground hover:bg-muted/80 border border-border hover:border-primary/30"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured + Subscribe Section */}
+      <section
+        id="subscribe-section"
+        className="py-10 md:py-16 bg-gradient-to-br from-background via-background to-secondary/5"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-3 gap-8 items-stretch">
+            {/* Featured Card (2 columns) */}
+            <div className="lg:col-span-2">
+              {blogs.length > 0 && (
+                <div className="relative group rounded-3xl overflow-hidden shadow-2xl h-full min-h-[480px]">
+                  <Image
+                    src={blogs[currentIndex]?.featuredImage || "/default.jpg"}
+                    alt={blogs[currentIndex]?.title || "Featured Blog"}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+
+                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white z-10">
+                    <span className="inline-block bg-primary/80 backdrop-blur-sm px-4 py-1.5 rounded-full mb-4 text-xs font-semibold tracking-wide">
+                      {blogs[currentIndex]?.category || "Health"}
+                    </span>
+
+                    <h3 className="text-3xl md:text-4xl font-bold mb-3 leading-tight line-clamp-2">
+                      {blogs[currentIndex]?.title || "Featured Insight"}
+                    </h3>
+
+                    <p className="text-gray-200 text-sm md:text-base line-clamp-2 mb-6">
+                      {blogs[currentIndex]?.excerpt ||
+                        blogs[currentIndex]?.content?.substring(0, 120) + "..."}
+                    </p>
+
+                    <Link
+                      href={`/blogs/${createSlug(blogs[currentIndex]?.title)}-${blogs[currentIndex]?.id}`}
+                      className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-secondary text-primary-foreground px-8 py-3 rounded-full font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300"
+                    >
+                      Read More →
+                    </Link>
+                  </div>
+
+                  {/* Indicators */}
+                  <div className="absolute top-6 right-6 flex gap-2 z-20">
+                    {blogs.slice(0, 3).map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentIndex(index)}
+                        className={`rounded-full transition-all duration-300 ${
+                          currentIndex === index
+                            ? "bg-white w-8 h-2"
+                            : "bg-white/40 w-2 h-2 hover:bg-white/60"
+                        }`}
+                      ></button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Subscribe Box */}
+            <div className="lg:col-span-1">
+              <div className="h-full min-h-[480px] bg-gradient-to-br from-primary to-secondary text-primary-foreground rounded-3xl p-8 shadow-2xl flex flex-col justify-center">
+                <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
+                <p className="text-primary-foreground/80 mb-8 text-sm leading-relaxed">
+                  Subscribe to get the latest healthcare insights and wellness
+                  updates.
+                </p>
+
+                <form
+                  onSubmit={handleSubscribeSubmit}
+                  className="flex flex-col gap-4 mb-6"
+                >
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    required
+                    className="px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-primary-foreground placeholder-primary-foreground/50 focus:outline-none focus:ring-2 focus:ring-white/40 transition-all"
+                  />
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="bg-white text-primary font-semibold px-6 py-3 rounded-xl hover:scale-105 hover:shadow-lg transition-all duration-300 disabled:opacity-60"
+                  >
+                    {loading ? "Subscribing..." : "Subscribe"}
+                  </button>
+                </form>
+
+                {success && (
+                  <div className="bg-green-500/20 border border-green-400/40 text-green-100 px-4 py-3 rounded-xl text-sm animate-fade-in">
+                    ✓ Successfully subscribed! Thank you for joining us.
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="bg-foreground text-background py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Top Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            {/* Know Us */}
+            <div>
+              <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">
+                Know Us
+              </h4>
+              <ul className="space-y-2 text-sm text-background/70">
+                {[
+                  "About Us",
+                  "Contact Us",
+                  "Press Coverage",
+                  "Careers",
+                  "Business Partnership",
+                  "Become a Health Partner",
+                  "Corporate Governance",
+                ].map((item, index) => (
+                  <li key={index}>
+                    <a
+                      href="#"
+                      className="hover:text-background transition-colors"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Policies */}
+            <div>
+              <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">
+                Our Policies
+              </h4>
+              <ul className="space-y-2 text-sm text-background/70">
+                {[
+                  "Privacy Policy",
+                  "Terms & Conditions",
+                  "Editorial Policy",
+                  "User Manual",
+                  "Important Documents",
+                  "Required Documents",
+                  "Patient Form",
+                ].map((item, index) => (
+                  <li key={index}>
+                    <a
+                      href="#"
+                      className="hover:text-background transition-colors"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Services */}
+            <div>
+              <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">
+                Our Services
+              </h4>
+              <ul className="space-y-2 text-sm text-background/70">
+                {[
+                  "Features for Doctor",
+                  "Features for Hospital",
+                  "Features for Lab",
+                  "Features for HSP",
+                  "Features for Patient",
+                  "Features for Chemist",
+                  "Features for Health Worker",
+                  "Features for Pharma Manufacturers",
+                ].map((item, index) => (
+                  <li key={index}>
+                    <a
+                      href="#"
+                      className="hover:text-background transition-colors"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Connect  */}
+            <div>
+              <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">
+                Connect
+              </h4>
+              <p className="text-sm text-background/70 mb-4">
+                Follow Aarogya Insights for latest updates
+              </p>
+
+              {/* Social Icons */}
+              <div className="flex gap-3 mb-8">
+                {[Instagram, Facebook, Twitter, Linkedin, Youtube].map(
+                  (Icon, index) => (
+                    <a
+                      key={index}
+                      href="#"
+                      className="p-2 bg-background/10 hover:bg-background/20 rounded-lg transition-colors"
+                    >
+                      <Icon className="w-5 h-5 text-background" />
+                    </a>
+                  ),
+                )}
+              </div>
+
+              {/* Subscribe Section  */}
+              <div>
+                <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">
+                  Aarogya Insights
+                </h4>
+                <p className="text-background/70 text-sm mb-4">
+                  Subscribe for weekly health insights.
+                </p>
+
+                <div className="flex gap-2">
+                  <input
+                    type="email"
+                    placeholder="Your email"
+                    className="flex-1 px-4 py-2 rounded-lg bg-background/10 text-background placeholder:text-background/50 text-sm border border-background/20 focus:border-background/50 focus:outline-none transition-colors"
+                  />
+                  <button className="px-4 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors">
+                    <Mail className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="border-t border-background/20 py-8"></div>
+
+          {/* Bottom Footer */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            {/* Compact Info Row */}
+            <div className="w-full text-background/70 text-xs md:text-sm flex flex-col items-center md:items-start gap-1">
+              {/* Row 1 */}
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-4 gap-y-1">
+                <span>Government of India | Aarogya Insights</span>
+                <span className="hidden md:inline">•</span>
+                <span>ISO:27001 Certified</span>
+                <span className="hidden md:inline">•</span>
+                <span>Online Healthcare Platform</span>
+              </div>
+
+              {/* Row 2 */}
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-4 gap-y-1">
+                <span>Your Health, Your Choice</span>
+                <span className="hidden md:inline">•</span>
+                <span>+91 79-7272-7498</span>
+                <span className="hidden md:inline">•</span>
+                <span>info@aarogya.com</span>
+              </div>
+            </div>
+
+            {/* Original Footer Text */}
+            <p className="text-background/60 text-xs md:text-sm text-center md:text-left">
+              © 2024 Aarogya Insights Pvt. Ltd. All rights reserved. IT Act,
+              2000 compliant.
+            </p>
+
+            {/* Scroll to top */}
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="p-2 bg-background/10 hover:bg-background/20 rounded-lg transition-colors"
+            >
+              <ArrowUp className="w-5 h-5 text-background" />
+            </button>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+
+
+
+last final
+
+
+"use client";
+import {
+  User,
+  Calendar,
+  ArrowRight,
+  Instagram,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Youtube,
+  Mail,
+  ArrowUp,
+} from "lucide-react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import Navbar from "@/components/Navbar";
+import { useMemo } from "react";
+
+
+
+// Utility function to create URL-friendly slugs
+function createSlug(title) {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "") // Remove special characters
+    .replace(/\s+/g, "-") // Replace spaces with hyphens
+    .replace(/-+/g, "-") // Replace multiple hyphens with single hyphen
+    .trim(); // Remove leading/trailing spaces
+}
+
+// shiva
+
+export default function Home() {
+  const [blogs, setBlogs] = useState([]);
+  const [showAll, setShowAll] = useState(false);
+  const [featuredBlogs, setFeaturedBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [showSearchResults, setShowSearchResults] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+const [animateKey, setAnimateKey] = useState(0);
+  const [email, setEmail] = useState("");
+  const [subLoading, setSubLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("All");
+ 
+const [showCard, setShowCard] = useState(false);
+
+ const [activeIndex, setActiveIndex] = useState(0);
+const [isFalling, setIsFalling] = useState(false);
+
+
+const visibleCards =
+  blogs.length > 0
+    ? [
+        blogs[activeIndex],
+        blogs[(activeIndex + 1) % blogs.length],
+        blogs[(activeIndex + 2) % blogs.length],
+      ]
+    : [];
+
+const currentBlog = visibleCards[0] || {};
+
+
+
+
+  // Enhanced function to calculate blog ranking score
+  const calculateBlogScore = (blog) => {
+    let score = 0;
+
+    // Base score for featured blogs (highest priority)
+    if (blog.featured) score += 200;
+
+    // Score based on views (engagement indicator)
+    score += (blog.views || 0) * 0.2;
+
+    // Score based on content length (longer content = more valuable)
+    score += Math.min(blog.content.length / 50, 100);
+
+    // Score based on recency (newer posts get higher score)
+    const daysSinceCreated =
+      (new Date() - new Date(blog.createdAt)) / (1000 * 60 * 60 * 24);
+    score += Math.max(0, 50 - daysSinceCreated);
+
+    // Score based on category relevance
+    if (blog.category) score += 30;
+
+    // Score based on tags (more tags = more comprehensive)
+    if (blog.tags && blog.tags.length > 0) score += blog.tags.length * 8;
+
+    // Score based on author reputation (if author has more blogs)
+    if (blog.author && blog.author.blogCount) {
+      score += Math.min(blog.author.blogCount * 2, 40);
+    }
+
+    // Bonus for complete metadata
+    if (blog.excerpt) score += 15;
+    if (blog.featuredImage) score += 20;
+
+    // Small random factor for variety (reduced)
+    score += Math.random() * 5;
+
+    return Math.round(score);
+  };
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  // Close search results when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (showSearchResults && !event.target.closest("form")) {
+        setShowSearchResults(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showSearchResults]);
+
+
+//   const blogsArray = Array.isArray(data) ? data : data.blogs || [];
+
+// setBlogs(blogsArray);
+
+
+  // const fetchBlogs = async () => {
+  //   try {
+  //     const response = await fetch("/api/blogs");
+  //     const data = await response.json();
+  //     console.log("Fetched blogs:", data);
+  //     console.log("Number of blogs:", data.length);
+
+  //     setBlogs(data);
+  //     const featured = data.filter((blog) => blog.featured).slice(0, 1);
+  //     console.log("Featured blogs:", featured);
+  //     console.log("Number of featured blogs:", featured.length);
+  //     setFeaturedBlogs(featured);
+  //   } catch (error) {
+  //     console.error("Error fetching blogs:", error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  const fetchBlogs = async () => {
+  try {
+    const response = await fetch("/api/blogs");
+    const data = await response.json();
+
+    console.log("Fetched blogs:", data);
+
+    // normalize
+    const blogsArray = Array.isArray(data) ? data : data.blogs || [];
+
+    console.log("Number of blogs:", blogsArray.length);
+
+    // ✅ store ALL blogs
+    setBlogs(blogsArray);
+
+    // ✅ get ONLY ONE featured for hero
+    const featured = blogsArray.find((blog) => blog.featured);
+
+    // if no featured exists, fallback to first blog
+    setFeaturedBlogs(featured ? [featured] : blogsArray.slice(0, 1));
+
+  } catch (error) {
+    console.error("Error fetching blogs:", error);
+  } finally {
+    setLoading(false);
+  }
+};
+
+
+
+useEffect(() => {
+  if (blogs.length === 0) return;
+
+  const interval = setInterval(() => {
+    setIsFalling(true);
+
+    setTimeout(() => {
+      setActiveIndex((prev) => (prev + 1) % blogs.length);
+      setIsFalling(false);
+    }, 500); // match CSS animation
+  }, 3000);
+
+  return () => clearInterval(interval);
+}, [blogs.length]);
+
+
+
+  // Search functionality
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+
+    if (query.trim() === "") {
+      setSearchResults([]);
+      setShowSearchResults(false);
+      return;
+    }
+
+    const searchTerm = query.toLowerCase().trim();
+    const results = blogs.filter((blog) => {
+      const title = (blog.title || "").toLowerCase();
+      const content = (blog.content || "").toLowerCase();
+      const category = (blog.category || "").toLowerCase();
+      const excerpt = (blog.excerpt || "").toLowerCase();
+
+      return (
+        title.includes(searchTerm) ||
+        content.includes(searchTerm) ||
+        category.includes(searchTerm) ||
+        excerpt.includes(searchTerm)
+      );
+    });
+
+    setSearchResults(results);
+    setShowSearchResults(results.length > 0);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      handleSearch(searchQuery);
+    }
+  };
+
+  const handleSearchInputChange = (e) => {
+    const query = e.target.value;
+    handleSearch(query);
+  };
+
+  // Auto change between first 3 blogs cards
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentIndex((prevIndex) => (prevIndex + 1) % 3);
+  //   }, 3000); //
+  //   return () => clearInterval(interval);
+  // }, []);
+useEffect(() => {
+  if (blogs.length === 0) return;
+
+  const interval = setInterval(() => {
+    setCurrentIndex((prev) => (prev + 1) % blogs.length);
+    setAnimateKey((prev) => prev + 1); // re-trigger animation
+  }, 4000);
+
+  return () => clearInterval(interval);
+}, [blogs]);
+
+
+  const handleSubscribeSubmit = async (e) => {
+    e.preventDefault();
+    setSubLoading(true);
+    setSuccess(false);
+
+    // Basic email validation
+    if (!email || !email.includes("@")) {
+      alert("⚠️ Please enter a valid email address.");
+      setSubLoading(false);
+      return;
+    }
+
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      setEmail("");
+      setSuccess(true);
+    } catch (err) {
+      console.error("Error:", err);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setSubLoading(false);
+    }
+  };
+
+  const filteredBlogs =
+    activeCategory === "All"
+      ? blogs
+      : blogs.filter(
+          (blog) =>
+            blog.category?.toLowerCase() === activeCategory.toLowerCase(),
+        );
+
+  const [bubbles, setBubbles] = useState([]);
+
+  useEffect(() => {
+    const generated = Array.from({ length: 7 }).map((_, i) => ({
+      width: Math.random() * 240 + 120 + "px",
+      height: Math.random() * 240 + 120 + "px",
+      left: Math.random() * 100 + "%",
+      top: Math.random() * 100 + "%",
+      background: `hsl(${165 + i * 20}, 70%, 70%)`,
+      animationDuration: Math.random() * 8 + 10 + "s",
+      animationDelay: `${i * 0.6}s`,
+    }));
+
+    setBubbles(generated);
+  }, []);
+
+  const stats = [
+    {
+      image: "/books.png",
+      count: blogs.length,
+      label: "ARTICLES",
+    },
+    {
+      image: "/doctor.png",
+      count: "500+",
+      label: "EXPERTS",
+    },
+    {
+      image: "/people.png",
+      count: "250K+",
+      label: "MONTHLY READERS",
+    },
+    {
+      image: "/star.png",
+      count: "4.9",
+      label: "RATING",
+    },
+  ];
+
+  const categories = [
+    {
+      name: "COVID-19",
+      image: "/covid.png",
+      count: "2.5K",
+    },
+    {
+      name: "Mental Health",
+      image: "/brain.png",
+      count: "1.8K",
+    },
+    {
+      name: "Nutrition",
+      image: "/salad.png",
+      count: "1.2K",
+    },
+    {
+      name: "Exercise",
+      image: "/muscle.png",
+      count: "980",
+    },
+    {
+      name: "Prevention",
+      image: "/encrypted.png",
+      count: "750",
+    },
+    {
+      name: "Technology",
+      image: "/phone.png",
+      count: "650",
+    },
+  ];
+
+  return (
+    <div className="bg-background min-h-screen ">
+      {/* Navbar */}
+      <Navbar />
+
+      <section className="relative overflow-hidden bg-gradient-to-br from-blue-50/80 via-purple-50/60 to-blue-100/70 py-14 md:py-20">
+        {/* Soft Gradient Orbs */}
+        <div className="absolute inset-0 opacity-50">
+          <div
+            className="absolute top-10 left-1/4 w-[28rem] h-[28rem] rounded-full blur-[120px]"
+            style={{
+              background:
+                "linear-gradient(145deg, var(--primary) 0%, var(--secondary) 100%)",
+            }}
+          />
+          <div
+            className="absolute bottom-10 right-1/3 w-[22rem] h-[22rem] rounded-full blur-[120px]"
+            style={{
+              background:
+                "linear-gradient(145deg, var(--secondary) 0%, var(--accent) 100%)",
+            }}
+          />
+        </div>
+
+        {/* Floating Bubbles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {bubbles.map((bubble, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full opacity-20 animate-float"
+              style={bubble}
+            />
+          ))}
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-4">
+          {/* Badge */}
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/60 backdrop-blur-xl border border-white/70 shadow-md">
+              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span className="text-sm font-semibold text-gray-700 tracking-wide">
+                Trusted by healthcare professionals worldwide
+              </span>
+            </div>
+          </div>
+
+          {/* Headline */}
+          <div className="text-center max-w-4xl mx-auto">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-6">
+              <span className="block text-gray-900">Discover Healthcare</span>
+              <span
+                className="block 
+              bg-gradient-to-r 
+              from-emerald-600 
+              via-blue-600 
+              to-cyan-600 
+              bg-clip-text 
+              text-transparent 
+              animate-gradient-smooth"
+              >
+                Insights & Stories
+              </span>
+            </h1>
+
+            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-12">
+              Expert analysis, latest medical research, and practical healthcare
+              guidance—all in one place.
+            </p>
+
+            {/* Search Bar */}
+            <div className="max-w-2xl mx-auto">
+              <form onSubmit={handleSearchSubmit} className="relative group">
+                <div className="relative flex items-center bg-[#E8EEFB] rounded-full shadow-lg p-2 transition-all duration-300">
+                  {/* Search Icon */}
+                  <div className="ml-1 flex-shrink-0">
+                    <div className="w-10 h-10 bg-[#1E3A8A] rounded-full flex items-center justify-center">
+                      <svg
+                        className="w-5 h-5 text-white"
+                        stroke="currentColor"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Input Field */}
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={handleSearchInputChange}
+                    placeholder="Search articles, topics, or experts..."
+                    className="w-full pl-4 pr-32 bg-transparent text-gray-900 placeholder-gray-800 focus:outline-none text-lg font-medium h-12"
+                  />
+
+                  {/* Button */}
+                  <button
+                    type="submit"
+                    className="absolute right-2 px-8 py-2 bg-white text-[#1E3A8A] font-bold rounded-full shadow-sm hover:shadow-md transition-all duration-200"
+                  >
+                    Search
+                  </button>
+                </div>
+
+                {/* SEARCH DROPDOWN */}
+                {showSearchResults && searchResults.length > 0 && (
+                  <div className="absolute top-full left-0 right-0 mt-3 bg-white rounded-2xl border border-gray-200 shadow-2xl max-h-96 overflow-y-auto z-50 pb-4 custom-scroll">
+                    <div className="p-4">
+                      <div className="flex justify-between items-center mb-4 sticky top-0 bg-white py-2">
+                        <span className="text-sm font-semibold text-emerald-700">
+                          Found {searchResults.length} results
+                        </span>
+                        <button
+                          onClick={() => {
+                            setShowSearchResults(false);
+                            setSearchQuery("");
+                          }}
+                          className="text-gray-500 hover:text-emerald-700"
+                        >
+                          ✕
+                        </button>
+                      </div>
+
+                      <div className="space-y-3">
+                        {searchResults.map((blog) => (
+                          <Link
+                            key={blog.id}
+                            href={`/blogs/${createSlug(blog.title)}-${blog.id}`}
+                            onClick={() => {
+                              setShowSearchResults(false);
+                              setSearchQuery("");
+                            }}
+                            className="block p-3 rounded-xl transition-all hover:bg-emerald-50 border border-transparent hover:border-emerald-200"
+                          >
+                            <div className="flex gap-3">
+                              {blog.featuredImage && (
+                                <Image
+                                  src={blog.featuredImage}
+                                  alt={blog.title}
+                                  width={64}
+                                  height={64}
+                                  className="rounded-lg w-16 h-16 object-cover shadow-sm"
+                                />
+                              )}
+                              <div>
+                                <h4 className="font-semibold text-gray-900 text-sm line-clamp-2">
+                                  {blog.title}
+                                </h4>
+                                {blog.category && (
+                                  <p className="text-xs text-emerald-700 mt-1">
+                                    {blog.category}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* NO RESULTS */}
+                {showSearchResults &&
+                  searchResults.length === 0 &&
+                  searchQuery.trim() !== "" && (
+                    <div className="absolute top-full left-0 right-0 mt-3 bg-white rounded-2xl border border-gray-200 shadow-2xl p-10 text-center z-50">
+                      <h3 className="font-semibold text-gray-900 text-xl mb-2">
+                        No results found
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-6">
+                        Try different keywords or browse featured insights.
+                      </p>
+                      <button
+                        onClick={() => {
+                          setShowSearchResults(false);
+                          setSearchQuery("");
+                        }}
+                        className="px-5 py-2 bg-emerald-600 text-white text-sm rounded-lg hover:bg-emerald-700 transition-all"
+                      >
+                        Clear Search
+                      </button>
+                    </div>
+                  )}
+              </form>
+            </div>
+          </div>
+
+          {/* Stats Section - Glassmorphism Design */}
+          <div className="relative w-full max-w-5xl mx-auto mt-16 md:mt-24 px-4 md:px-6">
+            {/* Background Gradient with Soft Blur */}
+            <div className="absolute inset-0 -z-10 rounded-3xl overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-100/60 via-purple-100/50 to-blue-200/40 rounded-3xl blur-2xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-50/40 via-transparent to-purple-50/30 rounded-3xl"></div>
+            </div>
+
+            {/* Stats Cards Grid */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 relative z-10">
+              {stats.map((item, index) => (
+                <div
+                  key={index}
+                  className="relative group min-h-[220px] md:min-h-[260px] h-full"
+                >
+                  {/* Glass Card */}
+                  <div className="absolute inset-0 bg-white/70 backdrop-blur-xl rounded-2xl md:rounded-3xl border border-white/60 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 overflow-hidden">
+                    {/* Subtle inner glow */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+                    {/* Content Container - Centered Vertical Stack */}
+                    <div className="relative h-full py-8 md:py-10 px-4 md:px-6 flex flex-col items-center justify-center gap-1">
+                      {/* Icon Section - Top */}
+                      <div className="flex justify-center items-center mb-3 md:mb-4">
+                        <div className="relative w-16 h-16 md:w-20 md:h-20 group-hover:scale-110 transition-transform duration-500">
+                          <Image
+                            src={item.image}
+                            alt={item.label}
+                            fill
+                            className="object-contain drop-shadow-2xl"
+                            priority
+                          />
+                        </div>
+                      </div>
+
+                      {/* Number - Below Icon */}
+                      <div className="flex justify-center items-center mb-1 md:mb-2">
+                        <p
+                          className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-none text-center"
+                          style={{
+                            fontWeight: 900,
+                            textShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+                            letterSpacing: "-0.02em",
+                            lineHeight: "1.1",
+                          }}
+                        >
+                          {item.count}
+                        </p>
+                      </div>
+
+                      {/* Label - Below Number */}
+                      <div className="flex justify-center items-center">
+                        <p className="text-[10px] md:text-xs font-semibold text-gray-500 uppercase tracking-[0.12em] md:tracking-[0.15em] leading-tight whitespace-nowrap text-center">
+                          {item.label}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Soft shadow beneath card */}
+                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-[85%] h-3 bg-black/5 blur-xl rounded-full opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+{/* puju 1*/}
+
+      {/* Featured Story Section */}
+      {loading ? (
+        /* -------------------- LOADING SKELETON -------------------- */
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="animate-pulse">
+              <div className="flex items-center justify-center mb-8">
+                <div className="bg-gray-200 h-12 w-48 rounded-full"></div>
+              </div>
+
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div className="flex flex-col lg:flex-row">
+                  <div className="lg:w-1/2 p-8 lg:p-12">
+                    <div className="space-y-6">
+                      <div className="flex items-center space-x-4">
+                        <div className="bg-gray-200 h-6 w-20 rounded-full"></div>
+                        <div className="bg-gray-200 h-4 w-16 rounded-full"></div>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="bg-gray-200 h-8 w-full rounded"></div>
+                        <div className="bg-gray-200 h-8 w-3/4 rounded"></div>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="bg-gray-200 h-4 w-full rounded"></div>
+                        <div className="bg-gray-200 h-4 w-full rounded"></div>
+                        <div className="bg-gray-200 h-4 w-2/3 rounded"></div>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="bg-gray-200 h-10 w-10 rounded-full"></div>
+                        <div className="space-y-2">
+                          <div className="bg-gray-200 h-4 w-20 rounded"></div>
+                          <div className="bg-gray-200 h-3 w-16 rounded"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-8">
+                      <div className="bg-gray-200 h-12 w-40 rounded-xl"></div>
+                    </div>
+                  </div>
+
+                  <div className="lg:w-1/2">
+                    <div className="h-80 lg:h-full bg-gray-200"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section> 
+      ) : featuredBlogs.length > 0 ? (
+        /* -------------------- FEATURED STORY (NEW DESIGN) -------------------- */
+
+<section className="bg-background py-10 md:py-16">
+
+ 
+
+{/* BLUE SECTION */}
+<div className="max-w-7xl mx-auto px-4">
+
+  <div
+    key={animateKey} // 🔥 important for re-animation
+    className="relative bg-cover bg-center min-h-[350px] md:min-h-[500px] pt-20 md:pt-28 pb-20 md:pb-28 px-4 md:px-8 -mt-2 text-center"
+    style={{
+      backgroundImage: "url('/hero-bg.jpeg')",
+    }}
+  >
+
+    <p className="text-xs text-black/60 mb-2 md:mb-3">
+      Featured Story
+    </p>
+
+<h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-black text-center max-w-2xl mx-auto leading-tight">
+  {currentBlog.title.split(" ").map((word, i) => (
+    <span
+      key={i}
+      className="inline-block animate-word"
+      style={{ animationDelay: `${i * 0.06}s` }}  // 👈 HERE
+    >
+      {word}&nbsp; 
+    </span>
+  ))}
+</h1>
+    <div className="relative mt-10 mb-16 md:mb-20 z-20">
+
+      {/* LEFT PILL */}
+      <span className="absolute left-10 sm:left-14 md:left-28 -top-8 px-3 md:px-4 py-1 text-xs md:text-sm bg-white/90 backdrop-blur border border-black rounded-full shadow whitespace-nowrap">
+        {currentBlog.category || "Wellness"}
+      </span>
+
+      {/* RIGHT PILL */}
+      <span className="absolute right-10 sm:right-14 md:right-28 -top-8 px-3 md:px-4 py-1 text-xs md:text-sm bg-white/90 backdrop-blur border border-black rounded-full shadow whitespace-nowrap">
+        {currentBlog.createdAt
+          ? new Date(currentBlog.createdAt).toLocaleDateString()
+          : "Latest"}
+      </span>
+
+    </div>
+
+  </div>
+
+
+
+</div>
+
+ 
+{/* CARD SECTION */}
+
+<div className="max-w-5xl mx-auto px-4 -mt-12 md:-mt-28 relative">
+
+  <div className="relative">
+
+    {visibleCards[0] && (
+      <div className="relative">
+
+        {/* 🔥 NEXT CARD (ALREADY PRESENT — NO GAP) */}
+        {visibleCards[1] && (
+          <div className="absolute top-0 left-0 right-0 z-10">
+            <div className="
+              bg-white border border-black shadow-lg overflow-hidden
+rounded-2xl md:rounded-t-3xl
+h-[320px] md:h-[360px]
+            ">
+              {/* <div className="grid md:grid-cols-2 h-full"> */}
+ <div className="grid md:grid-cols-2 h-[320px] md:h-[360px]">
+
+
+                {/* <div className="p-3 sm:p-4 md:p-6 flex-1 flex items-center"> */}
+                <div className="p-3 sm:p-4 md:p-6 flex-1 flex items-center">
+                 <p className="text-xs sm:text-sm text-black">
+  {visibleCards[1].excerpt || visibleCards[1].content}
+</p>
+
+                  <div className="flex items-center gap-2 mt-auto">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-500 text-white text-xs sm:text-sm font-bold">
+                      {(visibleCards[1].author?.name || "A").charAt(0)}
+                    </div>
+
+                    <div>
+                      <p className="text-xs sm:text-sm font-semibold">
+                        {visibleCards[1].author?.name || "Admin"}
+                      </p>
+                      <p className="text-[10px] sm:text-xs text-gray-500">
+                        {visibleCards[1].author?.role || "Writer"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="h-full overflow-hidden rounded-t-[40px] md:rounded-l-[120px]">
+                  <img
+                    src={visibleCards[1].featuredImage || "/default-blog.jpg"}
+                    alt={visibleCards[1].title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* STACK BARS */}
+        <div className="hidden sm:block absolute -top-5 left-10 md:left-20 right-10 md:right-20 h-2 md:h-3 bg-white border border-black rounded-t-[50px] opacity-80 z-0"></div>
+
+        <div className="absolute -top-2 left-6 md:left-14 right-6 md:right-14 h-2 md:h-3 bg-white border border-black rounded-t-[50px] opacity-90 z-0"></div>
+
+        {/* 🔥 MAIN CARD */}
+        <Link
+          href={`/blogs/${createSlug(visibleCards[0].title)}-${visibleCards[0].id}`}
+          className="block"
+        >
+          <div
+            className={`
+              relative z-20
+  bg-white border border-black shadow-lg overflow-hidden
+  rounded-2xl md:rounded-t-3xl
+  h-[320px] md:h-[360px]
+  transition-transform duration-300
+  ${isFalling ? "animate-fall" : "scale-[1.03] md:scale-[1.05]"}
+`}
+          >
+
+            <div className="grid md:grid-cols-2 h-full">
+
+              {/* <div className="p-3 sm:p-4 md:p-6 flex flex-col justify-between"> */}
+ 
+
+{/* <div className="p-8 md:p-12 flex flex-col h-full"> */}
+<div className="p-3 sm:p-4 md:p-6 flex flex-col h-full w-full overflow-hidden">
+
+  {/* TEXT (centered area) */}
+  <div className="flex-1 flex items-center">
+    <p className="text-sm md:text-base leading-relaxed text-gray-800">
+      {visibleCards[0].excerpt?.replace(/\.{3,}$/, "")}
+    </p>
+  </div>
+
+  {/* AUTHOR (bottom) */}
+  <div className="flex items-start gap-3 mt-6">
+    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-semibold">
+      {(visibleCards[0].author?.name || "A").charAt(0)}
+    </div>
+
+    <div>
+      <p className="text-sm font-semibold">
+        {visibleCards[0].author?.name || "Admin"}
+      </p>
+      <p className="text-xs text-gray-500">
+        {visibleCards[0].author?.role || "Writer"}
+      </p>
+    </div>
+  </div>
+
+</div>
+             <div className="h-full overflow-hidden rounded-t-[40px] md:rounded-l-[120px]">
+  <img
+    src={visibleCards[0].featuredImage || "/default-blog.jpg"}
+    alt={visibleCards[0].title}
+    className="w-full h-full object-cover block"
+  />
+</div>
+
+            </div>
+
+          </div>
+        </Link>
+
+      </div>
+    )}
+
+  </div>
+
+  <div className="mt-6 md:mt-10"></div>
+
+</div>
+
+
+
+</section>
+
+      ) : (
+        /* -------------------- NO FEATURED STORY -------------------- */
+        <section className="py-16 bg-white">
+         
+        <div className="relative overflow-hidden">
+
+          {/*  BACKGROUND LAYERS (NEW - SAFE ADD) */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-purple-50/60 to-blue-100/70"></div>
+
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-10 left-1/4 w-[28rem] h-[28rem] bg-blue-400/30 rounded-full blur-[120px]"></div>
+            <div className="absolute bottom-10 right-1/3 w-[22rem] h-[22rem] bg-purple-400/30 rounded-full blur-[120px]"></div>
+
+
+
+          </div>
+
+          {/*ORIGINAL CODE */}
+          <div className="
+        
+         bg-background
+          animated-bg
+        py-4 flex items-start justify-center">
+
+            <div
+              className="group w-full max-w-lg mx-auto  relative 
+                             bg-gradient-to-br from-blue-50 via-white to-blue-200/60
+                             bg-white/70 backdrop-blur-xl 
+                              rounded-3xl 
+                                  border border-gray-200/60
+                                  shadow-[0_10px_30px_rgba(0,0,0,0.08)]
+                                p-5 pt-[180px] sm:pt-[200px] text-center
+                                        transition-all duration-500
+                                    hover:-translate-y-2 
+                                 hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)]"
+            >
+
+              <div className="absolute top-0 left-1/2 -translate-x-1/2">
+                <div className="pencil-loader scale-75 sm:scale-90 md:scale-100"></div>
+              </div>
+
+              {/* 🏷️ TITLE SECTION */}
+              <h2 className="relative text-3xl font-semibold text-blue-900 mb-2 tracking-tight">
+                <span className="typing-title group-hover:text-blue-700 transition-colors duration-300">
+                  No Featured Story Yet
+                </span>
+
+                <span
+                  className="absolute left-0 -bottom-1 h-[3px] w-0 
+                              bg-gradient-to-r from-blue-500 to-cyan-400
+                                  transition-all duration-300
+                            group-hover:w-full"
+                ></span>
+              </h2>
+
+              {/* 📄 DESCRIPTION TEXT */}
+              <p
+                className="text-gray-500 text-sm leading-relaxed mb-6
+                       transition-all duration-300
+                     group-hover:text-gray-600"
+              >
+                Check back soon for{" "}
+                <span className="font-medium text-gray-700 group-hover:text-blue-600">
+                  featured blog posts
+                </span>
+                !
+              </p>
+
+              {/* 🔘 BUTTON SECTION */}
+              <button
+                className="
+                          mt-4 px-4 py-2 rounded-full 
+                                text-blue-600 font-medium
+                                     transition-all duration-500 ease-smooth
+                          border border-transparent
+                            group-hover:px-6 group-hover:py-3
+                            group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-indigo-600
+                                 group-hover:text-white
+                           group-hover:shadow-md
+                              "
+              >
+                <span className="relative">
+                  Explore Articles
+                  <span className="ml-1 animate-pulse group-hover:hidden">|</span>
+                </span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+        </section>
+
+      )}
+ 
+      {/* Recent Articles Section */}
+      <section
+        id="recent-articles"
+        className="py-6 md:py-10 px-4 sm:px-6 lg:px-8 bg-background"
+      >
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <div className="justify-center text-center pt-4 mb-6">
+              <h2
+                className="text-[42px] font-extrabold text-foreground mb-3"
+                style={{ fontFamily: "Poppins, sans-serif", fontWeight: 800 }}
+              >
+                Our Recent Articles
+              </h2>
+              <p className="body-large text-[#5271FF] mt-2">
+                Stay informed with our latest healthcare insights and expert
+                analysis
+              </p>
+            </div>
+          </div>
+
+          {/* Calculate sorted blogs (stable, no shuffle) */}
+          {(() => {
+            const sortedBlogs = useMemo(() => {
+              return blogs
+                .map((blog, index) => ({
+                  ...blog,
+                  rank: index + 1,
+                  score: calculateBlogScore(blog),
+                }))
+                .sort((a, b) => b.score - a.score);
+            }, [blogs]);
+
+            return (
+              <>
+                {/* Loading Skeleton */}
+                {loading ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {Array.from({ length: 4 }).map((_, index) => (
+                      <div
+                        key={index}
+                        className="bg-card rounded-xl shadow-md border border-border p-4 animate-pulse"
+                      >
+                        <div className="h-48 bg-muted rounded-lg mb-4"></div>
+                        <div className="h-4 bg-muted w-3/4 rounded mb-3"></div>
+                        <div className="h-4 bg-muted w-1/2 rounded mb-3"></div>
+                        <div className="h-3 bg-muted w-full rounded mb-2"></div>
+                        <div className="h-3 bg-muted w-4/5 rounded mb-6"></div>
+                        <div className="flex justify-between">
+                          <div className="h-3 w-1/4 bg-muted rounded"></div>
+                          <div className="h-3 w-1/4 bg-muted rounded"></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : sortedBlogs.length > 0 ? (
+                  <>
+                    {/* Blog Cards Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                      {sortedBlogs
+                        .slice(0, showAll ? sortedBlogs.length : 4)
+                        .map((post) => (
+                          <Link
+                            key={post.id}
+                            href={`/blogs/${createSlug(post.title)}-${post.id}`}
+                            className="group"
+                          >
+                            <article className="bg-card rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-border hover:border-primary/20">
+                              {/* Image */}
+                              <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10">
+                                <img
+                                  src={post.featuredImage || "/placeholder.svg"}
+                                  alt={post.title}
+                                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                />
+                                <div className="absolute top-3 left-3">
+                                  <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary/90 text-primary-foreground text-xs font-semibold rounded-full">
+                                    {post.category || "Healthcare"}
+                                  </span>
+                                </div>
+                              </div>
+
+                              {/* Content */}
+                              <div className="p-5 flex flex-col h-full">
+                                <h3 className="text-lg font-bold text-foreground mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                                  {post.title}
+                                </h3>
+
+                                <p className="text-sm text-muted-foreground mb-4 line-clamp-2 flex-grow">
+                                  {post.excerpt ||
+                                    post.content?.substring(0, 120) + "..."}
+                                </p>
+
+                                {/* Meta Info */}
+                                <div className="space-y-3 pt-4 border-t border-border">
+                                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                                    <User className="w-4 h-4" />
+                                    <span>{post.author?.name || "Admin"}</span>
+                                  </div>
+                                  <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                                      <Calendar className="w-4 h-4" />
+                                      <span>
+                                        {new Date(
+                                          post.createdAt,
+                                        ).toLocaleDateString("en-US", {
+                                          month: "short",
+                                          day: "numeric",
+                                          year: "numeric",
+                                        })}
+                                      </span>
+                                    </div>
+                                    <span className="text-xs font-medium text-primary">
+                                      {Math.ceil(post.content.length / 500)} min
+                                      read
+                                    </span>
+                                  </div>
+                                </div>
+
+                                {/* Read More */}
+                                <button className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary group/link">
+                                  Read More
+                                  <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                                </button>
+                              </div>
+                            </article>
+                          </Link>
+                        ))}
+                    </div>
+
+                    {/* View All / Show Less Button */}
+                    <div className="flex justify-center mt-16">
+                      <button
+                        onClick={() => {
+                          if (showAll) {
+                            const section =
+                              document.getElementById("recent-articles");
+                            section?.scrollIntoView({ behavior: "smooth" });
+                          }
+                          setShowAll(!showAll);
+                        }}
+                        className="px-8 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                      >
+                        {showAll ? "Show Less" : "View All Articles"}
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <div className="text-center py-16">
+                    <h3 className="text-xl font-bold mb-3 text-primary">
+                      No articles yet
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Check back soon for the latest healthcare insights and
+                      expert analysis.
+                    </p>
+                  </div>
+                )}
+              </>
+            );
+          })()}
+        </div>
+      </section>
+
+      {/* Trending Topics Section */}
+      <section className="py-6 md:py-10 bg-gradient-to-br from-background to-background/95">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+              Trending Topics
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Explore the most discussed healthcare topics and emerging trends
+            </p>
+          </div>
+
+          {/* Premium Topic Cards - Glass/Neumorphism Design */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
+            {categories.map((topic, index) => (
+              <div key={index} className="group cursor-pointer">
+                <div className="relative h-full bg-white/60 backdrop-blur-xl border border-white/50 rounded-2xl md:rounded-3xl p-5 md:p-6 text-center transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 hover:border-primary/40 overflow-hidden">
+                  {/* Gradient Highlight on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-secondary/0 group-hover:from-primary/10 group-hover:via-primary/5 group-hover:to-secondary/10 transition-all duration-500 rounded-2xl md:rounded-3xl pointer-events-none"></div>
+
+                  {/* Content Container */}
+                  <div className="relative z-10 flex flex-col items-center justify-center h-full min-h-[140px] py-4">
+                    {/* Icon - Bigger, Floating */}
+                    <div className="mb-3 md:mb-4 transform group-hover:scale-125 group-hover:-translate-y-2 transition-all duration-500">
+                      <div className="relative w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20">
+                        <Image
+                          src={topic.image}
+                          alt={topic.name}
+                          fill
+                          className="object-contain drop-shadow-lg"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Title - Clear Hierarchy */}
+                    <h3 className="font-bold text-foreground mb-1 md:mb-2 text-sm md:text-base group-hover:text-primary transition-colors duration-300">
+                      {topic.name}
+                    </h3>
+
+                    {/* Count - Below Title */}
+                    <p className="text-xs font-semibold text-gray-600 group-hover:text-gray-800 transition-colors duration-300 mb-2 md:mb-3">
+                      {topic.count} articles
+                    </p>
+
+                    {/* Bottom Accent Line - Animated */}
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-border to-transparent overflow-hidden">
+                      <div className="h-full bg-gradient-to-r from-primary via-secondary to-primary rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-center"></div>
+                    </div>
+                  </div>
+
+                  {/* Neumorphism Shadow Effect */}
+                  <div
+                    className="absolute inset-0 rounded-2xl md:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    style={{
+                      boxShadow:
+                        "inset 0 2px 4px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.1)",
+                    }}
+                  ></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Category Filter Section */}
+      <section className="relative py-10 md:py-16 bg-background overflow-hidden">
+        {/* Animated Bokeh Lights */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-primary/5 blur-3xl animate-pulse"></div>
+          <div
+            className="absolute bottom-20 right-10 w-40 h-40 rounded-full bg-secondary/5 blur-3xl animate-bounce"
+            style={{ animationDelay: "0.5s" }}
+          ></div>
+        </div>
+
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 z-10">
+          <div className="bg-card border border-border backdrop-blur-sm rounded-3xl px-8 py-10 shadow-lg">
+            <h2 className="text-center text-3xl md:text-4xl font-bold text-foreground mb-8">
+              Explore by Category
+            </h2>
+
+            <div className="flex flex-wrap justify-center items-center gap-3">
+              {[
+                "All",
+                "Wellness",
+                "Nutrition",
+                "Mental Health",
+                "Technology",
+                "Research",
+              ].map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
+                    activeCategory === cat
+                      ? "bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-lg scale-105"
+                      : "bg-muted text-foreground hover:bg-muted/80 border border-border hover:border-primary/30"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured + Subscribe Section */}
+      <section
+        id="subscribe-section"
+        className="py-10 md:py-16 bg-gradient-to-br from-background via-background to-secondary/5"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-3 gap-8 items-stretch">
+            {/* Featured Card (2 columns) */}
+            <div className="lg:col-span-2">
+              {blogs.length > 0 && (
+                <div className="relative group rounded-3xl overflow-hidden shadow-2xl h-full min-h-[480px]">
+                  <Image
+                    src={blogs[currentIndex]?.featuredImage || "/default.jpg"}
+                    alt={blogs[currentIndex]?.title || "Featured Blog"}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+
+                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white z-10">
+                    <span className="inline-block bg-primary/80 backdrop-blur-sm px-4 py-1.5 rounded-full mb-4 text-xs font-semibold tracking-wide">
+                      {blogs[currentIndex]?.category || "Health"}
+                    </span>
+
+                    <h3 className="text-3xl md:text-4xl font-bold mb-3 leading-tight line-clamp-2">
+                      {blogs[currentIndex]?.title || "Featured Insight"}
+                    </h3>
+
+                    <p className="text-gray-200 text-sm md:text-base line-clamp-2 mb-6">
+                      {blogs[currentIndex]?.excerpt ||
+                        blogs[currentIndex]?.content?.substring(0, 120) + "..."}
+                    </p>
+
+                    <Link
+                      href={`/blogs/${createSlug(blogs[currentIndex]?.title)}-${blogs[currentIndex]?.id}`}
+                      className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-secondary text-primary-foreground px-8 py-3 rounded-full font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300"
+                    >
+                      Read More →
+                    </Link>
+                  </div>
+
+                  {/* Indicators */}
+                  <div className="absolute top-6 right-6 flex gap-2 z-20">
+                    {blogs.slice(0, 3).map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentIndex(index)}
+                        className={`rounded-full transition-all duration-300 ${
+                          currentIndex === index
+                            ? "bg-white w-8 h-2"
+                            : "bg-white/40 w-2 h-2 hover:bg-white/60"
+                        }`}
+                      ></button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Subscribe Box */}
+            <div className="lg:col-span-1">
+              <div className="h-full min-h-[480px] bg-gradient-to-br from-primary to-secondary text-primary-foreground rounded-3xl p-8 shadow-2xl flex flex-col justify-center">
+                <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
+                <p className="text-primary-foreground/80 mb-8 text-sm leading-relaxed">
+                  Subscribe to get the latest healthcare insights and wellness
+                  updates.
+                </p>
+
+                <form
+                  onSubmit={handleSubscribeSubmit}
+                  className="flex flex-col gap-4 mb-6"
+                >
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    required
+                    className="px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-primary-foreground placeholder-primary-foreground/50 focus:outline-none focus:ring-2 focus:ring-white/40 transition-all"
+                  />
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="bg-white text-primary font-semibold px-6 py-3 rounded-xl hover:scale-105 hover:shadow-lg transition-all duration-300 disabled:opacity-60"
+                  >
+                    {loading ? "Subscribing..." : "Subscribe"}
+                  </button>
+                </form>
+
+                {success && (
+                  <div className="bg-green-500/20 border border-green-400/40 text-green-100 px-4 py-3 rounded-xl text-sm animate-fade-in">
+                    ✓ Successfully subscribed! Thank you for joining us.
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="bg-foreground text-background py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Top Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            {/* Know Us */}
+            <div>
+              <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">
+                Know Us
+              </h4>
+              <ul className="space-y-2 text-sm text-background/70">
+                {[
+                  "About Us",
+                  "Contact Us",
+                  "Press Coverage",
+                  "Careers",
+                  "Business Partnership",
+                  "Become a Health Partner",
+                  "Corporate Governance",
+                ].map((item, index) => (
+                  <li key={index}>
+                    <a
+                      href="#"
+                      className="hover:text-background transition-colors"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Policies */}
+            <div>
+              <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">
+                Our Policies
+              </h4>
+              <ul className="space-y-2 text-sm text-background/70">
+                {[
+                  "Privacy Policy",
+                  "Terms & Conditions",
+                  "Editorial Policy",
+                  "User Manual",
+                  "Important Documents",
+                  "Required Documents",
+                  "Patient Form",
+                ].map((item, index) => (
+                  <li key={index}>
+                    <a
+                      href="#"
+                      className="hover:text-background transition-colors"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Services */}
+            <div>
+              <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">
+                Our Services
+              </h4>
+              <ul className="space-y-2 text-sm text-background/70">
+                {[
+                  "Features for Doctor",
+                  "Features for Hospital",
+                  "Features for Lab",
+                  "Features for HSP",
+                  "Features for Patient",
+                  "Features for Chemist",
+                  "Features for Health Worker",
+                  "Features for Pharma Manufacturers",
+                ].map((item, index) => (
+                  <li key={index}>
+                    <a
+                      href="#"
+                      className="hover:text-background transition-colors"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Connect  */}
+            <div>
+              <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">
+                Connect
+              </h4>
+              <p className="text-sm text-background/70 mb-4">
+                Follow Aarogya Insights for latest updates
+              </p>
+
+              {/* Social Icons */}
+              <div className="flex gap-3 mb-8">
+                {[Instagram, Facebook, Twitter, Linkedin, Youtube].map(
+                  (Icon, index) => (
+                    <a
+                      key={index}
+                      href="#"
+                      className="p-2 bg-background/10 hover:bg-background/20 rounded-lg transition-colors"
+                    >
+                      <Icon className="w-5 h-5 text-background" />
+                    </a>
+                  ),
+                )}
+              </div>
+
+              {/* Subscribe Section  */}
+              <div>
+                <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">
+                  Aarogya Insights
+                </h4>
+                <p className="text-background/70 text-sm mb-4">
+                  Subscribe for weekly health insights.
+                </p>
+
+                <div className="flex gap-2">
+                  <input
+                    type="email"
+                    placeholder="Your email"
+                    className="flex-1 px-4 py-2 rounded-lg bg-background/10 text-background placeholder:text-background/50 text-sm border border-background/20 focus:border-background/50 focus:outline-none transition-colors"
+                  />
+                  <button className="px-4 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors">
+                    <Mail className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="border-t border-background/20 py-8"></div>
+
+          {/* Bottom Footer */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            {/* Compact Info Row */}
+            <div className="w-full text-background/70 text-xs md:text-sm flex flex-col items-center md:items-start gap-1">
+              {/* Row 1 */}
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-4 gap-y-1">
+                <span>Government of India | Aarogya Insights</span>
+                <span className="hidden md:inline">•</span>
+                <span>ISO:27001 Certified</span>
+                <span className="hidden md:inline">•</span>
+                <span>Online Healthcare Platform</span>
+              </div>
+
+              {/* Row 2 */}
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-4 gap-y-1">
+                <span>Your Health, Your Choice</span>
+                <span className="hidden md:inline">•</span>
+                <span>+91 79-7272-7498</span>
+                <span className="hidden md:inline">•</span>
+                <span>info@aarogya.com</span>
+              </div>
+            </div>
+
+            {/* Original Footer Text */}
+            <p className="text-background/60 text-xs md:text-sm text-center md:text-left">
+              © 2024 Aarogya Insights Pvt. Ltd. All rights reserved. IT Act,
+              2000 compliant.
+            </p>
+
+            {/* Scroll to top */}
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="p-2 bg-background/10 hover:bg-background/20 rounded-lg transition-colors"
+            >
+              <ArrowUp className="w-5 h-5 text-background" />
+            </button>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+
+
+
+final last
+
+
+"use client";
+import {
+  User,
+  Calendar,
+  ArrowRight,
+  Instagram,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Youtube,
+  Mail,
+  ArrowUp,
+} from "lucide-react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import Navbar from "@/components/Navbar";
+import { useMemo } from "react";
+
+
+
+// Utility function to create URL-friendly slugs
+function createSlug(title) {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "") // Remove special characters
+    .replace(/\s+/g, "-") // Replace spaces with hyphens
+    .replace(/-+/g, "-") // Replace multiple hyphens with single hyphen
+    .trim(); // Remove leading/trailing spaces
+}
+
+// shiva
+
+export default function Home() {
+  const [blogs, setBlogs] = useState([]);
+  const [showAll, setShowAll] = useState(false);
+  const [featuredBlogs, setFeaturedBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [showSearchResults, setShowSearchResults] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+const [animateKey, setAnimateKey] = useState(0);
+  const [email, setEmail] = useState("");
+  const [subLoading, setSubLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("All");
+ 
+const [showCard, setShowCard] = useState(false);
+
+ const [activeIndex, setActiveIndex] = useState(0);
+const [isFalling, setIsFalling] = useState(false);
+
+
+const visibleCards =
+  blogs.length > 0
+    ? [
+        blogs[activeIndex],
+        blogs[(activeIndex + 1) % blogs.length],
+        blogs[(activeIndex + 2) % blogs.length],
+      ]
+    : [];
+
+const currentBlog = visibleCards[0] || {};
+
+
+
+
+  // Enhanced function to calculate blog ranking score
+  const calculateBlogScore = (blog) => {
+    let score = 0;
+
+    // Base score for featured blogs (highest priority)
+    if (blog.featured) score += 200;
+
+    // Score based on views (engagement indicator)
+    score += (blog.views || 0) * 0.2;
+
+    // Score based on content length (longer content = more valuable)
+    score += Math.min(blog.content.length / 50, 100);
+
+    // Score based on recency (newer posts get higher score)
+    const daysSinceCreated =
+      (new Date() - new Date(blog.createdAt)) / (1000 * 60 * 60 * 24);
+    score += Math.max(0, 50 - daysSinceCreated);
+
+    // Score based on category relevance
+    if (blog.category) score += 30;
+
+    // Score based on tags (more tags = more comprehensive)
+    if (blog.tags && blog.tags.length > 0) score += blog.tags.length * 8;
+
+    // Score based on author reputation (if author has more blogs)
+    if (blog.author && blog.author.blogCount) {
+      score += Math.min(blog.author.blogCount * 2, 40);
+    }
+
+    // Bonus for complete metadata
+    if (blog.excerpt) score += 15;
+    if (blog.featuredImage) score += 20;
+
+    // Small random factor for variety (reduced)
+    score += Math.random() * 5;
+
+    return Math.round(score);
+  };
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  // Close search results when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (showSearchResults && !event.target.closest("form")) {
+        setShowSearchResults(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showSearchResults]);
+
+
+//   const blogsArray = Array.isArray(data) ? data : data.blogs || [];
+
+// setBlogs(blogsArray);
+
+
+  // const fetchBlogs = async () => {
+  //   try {
+  //     const response = await fetch("/api/blogs");
+  //     const data = await response.json();
+  //     console.log("Fetched blogs:", data);
+  //     console.log("Number of blogs:", data.length);
+
+  //     setBlogs(data);
+  //     const featured = data.filter((blog) => blog.featured).slice(0, 1);
+  //     console.log("Featured blogs:", featured);
+  //     console.log("Number of featured blogs:", featured.length);
+  //     setFeaturedBlogs(featured);
+  //   } catch (error) {
+  //     console.error("Error fetching blogs:", error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  const fetchBlogs = async () => {
+  try {
+    const response = await fetch("/api/blogs");
+    const data = await response.json();
+
+    console.log("Fetched blogs:", data);
+
+    // normalize
+    const blogsArray = Array.isArray(data) ? data : data.blogs || [];
+
+    console.log("Number of blogs:", blogsArray.length);
+
+    // ✅ store ALL blogs
+    setBlogs(blogsArray);
+
+    // ✅ get ONLY ONE featured for hero
+    const featured = blogsArray.find((blog) => blog.featured);
+
+    // if no featured exists, fallback to first blog
+    setFeaturedBlogs(featured ? [featured] : blogsArray.slice(0, 1));
+
+  } catch (error) {
+    console.error("Error fetching blogs:", error);
+  } finally {
+    setLoading(false);
+  }
+};
+
+
+
+useEffect(() => {
+  if (blogs.length === 0) return;
+
+  const interval = setInterval(() => {
+    setIsFalling(true);
+
+    setTimeout(() => {
+      setActiveIndex((prev) => (prev + 1) % blogs.length);
+      setIsFalling(false);
+    }, 500); // match CSS animation
+  }, 3000);
+
+  return () => clearInterval(interval);
+}, [blogs.length]);
+
+
+
+  // Search functionality
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+
+    if (query.trim() === "") {
+      setSearchResults([]);
+      setShowSearchResults(false);
+      return;
+    }
+
+    const searchTerm = query.toLowerCase().trim();
+    const results = blogs.filter((blog) => {
+      const title = (blog.title || "").toLowerCase();
+      const content = (blog.content || "").toLowerCase();
+      const category = (blog.category || "").toLowerCase();
+      const excerpt = (blog.excerpt || "").toLowerCase();
+
+      return (
+        title.includes(searchTerm) ||
+        content.includes(searchTerm) ||
+        category.includes(searchTerm) ||
+        excerpt.includes(searchTerm)
+      );
+    });
+
+    setSearchResults(results);
+    setShowSearchResults(results.length > 0);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      handleSearch(searchQuery);
+    }
+  };
+
+  const handleSearchInputChange = (e) => {
+    const query = e.target.value;
+    handleSearch(query);
+  };
+
+  // Auto change between first 3 blogs cards
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentIndex((prevIndex) => (prevIndex + 1) % 3);
+  //   }, 3000); //
+  //   return () => clearInterval(interval);
+  // }, []);
+useEffect(() => {
+  if (blogs.length === 0) return;
+
+  const interval = setInterval(() => {
+    setCurrentIndex((prev) => (prev + 1) % blogs.length);
+    setAnimateKey((prev) => prev + 1); // re-trigger animation
+  }, 4000);
+
+  return () => clearInterval(interval);
+}, [blogs]);
+
+
+  const handleSubscribeSubmit = async (e) => {
+    e.preventDefault();
+    setSubLoading(true);
+    setSuccess(false);
+
+    // Basic email validation
+    if (!email || !email.includes("@")) {
+      alert("⚠️ Please enter a valid email address.");
+      setSubLoading(false);
+      return;
+    }
+
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      setEmail("");
+      setSuccess(true);
+    } catch (err) {
+      console.error("Error:", err);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setSubLoading(false);
+    }
+  };
+
+  const filteredBlogs =
+    activeCategory === "All"
+      ? blogs
+      : blogs.filter(
+          (blog) =>
+            blog.category?.toLowerCase() === activeCategory.toLowerCase(),
+        );
+
+  const [bubbles, setBubbles] = useState([]);
+
+  useEffect(() => {
+    const generated = Array.from({ length: 7 }).map((_, i) => ({
+      width: Math.random() * 240 + 120 + "px",
+      height: Math.random() * 240 + 120 + "px",
+      left: Math.random() * 100 + "%",
+      top: Math.random() * 100 + "%",
+      background: `hsl(${165 + i * 20}, 70%, 70%)`,
+      animationDuration: Math.random() * 8 + 10 + "s",
+      animationDelay: `${i * 0.6}s`,
+    }));
+
+    setBubbles(generated);
+  }, []);
+
+  const stats = [
+    {
+      image: "/books.png",
+      count: blogs.length,
+      label: "ARTICLES",
+    },
+    {
+      image: "/doctor.png",
+      count: "500+",
+      label: "EXPERTS",
+    },
+    {
+      image: "/people.png",
+      count: "250K+",
+      label: "MONTHLY READERS",
+    },
+    {
+      image: "/star.png",
+      count: "4.9",
+      label: "RATING",
+    },
+  ];
+
+  const categories = [
+    {
+      name: "COVID-19",
+      image: "/covid.png",
+      count: "2.5K",
+    },
+    {
+      name: "Mental Health",
+      image: "/brain.png",
+      count: "1.8K",
+    },
+    {
+      name: "Nutrition",
+      image: "/salad.png",
+      count: "1.2K",
+    },
+    {
+      name: "Exercise",
+      image: "/muscle.png",
+      count: "980",
+    },
+    {
+      name: "Prevention",
+      image: "/encrypted.png",
+      count: "750",
+    },
+    {
+      name: "Technology",
+      image: "/phone.png",
+      count: "650",
+    },
+  ];
+
+  return (
+    <div className="bg-background min-h-screen ">
+      {/* Navbar */}
+      <Navbar />
+
+      <section className="relative overflow-hidden bg-gradient-to-br from-blue-50/80 via-purple-50/60 to-blue-100/70 py-14 md:py-20">
+        {/* Soft Gradient Orbs */}
+        <div className="absolute inset-0 opacity-50">
+          <div
+            className="absolute top-10 left-1/4 w-[28rem] h-[28rem] rounded-full blur-[120px]"
+            style={{
+              background:
+                "linear-gradient(145deg, var(--primary) 0%, var(--secondary) 100%)",
+            }}
+          />
+          <div
+            className="absolute bottom-10 right-1/3 w-[22rem] h-[22rem] rounded-full blur-[120px]"
+            style={{
+              background:
+                "linear-gradient(145deg, var(--secondary) 0%, var(--accent) 100%)",
+            }}
+          />
+        </div>
+
+        {/* Floating Bubbles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {bubbles.map((bubble, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full opacity-20 animate-float"
+              style={bubble}
+            />
+          ))}
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-4">
+          {/* Badge */}
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/60 backdrop-blur-xl border border-white/70 shadow-md">
+              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span className="text-sm font-semibold text-gray-700 tracking-wide">
+                Trusted by healthcare professionals worldwide
+              </span>
+            </div>
+          </div>
+
+          {/* Headline */}
+          <div className="text-center max-w-4xl mx-auto">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-6">
+              <span className="block text-gray-900">Discover Healthcare</span>
+              <span
+                className="block 
+              bg-gradient-to-r 
+              from-emerald-600 
+              via-blue-600 
+              to-cyan-600 
+              bg-clip-text 
+              text-transparent 
+              animate-gradient-smooth"
+              >
+                Insights & Stories
+              </span>
+            </h1>
+
+            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-12">
+              Expert analysis, latest medical research, and practical healthcare
+              guidance—all in one place.
+            </p>
+
+            {/* Search Bar */}
+            <div className="max-w-2xl mx-auto">
+              <form onSubmit={handleSearchSubmit} className="relative group">
+                <div className="relative flex items-center bg-[#E8EEFB] rounded-full shadow-lg p-2 transition-all duration-300">
+                  {/* Search Icon */}
+                  <div className="ml-1 flex-shrink-0">
+                    <div className="w-10 h-10 bg-[#1E3A8A] rounded-full flex items-center justify-center">
+                      <svg
+                        className="w-5 h-5 text-white"
+                        stroke="currentColor"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Input Field */}
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={handleSearchInputChange}
+                    placeholder="Search articles, topics, or experts..."
+                    className="w-full pl-4 pr-32 bg-transparent text-gray-900 placeholder-gray-800 focus:outline-none text-lg font-medium h-12"
+                  />
+
+                  {/* Button */}
+                  <button
+                    type="submit"
+                    className="absolute right-2 px-8 py-2 bg-white text-[#1E3A8A] font-bold rounded-full shadow-sm hover:shadow-md transition-all duration-200"
+                  >
+                    Search
+                  </button>
+                </div>
+
+                {/* SEARCH DROPDOWN */}
+                {showSearchResults && searchResults.length > 0 && (
+                  <div className="absolute top-full left-0 right-0 mt-3 bg-white rounded-2xl border border-gray-200 shadow-2xl max-h-96 overflow-y-auto z-50 pb-4 custom-scroll">
+                    <div className="p-4">
+                      <div className="flex justify-between items-center mb-4 sticky top-0 bg-white py-2">
+                        <span className="text-sm font-semibold text-emerald-700">
+                          Found {searchResults.length} results
+                        </span>
+                        <button
+                          onClick={() => {
+                            setShowSearchResults(false);
+                            setSearchQuery("");
+                          }}
+                          className="text-gray-500 hover:text-emerald-700"
+                        >
+                          ✕
+                        </button>
+                      </div>
+
+                      <div className="space-y-3">
+                        {searchResults.map((blog) => (
+                          <Link
+                            key={blog.id}
+                            href={`/blogs/${createSlug(blog.title)}-${blog.id}`}
+                            onClick={() => {
+                              setShowSearchResults(false);
+                              setSearchQuery("");
+                            }}
+                            className="block p-3 rounded-xl transition-all hover:bg-emerald-50 border border-transparent hover:border-emerald-200"
+                          >
+                            <div className="flex gap-3">
+                              {blog.featuredImage && (
+                                <Image
+                                  src={blog.featuredImage}
+                                  alt={blog.title}
+                                  width={64}
+                                  height={64}
+                                  className="rounded-lg w-16 h-16 object-cover shadow-sm"
+                                />
+                              )}
+                              <div>
+                                <h4 className="font-semibold text-gray-900 text-sm line-clamp-2">
+                                  {blog.title}
+                                </h4>
+                                {blog.category && (
+                                  <p className="text-xs text-emerald-700 mt-1">
+                                    {blog.category}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* NO RESULTS */}
+                {showSearchResults &&
+                  searchResults.length === 0 &&
+                  searchQuery.trim() !== "" && (
+                    <div className="absolute top-full left-0 right-0 mt-3 bg-white rounded-2xl border border-gray-200 shadow-2xl p-10 text-center z-50">
+                      <h3 className="font-semibold text-gray-900 text-xl mb-2">
+                        No results found
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-6">
+                        Try different keywords or browse featured insights.
+                      </p>
+                      <button
+                        onClick={() => {
+                          setShowSearchResults(false);
+                          setSearchQuery("");
+                        }}
+                        className="px-5 py-2 bg-emerald-600 text-white text-sm rounded-lg hover:bg-emerald-700 transition-all"
+                      >
+                        Clear Search
+                      </button>
+                    </div>
+                  )}
+              </form>
+            </div>
+          </div>
+
+          {/* Stats Section - Glassmorphism Design */}
+          <div className="relative w-full max-w-5xl mx-auto mt-16 md:mt-24 px-4 md:px-6">
+            {/* Background Gradient with Soft Blur */}
+            <div className="absolute inset-0 -z-10 rounded-3xl overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-100/60 via-purple-100/50 to-blue-200/40 rounded-3xl blur-2xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-50/40 via-transparent to-purple-50/30 rounded-3xl"></div>
+            </div>
+
+            {/* Stats Cards Grid */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 relative z-10">
+              {stats.map((item, index) => (
+                <div
+                  key={index}
+                  className="relative group min-h-[220px] md:min-h-[260px] h-full"
+                >
+                  {/* Glass Card */}
+                  <div className="absolute inset-0 bg-white/70 backdrop-blur-xl rounded-2xl md:rounded-3xl border border-white/60 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 overflow-hidden">
+                    {/* Subtle inner glow */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+                    {/* Content Container - Centered Vertical Stack */}
+                    <div className="relative h-full py-8 md:py-10 px-4 md:px-6 flex flex-col items-center justify-center gap-1">
+                      {/* Icon Section - Top */}
+                      <div className="flex justify-center items-center mb-3 md:mb-4">
+                        <div className="relative w-16 h-16 md:w-20 md:h-20 group-hover:scale-110 transition-transform duration-500">
+                          <Image
+                            src={item.image}
+                            alt={item.label}
+                            fill
+                            className="object-contain drop-shadow-2xl"
+                            priority
+                          />
+                        </div>
+                      </div>
+
+                      {/* Number - Below Icon */}
+                      <div className="flex justify-center items-center mb-1 md:mb-2">
+                        <p
+                          className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-none text-center"
+                          style={{
+                            fontWeight: 900,
+                            textShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+                            letterSpacing: "-0.02em",
+                            lineHeight: "1.1",
+                          }}
+                        >
+                          {item.count}
+                        </p>
+                      </div>
+
+                      {/* Label - Below Number */}
+                      <div className="flex justify-center items-center">
+                        <p className="text-[10px] md:text-xs font-semibold text-gray-500 uppercase tracking-[0.12em] md:tracking-[0.15em] leading-tight whitespace-nowrap text-center">
+                          {item.label}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Soft shadow beneath card */}
+                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-[85%] h-3 bg-black/5 blur-xl rounded-full opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+{/* puju 1*/}
+
+      {/* Featured Story Section */}
+      {loading ? (
+        /* -------------------- LOADING SKELETON -------------------- */
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="animate-pulse">
+              <div className="flex items-center justify-center mb-8">
+                <div className="bg-gray-200 h-12 w-48 rounded-full"></div>
+              </div>
+
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div className="flex flex-col lg:flex-row">
+                  <div className="lg:w-1/2 p-8 lg:p-12">
+                    <div className="space-y-6">
+                      <div className="flex items-center space-x-4">
+                        <div className="bg-gray-200 h-6 w-20 rounded-full"></div>
+                        <div className="bg-gray-200 h-4 w-16 rounded-full"></div>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="bg-gray-200 h-8 w-full rounded"></div>
+                        <div className="bg-gray-200 h-8 w-3/4 rounded"></div>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="bg-gray-200 h-4 w-full rounded"></div>
+                        <div className="bg-gray-200 h-4 w-full rounded"></div>
+                        <div className="bg-gray-200 h-4 w-2/3 rounded"></div>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="bg-gray-200 h-10 w-10 rounded-full"></div>
+                        <div className="space-y-2">
+                          <div className="bg-gray-200 h-4 w-20 rounded"></div>
+                          <div className="bg-gray-200 h-3 w-16 rounded"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-8">
+                      <div className="bg-gray-200 h-12 w-40 rounded-xl"></div>
+                    </div>
+                  </div>
+
+                  <div className="lg:w-1/2">
+                    <div className="h-80 lg:h-full bg-gray-200"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section> 
+      ) : featuredBlogs.length > 0 ? (
+        /* -------------------- FEATURED STORY (NEW DESIGN) -------------------- */
+
+<section className="bg-background py-10 md:py-16">
+
+ 
+
+{/* BLUE SECTION */}
+<div className="max-w-7xl mx-auto px-4">
+
+  <div
+    key={animateKey} // 🔥 important for re-animation
+    className="relative bg-cover bg-center min-h-[350px] md:min-h-[500px] pt-20 md:pt-28 pb-20 md:pb-28 px-4 md:px-8 -mt-2 text-center"
+    style={{
+      backgroundImage: "url('/hero-bg.jpeg')",
+    }}
+  >
+
+    <p className="text-xs text-black/60 mb-2 md:mb-3">
+      Featured Story
+    </p>
+
+<h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-black text-center max-w-2xl mx-auto leading-tight">
+  {currentBlog.title.split(" ").map((word, i) => (
+    <span
+      key={i}
+      className="inline-block animate-word"
+      style={{ animationDelay: `${i * 0.06}s` }}  // 👈 HERE
+    >
+      {word}&nbsp; 
+    </span>
+  ))}
+</h1>
+    <div className="relative mt-10 mb-16 md:mb-20 z-20">
+
+      {/* LEFT PILL */}
+      <span className="absolute left-10 sm:left-14 md:left-28 -top-8 px-3 md:px-4 py-1 text-xs md:text-sm bg-white/90 backdrop-blur border border-black rounded-full shadow whitespace-nowrap">
+        {currentBlog.category || "Wellness"}
+      </span>
+
+      {/* RIGHT PILL */}
+      <span className="absolute right-10 sm:right-14 md:right-28 -top-8 px-3 md:px-4 py-1 text-xs md:text-sm bg-white/90 backdrop-blur border border-black rounded-full shadow whitespace-nowrap">
+        {currentBlog.createdAt
+          ? new Date(currentBlog.createdAt).toLocaleDateString()
+          : "Latest"}
+      </span>
+
+    </div>
+
+  </div>
+
+
+
+</div>
+
+ 
+{/* CARD SECTION */}
+
+<div className="max-w-5xl mx-auto px-4 -mt-12 md:-mt-28 relative">
+
+  <div className="relative">
+
+    {visibleCards[0] && (
+      <div className="relative">
+
+        {/* 🔥 NEXT CARD (ALREADY PRESENT — NO GAP) */}
+        {visibleCards[1] && (
+          <div className="absolute top-0 left-0 right-0 z-10">
+            <div className="
+              bg-white border border-black shadow-lg overflow-hidden
+rounded-2xl md:rounded-t-3xl
+h-[320px] md:h-[360px]
+            ">
+              {/* <div className="grid md:grid-cols-2 h-full"> */}
+ <div className="grid md:grid-cols-2 h-[320px] md:h-[360px]">
+
+
+                {/* <div className="p-3 sm:p-4 md:p-6 flex-1 flex items-center"> */}
+                {/* <div className="p-3 sm:p-4 md:p-6 flex-1 flex items-center"> */}
+               
+
+<div className="p-3 sm:p-4 md:p-6 relative flex flex-col h-full">
+
+  {/* TEXT */}
+  <div className="flex-1 flex items-center">
+    <p className="text-xs sm:text-sm text-black">
+      {visibleCards[1].excerpt || visibleCards[1].content}
+    </p>
+  </div>
+
+  {/* AUTHOR — SAME AS MAIN CARD */}
+  <div className="absolute bottom-3 left-6 md:left-8 flex items-center gap-2">
+    <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-500 text-white text-xs sm:text-sm font-bold">
+      {(visibleCards[1].author?.name || "A").charAt(0)}
+    </div>
+
+    <div>
+      <p className="text-xs sm:text-sm font-semibold">
+        {visibleCards[1].author?.name || "Admin"}
+      </p>
+      <p className="text-[10px] sm:text-xs text-gray-500">
+        {visibleCards[1].author?.role || "Healthcare"}
+      </p>
+    </div>
+  </div>
+
+</div>
+
+
+                <div className="h-full overflow-hidden rounded-t-[40px] md:rounded-l-[120px]">
+                  <img
+                    src={visibleCards[1].featuredImage || "/default-blog.jpg"}
+                    alt={visibleCards[1].title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* STACK BARS */}
+        <div className="hidden sm:block absolute -top-5 left-10 md:left-20 right-10 md:right-20 h-2 md:h-3 bg-white border border-black rounded-t-[50px] opacity-80 z-0"></div>
+
+        <div className="absolute -top-2 left-6 md:left-14 right-6 md:right-14 h-2 md:h-3 bg-white border border-black rounded-t-[50px] opacity-90 z-0"></div>
+
+        {/* 🔥 MAIN CARD */}
+        <Link
+          href={`/blogs/${createSlug(visibleCards[0].title)}-${visibleCards[0].id}`}
+          className="block"
+        >
+   <div
+  className={`
+    relative
+    ${isFalling ? "z-50 animate-fall" : "z-20 scale-[1.03] md:scale-[1.05]"}
+    bg-white border border-black shadow-lg overflow-hidden
+    rounded-2xl md:rounded-t-3xl
+    h-[320px] md:h-[360px]
+    transition-transform duration-300
+  `}
+>
+          
+
+            <div className="grid md:grid-cols-2 h-full">
+
+              {/* <div className="p-3 sm:p-4 md:p-6 flex flex-col justify-between"> */}
+ 
+
+{/* <div className="p-8 md:p-12 flex flex-col h-full"> */}
+{/* <div className="p-3 sm:p-4 md:p-6 flex flex-col h-full w-full overflow-hidden"> */}
+
+<div className="p-3 sm:p-4 md:p-6 relative flex flex-col h-full">
+
+  {/* TEXT (keep centered) */}
+  <div className="flex-1 flex items-center">
+    <p className="text-sm md:text-base leading-relaxed text-gray-800">
+      {visibleCards[0].excerpt?.replace(/\.{3,}$/, "")}
+    </p>
+  </div>
+
+  {/* AUTHOR → FORCE BOTTOM LEFT */}
+  <div className="absolute bottom-3 left-6 md:left-8 flex items-center gap-3">
+    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-semibold">
+      {(visibleCards[0].author?.name || "A").charAt(0)}
+    </div>
+
+    <div>
+      <p className="text-sm font-semibold">
+        {visibleCards[0].author?.name || "Admin"}
+      </p>
+      <p className="text-xs text-gray-500">
+        {visibleCards[0].author?.role || "Healthcare"}
+      </p>
+    </div>
+  </div>
+
+</div>
+             <div className="h-full overflow-hidden rounded-t-[40px] md:rounded-l-[120px]">
+  <img
+    src={visibleCards[0].featuredImage || "/default-blog.jpg"}
+    alt={visibleCards[0].title}
+    className="w-full h-full object-cover block"
+  />
+</div>
+
+            </div>
+
+          </div>
+        </Link>
+
+      </div>
+    )}
+
+  </div>
+
+  <div className="mt-6 md:mt-10"></div>
+
+</div>
+
+
+
+</section>
+
+      ) : (
+        /* -------------------- NO FEATURED STORY -------------------- */
+        <section className="py-16 bg-white">
+         
+        <div className="relative overflow-hidden">
+
+          {/*  BACKGROUND LAYERS (NEW - SAFE ADD) */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-purple-50/60 to-blue-100/70"></div>
+
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-10 left-1/4 w-[28rem] h-[28rem] bg-blue-400/30 rounded-full blur-[120px]"></div>
+            <div className="absolute bottom-10 right-1/3 w-[22rem] h-[22rem] bg-purple-400/30 rounded-full blur-[120px]"></div>
+
+
+
+          </div>
+
+          {/*ORIGINAL CODE */}
+          <div className="
+        
+         bg-background
+          animated-bg
+        py-4 flex items-start justify-center">
+
+            <div
+              className="group w-full max-w-lg mx-auto  relative 
+                             bg-gradient-to-br from-blue-50 via-white to-blue-200/60
+                             bg-white/70 backdrop-blur-xl 
+                              rounded-3xl 
+                                  border border-gray-200/60
+                                  shadow-[0_10px_30px_rgba(0,0,0,0.08)]
+                                p-5 pt-[180px] sm:pt-[200px] text-center
+                                        transition-all duration-500
+                                    hover:-translate-y-2 
+                                 hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)]"
+            >
+
+              <div className="absolute top-0 left-1/2 -translate-x-1/2">
+                <div className="pencil-loader scale-75 sm:scale-90 md:scale-100"></div>
+              </div>
+
+              {/* 🏷️ TITLE SECTION */}
+              <h2 className="relative text-3xl font-semibold text-blue-900 mb-2 tracking-tight">
+                <span className="typing-title group-hover:text-blue-700 transition-colors duration-300">
+                  No Featured Story Yet
+                </span>
+
+                <span
+                  className="absolute left-0 -bottom-1 h-[3px] w-0 
+                              bg-gradient-to-r from-blue-500 to-cyan-400
+                                  transition-all duration-300
+                            group-hover:w-full"
+                ></span>
+              </h2>
+
+              {/* 📄 DESCRIPTION TEXT */}
+              <p
+                className="text-gray-500 text-sm leading-relaxed mb-6
+                       transition-all duration-300
+                     group-hover:text-gray-600"
+              >
+                Check back soon for{" "}
+                <span className="font-medium text-gray-700 group-hover:text-blue-600">
+                  featured blog posts
+                </span>
+                !
+              </p>
+
+              {/* 🔘 BUTTON SECTION */}
+              <button
+                className="
+                          mt-4 px-4 py-2 rounded-full 
+                                text-blue-600 font-medium
+                                     transition-all duration-500 ease-smooth
+                          border border-transparent
+                            group-hover:px-6 group-hover:py-3
+                            group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-indigo-600
+                                 group-hover:text-white
+                           group-hover:shadow-md
+                              "
+              >
+                <span className="relative">
+                  Explore Articles
+                  <span className="ml-1 animate-pulse group-hover:hidden">|</span>
+                </span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+        </section>
+
+      )}
+ 
+      {/* Recent Articles Section */}
+      <section
+        id="recent-articles"
+        className="py-6 md:py-10 px-4 sm:px-6 lg:px-8 bg-background"
+      >
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <div className="justify-center text-center pt-4 mb-6">
+              <h2
+                className="text-[42px] font-extrabold text-foreground mb-3"
+                style={{ fontFamily: "Poppins, sans-serif", fontWeight: 800 }}
+              >
+                Our Recent Articles
+              </h2>
+              <p className="body-large text-[#5271FF] mt-2">
+                Stay informed with our latest healthcare insights and expert
+                analysis
+              </p>
+            </div>
+          </div>
+
+          {/* Calculate sorted blogs (stable, no shuffle) */}
+          {(() => {
+            const sortedBlogs = useMemo(() => {
+              return blogs
+                .map((blog, index) => ({
+                  ...blog,
+                  rank: index + 1,
+                  score: calculateBlogScore(blog),
+                }))
+                .sort((a, b) => b.score - a.score);
+            }, [blogs]);
+
+            return (
+              <>
+                {/* Loading Skeleton */}
+                {loading ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {Array.from({ length: 4 }).map((_, index) => (
+                      <div
+                        key={index}
+                        className="bg-card rounded-xl shadow-md border border-border p-4 animate-pulse"
+                      >
+                        <div className="h-48 bg-muted rounded-lg mb-4"></div>
+                        <div className="h-4 bg-muted w-3/4 rounded mb-3"></div>
+                        <div className="h-4 bg-muted w-1/2 rounded mb-3"></div>
+                        <div className="h-3 bg-muted w-full rounded mb-2"></div>
+                        <div className="h-3 bg-muted w-4/5 rounded mb-6"></div>
+                        <div className="flex justify-between">
+                          <div className="h-3 w-1/4 bg-muted rounded"></div>
+                          <div className="h-3 w-1/4 bg-muted rounded"></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : sortedBlogs.length > 0 ? (
+                  <>
+                    {/* Blog Cards Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                      {sortedBlogs
+                        .slice(0, showAll ? sortedBlogs.length : 4)
+                        .map((post) => (
+                          <Link
+                            key={post.id}
+                            href={`/blogs/${createSlug(post.title)}-${post.id}`}
+                            className="group"
+                          >
+                            <article className="bg-card rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-border hover:border-primary/20">
+                              {/* Image */}
+                              <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10">
+                                <img
+                                  src={post.featuredImage || "/placeholder.svg"}
+                                  alt={post.title}
+                                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                />
+                                <div className="absolute top-3 left-3">
+                                  <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary/90 text-primary-foreground text-xs font-semibold rounded-full">
+                                    {post.category || "Healthcare"}
+                                  </span>
+                                </div>
+                              </div>
+
+                              {/* Content */}
+                              <div className="p-5 flex flex-col h-full">
+                                <h3 className="text-lg font-bold text-foreground mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                                  {post.title}
+                                </h3>
+
+                                <p className="text-sm text-muted-foreground mb-4 line-clamp-2 flex-grow">
+                                  {post.excerpt ||
+                                    post.content?.substring(0, 120) + "..."}
+                                </p>
+
+                                {/* Meta Info */}
+                                <div className="space-y-3 pt-4 border-t border-border">
+                                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                                    <User className="w-4 h-4" />
+                                    <span>{post.author?.name || "Admin"}</span>
+                                  </div>
+                                  <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                                      <Calendar className="w-4 h-4" />
+                                      <span>
+                                        {new Date(
+                                          post.createdAt,
+                                        ).toLocaleDateString("en-US", {
+                                          month: "short",
+                                          day: "numeric",
+                                          year: "numeric",
+                                        })}
+                                      </span>
+                                    </div>
+                                    <span className="text-xs font-medium text-primary">
+                                      {Math.ceil(post.content.length / 500)} min
+                                      read
+                                    </span>
+                                  </div>
+                                </div>
+
+                                {/* Read More */}
+                                <button className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary group/link">
+                                  Read More
+                                  <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                                </button>
+                              </div>
+                            </article>
+                          </Link>
+                        ))}
+                    </div>
+
+                    {/* View All / Show Less Button */}
+                    <div className="flex justify-center mt-16">
+                      <button
+                        onClick={() => {
+                          if (showAll) {
+                            const section =
+                              document.getElementById("recent-articles");
+                            section?.scrollIntoView({ behavior: "smooth" });
+                          }
+                          setShowAll(!showAll);
+                        }}
+                        className="px-8 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                      >
+                        {showAll ? "Show Less" : "View All Articles"}
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <div className="text-center py-16">
+                    <h3 className="text-xl font-bold mb-3 text-primary">
+                      No articles yet
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Check back soon for the latest healthcare insights and
+                      expert analysis.
+                    </p>
+                  </div>
+                )}
+              </>
+            );
+          })()}
+        </div>
+      </section>
+
+      {/* Trending Topics Section */}
+      <section className="py-6 md:py-10 bg-gradient-to-br from-background to-background/95">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+              Trending Topics
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Explore the most discussed healthcare topics and emerging trends
+            </p>
+          </div>
+
+          {/* Premium Topic Cards - Glass/Neumorphism Design */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
+            {categories.map((topic, index) => (
+              <div key={index} className="group cursor-pointer">
+                <div className="relative h-full bg-white/60 backdrop-blur-xl border border-white/50 rounded-2xl md:rounded-3xl p-5 md:p-6 text-center transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 hover:border-primary/40 overflow-hidden">
+                  {/* Gradient Highlight on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-secondary/0 group-hover:from-primary/10 group-hover:via-primary/5 group-hover:to-secondary/10 transition-all duration-500 rounded-2xl md:rounded-3xl pointer-events-none"></div>
+
+                  {/* Content Container */}
+                  <div className="relative z-10 flex flex-col items-center justify-center h-full min-h-[140px] py-4">
+                    {/* Icon - Bigger, Floating */}
+                    <div className="mb-3 md:mb-4 transform group-hover:scale-125 group-hover:-translate-y-2 transition-all duration-500">
+                      <div className="relative w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20">
+                        <Image
+                          src={topic.image}
+                          alt={topic.name}
+                          fill
+                          className="object-contain drop-shadow-lg"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Title - Clear Hierarchy */}
+                    <h3 className="font-bold text-foreground mb-1 md:mb-2 text-sm md:text-base group-hover:text-primary transition-colors duration-300">
+                      {topic.name}
+                    </h3>
+
+                    {/* Count - Below Title */}
+                    <p className="text-xs font-semibold text-gray-600 group-hover:text-gray-800 transition-colors duration-300 mb-2 md:mb-3">
+                      {topic.count} articles
+                    </p>
+
+                    {/* Bottom Accent Line - Animated */}
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-border to-transparent overflow-hidden">
+                      <div className="h-full bg-gradient-to-r from-primary via-secondary to-primary rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-center"></div>
+                    </div>
+                  </div>
+
+                  {/* Neumorphism Shadow Effect */}
+                  <div
+                    className="absolute inset-0 rounded-2xl md:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    style={{
+                      boxShadow:
+                        "inset 0 2px 4px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.1)",
+                    }}
+                  ></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Category Filter Section */}
+      <section className="relative py-10 md:py-16 bg-background overflow-hidden">
+        {/* Animated Bokeh Lights */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-primary/5 blur-3xl animate-pulse"></div>
+          <div
+            className="absolute bottom-20 right-10 w-40 h-40 rounded-full bg-secondary/5 blur-3xl animate-bounce"
+            style={{ animationDelay: "0.5s" }}
+          ></div>
+        </div>
+
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 z-10">
+          <div className="bg-card border border-border backdrop-blur-sm rounded-3xl px-8 py-10 shadow-lg">
+            <h2 className="text-center text-3xl md:text-4xl font-bold text-foreground mb-8">
+              Explore by Category
+            </h2>
+
+            <div className="flex flex-wrap justify-center items-center gap-3">
+              {[
+                "All",
+                "Wellness",
+                "Nutrition",
+                "Mental Health",
+                "Technology",
+                "Research",
+              ].map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
+                    activeCategory === cat
+                      ? "bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-lg scale-105"
+                      : "bg-muted text-foreground hover:bg-muted/80 border border-border hover:border-primary/30"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured + Subscribe Section */}
+      <section
+        id="subscribe-section"
+        className="py-10 md:py-16 bg-gradient-to-br from-background via-background to-secondary/5"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-3 gap-8 items-stretch">
+            {/* Featured Card (2 columns) */}
+            <div className="lg:col-span-2">
+              {blogs.length > 0 && (
+                <div className="relative group rounded-3xl overflow-hidden shadow-2xl h-full min-h-[480px]">
+                  <Image
+                    src={blogs[currentIndex]?.featuredImage || "/default.jpg"}
+                    alt={blogs[currentIndex]?.title || "Featured Blog"}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+
+                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white z-10">
+                    <span className="inline-block bg-primary/80 backdrop-blur-sm px-4 py-1.5 rounded-full mb-4 text-xs font-semibold tracking-wide">
+                      {blogs[currentIndex]?.category || "Health"}
+                    </span>
+
+                    <h3 className="text-3xl md:text-4xl font-bold mb-3 leading-tight line-clamp-2">
+                      {blogs[currentIndex]?.title || "Featured Insight"}
+                    </h3>
+
+                    <p className="text-gray-200 text-sm md:text-base line-clamp-2 mb-6">
+                      {blogs[currentIndex]?.excerpt ||
+                        blogs[currentIndex]?.content?.substring(0, 120) + "..."}
+                    </p>
+
+                    <Link
+                      href={`/blogs/${createSlug(blogs[currentIndex]?.title)}-${blogs[currentIndex]?.id}`}
+                      className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-secondary text-primary-foreground px-8 py-3 rounded-full font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300"
+                    >
+                      Read More →
+                    </Link>
+                  </div>
+
+                  {/* Indicators */}
+                  <div className="absolute top-6 right-6 flex gap-2 z-20">
+                    {blogs.slice(0, 3).map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentIndex(index)}
+                        className={`rounded-full transition-all duration-300 ${
+                          currentIndex === index
+                            ? "bg-white w-8 h-2"
+                            : "bg-white/40 w-2 h-2 hover:bg-white/60"
+                        }`}
+                      ></button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Subscribe Box */}
+            <div className="lg:col-span-1">
+              <div className="h-full min-h-[480px] bg-gradient-to-br from-primary to-secondary text-primary-foreground rounded-3xl p-8 shadow-2xl flex flex-col justify-center">
+                <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
+                <p className="text-primary-foreground/80 mb-8 text-sm leading-relaxed">
+                  Subscribe to get the latest healthcare insights and wellness
+                  updates.
+                </p>
+
+                <form
+                  onSubmit={handleSubscribeSubmit}
+                  className="flex flex-col gap-4 mb-6"
+                >
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    required
+                    className="px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-primary-foreground placeholder-primary-foreground/50 focus:outline-none focus:ring-2 focus:ring-white/40 transition-all"
+                  />
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="bg-white text-primary font-semibold px-6 py-3 rounded-xl hover:scale-105 hover:shadow-lg transition-all duration-300 disabled:opacity-60"
+                  >
+                    {loading ? "Subscribing..." : "Subscribe"}
+                  </button>
+                </form>
+
+                {success && (
+                  <div className="bg-green-500/20 border border-green-400/40 text-green-100 px-4 py-3 rounded-xl text-sm animate-fade-in">
+                    ✓ Successfully subscribed! Thank you for joining us.
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="bg-foreground text-background py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Top Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            {/* Know Us */}
+            <div>
+              <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">
+                Know Us
+              </h4>
+              <ul className="space-y-2 text-sm text-background/70">
+                {[
+                  "About Us",
+                  "Contact Us",
+                  "Press Coverage",
+                  "Careers",
+                  "Business Partnership",
+                  "Become a Health Partner",
+                  "Corporate Governance",
+                ].map((item, index) => (
+                  <li key={index}>
+                    <a
+                      href="#"
+                      className="hover:text-background transition-colors"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Policies */}
+            <div>
+              <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">
+                Our Policies
+              </h4>
+              <ul className="space-y-2 text-sm text-background/70">
+                {[
+                  "Privacy Policy",
+                  "Terms & Conditions",
+                  "Editorial Policy",
+                  "User Manual",
+                  "Important Documents",
+                  "Required Documents",
+                  "Patient Form",
+                ].map((item, index) => (
+                  <li key={index}>
+                    <a
+                      href="#"
+                      className="hover:text-background transition-colors"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Services */}
+            <div>
+              <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">
+                Our Services
+              </h4>
+              <ul className="space-y-2 text-sm text-background/70">
+                {[
+                  "Features for Doctor",
+                  "Features for Hospital",
+                  "Features for Lab",
+                  "Features for HSP",
+                  "Features for Patient",
+                  "Features for Chemist",
+                  "Features for Health Worker",
+                  "Features for Pharma Manufacturers",
+                ].map((item, index) => (
+                  <li key={index}>
+                    <a
+                      href="#"
+                      className="hover:text-background transition-colors"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Connect  */}
+            <div>
+              <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">
+                Connect
+              </h4>
+              <p className="text-sm text-background/70 mb-4">
+                Follow Aarogya Insights for latest updates
+              </p>
+
+              {/* Social Icons */}
+              <div className="flex gap-3 mb-8">
+                {[Instagram, Facebook, Twitter, Linkedin, Youtube].map(
+                  (Icon, index) => (
+                    <a
+                      key={index}
+                      href="#"
+                      className="p-2 bg-background/10 hover:bg-background/20 rounded-lg transition-colors"
+                    >
+                      <Icon className="w-5 h-5 text-background" />
+                    </a>
+                  ),
+                )}
+              </div>
+
+              {/* Subscribe Section  */}
+              <div>
+                <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">
+                  Aarogya Insights
+                </h4>
+                <p className="text-background/70 text-sm mb-4">
+                  Subscribe for weekly health insights.
+                </p>
+
+                <div className="flex gap-2">
+                  <input
+                    type="email"
+                    placeholder="Your email"
+                    className="flex-1 px-4 py-2 rounded-lg bg-background/10 text-background placeholder:text-background/50 text-sm border border-background/20 focus:border-background/50 focus:outline-none transition-colors"
+                  />
+                  <button className="px-4 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors">
+                    <Mail className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="border-t border-background/20 py-8"></div>
+
+          {/* Bottom Footer */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            {/* Compact Info Row */}
+            <div className="w-full text-background/70 text-xs md:text-sm flex flex-col items-center md:items-start gap-1">
+              {/* Row 1 */}
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-4 gap-y-1">
+                <span>Government of India | Aarogya Insights</span>
+                <span className="hidden md:inline">•</span>
+                <span>ISO:27001 Certified</span>
+                <span className="hidden md:inline">•</span>
+                <span>Online Healthcare Platform</span>
+              </div>
+
+              {/* Row 2 */}
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-4 gap-y-1">
+                <span>Your Health, Your Choice</span>
+                <span className="hidden md:inline">•</span>
+                <span>+91 79-7272-7498</span>
+                <span className="hidden md:inline">•</span>
+                <span>info@aarogya.com</span>
+              </div>
+            </div>
+
+            {/* Original Footer Text */}
+            <p className="text-background/60 text-xs md:text-sm text-center md:text-left">
+              © 2024 Aarogya Insights Pvt. Ltd. All rights reserved. IT Act,
+              2000 compliant.
+            </p>
+
+            {/* Scroll to top */}
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="p-2 bg-background/10 hover:bg-background/20 rounded-lg transition-colors"
+            >
+              <ArrowUp className="w-5 h-5 text-background" />
+            </button>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}

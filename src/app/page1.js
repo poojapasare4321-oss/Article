@@ -45,25 +45,17 @@ const [animateKey, setAnimateKey] = useState(0);
   const [subLoading, setSubLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All");
+  const [showCard, setShowCard] = useState(false);
+const [cardsActive, setCardsActive] = useState(false);
  
-const [showCard, setShowCard] = useState(false);
-
- const [activeIndex, setActiveIndex] = useState(0);
 const [isFalling, setIsFalling] = useState(false);
 
-
-const visibleCards =
-  blogs.length > 0
-    ? [
-        blogs[activeIndex],
-        blogs[(activeIndex + 1) % blogs.length],
-        blogs[(activeIndex + 2) % blogs.length],
-      ]
-    : [];
-
-const currentBlog = visibleCards[0] || {};
+const [activeIndex, setActiveIndex] = useState(0);
 
 
+const [cards, setCards] = useState([]); // start empty
+
+const currentBlog = cards[currentIndex] || {};
 
 
   // Enhanced function to calculate blog ranking score
@@ -162,6 +154,7 @@ const currentBlog = visibleCards[0] || {};
 
     // ✅ store ALL blogs
     setBlogs(blogsArray);
+    setCards(blogsArray); 
 
     // ✅ get ONLY ONE featured for hero
     const featured = blogsArray.find((blog) => blog.featured);
@@ -178,21 +171,48 @@ const currentBlog = visibleCards[0] || {};
 
 
 
-useEffect(() => {
-  if (blogs.length === 0) return;
 
+
+useEffect(() => {
   const interval = setInterval(() => {
     setIsFalling(true);
 
     setTimeout(() => {
       setActiveIndex((prev) => (prev + 1) % blogs.length);
       setIsFalling(false);
-    }, 500); // match CSS animation
+    }, 500); // match animation time
+
   }, 3000);
 
   return () => clearInterval(interval);
 }, [blogs.length]);
 
+const visibleCards = [
+  blogs[activeIndex],
+  blogs[(activeIndex + 1) % blogs.length],
+  blogs[(activeIndex + 2) % blogs.length],
+];
+
+
+useEffect(() => {
+  setCardsActive(false); // reset when blog changes
+}, [animateKey]);
+
+const words = currentBlog?.title?.split(" ") || [];
+const lastIndex = words.length - 1;
+const TOTAL_TIME = 1600; // heading total time before cards
+const ANIMATION_DURATION = 900; // same as your CSS (0.9s)
+
+const availableTime = TOTAL_TIME - ANIMATION_DURATION;
+
+// safe fallback (avoid divide by 0)
+const delayPerWord =
+  words.length > 0 ? availableTime / words.length : 0;
+
+
+useEffect(() => {
+  setCards(blogs);
+}, [blogs]);
 
 
   // Search functionality
@@ -701,9 +721,15 @@ useEffect(() => {
     <span
       key={i}
       className="inline-block animate-word"
-      style={{ animationDelay: `${i * 0.06}s` }}  // 👈 HERE
+      style={{ animationDelay: `${(i * delayPerWord) / 1000}s` }}  // 👈 HERE
+      
+        onAnimationEnd={
+        i === lastIndex
+          ? () => setTimeout(() => setCardsActive(true), 800)
+          : undefined
+      }
     >
-      {word}&nbsp; 
+      {word}&nbsp;
     </span>
   ))}
 </h1>
@@ -729,175 +755,95 @@ useEffect(() => {
 
 </div>
 
- 
+  {/* CARD SECTION */}
+   {/* ${index === 0 && isFalling ? "translate-y-40 opacity-0 z-30" : ""} */}
 {/* CARD SECTION */}
 
-<div className="max-w-5xl mx-auto px-4 -mt-12 md:-mt-28 relative">
 
-  <div className="relative">
 
-    {visibleCards[0] && (
-      <div className="relative">
+<div className="max-w-5xl mx-auto px-4 -mt-12 md:-mt-28 relative h-[420px] md:h-[500px]">
 
-        {/* 🔥 NEXT CARD */}
-        {visibleCards[1] && (
-          <div className="absolute top-0 left-0 right-0 z-10 overflow-hidden">
-            <div className="bg-white border border-black shadow-lg overflow-hidden rounded-2xl md:rounded-t-3xl min-h-[320px] md:min-h-[360px]">
+  {visibleCards.map((currentBlog, index) => {
+    if (!currentBlog) return null;
 
-              <div className="grid grid-cols-1 md:grid-cols-2 h-auto">
+    return (
+      <div
+        key={currentBlog.id}
+        className={`absolute w-full left-0 top-0
+        
+        ${index === 0 && isFalling ? "animate-fall z-30" : ""}
+        ${index === 0 && !isFalling ? "z-30 scale-100 translate-y-0" : ""}
+        
+        ${index === 1 ? "z-20 scale-95 translate-y-4" : ""}
+        ${index === 2 ? "z-10 scale-90 translate-y-8" : ""}
+        
+        transition-all duration-500 ease-in-out`}
+      >
 
-                {/* LEFT */}
-                <div className="p-3 sm:p-4 md:p-6 pb-16 sm:pb-16 md:pb-14 relative flex flex-col h-full">
+        <Link
+          href={`/blogs/${createSlug(currentBlog.title)}-${currentBlog.id}`}
+          className="block group"
+        >
 
-                  {/* TEXT */}
-                  <div className="flex-1 flex items-center">
-                    <p className="text-[11px] sm:text-[13px] md:text-sm text-black break-words">
-                      {visibleCards[1].excerpt || visibleCards[1].content}
-                    </p>
-                  </div>
+          <div className="relative isolate">
 
-                  {/* AUTHOR */}
-                  <div className="absolute bottom-3 left-4 sm:left-5 md:left-8 flex items-center gap-2">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-500 text-white text-[10px] sm:text-xs font-bold">
-                      {(visibleCards[1].author?.name || "A").charAt(0)}
+            {/* BACK LAYER 2 */}
+            <div className="hidden sm:block absolute -top-5 left-4 sm:left-8 md:left-12 right-4 sm:right-8 md:right-12 h-2 md:h-3 bg-white border border-black rounded-t-[40px] md:rounded-t-[50px] -z-30"></div>
+
+            {/* BACK LAYER 1 */}
+            <div className="absolute -top-2 left-4 sm:left-6 md:left-8 right-4 sm:right-6 md:right-8 h-2 md:h-3 bg-white border border-black rounded-t-[40px] md:rounded-t-[50px] -z-20"></div>
+
+            {/* MAIN CARD */}
+            <div className="bg-white rounded-2xl border border-black md:rounded-t-3xl shadow-lg overflow-hidden min-h-[300px] md:min-h-[350px]">
+
+              <div className="grid md:grid-cols-2">
+
+                {/* CONTENT */}
+                <div className="p-6 md:p-12 mt-4 md:mt-6">
+
+                  <p className="text-xs sm:text-sm md:text-base text-black mb-4 md:mb-6 break-words">
+                    {currentBlog.excerpt || currentBlog.content?.substring(0, 100) + "..."}
+                  </p>
+
+                  <div className="flex items-center gap-3">
+
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold">
+                      {(currentBlog.author?.name || "A").charAt(0)}
                     </div>
 
                     <div>
-                      <p className="text-[11px] sm:text-xs font-semibold">
-                        {visibleCards[1].author?.name || "Admin"}
+                      <p className="font-semibold">
+                        {currentBlog.author?.name || "Admin"}
                       </p>
-                      <p className="text-[9px] sm:text-[10px] text-gray-500">
-                        {visibleCards[1].author?.role || "Healthcare"}
+                      <p className="text-xs text-gray-500">
+                        {currentBlog.author?.role || "Healthcare Writer"}
                       </p>
                     </div>
+
                   </div>
 
                 </div>
 
                 {/* IMAGE */}
-                <div className="h-[200px] sm:h-[220px] md:h-full overflow-hidden rounded-t-[40px] md:rounded-l-[120px]">
+                <div className="h-[200px] md:h-full overflow-hidden">
                   <img
-                    src={visibleCards[1].featuredImage || "/default-blog.jpg"}
-                    alt={visibleCards[1].title}
-                    className="w-full h-full object-cover"
+                    src={currentBlog.featuredImage || "/default-blog.jpg"}
+                    alt={currentBlog.title}
+                    className="w-full h-full object-cover rounded-t-[40px] md:rounded-t-none md:rounded-l-[120px]"
                   />
                 </div>
 
               </div>
             </div>
-          </div>
-        )}
-
-        {/* 🔥 STACK BARS (RESPONSIVE FIXED) */}
-        <div className="hidden sm:block absolute -top-4 md:-top-5 left-[8%] right-[8%] md:left-20 md:right-20 h-2 md:h-3 bg-white border border-black rounded-t-[50px] opacity-80 z-0"></div>
-
-        <div className="absolute -top-2 left-[5%] right-[5%] md:left-14 md:right-14 h-2 md:h-3 bg-white border border-black rounded-t-[50px] opacity-90 z-0"></div>
-
-        {/* 🔥 MAIN CARD */}
-        <Link
-          href={`/blogs/${createSlug(visibleCards[0].title)}-${visibleCards[0].id}`}
-          className="block"
-        >
-          <div
-            className={`
-              relative
-              ${isFalling ? "z-50 animate-fall" : "z-20 scale-[1.02] md:scale-[1.05]"}
-              bg-white border border-black shadow-lg overflow-hidden
-              rounded-2xl md:rounded-t-3xl
-              min-h-[320px] md:min-h-[360px]
-              transition-transform duration-300
-              sm:max-w-[95%] md:max-w-full mx-auto
-            `}
-          >
-
-            <div className="grid grid-cols-1 md:grid-cols-2 h-auto">
-
-              {/* LEFT */}
-              <div className="p-3 sm:p-4 md:p-6 pb-16 sm:pb-16 md:pb-14 relative flex flex-col h-full">
-
-                {/* TEXT */}
-                <div className="flex-1 flex items-center">
-                  <p className="text-[11px] sm:text-[13px] md:text-base leading-relaxed text-gray-800 break-words">
-                    {visibleCards[0].excerpt?.replace(/\.{3,}$/, "")}
-                  </p>
-                </div>
-
-                {/* AUTHOR */}
-                <div className="absolute bottom-3 left-4 sm:left-5 md:left-8 flex items-center gap-2 sm:gap-3">
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white text-[10px] sm:text-xs md:text-sm font-semibold">
-                    {(visibleCards[0].author?.name || "A").charAt(0)}
-                  </div>
-
-                  <div>
-                    <p className="text-[11px] sm:text-xs md:text-sm font-semibold">
-                      {visibleCards[0].author?.name || "Admin"}
-                    </p>
-                    <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-500">
-                      {visibleCards[0].author?.role || "Healthcare"}
-                    </p>
-                  </div>
-                </div>
-
-              </div>
-
-              {/* IMAGE */}
-              <div className="h-[200px] sm:h-[220px] md:h-full overflow-hidden rounded-t-[40px] md:rounded-l-[120px]">
-                <img
-                  src={visibleCards[0].featuredImage || "/default-blog.jpg"}
-                  alt={visibleCards[0].title}
-                  className="w-full h-full object-cover block"
-                />
-              </div>
-
-            </div>
 
           </div>
-
-        
-  {/* 🔥 OUTSIDE BUTTON WITH LINES */}
-  <div className="flex items-center justify-center my-10 gap-3">
-    
-    {/* Left Line */}
-    {/* <div className="flex-grow border-t-3 border-blue-700"></div> */}
-    <div className="flex-grow h-[1px] bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500"></div>
-
-    {/* Button */}
-   <button class="btn-iron group relative flex items-center justify-center h-[50px] px-5 text-[18px] uppercase rounded-xl overflow-hidden bg-blue-600 shadow-[0_7px_0_0_hsl(210,87%,36%)] active:translate-y-[7px] active:shadow-none transition-all duration-75">
-
-  {/* <!-- Default Text --> */}
-  <span class="btn-text absolute inset-0 flex items-center justify-center text-white font-bold tracking-[4px] text-[15px]">
-    READ MORE
-  </span>
-
-  {/* <!-- Animated Letters --> */}
-  <span class="flex gap-[2px]">
-    <i class="letter">R</i>
-    <i class="letter">E</i>
-    <i class="letter">A</i>
-    <i class="letter">D</i>
-    <i class="letter">&nbsp;</i>
-    <i class="letter">M</i>
-    <i class="letter">O</i>
-    <i class="letter">R</i>
-    <i class="letter">E</i>
-  </span>
-
-</button>
-    {/* Right Line */}
-    <div className="flex-grow h-[1px] bg-gradient-to-r from-pink-500 via-purple-500 to-blue-600"></div>
-
-  </div>
-
         </Link>
 
       </div>
-    )}
-
-  </div>
-
-  <div className="mt-6 md:mt-10"></div>
-
+    );
+  })}
 </div>
+
 
 
 </section>
@@ -995,6 +941,9 @@ useEffect(() => {
         </div>
 
         </section>
+
+
+
 
       )}
  
@@ -1551,3 +1500,4 @@ useEffect(() => {
     </div>
   );
 }
+c frbvzc

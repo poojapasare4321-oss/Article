@@ -125,6 +125,22 @@ export default function BlogDetail() {
 
       <main className="max-w-6xl mx-auto px-4 py-4">
 
+{/* ===== SECTION WITH CENTER LABEL + THICK WHITE LINES ===== */}
+<div className="flex items-center justify-center my-10">
+  
+  {/* Left Line */}
+  <div className="flex-grow border-t-4 border-white"></div>
+
+  {/* Center Text */}
+  <span className="mx-4 px-4 py-1 text-sm font-semibold text-gray-600 bg-background">
+    FEATURED POST
+  </span>
+
+  {/* Right Line */}
+  <div className="flex-grow border-t-4 border-white"></div>
+
+</div>
+
         {/* HERO */}
         {blog.featuredImage && (
           <div className="relative rounded-3xl overflow-hidden mb-8 border shadow-xl min-h-[70vh] md:min-h-[600px]">
