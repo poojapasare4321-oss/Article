@@ -677,7 +677,7 @@ useEffect(() => {
       ) : featuredBlogs.length > 0 ? (
         /* -------------------- FEATURED STORY (NEW DESIGN) -------------------- */
 
-<section className="bg-background py-10 md:py-16">
+<section className="bg-background py-10 md:py-16 -mt-8 md:-mt-14">
 
  
 
@@ -685,7 +685,7 @@ useEffect(() => {
 <div className="max-w-7xl mx-auto px-4">
 
   <div
-    key={animateKey} // 🔥 important for re-animation
+    key={animateKey} //  important for re-animation
     className="relative bg-cover bg-center min-h-[350px] md:min-h-[500px] pt-20 md:pt-28 pb-20 md:pb-28 px-4 md:px-8 -mt-2 text-center"
     style={{
       backgroundImage: "url('/hero-bg.jpeg')",
@@ -732,179 +732,192 @@ useEffect(() => {
  
 {/* CARD SECTION */}
 
-<div className="max-w-5xl mx-auto px-4 -mt-12 md:-mt-28 relative">
+{/* <div className="max-w-5xl mx-auto px-4 -mt-12 md:-mt-28 relative"> */}
 
-  <div className="relative">
 
-    {visibleCards[0] && (
-      <div className="relative">
+                        <div className="max-w-5xl mx-auto px-4 -mt-12 md:-mt-28 relative pb-12 md:pb-16">
+                        
+                          <div className="relative">
+                        
+                            {visibleCards[0] && (
+                              <div className="relative">
+                        
+                                {/* 🔥 NEXT CARD */}
+                                {visibleCards[1] && (
+                                  <div className="hidden sm:block absolute top-0 left-0 right-0 z-10 overflow-hidden">
+                                    <div className="bg-white border border-black shadow-lg overflow-hidden rounded-2xl 
+                                    md:rounded-t-3xl min-h-[320px] md:min-h-[360px]">
+                        
+                                      <div className="grid grid-cols-1 md:grid-cols-2 h-auto">
+                        
+                                        {/* LEFT */}
+                                        <div className="p-3 sm:p-4 md:p-6 pb-16 sm:pb-16 md:pb-14 relative flex flex-col h-full">
+                        
+                                          {/* TEXT */}
+                                          <div className="flex-1 flex items-center">
+                                            <p className="text-[11px] sm:text-[13px] md:text-sm text-black break-words">
+                                              {visibleCards[1].excerpt || visibleCards[1].content}
+                                            </p>
+                                          </div>
+                        
+                                          {/* AUTHOR */}
+                                          <div className="absolute bottom-3 left-4 sm:left-5 md:left-8 flex items-center gap-2">
+                                            <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full
+                                             bg-gradient-to-br from-blue-500 to-purple-500 text-white text-[10px] sm:text-xs font-bold">
+                                              {(visibleCards[1].author?.name || "A").charAt(0)}
+                                            </div>
+                        
+                                            <div>
+                                              <p className="text-[11px] sm:text-xs font-semibold">
+                                                {visibleCards[1].author?.name || "Admin"}
+                                              </p>
+                                              <p className="text-[9px] sm:text-[10px] text-gray-500">
+                                                {visibleCards[1].author?.role || "Healthcare"}
+                                              </p>
+                                            </div>
+                                          </div>
+                        
+                                        </div>
+                        
+                                        {/* IMAGE */}
+                                        <div className="h-[200px] sm:h-[220px] md:h-full overflow-hidden rounded-t-[40px] md:rounded-l-[120px]">
+                                          <img
+                                            src={visibleCards[1].featuredImage || "/default-blog.jpg"}
+                                            alt={visibleCards[1].title}
+                                            className="w-full h-full object-cover"
+                                          />
+                                        </div>
+                        
+                                      </div>
+                                    </div>
+                                  </div>
+                                )}
+                        
+                                {/* 🔥 STACK BARS (RESPONSIVE FIXED) */}
+                                <div className="hidden sm:block absolute -top-4 md:-top-5 left-[8%] right-[8%] md:left-20 md:right-20
+                                 h-2 md:h-3 bg-white border border-black rounded-t-[50px] opacity-80 z-0"></div>
+                        
+                                <div className="absolute -top-2 left-[5%] right-[5%] md:left-14 md:right-14 h-2 md:h-3 bg-white
+                                 border border-black rounded-t-[50px] opacity-90 z-0"></div>
+                        
+                                {/* 🔥 MAIN CARD */}
+                                <Link
+                                  href={`/blogs/${createSlug(visibleCards[0].title)}-${visibleCards[0].id}`}
+                                  className="block"
+                                >
+                                  <div
+                                    className={`
+                                      relative
+                                      ${isFalling ? "z-50 animate-fall" : "z-20 scale-[1.02] md:scale-[1.05]"}
+                                      bg-white border border-black shadow-lg overflow-hidden
+                                      rounded-2xl md:rounded-t-3xl
+                                      min-h-[320px] md:min-h-[360px]
+                                      transition-transform duration-300
+                                      sm:max-w-[95%] md:max-w-full mx-auto
+                                    `}
+                                  >
+                        
+                                    <div className="grid grid-cols-1 md:grid-cols-2 h-auto">
+                        
+                                      {/* LEFT */}
+                                      <div className="p-3 sm:p-4 md:p-6 pb-16 sm:pb-16 md:pb-14 relative flex flex-col h-full">
+                        
+                                        {/* TEXT */}
+                                        <div className="flex-1 flex items-center">
+                                         <p className="text-[11px] sm:text-[13px] md:text-base leading-relaxed text-gray-800 break-words 
+                                         line-clamp-4 md:line-clamp-5">
+                                            {visibleCards[0].excerpt?.replace(/\.{3,}$/, "")}
+                                          </p>
+                                        </div>
+                        
+                                        {/* AUTHOR */}
+                                        <div className="absolute bottom-3 left-4 sm:left-5 md:left-8 flex items-center gap-2 sm:gap-3">
+                                          <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br 
+                                          from-blue-500 to-purple-500 flex items-center justify-center text-white text-[10px] sm:text-xs md:text-sm 
+                                          font-semibold">
+                                            {(visibleCards[0].author?.name || "A").charAt(0)}
+                                          </div>
+                        
+                                          <div>
+                                            <p className="text-[11px] sm:text-xs md:text-sm font-semibold">
+                                              {visibleCards[0].author?.name || "Admin"}
+                                            </p>
+                                            <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-500">
+                                              {visibleCards[0].author?.role || "Healthcare"}
+                                            </p>
+                                          </div>
+                                        </div>
+                        
+                                      </div>
+                        
+                                      {/* IMAGE */}
+                                      <div className="h-[200px] sm:h-[220px] md:h-full overflow-hidden rounded-t-[40px] md:rounded-l-[120px]">
+                                        <img
+                                          src={visibleCards[0].featuredImage || "/default-blog.jpg"}
+                                          alt={visibleCards[0].title}
+                                          className="w-full h-full object-cover block"
+                                        />
+                                      </div>
+                        
+                                    </div>
+                        
+                                  </div>
+                        
+                                
+                          {/* 🔥 OUTSIDE BUTTON WITH LINES */}
+                          <div className="flex items-center justify-center my-10 gap-3">
+                            
+                            {/* Left Line */}
+                            {/* <div className="flex-grow border-t-3 border-blue-700"></div> */}
+                            <div className="flex-grow h-[1px] bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500"></div>
+                        
+                            {/* Button */}
+                           <button class="btn-iron group relative flex items-center justify-center h-[50px] px-5 text-[18px] 
+                           uppercase rounded-xl overflow-hidden bg-blue-600 shadow-[0_7px_0_0_hsl(210,87%,36%)] active:translate-y-[7px] 
+                           active:shadow-none transition-all duration-75">
+                        
+                          {/* <!-- Default Text --> */}
+                          <span class="btn-text absolute inset-0 flex items-center justify-center text-white font-bold tracking-[4px] text-[15px]">
+                            READ MORE
+                          </span>
+                        
+                          {/* <!-- Animated Letters --> */}
+                          <span class="flex gap-[2px]">
+                            <i class="letter">R</i>
+                            <i class="letter">E</i>
+                            <i class="letter">A</i>
+                            <i class="letter">D</i>
+                            <i class="letter">&nbsp;</i>
+                            <i class="letter">M</i>
+                            <i class="letter">O</i>
+                            <i class="letter">R</i>
+                            <i class="letter">E</i>
+                          </span>
+                        
+                        </button>
+                            {/* Right Line */}
+                            <div className="flex-grow h-[1px] bg-gradient-to-r from-pink-500 via-purple-500 to-blue-600"></div>
+                        
+                          </div>
+                        
+                                </Link>
+                        
+                              </div>
+                            )}
+                        
+                          </div>
+                        
+                          <div className="mt-6 md:mt-10"></div>
+                        
+                        </div>
 
-        {/* 🔥 NEXT CARD */}
-        {visibleCards[1] && (
-          <div className="absolute top-0 left-0 right-0 z-10 overflow-hidden">
-            <div className="bg-white border border-black shadow-lg overflow-hidden rounded-2xl md:rounded-t-3xl min-h-[320px] md:min-h-[360px]">
-
-              <div className="grid grid-cols-1 md:grid-cols-2 h-auto">
-
-                {/* LEFT */}
-                <div className="p-3 sm:p-4 md:p-6 pb-16 sm:pb-16 md:pb-14 relative flex flex-col h-full">
-
-                  {/* TEXT */}
-                  <div className="flex-1 flex items-center">
-                    <p className="text-[11px] sm:text-[13px] md:text-sm text-black break-words">
-                      {visibleCards[1].excerpt || visibleCards[1].content}
-                    </p>
-                  </div>
-
-                  {/* AUTHOR */}
-                  <div className="absolute bottom-3 left-4 sm:left-5 md:left-8 flex items-center gap-2">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-500 text-white text-[10px] sm:text-xs font-bold">
-                      {(visibleCards[1].author?.name || "A").charAt(0)}
-                    </div>
-
-                    <div>
-                      <p className="text-[11px] sm:text-xs font-semibold">
-                        {visibleCards[1].author?.name || "Admin"}
-                      </p>
-                      <p className="text-[9px] sm:text-[10px] text-gray-500">
-                        {visibleCards[1].author?.role || "Healthcare"}
-                      </p>
-                    </div>
-                  </div>
-
-                </div>
-
-                {/* IMAGE */}
-                <div className="h-[200px] sm:h-[220px] md:h-full overflow-hidden rounded-t-[40px] md:rounded-l-[120px]">
-                  <img
-                    src={visibleCards[1].featuredImage || "/default-blog.jpg"}
-                    alt={visibleCards[1].title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* 🔥 STACK BARS (RESPONSIVE FIXED) */}
-        <div className="hidden sm:block absolute -top-4 md:-top-5 left-[8%] right-[8%] md:left-20 md:right-20 h-2 md:h-3 bg-white border border-black rounded-t-[50px] opacity-80 z-0"></div>
-
-        <div className="absolute -top-2 left-[5%] right-[5%] md:left-14 md:right-14 h-2 md:h-3 bg-white border border-black rounded-t-[50px] opacity-90 z-0"></div>
-
-        {/* 🔥 MAIN CARD */}
-        <Link
-          href={`/blogs/${createSlug(visibleCards[0].title)}-${visibleCards[0].id}`}
-          className="block"
-        >
-          <div
-            className={`
-              relative
-              ${isFalling ? "z-50 animate-fall" : "z-20 scale-[1.02] md:scale-[1.05]"}
-              bg-white border border-black shadow-lg overflow-hidden
-              rounded-2xl md:rounded-t-3xl
-              min-h-[320px] md:min-h-[360px]
-              transition-transform duration-300
-              sm:max-w-[95%] md:max-w-full mx-auto
-            `}
-          >
-
-            <div className="grid grid-cols-1 md:grid-cols-2 h-auto">
-
-              {/* LEFT */}
-              <div className="p-3 sm:p-4 md:p-6 pb-16 sm:pb-16 md:pb-14 relative flex flex-col h-full">
-
-                {/* TEXT */}
-                <div className="flex-1 flex items-center">
-                  <p className="text-[11px] sm:text-[13px] md:text-base leading-relaxed text-gray-800 break-words">
-                    {visibleCards[0].excerpt?.replace(/\.{3,}$/, "")}
-                  </p>
-                </div>
-
-                {/* AUTHOR */}
-                <div className="absolute bottom-3 left-4 sm:left-5 md:left-8 flex items-center gap-2 sm:gap-3">
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white text-[10px] sm:text-xs md:text-sm font-semibold">
-                    {(visibleCards[0].author?.name || "A").charAt(0)}
-                  </div>
-
-                  <div>
-                    <p className="text-[11px] sm:text-xs md:text-sm font-semibold">
-                      {visibleCards[0].author?.name || "Admin"}
-                    </p>
-                    <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-500">
-                      {visibleCards[0].author?.role || "Healthcare"}
-                    </p>
-                  </div>
-                </div>
-
-              </div>
-
-              {/* IMAGE */}
-              <div className="h-[200px] sm:h-[220px] md:h-full overflow-hidden rounded-t-[40px] md:rounded-l-[120px]">
-                <img
-                  src={visibleCards[0].featuredImage || "/default-blog.jpg"}
-                  alt={visibleCards[0].title}
-                  className="w-full h-full object-cover block"
-                />
-              </div>
-
-            </div>
-
-          </div>
-
-        
-  {/* 🔥 OUTSIDE BUTTON WITH LINES */}
-  <div className="flex items-center justify-center my-10 gap-3">
-    
-    {/* Left Line */}
-    {/* <div className="flex-grow border-t-3 border-blue-700"></div> */}
-    <div className="flex-grow h-[1px] bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500"></div>
-
-    {/* Button */}
-   <button class="btn-iron group relative flex items-center justify-center h-[50px] px-5 text-[18px] uppercase rounded-xl overflow-hidden bg-blue-600 shadow-[0_7px_0_0_hsl(210,87%,36%)] active:translate-y-[7px] active:shadow-none transition-all duration-75">
-
-  {/* <!-- Default Text --> */}
-  <span class="btn-text absolute inset-0 flex items-center justify-center text-white font-bold tracking-[4px] text-[15px]">
-    READ MORE
-  </span>
-
-  {/* <!-- Animated Letters --> */}
-  <span class="flex gap-[2px]">
-    <i class="letter">R</i>
-    <i class="letter">E</i>
-    <i class="letter">A</i>
-    <i class="letter">D</i>
-    <i class="letter">&nbsp;</i>
-    <i class="letter">M</i>
-    <i class="letter">O</i>
-    <i class="letter">R</i>
-    <i class="letter">E</i>
-  </span>
-
-</button>
-    {/* Right Line */}
-    <div className="flex-grow h-[1px] bg-gradient-to-r from-pink-500 via-purple-500 to-blue-600"></div>
-
-  </div>
-
-        </Link>
-
-      </div>
-    )}
-
-  </div>
-
-  <div className="mt-6 md:mt-10"></div>
-
-</div>
 
 
 </section>
 
       ) : (
         /* -------------------- NO FEATURED STORY -------------------- */
-        <section className="py-16 bg-white">
+        <section className="py-5 bg-white">
          
         <div className="relative overflow-hidden">
 
@@ -971,23 +984,37 @@ useEffect(() => {
               </p>
 
               {/* 🔘 BUTTON SECTION */}
-              <button
-                className="
-                          mt-4 px-4 py-2 rounded-full 
-                                text-blue-600 font-medium
-                                     transition-all duration-500 ease-smooth
-                          border border-transparent
-                            group-hover:px-6 group-hover:py-3
-                            group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-indigo-600
-                                 group-hover:text-white
-                           group-hover:shadow-md
-                              "
-              >
-                <span className="relative">
-                  Explore Articles
-                  <span className="ml-1 animate-pulse group-hover:hidden">|</span>
-                </span>
-              </button>
+             
+{/* RIGHT SIDE BUTTON - DESKTOP ONLY */}
+<div className="hidden lg:block">
+  {!showAll && (
+    <button
+      onClick={() => setShowAll(true)}
+      className="
+      group flex items-center gap-3
+      px-5 py-3 rounded-full
+      font-semibold text-white
+      bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600
+      shadow-md hover:shadow-xl
+      transition-all duration-300 hover:scale-105
+      whitespace-nowrap
+    "
+    >
+      <span>View All Articles</span>
+
+      <span
+        className="
+        flex items-center justify-center
+        w-8 h-8 rounded-full
+        bg-white text-indigo-600
+      "
+      >
+        →
+      </span>
+    </button>
+  )}
+</div>
+
             </div>
 
           </div>
@@ -1001,24 +1028,137 @@ useEffect(() => {
       {/* Recent Articles Section */}
       <section
         id="recent-articles"
-        className="py-6 md:py-10 px-4 sm:px-6 lg:px-8 bg-background"
+
+        //  className="py-2 md:py-4 px-4 sm:px-6 lg:px-8 bg-background"
+
+className="-mt-18 md:-mt-24 pt-4 pb-4 px-4 sm:px-6 lg:px-8 bg-background"
       >
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <div className="justify-center text-center pt-4 mb-6">
-              <h2
-                className="text-[42px] font-extrabold text-foreground mb-3"
-                style={{ fontFamily: "Poppins, sans-serif", fontWeight: 800 }}
-              >
-                Our Recent Articles
-              </h2>
-              <p className="body-large text-[#5271FF] mt-2">
-                Stay informed with our latest healthcare insights and expert
-                analysis
-              </p>
-            </div>
-          </div>
+       
+  {/* 🔷 Heading Section */}
+
+
+{/* 🔷 TOP HEADER ROW */}
+{/* <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-6"> */}
+
+<div
+  className={`
+    flex flex-col
+    gap-6 mb-6
+
+    ${!showAll
+      ? "lg:flex-row lg:items-center lg:justify-between"
+      : "items-center text-center"}
+  `}
+>
+
+
+
+  {/* LEFT SIDE */}
+  {/* <div> */}
+
+<div
+  className={`
+    flex flex-col items-center
+    text-center
+
+    ${!showAll ? "lg:items-start lg:text-left" : ""}
+  `}
+>
+
+    {/* Small Label */}
+    {/* <p className="text-sm text-gray-500 mb-2">
+      — Recent Insights
+    </p> */}
+
+    {/* Heading */}
+    <h2
+      className="
+      font-extrabold leading-tight
+      bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600
+      bg-[length:250%_auto]
+      bg-clip-text text-transparent
+      animate-gradient relative inline-block
+    "
+      style={{ fontSize: "clamp(1.8rem, 4vw, 3.2rem)" }}
+    >
+      Our Recent Articles
+
+      {/* Underline */}
+      <span
+        className="
+        absolute left-0 bottom-0 w-full h-[3px] rounded-full
+        bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600
+        bg-[length:200%] animate-underline
+      "
+      ></span>
+    </h2>
+
+
+
+    {/* Paragraph */}
+  
+<p
+  className="
+    block
+    px-3 py-2
+    rounded-md
+    bg-gradient-to-r
+    from-indigo-100
+    via-purple-50
+    to-rose-100
+    text-gray-700
+    mt-4
+  "
+  style={{ fontSize: "clamp(0.9rem, 1.5vw, 1.1rem)" }}
+>
+  Stay informed with our latest healthcare insights and expert analysis
+</p>
+
+
+  </div>
+
+  {/* RIGHT SIDE BUTTON */}
+
+{/* BOTTOM BUTTONS */}
+
+
+{/* DESKTOP BUTTON */}
+<div className="hidden lg:block">
+  {!showAll && (
+    <button
+      onClick={() => setShowAll(true)}
+      className="
+      group flex items-center gap-3
+      px-5 py-3 rounded-full
+      font-semibold text-white
+      bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600
+      shadow-md hover:shadow-xl
+      transition-all duration-300 hover:scale-105
+      whitespace-nowrap
+    "
+    >
+      <span>View All Articles</span>
+
+      <span
+        className="
+        flex items-center justify-center
+        w-8 h-8 rounded-full
+        bg-white text-indigo-600
+      "
+      >
+        →
+      </span>
+    </button>
+  )}
+</div>
+
+</div>
+
+
+
+<div className="h-6 md:h-10"></div>
 
           {/* Calculate sorted blogs (stable, no shuffle) */}
           {(() => {
@@ -1066,87 +1206,211 @@ useEffect(() => {
                             href={`/blogs/${createSlug(post.title)}-${post.id}`}
                             className="group"
                           >
-                            <article className="bg-card rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-border hover:border-primary/20">
-                              {/* Image */}
-                              <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10">
-                                <img
-                                  src={post.featuredImage || "/placeholder.svg"}
-                                  alt={post.title}
-                                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <div className="absolute top-3 left-3">
-                                  <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary/90 text-primary-foreground text-xs font-semibold rounded-full">
-                                    {post.category || "Healthcare"}
-                                  </span>
-                                </div>
-                              </div>
+                           
 
-                              {/* Content */}
-                              <div className="p-5 flex flex-col h-full">
-                                <h3 className="text-lg font-bold text-foreground mb-3 line-clamp-2 group-hover:text-primary transition-colors">
-                                  {post.title}
-                                </h3>
+<article
+  className="
+  group relative
+  h-[300px] sm:h-[340px] md:h-[380px]
+  rounded-3xl overflow-hidden
+  border border-gray-100
+  shadow-md hover:shadow-2xl
+  transition-all duration-500
+  hover:-translate-y-1
+  cursor-pointer
+  active:scale-[0.98]
+"
+> 
 
-                                <p className="text-sm text-muted-foreground mb-4 line-clamp-2 flex-grow">
-                                  {post.excerpt ||
-                                    post.content?.substring(0, 120) + "..."}
-                                </p>
+  {/* 🌄 IMAGE (NO DARK OVERLAY) */}
+  <img
+    src={post.featuredImage || "/placeholder.svg"}
+    alt={post.title}
+    className="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105"
+  />
 
-                                {/* Meta Info */}
-                                <div className="space-y-3 pt-4 border-t border-border">
-                                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                                    <User className="w-4 h-4" />
-                                    <span>{post.author?.name || "Admin"}</span>
-                                  </div>
-                                  <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                                      <Calendar className="w-4 h-4" />
-                                      <span>
-                                        {new Date(
-                                          post.createdAt,
-                                        ).toLocaleDateString("en-US", {
-                                          month: "short",
-                                          day: "numeric",
-                                          year: "numeric",
-                                        })}
-                                      </span>
-                                    </div>
-                                    <span className="text-xs font-medium text-primary">
-                                      {Math.ceil(post.content.length / 500)} min
-                                      read
-                                    </span>
-                                  </div>
-                                </div>
+  {/* 🏷 CATEGORY */}
+  <span className="absolute top-4 left-4 z-10 px-3 py-1 text-xs font-medium bg-white/80 text-black rounded-full shadow">
+    {post.category || "Healthcare"}
+  </span>
 
-                                {/* Read More */}
-                                <button className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary group/link">
-                                  Read More
-                                  <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-                                </button>
-                              </div>
-                            </article>
+  {/* ➡️ ARROW */}
+  <Link
+    href={`/blogs/${createSlug(post.title)}-${post.id}`}
+    className="absolute top-3 right-3 z-20 w-10 h-10 bg-white/90 rounded-full flex items-center 
+    justify-center text-black shadow hover:scale-110 transition"
+  >
+    →
+  </Link>
+
+  {/* 📝 TITLE (VISIBLE INITIALLY) */}
+  <div className="absolute bottom-5 left-5 right-5 z-10 transition duration-300 group-hover:opacity-0">
+    <h3 className="text-lg font-semibold text-white drop-shadow-md line-clamp-2">
+      {post.title}
+    </h3>
+  </div>
+
+  {/* ✨ HOVER CONTENT (CLEAN, NO BLACK BG) */}
+
+
+{/* ✨ CONTENT OVERLAY */}
+<div
+  className="
+  absolute inset-0 z-10
+  flex flex-col justify-end
+  p-5 sm:p-6
+
+  bg-gradient-to-t
+  from-black/70 via-black/20 to-transparent
+
+  lg:opacity-0
+  lg:group-hover:opacity-100
+
+  transition-all duration-500
+"
+>
+
+  <div
+    className="
+    lg:translate-y-8
+    lg:group-hover:translate-y-0
+
+    transition-all duration-500
+  "
+  >
+
+    {/* CATEGORY */}
+    {/* <div className="mb-4">
+
+      <span className="px-4 py-1 text-xs font-medium bg-white/80 text-gray-800 rounded-full">
+        💜 {post.category || "Healthcare"}
+      </span>
+
+    </div> */}
+
+    {/* CONTENT */}
+    <p className="text-white text-sm sm:text-base leading-relaxed line-clamp-3 mb-5 max-w-sm">
+      {post.excerpt || post.content?.substring(0, 120) + "..."}
+    </p>
+
+    {/* META */}
+    <div className="flex items-center justify-between border-t border-white/20 pt-4">
+
+      <div className="flex items-center gap-2 text-white text-sm">
+        <span>👤</span>
+        <span>{post.author?.name || "Admin"}</span>
+      </div>
+
+      <div className="flex items-center gap-2 text-white text-sm">
+        <span>⏱</span>
+        <span>{Math.ceil(post.content.length / 500)} min</span>
+      </div>
+
+    </div>
+
+    {/* DATE */}
+    <div className="flex items-center gap-2 text-white/80 text-xs mt-3">
+
+      <span>📅</span>
+
+      <span>
+        {new Date(post.createdAt).toLocaleDateString()}
+      </span>
+
+    </div>
+
+  </div>
+</div>
+
+
+</article>
+
+
                           </Link>
                         ))}
                     </div>
 
                     {/* View All / Show Less Button */}
-                    <div className="flex justify-center mt-16">
-                      <button
-                        onClick={() => {
-                          if (showAll) {
-                            const section =
-                              document.getElementById("recent-articles");
-                            section?.scrollIntoView({ behavior: "smooth" });
-                          }
-                          setShowAll(!showAll);
-                        }}
-                        className="px-8 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                      >
-                        {showAll ? "Show Less" : "View All Articles"}
-                      </button>
-                    </div>
+
+{/* BOTTOM BUTTON SECTION */}
+
+{/* MOBILE + TABLET VIEW ALL */}
+{!showAll && (
+  <div className="flex justify-center mt-12 sm:mt-16 px-4 lg:hidden">
+
+    <button
+      onClick={() => setShowAll(true)}
+      className="
+      group flex items-center gap-3
+      px-5 py-2.5 rounded-xl
+      font-semibold text-white
+      bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600
+      shadow-md hover:shadow-xl
+      transition-all duration-300 hover:scale-105
+    "
+    >
+
+      <span>View All Articles</span>
+
+      <span
+        className="
+        flex items-center justify-center w-8 h-8 rounded-full
+        bg-white/20 group-hover:bg-white/30 transition
+      "
+      >
+        →
+      </span>
+
+    </button>
+
+  </div>
+)}
+
+{/* SHOW LESS - ALL SCREENS */}
+{showAll && (
+  <div className="flex justify-center mt-12 sm:mt-16 px-4">
+
+    <button
+      onClick={() => {
+        const section = document.getElementById("recent-articles");
+
+        section?.scrollIntoView({
+          behavior: "smooth",
+        });
+
+        setShowAll(false);
+      }}
+      className="
+      group flex items-center gap-3 px-5 py-2.5 rounded-xl
+      font-semibold text-white
+      bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600
+      shadow-md hover:shadow-xl
+      transition-all duration-300 hover:scale-105
+    "
+    >
+
+      {/* SYMBOL FIRST */}
+      <span
+        className="
+        flex items-center justify-center w-8 h-8 rounded-full
+        bg-white/20 group-hover:bg-white/30 transition
+      "
+      >
+        ←
+      </span>
+
+      <span>Show Less</span>
+
+    </button>
+
+  </div>
+)}
+
+                   
                   </>
                 ) : (
+
+                  
                   <div className="text-center py-16">
                     <h3 className="text-xl font-bold mb-3 text-primary">
                       No articles yet
@@ -1164,18 +1428,59 @@ useEffect(() => {
       </section>
 
       {/* Trending Topics Section */}
-      <section className="py-6 md:py-10 bg-gradient-to-br from-background to-background/95">
+      <section className="py-6 md:py-10 
+     bg-gradient-to-br from-blue-100/70 to-blue-100/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Trending Topics
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Explore the most discussed healthcare topics and emerging trends
-            </p>
-          </div>
+        
+<div className="text-center mb-14 px-4">
 
+  {/* Heading */}
+
+
+  <h2
+    className="
+      text-5xl
+      md:text-6xl
+      lg:text-7xl
+      font-black
+      leading-[0.95]
+      tracking-[-0.05em]
+      mb-6
+    "
+  >
+    <span className="block text-gray-900">
+      Trending Topics
+    </span>
+
+    <span
+      className="
+        block
+        text-transparent
+        bg-clip-text
+        bg-gradient-to-r
+        from-violet-600
+        via-purple-600
+        to-blue-600
+      "
+    >
+      Topics
+    </span>
+  </h2>
+
+
+
+  {/* Paragraph */}
+  <p
+    className="mt-6 text-gray-700 max-w-xl mx-auto typing"
+    style={{ fontSize: "clamp(0.9rem, 1.5vw, 1.1rem)" }}
+  >
+    Explore the most discussed healthcare topics and emerging trends
+  </p>
+
+</div>
+
+        
           {/* Premium Topic Cards - Glass/Neumorphism Design */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
             {categories.map((topic, index) => (
@@ -1230,7 +1535,7 @@ useEffect(() => {
       </section>
 
       {/* Category Filter Section */}
-      <section className="relative py-10 md:py-16 bg-background overflow-hidden">
+      <section className="relative py-10 md:py-16 bg-background overflow-hidden bg-gradient-to-br from-blue-500/50 via-white to-purple-400/70">
         {/* Animated Bokeh Lights */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-primary/5 blur-3xl animate-pulse"></div>

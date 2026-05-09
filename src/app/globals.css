@@ -2172,3 +2172,65 @@ h1 {
 .animate-fall {
   animation: fall 0.5s ease forwards;
 }
+
+/* our recent article */
+
+/* Gradient animation */
+@keyframes gradientMove {
+  0% { background-position: 0% center; }
+  100% { background-position: 250% center; }
+}
+.animate-gradient {
+  animation: gradientMove 8s linear infinite;
+}
+
+/* Underline animation */
+@keyframes underlineMove {
+  0% { background-position: 0%; }
+  100% { background-position: 200%; }
+}
+.animate-underline {
+  animation: underlineMove 5s linear infinite;
+}
+
+/* Typing effect */
+.typing {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #111827;
+
+width: fit-content;
+max-width: fit-content;
+margin: 0 auto;
+
+  padding: 6px 10px;
+  border-radius: 6px;
+
+  background: linear-gradient(90deg, #e0e7ff, #f5f3ff, #ffe4e6);
+
+  animation: typing 7s steps(60, end) infinite,
+             blink 1.2s infinite;
+}
+
+@keyframes typing {
+  0%   { width: 0 }
+  50%  { width: 100% }
+  100% { width: 0 }
+}
+
+@keyframes blink {
+  0%,100% { border-color: transparent }
+  50% { border-color: #111827 }
+}
+
+/* Mobile fix */
+@media (max-width: 640px) {
+  .typing {
+    white-space: normal;
+    border-right: none;
+    animation: none;
+    width: 100%;
+    text-align: center;
+  }
+}

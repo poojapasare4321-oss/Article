@@ -5545,3 +5545,556 @@ h-[320px] md:h-[360px]
     </div>
   );
 }
+
+
+
+
+
+
+<div className="max-w-5xl mx-auto px-4 -mt-12 md:-mt-28 relative pb-32 md:pb-40">
+
+  <div className="relative">
+
+    {visibleCards[0] && (
+      <div className="relative">
+
+        {/* 🔥 NEXT CARD */}
+        {visibleCards[1] && (
+          <div className="hidden sm:block absolute top-0 left-0 right-0 z-10 overflow-hidden">
+            <div className="bg-white border border-black shadow-lg overflow-hidden rounded-2xl md:rounded-t-3xl min-h-[320px] md:min-h-[360px]">
+
+              <div className="grid grid-cols-1 md:grid-cols-2 h-auto">
+
+                {/* LEFT */}
+                <div className="p-3 sm:p-4 md:p-6 pb-16 sm:pb-16 md:pb-14 relative flex flex-col h-full">
+
+                  {/* TEXT */}
+                  <div className="flex-1 flex items-center">
+                    <p className="text-[11px] sm:text-[13px] md:text-sm text-black break-words">
+                      {visibleCards[1].excerpt || visibleCards[1].content}
+                    </p>
+                  </div>
+
+                  {/* AUTHOR */}
+                  <div className="absolute bottom-3 left-4 sm:left-5 md:left-8 flex items-center gap-2">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-500 text-white text-[10px] sm:text-xs font-bold">
+                      {(visibleCards[1].author?.name || "A").charAt(0)}
+                    </div>
+
+                    <div>
+                      <p className="text-[11px] sm:text-xs font-semibold">
+                        {visibleCards[1].author?.name || "Admin"}
+                      </p>
+                      <p className="text-[9px] sm:text-[10px] text-gray-500">
+                        {visibleCards[1].author?.role || "Healthcare"}
+                      </p>
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* IMAGE */}
+                <div className="h-[200px] sm:h-[220px] md:h-full overflow-hidden rounded-t-[40px] md:rounded-l-[120px]">
+                  <img
+                    src={visibleCards[1].featuredImage || "/default-blog.jpg"}
+                    alt={visibleCards[1].title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* 🔥 STACK BARS (RESPONSIVE FIXED) */}
+        <div className="hidden sm:block absolute -top-4 md:-top-5 left-[8%] right-[8%] md:left-20 md:right-20 h-2 md:h-3 bg-white border border-black rounded-t-[50px] opacity-80 z-0"></div>
+
+        <div className="absolute -top-2 left-[5%] right-[5%] md:left-14 md:right-14 h-2 md:h-3 bg-white border border-black rounded-t-[50px] opacity-90 z-0"></div>
+
+        {/* 🔥 MAIN CARD */}
+        <Link
+          href={`/blogs/${createSlug(visibleCards[0].title)}-${visibleCards[0].id}`}
+          className="block"
+        >
+          <div
+            className={`
+              relative
+              ${isFalling ? "z-50 animate-fall" : "z-20 scale-[1.02] md:scale-[1.05]"}
+              bg-white border border-black shadow-lg overflow-hidden
+              rounded-2xl md:rounded-t-3xl
+              min-h-[320px] md:min-h-[360px]
+              transition-transform duration-300
+              sm:max-w-[95%] md:max-w-full mx-auto
+            `}
+          >
+
+            <div className="grid grid-cols-1 md:grid-cols-2 h-auto">
+
+              {/* LEFT */}
+              <div className="p-3 sm:p-4 md:p-6 pb-16 sm:pb-16 md:pb-14 relative flex flex-col h-full">
+
+                {/* TEXT */}
+                <div className="flex-1 flex items-center">
+                 <p className="text-[11px] sm:text-[13px] md:text-base leading-relaxed text-gray-800 break-words line-clamp-4 md:line-clamp-5">
+                    {visibleCards[0].excerpt?.replace(/\.{3,}$/, "")}
+                  </p>
+                </div>
+
+                {/* AUTHOR */}
+                <div className="absolute bottom-3 left-4 sm:left-5 md:left-8 flex items-center gap-2 sm:gap-3">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white text-[10px] sm:text-xs md:text-sm font-semibold">
+                    {(visibleCards[0].author?.name || "A").charAt(0)}
+                  </div>
+
+                  <div>
+                    <p className="text-[11px] sm:text-xs md:text-sm font-semibold">
+                      {visibleCards[0].author?.name || "Admin"}
+                    </p>
+                    <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-500">
+                      {visibleCards[0].author?.role || "Healthcare"}
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* IMAGE */}
+              <div className="h-[200px] sm:h-[220px] md:h-full overflow-hidden rounded-t-[40px] md:rounded-l-[120px]">
+                <img
+                  src={visibleCards[0].featuredImage || "/default-blog.jpg"}
+                  alt={visibleCards[0].title}
+                  className="w-full h-full object-cover block"
+                />
+              </div>
+
+            </div>
+
+          </div>
+
+        
+  {/* 🔥 OUTSIDE BUTTON WITH LINES */}
+  <div className="flex items-center justify-center my-10 gap-3">
+    
+    {/* Left Line */}
+    {/* <div className="flex-grow border-t-3 border-blue-700"></div> */}
+    <div className="flex-grow h-[1px] bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500"></div>
+
+    {/* Button */}
+   <button class="btn-iron group relative flex items-center justify-center h-[50px] px-5 text-[18px] uppercase rounded-xl overflow-hidden bg-blue-600 shadow-[0_7px_0_0_hsl(210,87%,36%)] active:translate-y-[7px] active:shadow-none transition-all duration-75">
+
+  {/* <!-- Default Text --> */}
+  <span class="btn-text absolute inset-0 flex items-center justify-center text-white font-bold tracking-[4px] text-[15px]">
+    READ MORE
+  </span>
+
+  {/* <!-- Animated Letters --> */}
+  <span class="flex gap-[2px]">
+    <i class="letter">R</i>
+    <i class="letter">E</i>
+    <i class="letter">A</i>
+    <i class="letter">D</i>
+    <i class="letter">&nbsp;</i>
+    <i class="letter">M</i>
+    <i class="letter">O</i>
+    <i class="letter">R</i>
+    <i class="letter">E</i>
+  </span>
+
+</button>
+    {/* Right Line */}
+    <div className="flex-grow h-[1px] bg-gradient-to-r from-pink-500 via-purple-500 to-blue-600"></div>
+
+  </div>
+
+        </Link>
+
+      </div>
+    )}
+
+  </div>
+
+  <div className="mt-6 md:mt-10"></div>
+
+</div>
+
+
+
+
+
+                                <div className="max-w-5xl mx-auto px-4 -mt-12 md:-mt-28 relative">
+                                <div className="relative">
+
+                                        {visibleCards[0] && (
+                                            <div className="relative">
+
+                                                {/* 🔥 NEXT CARD */}
+                                                {visibleCards[1] && (
+                                                    <div className="absolute top-0 left-0 right-0 z-10 overflow-hidden">
+                                                        <div className="bg-white border border-black shadow-lg overflow-hidden rounded-2xl md:rounded-t-3xl min-h-[320px] md:min-h-[360px]">
+
+                                                            <div className="grid grid-cols-1 md:grid-cols-2 h-auto">
+
+                                                                {/* LEFT */}
+                                                                <div className="p-3 sm:p-4 md:p-6 pb-16 sm:pb-16 md:pb-14 relative flex flex-col h-full">
+
+                                                                    {/* TEXT */}
+                                                                    <div className="flex-1 flex items-center">
+                                                                        <p className="text-[11px] sm:text-[13px] md:text-sm text-black break-words">
+                                                                            {visibleCards[1].excerpt || visibleCards[1].content}
+                                                                        </p>
+                                                                    </div>
+
+                                                                    {/* AUTHOR */}
+                                                                    <div className="absolute bottom-3 left-4 sm:left-5 md:left-8 flex items-center gap-2">
+                                                                        <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-500 text-white text-[10px] sm:text-xs font-bold">
+                                                                            {(visibleCards[1].author?.name || "A").charAt(0)}
+                                                                        </div>
+
+                                                                        {/* IMAGE SIDE */}
+                                                                        <div className="relative h-80 lg:h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center overflow-hidden">
+                                                                            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10"></div>
+
+                                                                            <img
+                                                                                src={blog.featuredImage || "/default-blog.jpg"}
+                                                                                alt={blog.title}
+                                                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                                                            />
+
+                                                                            <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-white transition-colors cursor-pointer">
+                                                                                <svg
+                                                                                    className="w-5 h-5 text-primary"
+                                                                                    fill="none"
+                                                                                    stroke="currentColor"
+                                                                                    viewBox="0 0 24 24"
+                                                                                >
+                                                                                    <path
+                                                                                        strokeLinecap="round"
+                                                                                        strokeLinejoin="round"
+                                                                                        strokeWidth="2"
+                                                                                        d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 016.364 6.364L12 21.364l-7.682-7.682a4.5 4.5 0 010-6.364z"
+                                                                                    />
+                                                                                </svg>
+                                                                            </div>
+                                                                            <div>
+                                                                                <p className="text-[11px] sm:text-xs font-semibold">
+                                                                                    {visibleCards[1].author?.name || "Admin"}
+                                                                                </p>
+                                                                                <p className="text-[9px] sm:text-[10px] text-gray-500">
+                                                                                    {visibleCards[1].author?.role || "Healthcare"}
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </Link>
+            ))}
+
+                                                                {/* IMAGE */}
+                                                                <div className="h-[200px] sm:h-[220px] md:h-full overflow-hidden rounded-t-[40px] md:rounded-l-[120px]">
+                                                                    <img
+                                                                        src={visibleCards[1].featuredImage || "/default-blog.jpg"}
+                                                                        alt={visibleCards[1].title}
+                                                                        className="w-full h-full object-cover"
+                                                                    />
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+        </section>
+                                        )}
+
+                                        {/* 🔥 STACK BARS (RESPONSIVE FIXED) */}
+                                        <div className="hidden sm:block absolute -top-4 md:-top-5 left-[8%] right-[8%] md:left-20 md:right-20 h-2 md:h-3 bg-white border border-black rounded-t-[50px] opacity-80 z-0"></div>
+
+                                        <div className="absolute -top-2 left-[5%] right-[5%] md:left-14 md:right-14 h-2 md:h-3 bg-white border border-black rounded-t-[50px] opacity-90 z-0"></div>
+
+                                        {/* 🔥 MAIN CARD */}
+                                        <Link
+                                            href={`/blogs/${createSlug(visibleCards[0].title)}-${visibleCards[0].id}`}
+                                            className="block"
+                                        >
+                                            <div
+                                                className={`
+              relative
+              ${isFalling ? "z-50 animate-fall" : "z-20 scale-[1.02] md:scale-[1.05]"}
+              bg-white border border-black shadow-lg overflow-hidden
+              rounded-2xl md:rounded-t-3xl
+              min-h-[320px] md:min-h-[360px]
+              transition-transform duration-300
+              sm:max-w-[95%] md:max-w-full mx-auto
+            `}
+                                            >
+
+                                                <div className="grid grid-cols-1 md:grid-cols-2 h-auto">
+
+                                                    {/* LEFT */}
+                                                    <div className="p-3 sm:p-4 md:p-6 pb-16 sm:pb-16 md:pb-14 relative flex flex-col h-full">
+
+                                                        {/* TEXT */}
+                                                        <div className="flex-1 flex items-center">
+                                                            <p className="text-[11px] sm:text-[13px] md:text-base leading-relaxed text-gray-800 break-words">
+                                                                {visibleCards[0].excerpt?.replace(/\.{3,}$/, "")}
+                                                            </p>
+                                                        </div>
+
+                                                        {/* AUTHOR */}
+                                                        <div className="absolute bottom-3 left-4 sm:left-5 md:left-8 flex items-center gap-2 sm:gap-3">
+                                                            <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white text-[10px] sm:text-xs md:text-sm font-semibold">
+                                                                {(visibleCards[0].author?.name || "A").charAt(0)}
+                                                            </div>
+
+                                                            <div>
+                                                                <p className="text-[11px] sm:text-xs md:text-sm font-semibold">
+                                                                    {visibleCards[0].author?.name || "Admin"}
+                                                                </p>
+                                                                <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-500">
+                                                                    {visibleCards[0].author?.role || "Healthcare"}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    {/* IMAGE */}
+                                                    <div className="h-[200px] sm:h-[220px] md:h-full overflow-hidden rounded-t-[40px] md:rounded-l-[120px]">
+                                                        <img
+                                                            src={visibleCards[0].featuredImage || "/default-blog.jpg"}
+                                                            alt={visibleCards[0].title}
+                                                            className="w-full h-full object-cover block"
+                                                        />
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                            {/* 🔥 OUTSIDE BUTTON WITH LINES */}
+                                            <div className="flex items-center justify-center my-10 gap-3">
+
+                                                {/* Left Line */}
+                                                {/* <div className="flex-grow border-t-3 border-blue-700"></div> */}
+                                                <div className="flex-grow h-[1px] bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500"></div>
+
+                                                {/* Button */}
+                                                <button class="btn-iron group relative flex items-center justify-center h-[50px] px-5 text-[18px] uppercase rounded-xl overflow-hidden bg-blue-600 shadow-[0_7px_0_0_hsl(210,87%,36%)] active:translate-y-[7px] active:shadow-none transition-all duration-75">
+
+                                                    {/* <!-- Default Text --> */}
+                                                    <span class="btn-text absolute inset-0 flex items-center justify-center text-white font-bold tracking-[4px] text-[15px]">
+                                                        READ MORE
+                                                    </span>
+
+                                                    {/* <!-- Animated Letters --> */}
+                                                    <span class="flex gap-[2px]">
+                                                        <i class="letter">R</i>
+                                                        <i class="letter">E</i>
+                                                        <i class="letter">A</i>
+                                                        <i class="letter">D</i>
+                                                        <i class="letter">&nbsp;</i>
+                                                        <i class="letter">M</i>
+                                                        <i class="letter">O</i>
+                                                        <i class="letter">R</i>
+                                                        <i class="letter">E</i>
+                                                    </span>
+
+                                                </button>
+                                                {/* Right Line */}
+                                                <div className="flex-grow h-[1px] bg-gradient-to-r from-pink-500 via-purple-500 to-blue-600"></div>
+
+                                            </div>
+
+                                        </Link>
+
+                                    </div>
+    )}
+
+                                </div>
+
+                                <div className="mt-6 md:mt-10"></div>
+
+                            </div>
+
+
+                        </section>
+
+
+
+
+
+                        <div className="max-w-5xl mx-auto px-4 -mt-12 md:-mt-28 relative pb-32 md:pb-40">
+                        
+                          <div className="relative">
+                        
+                            {visibleCards[0] && (
+                              <div className="relative">
+                        
+                                {/* 🔥 NEXT CARD */}
+                                {visibleCards[1] && (
+                                  <div className="hidden sm:block absolute top-0 left-0 right-0 z-10 overflow-hidden">
+                                    <div className="bg-white border border-black shadow-lg overflow-hidden rounded-2xl 
+                                    md:rounded-t-3xl min-h-[320px] md:min-h-[360px]">
+                        
+                                      <div className="grid grid-cols-1 md:grid-cols-2 h-auto">
+                        
+                                        {/* LEFT */}
+                                        <div className="p-3 sm:p-4 md:p-6 pb-16 sm:pb-16 md:pb-14 relative flex flex-col h-full">
+                        
+                                          {/* TEXT */}
+                                          <div className="flex-1 flex items-center">
+                                            <p className="text-[11px] sm:text-[13px] md:text-sm text-black break-words">
+                                              {visibleCards[1].excerpt || visibleCards[1].content}
+                                            </p>
+                                          </div>
+                        
+                                          {/* AUTHOR */}
+                                          <div className="absolute bottom-3 left-4 sm:left-5 md:left-8 flex items-center gap-2">
+                                            <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full
+                                             bg-gradient-to-br from-blue-500 to-purple-500 text-white text-[10px] sm:text-xs font-bold">
+                                              {(visibleCards[1].author?.name || "A").charAt(0)}
+                                            </div>
+                        
+                                            <div>
+                                              <p className="text-[11px] sm:text-xs font-semibold">
+                                                {visibleCards[1].author?.name || "Admin"}
+                                              </p>
+                                              <p className="text-[9px] sm:text-[10px] text-gray-500">
+                                                {visibleCards[1].author?.role || "Healthcare"}
+                                              </p>
+                                            </div>
+                                          </div>
+                        
+                                        </div>
+                        
+                                        {/* IMAGE */}
+                                        <div className="h-[200px] sm:h-[220px] md:h-full overflow-hidden rounded-t-[40px] md:rounded-l-[120px]">
+                                          <img
+                                            src={visibleCards[1].featuredImage || "/default-blog.jpg"}
+                                            alt={visibleCards[1].title}
+                                            className="w-full h-full object-cover"
+                                          />
+                                        </div>
+                        
+                                      </div>
+                                    </div>
+                                  </div>
+                                )}
+                        
+                                {/* 🔥 STACK BARS (RESPONSIVE FIXED) */}
+                                <div className="hidden sm:block absolute -top-4 md:-top-5 left-[8%] right-[8%] md:left-20 md:right-20
+                                 h-2 md:h-3 bg-white border border-black rounded-t-[50px] opacity-80 z-0"></div>
+                        
+                                <div className="absolute -top-2 left-[5%] right-[5%] md:left-14 md:right-14 h-2 md:h-3 bg-white
+                                 border border-black rounded-t-[50px] opacity-90 z-0"></div>
+                        
+                                {/* 🔥 MAIN CARD */}
+                                <Link
+                                  href={`/blogs/${createSlug(visibleCards[0].title)}-${visibleCards[0].id}`}
+                                  className="block"
+                                >
+                                  <div
+                                    className={`
+                                      relative
+                                      ${isFalling ? "z-50 animate-fall" : "z-20 scale-[1.02] md:scale-[1.05]"}
+                                      bg-white border border-black shadow-lg overflow-hidden
+                                      rounded-2xl md:rounded-t-3xl
+                                      min-h-[320px] md:min-h-[360px]
+                                      transition-transform duration-300
+                                      sm:max-w-[95%] md:max-w-full mx-auto
+                                    `}
+                                  >
+                        
+                                    <div className="grid grid-cols-1 md:grid-cols-2 h-auto">
+                        
+                                      {/* LEFT */}
+                                      <div className="p-3 sm:p-4 md:p-6 pb-16 sm:pb-16 md:pb-14 relative flex flex-col h-full">
+                        
+                                        {/* TEXT */}
+                                        <div className="flex-1 flex items-center">
+                                         <p className="text-[11px] sm:text-[13px] md:text-base leading-relaxed text-gray-800 break-words 
+                                         line-clamp-4 md:line-clamp-5">
+                                            {visibleCards[0].excerpt?.replace(/\.{3,}$/, "")}
+                                          </p>
+                                        </div>
+                        
+                                        {/* AUTHOR */}
+                                        <div className="absolute bottom-3 left-4 sm:left-5 md:left-8 flex items-center gap-2 sm:gap-3">
+                                          <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br 
+                                          from-blue-500 to-purple-500 flex items-center justify-center text-white text-[10px] sm:text-xs md:text-sm 
+                                          font-semibold">
+                                            {(visibleCards[0].author?.name || "A").charAt(0)}
+                                          </div>
+                        
+                                          <div>
+                                            <p className="text-[11px] sm:text-xs md:text-sm font-semibold">
+                                              {visibleCards[0].author?.name || "Admin"}
+                                            </p>
+                                            <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-500">
+                                              {visibleCards[0].author?.role || "Healthcare"}
+                                            </p>
+                                          </div>
+                                        </div>
+                        
+                                      </div>
+                        
+                                      {/* IMAGE */}
+                                      <div className="h-[200px] sm:h-[220px] md:h-full overflow-hidden rounded-t-[40px] md:rounded-l-[120px]">
+                                        <img
+                                          src={visibleCards[0].featuredImage || "/default-blog.jpg"}
+                                          alt={visibleCards[0].title}
+                                          className="w-full h-full object-cover block"
+                                        />
+                                      </div>
+                        
+                                    </div>
+                        
+                                  </div>
+                        
+                                
+                          {/* 🔥 OUTSIDE BUTTON WITH LINES */}
+                          <div className="flex items-center justify-center my-10 gap-3">
+                            
+                            {/* Left Line */}
+                            {/* <div className="flex-grow border-t-3 border-blue-700"></div> */}
+                            <div className="flex-grow h-[1px] bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500"></div>
+                        
+                            {/* Button */}
+                           <button class="btn-iron group relative flex items-center justify-center h-[50px] px-5 text-[18px] 
+                           uppercase rounded-xl overflow-hidden bg-blue-600 shadow-[0_7px_0_0_hsl(210,87%,36%)] active:translate-y-[7px] 
+                           active:shadow-none transition-all duration-75">
+                        
+                          {/* <!-- Default Text --> */}
+                          <span class="btn-text absolute inset-0 flex items-center justify-center text-white font-bold tracking-[4px] text-[15px]">
+                            READ MORE
+                          </span>
+                        
+                          {/* <!-- Animated Letters --> */}
+                          <span class="flex gap-[2px]">
+                            <i class="letter">R</i>
+                            <i class="letter">E</i>
+                            <i class="letter">A</i>
+                            <i class="letter">D</i>
+                            <i class="letter">&nbsp;</i>
+                            <i class="letter">M</i>
+                            <i class="letter">O</i>
+                            <i class="letter">R</i>
+                            <i class="letter">E</i>
+                          </span>
+                        
+                        </button>
+                            {/* Right Line */}
+                            <div className="flex-grow h-[1px] bg-gradient-to-r from-pink-500 via-purple-500 to-blue-600"></div>
+                        
+                          </div>
+                        
+                                </Link>
+                        
+                              </div>
+                            )}
+                        
+                          </div>
+                        
+                          <div className="mt-6 md:mt-10"></div>
+                        
+                        </div>
