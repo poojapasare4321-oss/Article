@@ -204,34 +204,16 @@ export default function BlogDetail() {
                       value: `${blog.views || 0} views`
                     }
                   ].map((item, i) => (
-                    // <div key={i} className="group flex flex-col items-center min-h-[90px]" tabIndex={0}>
-
-                    <div
-  key={i}
-  className="group flex flex-col items-center min-h-[90px]"
->
+                    <div key={i} className="group flex flex-col items-center min-h-[90px]" tabIndex={0}>
 
                       {/* button */}
                       {/* <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-white/70 backdrop-blur-lg border shadow transition-all duration-300 group-hover:-translate-y-1 hover:bg-gradient-to-br hover:from-blue-400 hover:to-indigo-300 hover:text-white cursor-pointer"> */}
-{/* <div className="w-14 h-14 flex items-center justify-center rounded-xl 
+<div className="w-14 h-14 flex items-center justify-center rounded-xl 
 bg-white/70 backdrop-blur-lg border shadow 
 transition-all duration-300 
 md:group-hover:-translate-y-1 
 md:hover:bg-gradient-to-br md:hover:from-blue-400 md:hover:to-indigo-300 md:hover:text-white 
-cursor-pointer"> */}
-
-<div
-  tabIndex={0}
-  className="
-    w-14 h-14 flex items-center justify-center rounded-xl
-    bg-white/70 backdrop-blur-lg border shadow
-    transition-all duration-300
-    md:group-hover:-translate-y-1
-    md:hover:bg-gradient-to-br md:hover:from-blue-400 md:hover:to-indigo-300 md:hover:text-white
-    cursor-pointer
-  "
->
-
+cursor-pointer">
 
 
                         <div className="flex flex-col items-center text-xs">
@@ -250,27 +232,18 @@ cursor-pointer"> */}
                         </div>
                       </div> */}
 
+                      <div className="
+mt-3
+opacity-100 max-h-40 
 
-<div
-  className="
-    mt-3
+md:opacity-0 md:max-h-0 
+md:overflow-hidden 
 
-    opacity-0
-    max-h-0
-    overflow-hidden
+md:group-hover:opacity-100 md:group-hover:max-h-40 
+md:group-focus:opacity-100 md:group-focus:max-h-40 
 
-    group-focus-within:opacity-100
-    group-focus-within:max-h-40
-
-    md:group-hover:opacity-100
-    md:group-hover:max-h-40
-
-    md:group-focus:opacity-100
-    md:group-focus:max-h-40
-
-    transition-all duration-300
-  "
->
+transition-all duration-300
+">
   <div className="px-4 py-2 text-[11px] rounded-xl bg-white/40 backdrop-blur-xl border shadow-lg whitespace-nowrap">
     {item.value}
   </div>
@@ -313,7 +286,7 @@ cursor-pointer"> */}
   </div>
 
 </div>
- 
+
 
 {/* hi 
 

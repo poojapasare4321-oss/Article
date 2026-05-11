@@ -2209,14 +2209,31 @@ margin: 0 auto;
 
   background: linear-gradient(90deg, #e0e7ff, #f5f3ff, #ffe4e6);
 
-  animation: typing 7s steps(60, end) infinite,
+  animation: typing 15s steps(60, end) infinite,
              blink 1.2s infinite;
 }
 
-@keyframes typing {
+/* @keyframes typing {
   0%   { width: 0 }
   50%  { width: 100% }
   100% { width: 0 }
+} */
+ @keyframes typing {
+  0% {
+    width: 0;
+  }
+
+  35% {
+    width: 100%;
+  }
+
+  65% {
+    width: 100%;
+  }
+
+  100% {
+    width: 0;
+  }
 }
 
 @keyframes blink {
