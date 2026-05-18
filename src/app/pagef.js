@@ -16,7 +16,6 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import { useMemo } from "react";
-import { motion } from "framer-motion";
 
 
 
@@ -46,7 +45,6 @@ const [animateKey, setAnimateKey] = useState(0);
   const [subLoading, setSubLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All");
-  const [activeCard, setActiveCard] = useState(null);
  
 const [showCard, setShowCard] = useState(false);
 
@@ -680,7 +678,6 @@ useEffect(() => {
         /* -------------------- FEATURED STORY (NEW DESIGN) -------------------- */
 
 
-  
 <section className="bg-background py-10 md:py-16 -mt-8 md:-mt-14">
 
   {/* BLUE SECTION */}
@@ -688,125 +685,44 @@ useEffect(() => {
 
     <div
       key={animateKey}
-      className="relative bg-cover bg-center min-h-[520px] md:min-h-[500px] pt-16 md:pt-28 pb-14 md:pb-28 px-4 md:px-8 -mt-2 text-center overflow-hidden"
+      className="relative bg-cover bg-center min-h-[350px] md:min-h-[500px] pt-20 md:pt-28 pb-20 md:pb-28 px-4 md:px-8 -mt-2 text-center"
       style={{
         backgroundImage: "url('/hero-bg.jpeg')",
       }}
     >
 
-      {/* ================= MOBILE HERO ================= */}
-      <div className="block md:hidden">
+      {/* LABEL */}
+      <p className="text-sm md:text-base text-gray-600 mb-3 tracking-wide">
+        Featured Story
+      </p>
 
-        {/* LABEL */}
-        <p className="text-sm text-gray-600 mb-3 tracking-wide">
-          Featured Story
-        </p>
-
-        {/* TITLE */}
-        <h1
-          className="
-            text-3xl
-            font-bold
-            leading-snug
-            tracking-tight
-            text-center
-            text-gray-900
-            line-clamp-3
-            max-w-[95%]
-            mx-auto
-          "
-        >
-          {currentBlog.title}
-        </h1>
-
-        {/* PILLS */}
-        <div className="flex items-center justify-center gap-3 mt-5 flex-wrap">
-
-          <span className="px-3 py-1 text-xs bg-white/90 backdrop-blur border border-black rounded-full shadow whitespace-nowrap">
-            {currentBlog.category || "Wellness"}
+      {/* HEADING */}
+      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-center max-w-3xl mx-auto">
+        {currentBlog.title.split(" ").map((word, i) => (
+          <span
+            key={i}
+            className="inline-block animate-word text-gray-900"
+            style={{ animationDelay: `${i * 0.06}s` }}
+          >
+            {word}&nbsp;
           </span>
+        ))}
+      </h1>
 
-          <span className="px-3 py-1 text-xs bg-white/90 backdrop-blur border border-black rounded-full shadow whitespace-nowrap">
-            {currentBlog.createdAt
-              ? new Date(currentBlog.createdAt).toLocaleDateString()
-              : "Latest"}
-          </span>
+      {/* PILLS */}
+      <div className="relative mt-10 mb-16 md:mb-20 z-20">
 
-        </div>
+        {/* LEFT PILL */}
+        <span className="absolute left-10 sm:left-14 md:left-28 -top-8 px-3 md:px-4 py-1 text-xs md:text-sm bg-white/90 backdrop-blur border border-black rounded-full shadow whitespace-nowrap">
+          {currentBlog.category || "Wellness"}
+        </span>
 
-        {/* CONTENT */}
-        <p
-          className="
-            mt-5
-            text-sm
-            leading-relaxed
-            text-gray-700
-            text-center
-            line-clamp-3
-            max-w-md
-            mx-auto
-          "
-        >
-          {currentBlog.excerpt || currentBlog.content}
-        </p>
-
-        {/* IMAGE */}
-        <div className="mt-8">
-
-          <img
-            src={currentBlog.featuredImage || "/default-blog.jpg"}
-            alt={currentBlog.title}
-            className="
-              w-full
-              h-[260px]
-              object-cover
-              rounded-[28px]
-              border border-black
-              shadow-lg
-            "
-          />
-
-        </div>
-
-      </div>
-
-      {/* ================= DESKTOP HERO ================= */}
-      <div className="hidden md:block">
-
-        {/* LABEL */}
-        <p className="text-sm md:text-base text-gray-600 mb-3 tracking-wide">
-          Featured Story
-        </p>
-
-        {/* HEADING */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-center max-w-3xl mx-auto">
-          {currentBlog.title.split(" ").map((word, i) => (
-            <span
-              key={i}
-              className="inline-block animate-word text-gray-900"
-              style={{ animationDelay: `${i * 0.06}s` }}
-            >
-              {word}&nbsp;
-            </span>
-          ))}
-        </h1>
-
-        {/* PILLS */}
-        <div className="relative mt-10 mb-16 md:mb-20 z-20">
-
-          {/* LEFT PILL */}
-          <span className="absolute left-10 sm:left-14 md:left-28 -top-8 px-3 md:px-4 py-1 text-xs md:text-sm bg-white/90 backdrop-blur border border-black rounded-full shadow whitespace-nowrap">
-            {currentBlog.category || "Wellness"}
-          </span>
-
-          {/* RIGHT PILL */}
-          <span className="absolute right-10 sm:right-14 md:right-28 -top-8 px-3 md:px-4 py-1 text-xs md:text-sm bg-white/90 backdrop-blur border border-black rounded-full shadow whitespace-nowrap">
-            {currentBlog.createdAt
-              ? new Date(currentBlog.createdAt).toLocaleDateString()
-              : "Latest"}
-          </span>
-
-        </div>
+        {/* RIGHT PILL */}
+        <span className="absolute right-10 sm:right-14 md:right-28 -top-8 px-3 md:px-4 py-1 text-xs md:text-sm bg-white/90 backdrop-blur border border-black rounded-full shadow whitespace-nowrap">
+          {currentBlog.createdAt
+            ? new Date(currentBlog.createdAt).toLocaleDateString()
+            : "Latest"}
+        </span>
 
       </div>
 
@@ -814,74 +730,8 @@ useEffect(() => {
 
   </div>
 
-  
-  {/* ================= MOBILE READ MORE ================= */}
-<div className="block md:hidden px-4 pt-6 pb-10">
-
-  <Link
-    href={`/blogs/${createSlug(currentBlog.title)}-${currentBlog.id}`}
-    className="block"
-  >
-
-    <div className="flex items-center justify-center gap-3">
-
-      {/* LEFT LINE */}
-      <div className="flex-grow h-[1px] bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500"></div>
-
-      {/* BUTTON */}
-      <button
-        className="
-          btn-iron group relative flex items-center justify-center
-          h-[46px] px-5
-          text-sm
-          uppercase
-          rounded-full
-          overflow-hidden
-
-          bg-gradient-to-r
-          from-blue-500
-          via-purple-500
-          to-pink-400
-
-          shadow-[0_7px_0_0_rgba(168,85,247,0.9)]
-
-          active:translate-y-[7px]
-          active:shadow-none
-          transition-all duration-75
-        "
-      >
-
-        {/* DEFAULT TEXT */}
-        <span className="btn-text absolute inset-0 flex items-center justify-center text-white font-semibold tracking-[2px] text-sm">
-          READ MORE
-        </span>
-
-        {/* LETTERS */}
-        <span className="flex gap-[2px]">
-          <i className="letter">R</i>
-          <i className="letter">E</i>
-          <i className="letter">A</i>
-          <i className="letter">D</i>
-          <i className="letter">&nbsp;</i>
-          <i className="letter">M</i>
-          <i className="letter">O</i>
-          <i className="letter">R</i>
-          <i className="letter">E</i>
-        </span>
-
-      </button>
-
-      {/* RIGHT LINE */}
-      <div className="flex-grow h-[1px] bg-gradient-to-r from-pink-500 via-purple-500 to-blue-600"></div>
-
-    </div>
-
-  </Link>
-
-</div>
-
-  {/* ================= DESKTOP CARD SECTION ================= */}
-  <div className="hidden md:block max-w-5xl mx-auto px-4 -mt-12 md:-mt-28 relative pb-12 md:pb-16">
+  {/* CARD SECTION */}
+  <div className="max-w-5xl mx-auto px-4 -mt-12 md:-mt-28 relative pb-12 md:pb-16">
 
     <div className="relative">
 
@@ -889,82 +739,87 @@ useEffect(() => {
         <div className="relative">
 
           {/* NEXT CARD */}
-          {visibleCards[1] && (
-            <div className="absolute top-0 left-0 right-0 z-10 overflow-hidden pointer-events-none">
+     
+     {/* NEXT CARD */}
+{visibleCards[1] && (
+  <div className="absolute top-0 left-0 right-0 z-10 overflow-hidden pointer-events-none">
 
-              <div
-                className="
-                  bg-white border border-black shadow-lg overflow-hidden
-                  rounded-2xl md:rounded-t-3xl
+    <div
+      className="
+        bg-white border border-black shadow-lg overflow-hidden
+        rounded-2xl md:rounded-t-3xl
 
-                  h-auto
-                  sm:min-h-[320px]
-                  md:h-[360px]
+     h-auto
+sm:min-h-[320px]
+md:h-[360px]
 
-                  scale-[0.94]
-                  sm:scale-100
+        scale-[0.94]
+        sm:scale-100
 
-                  origin-top
-                  transition-all duration-500 ease-out
-                "
-              >
+        origin-top
+        transition-all duration-500 ease-out
+      "
+    >
 
-                <div className="grid grid-cols-1 md:grid-cols-2 h-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 h-full">
 
-                  {/* LEFT */}
-                  <div
-                    className="
-                      p-3 sm:p-4 md:p-6
-                      pb-16 sm:pb-16 md:pb-14
-                      relative flex flex-col h-full
+        {/* LEFT */}
+        <div
+          className="
+            p-3 sm:p-4 md:p-6
+            pb-16 sm:pb-16 md:pb-14
+            relative flex flex-col h-full
 
-                      hidden sm:flex
-                    "
-                  >
+            hidden sm:flex
+          "
+        >
 
-                    {/* TEXT */}
-                    <div className="flex-1 flex items-center">
-                      <p className="text-sm md:text-base leading-relaxed text-gray-700 break-words">
-                        {visibleCards[1].excerpt || visibleCards[1].content}
-                      </p>
-                    </div>
+          {/* TEXT */}
+          <div className="flex-1 flex items-center">
+            <p className="text-sm md:text-base leading-relaxed text-gray-700 break-words">
+              {visibleCards[1].excerpt || visibleCards[1].content}
+            </p>
+          </div>
 
-                    {/* AUTHOR */}
-                    <div className="absolute bottom-3 left-4 sm:left-5 md:left-8 flex items-center gap-2">
+          {/* AUTHOR */}
+          <div className="absolute bottom-3 left-4 sm:left-5 md:left-8 flex items-center gap-2">
 
-                      <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 text-white text-[10px] sm:text-xs font-semibold">
-                        {(visibleCards[1].author?.name || "A").charAt(0)}
-                      </div>
-
-                      <div>
-                        <p className="text-xs md:text-sm font-semibold text-gray-900">
-                          {visibleCards[1].author?.name || "Admin"}
-                        </p>
-
-                        <p className="text-[10px] md:text-xs text-gray-500">
-                          {visibleCards[1].author?.role || "Healthcare"}
-                        </p>
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                  {/* IMAGE */}
-                  <div className="h-full overflow-hidden rounded-t-[40px] md:rounded-l-[120px]">
-                    <img
-                      src={visibleCards[1].featuredImage || "/default-blog.jpg"}
-                      alt={visibleCards[1].title}
-                      className="w-full h-full object-cover transition-transform duration-500 ease-out"
-                    />
-                  </div>
-
-                </div>
-
-              </div>
-
+            <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 text-white text-[10px] sm:text-xs font-semibold">
+              {(visibleCards[1].author?.name || "A").charAt(0)}
             </div>
-          )}
+
+            <div>
+              <p className="text-xs md:text-sm font-semibold text-gray-900">
+                {visibleCards[1].author?.name || "Admin"}
+              </p>
+
+              <p className="text-[10px] md:text-xs text-gray-500">
+                {visibleCards[1].author?.role || "Healthcare"}
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* IMAGE */}
+        <div className="h-full overflow-hidden rounded-t-[40px] md:rounded-l-[120px]">
+          <img
+            src={visibleCards[1].featuredImage || "/default-blog.jpg"}
+            alt={visibleCards[1].title}
+            className="
+              w-full h-full object-cover
+              transition-transform duration-500 ease-out
+            "
+          />
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+)}
 
           {/* STACK BARS */}
           <div className="hidden sm:block absolute -top-4 md:-top-5 left-[8%] right-[8%] md:left-20 md:right-20 h-2 md:h-3 bg-white border border-black rounded-t-[50px] opacity-80 z-0"></div>
@@ -972,89 +827,97 @@ useEffect(() => {
           <div className="absolute -top-2 left-[5%] right-[5%] md:left-14 md:right-14 h-2 md:h-3 bg-white border border-black rounded-t-[50px] opacity-90 z-0"></div>
 
           {/* MAIN CARD */}
-          <Link
-            href={`/blogs/${createSlug(visibleCards[0].title)}-${visibleCards[0].id}`}
-            className="block"
-          >
+     
+     {/* MAIN CARD */}
 
-            <div
-              className={`
-                relative
-                ${isFalling ? "z-50 animate-fall" : "z-20 scale-[1.02] md:scale-[1.05]"}
+{/* MAIN CARD */}
+<Link
+  href={`/blogs/${createSlug(visibleCards[0].title)}-${visibleCards[0].id}`}
+  className="block"
+>
 
-                bg-white border border-black shadow-lg overflow-hidden
 
-                rounded-2xl md:rounded-t-3xl
+<div
+  className={`
+    relative
+    ${isFalling ? "z-50 animate-fall" : "z-20 scale-[1.02] md:scale-[1.05]"}
 
-                h-auto
-                sm:min-h-[320px]
-                md:h-[360px]
+    bg-white border border-black shadow-lg overflow-hidden
 
-                transition-all duration-500 ease-out
+    rounded-2xl md:rounded-t-3xl
 
-                sm:max-w-[95%] md:max-w-full mx-auto
-              `}
-            >
+  h-auto
+sm:min-h-[320px]
+md:h-[360px]
 
-              <div className="grid grid-cols-1 md:grid-cols-2 h-full">
+    transition-all duration-500 ease-out
 
-                {/* LEFT */}
-                <div
-                  className="
-                    p-3 sm:p-4 md:p-6
-                    pb-16 sm:pb-16 md:pb-14
-                    relative flex flex-col h-full
-                  "
-                >
+    sm:max-w-[95%] md:max-w-full mx-auto
+  `}
+>
 
-                  {/* TEXT */}
-                  <div className="flex-1 flex items-center">
+  <div className="grid grid-cols-1 md:grid-cols-2 h-full">
 
-                    <p className="text-sm md:text-base leading-relaxed text-gray-700 break-words">
-                      {visibleCards[0].excerpt || visibleCards[0].content}
-                    </p>
+    {/* LEFT */}
+    <div
+      className="
+        p-3 sm:p-4 md:p-6
+        pb-16 sm:pb-16 md:pb-14
+        relative flex flex-col h-full
+      "
+    >
 
-                  </div>
+      {/* TEXT */}
+      <div className="flex-1 flex items-center">
 
-                  {/* AUTHOR */}
-                  <div className="absolute bottom-3 left-4 sm:left-5 md:left-8 flex items-center gap-2">
+        <p className="text-sm md:text-base leading-relaxed text-gray-700 break-words">
+          {visibleCards[0].excerpt || visibleCards[0].content}
+        </p>
 
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 text-white text-[10px] sm:text-xs font-semibold">
-                      {(visibleCards[0].author?.name || "A").charAt(0)}
-                    </div>
+      </div>
 
-                    <div>
+      {/* AUTHOR */}
+      <div className="absolute bottom-3 left-4 sm:left-5 md:left-8 flex items-center gap-2">
 
-                      <p className="text-xs md:text-sm font-semibold text-gray-900">
-                        {visibleCards[0].author?.name || "Admin"}
-                      </p>
+        <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 text-white text-[10px] sm:text-xs font-semibold">
+          {(visibleCards[0].author?.name || "A").charAt(0)}
+        </div>
 
-                      <p className="text-[10px] md:text-xs text-gray-500">
-                        {visibleCards[0].author?.role || "Healthcare"}
-                      </p>
+        <div>
 
-                    </div>
+          <p className="text-xs md:text-sm font-semibold text-gray-900">
+            {visibleCards[0].author?.name || "Admin"}
+          </p>
 
-                  </div>
+          <p className="text-[10px] md:text-xs text-gray-500">
+            {visibleCards[0].author?.role || "Healthcare"}
+          </p>
 
-                </div>
+        </div>
 
-                {/* IMAGE */}
-                <div className="h-full overflow-hidden rounded-t-[40px] md:rounded-l-[120px]">
+      </div>
 
-                  <img
-                    src={visibleCards[0].featuredImage || "/default-blog.jpg"}
-                    alt={visibleCards[0].title}
-                    className="w-full h-full object-cover transition-transform duration-500 ease-out"
-                  />
+    </div>
 
-                </div>
+    {/* IMAGE */}
+    <div className="h-full overflow-hidden rounded-t-[40px] md:rounded-l-[120px]">
 
-              </div>
+      <img
+        src={visibleCards[0].featuredImage || "/default-blog.jpg"}
+        alt={visibleCards[0].title}
+        className="
+          w-full h-full object-cover
+          transition-transform duration-500 ease-out
+        "
+      />
 
-            </div>
+    </div>
 
-            {/* OUTSIDE BUTTON */}
+  </div>
+
+</div>
+
+   {/* OUTSIDE BUTTON */}
             <div className="flex items-center justify-center my-10 gap-3">
 
               {/* LEFT LINE */}
@@ -1108,8 +971,8 @@ useEffect(() => {
 
             </div>
 
-          </Link>
 
+</Link>
         </div>
       )}
 
@@ -1567,8 +1430,8 @@ to-[#000000]
 
             </div>
 
-          ) : sortedBlogs.length > 0 ? (
-         
+          // ) : sortedBlogs.length > 0 ? (
+          ) : false ? (
 
             <>
               {/* BLOG CARDS */}
@@ -1586,340 +1449,122 @@ to-[#000000]
                           >
                            
 
-
-<motion.article
-  initial={{ opacity: 0, y: 40 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: false, amount: 0.2 }}
-  transition={{ duration: 0.6 }}
-
+<article
   className="
-    group relative
-    h-[280px] sm:h-[320px] md:h-[360px] lg:h-[380px]
-    rounded-3xl overflow-hidden
-    border border-gray-100
-    shadow-md hover:shadow-2xl
-    transition-all duration-500
-    hover:-translate-y-1
-    cursor-pointer
-    active:scale-[0.98]
-  "
->
+  group relative
+  h-[300px] sm:h-[340px] md:h-[380px]
+  rounded-3xl overflow-hidden
+  border border-gray-100
+  shadow-md hover:shadow-2xl
+  transition-all duration-500
+  hover:-translate-y-1
+  cursor-pointer
+  active:scale-[0.98]
+"
+> 
 
-  {/* 🌄 IMAGE */}
+  {/* 🌄 IMAGE (NO DARK OVERLAY) */}
   <img
     src={post.featuredImage || "/placeholder.svg"}
     alt={post.title}
-    className="
-      absolute inset-0 w-full h-full
-      object-cover
-      transition duration-700
-      group-hover:scale-105
-    "
-  />
-
-  {/* 🌑 OVERLAY */}
-  <div
-    className="
-      absolute inset-0
-      bg-gradient-to-t
-      from-black/70 via-black/20 to-transparent
-    "
+    className="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105"
   />
 
   {/* 🏷 CATEGORY */}
-  <span
-    className="
-      absolute top-4 left-4 z-20
-      px-3 py-1 text-xs font-medium
-      bg-white/80 text-black
-      rounded-full shadow
-      backdrop-blur-sm
-    "
-  >
+  <span className="absolute top-4 left-4 z-10 px-3 py-1 text-xs font-medium bg-white/80 text-black rounded-full shadow">
     {post.category || "Healthcare"}
   </span>
 
   {/* ➡️ ARROW */}
   <Link
     href={`/blogs/${createSlug(post.title)}-${post.id}`}
-    className="
-      absolute top-3 right-3 z-20
-      w-8 h-8 sm:w-10 sm:h-10
-      bg-white/90 rounded-full
-      flex items-center justify-center
-      text-black shadow
-      hover:scale-110 transition
-    "
+    className="absolute top-3 right-3 z-20 w-10 h-10 bg-white/90 rounded-full flex items-center 
+    justify-center text-black shadow hover:scale-110 transition"
   >
     →
   </Link>
 
-  {/* ================= MOBILE + TABLET TITLE ================= */}
-
-  <motion.div
-    initial={{ opacity: 1, y: 0 }}
-
-    whileInView={{
-      opacity: 0,
-      y: -20,
-    }}
-
-    viewport={{
-      once: false,
-      amount: 0.5,
-    }}
-
-    transition={{
-      duration: 0.6,
-      delay: 1,
-    }}
-
-    className="
-      absolute bottom-5 left-5 right-5
-      z-20
-
-      lg:hidden
-    "
-  >
-
-    <h3
-      className="
-        text-lg sm:text-xl
-        font-semibold
-        text-white
-        drop-shadow-md
-        line-clamp-2
-      "
-    >
+  {/* 📝 TITLE (VISIBLE INITIALLY) */}
+  <div className="absolute bottom-5 left-5 right-5 z-10 transition duration-300 group-hover:opacity-0">
+    <h3 className="text-lg font-semibold text-white drop-shadow-md line-clamp-2">
       {post.title}
     </h3>
-
-  </motion.div>
-
-  {/* ================= MOBILE FULL REVEAL ================= */}
-
-  <motion.div
-    initial={{
-      opacity: 0,
-      y: 50,
-    }}
-
-    whileInView={{
-      opacity: 1,
-      y: 0,
-    }}
-
-    viewport={{
-      once: false,
-      amount: 0.5,
-    }}
-
-    transition={{
-      duration: 0.7,
-      delay: 1.2,
-    }}
-
-    className="
-      absolute inset-0 z-20
-      flex flex-col justify-end
-      p-5
-
-      md:hidden
-    "
-  >
-
-    <div
-      className="
-        bg-black/30
-        backdrop-blur-[2px]
-        rounded-2xl
-        p-4
-      "
-    >
-
-      <p className="text-white text-sm leading-relaxed line-clamp-3 mb-4">
-        {post.excerpt || post.content?.substring(0, 100) + "..."}
-      </p>
-
-      <div className="flex items-center justify-between border-t border-white/20 pt-3">
-
-        <div className="flex items-center gap-2 text-white text-xs">
-          <span>👤</span>
-          <span>{post.author?.name || "Admin"}</span>
-        </div>
-
-        <div className="flex items-center gap-2 text-white text-xs">
-          <span>⏱</span>
-          <span>{Math.ceil(post.content.length / 500)} min</span>
-        </div>
-
-      </div>
-
-      <div className="flex items-center gap-2 text-white/70 text-[11px] mt-2">
-
-        <span>📅</span>
-
-        <span>
-          {new Date(post.createdAt).toLocaleDateString()}
-        </span>
-
-      </div>
-
-    </div>
-
-  </motion.div>
-
-  {/* ================= TABLET SUBTLE REVEAL ================= */}
-
-  <motion.div
-    initial={{
-      opacity: 0,
-      y: 30,
-    }}
-
-    whileInView={{
-      opacity: 1,
-      y: 0,
-    }}
-
-    viewport={{
-      once: false,
-      amount: 0.4,
-    }}
-
-    transition={{
-      duration: 0.7,
-      delay: 1.2,
-    }}
-
-    className="
-      hidden md:flex lg:hidden
-
-      absolute inset-0 z-20
-      flex-col justify-end
-      p-6
-    "
-  >
-
-    <div
-      className="
-        bg-black/20
-        backdrop-blur-sm
-        rounded-2xl
-        p-5
-      "
-    >
-
-      <p className="text-white text-sm leading-relaxed line-clamp-2 mb-4">
-        {post.excerpt || post.content?.substring(0, 90) + "..."}
-      </p>
-
-      <div className="flex items-center justify-between text-white text-xs">
-
-        <span>
-          ⏱ {Math.ceil(post.content.length / 500)} min
-        </span>
-
-        <span>
-          📅 {new Date(post.createdAt).toLocaleDateString()}
-        </span>
-
-      </div>
-
-    </div>
-
-  </motion.div>
-
-  {/* ================= DESKTOP TITLE ================= */}
-
-  <div
-    className="
-      hidden lg:block
-
-      absolute bottom-5 left-5 right-5
-      z-10
-
-      transition duration-300
-      group-hover:opacity-0
-    "
-  >
-
-    <h3
-      className="
-        text-lg font-semibold
-        text-white drop-shadow-md
-        line-clamp-2
-      "
-    >
-      {post.title}
-    </h3>
-
   </div>
 
-  {/* ================= DESKTOP HOVER ================= */}
+  {/* ✨ HOVER CONTENT (CLEAN, NO BLACK BG) */}
+
+
+{/* ✨ CONTENT OVERLAY */}
+<div
+  className="
+  absolute inset-0 z-10
+  flex flex-col justify-end
+  p-5 sm:p-6
+
+  bg-gradient-to-t
+  from-black/70 via-black/20 to-transparent
+
+  lg:opacity-0
+  lg:group-hover:opacity-100
+
+  transition-all duration-500
+"
+>
 
   <div
     className="
-      hidden lg:flex
+    lg:translate-y-8
+    lg:group-hover:translate-y-0
 
-      absolute inset-0 z-10
-      flex-col justify-end
-      p-5 sm:p-6
-
-      bg-gradient-to-t
-      from-black/70 via-black/20 to-transparent
-
-      opacity-0
-      group-hover:opacity-100
-
-      transition-all duration-500
-    "
+    transition-all duration-500
+  "
   >
 
-    <div
-      className="
-        translate-y-8
-        group-hover:translate-y-0
+    {/* CATEGORY */}
+    {/* <div className="mb-4">
 
-        transition-all duration-500
-      "
-    >
+      <span className="px-4 py-1 text-xs font-medium bg-white/80 text-gray-800 rounded-full">
+        💜 {post.category || "Healthcare"}
+      </span>
 
-      <p className="text-white text-sm sm:text-base leading-relaxed line-clamp-3 mb-5 max-w-sm">
-        {post.excerpt || post.content?.substring(0, 120) + "..."}
-      </p>
+    </div> */}
 
-      <div className="flex items-center justify-between border-t border-white/20 pt-4">
+    {/* CONTENT */}
+    <p className="text-white text-sm sm:text-base leading-relaxed line-clamp-3 mb-5 max-w-sm">
+      {post.excerpt || post.content?.substring(0, 120) + "..."}
+    </p>
 
-        <div className="flex items-center gap-2 text-white text-sm">
-          <span>👤</span>
-          <span>{post.author?.name || "Admin"}</span>
-        </div>
+    {/* META */}
+    <div className="flex items-center justify-between border-t border-white/20 pt-4">
 
-        <div className="flex items-center gap-2 text-white text-sm">
-          <span>⏱</span>
-          <span>{Math.ceil(post.content.length / 500)} min</span>
-        </div>
-
+      <div className="flex items-center gap-2 text-white text-sm">
+        <span>👤</span>
+        <span>{post.author?.name || "Admin"}</span>
       </div>
 
-      <div className="flex items-center gap-2 text-white/80 text-xs mt-3">
-
-        <span>📅</span>
-
-        <span>
-          {new Date(post.createdAt).toLocaleDateString()}
-        </span>
-
+      <div className="flex items-center gap-2 text-white text-sm">
+        <span>⏱</span>
+        <span>{Math.ceil(post.content.length / 500)} min</span>
       </div>
+
+    </div>
+
+    {/* DATE */}
+    <div className="flex items-center gap-2 text-white/80 text-xs mt-3">
+
+      <span>📅</span>
+
+      <span>
+        {new Date(post.createdAt).toLocaleDateString()}
+      </span>
 
     </div>
 
   </div>
+</div>
 
-</motion.article>
 
+</article>
 
 
                           </Link>
@@ -2020,208 +1665,17 @@ to-[#000000]
 
           ) : (
 
-            // <div className="text-center py-16">
+            <div className="text-center py-16">
 
-            //   <h3 className="text-2xl font-bold mb-3 text-gray-900">
-            //     No articles yet
-            //   </h3>
+              <h3 className="text-2xl font-bold mb-3 text-gray-900">
+                No articles yet
+              </h3>
 
-            //   <p className="text-gray-600 text-base">
-            //     Check back soon for the latest healthcare insights and expert analysis.
-            //   </p>
+              <p className="text-gray-600 text-base">
+                Check back soon for the latest healthcare insights and expert analysis.
+              </p>
 
-            // </div>
-
-<div className="flex justify-center py-14 sm:py-20 px-4">
-
-  <div
-    className="
-      relative
-      overflow-hidden
-
-      w-full
-      max-w-2xl
-
-      rounded-[32px]
-
-      bg-white/55
-      backdrop-blur-2xl
-
-      border border-white/50
-
-      shadow-[0_10px_50px_rgba(0,0,0,0.08)]
-
-      px-6 sm:px-10
-      py-12 sm:py-16
-
-      text-center
-    "
-  >
-
-    {/* BACKGROUND GLOW */}
-    <div className="absolute -top-20 -left-20 w-56 h-56 bg-blue-300/30 rounded-full blur-3xl"></div>
-
-    <div className="absolute -bottom-20 -right-20 w-56 h-56 bg-purple-300/30 rounded-full blur-3xl"></div>
-
-    {/* ICON */}
-    <div className="relative flex justify-center mb-8">
-
-      <div
-        className="
-          w-24 h-24 sm:w-28 sm:h-28
-
-          rounded-3xl
-
-          bg-gradient-to-br
-          from-blue-500
-          via-cyan-400
-          to-purple-500
-
-          flex items-center justify-center
-
-          shadow-[0_15px_35px_rgba(59,130,246,0.35)]
-        "
-      >
-
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          className="w-12 h-12 text-white"
-        >
-
-          <path
-            d="M7 3H14L19 8V21H7V3Z"
-            fill="white"
-            opacity="0.95"
-          />
-
-          <path
-            d="M14 3V8H19"
-            fill="#bfdbfe"
-          />
-
-          <line
-            x1="9"
-            y1="12"
-            x2="16"
-            y2="12"
-            stroke="#93c5fd"
-            strokeWidth="1.6"
-          />
-
-          <line
-            x1="9"
-            y1="15"
-            x2="16"
-            y2="15"
-            stroke="#93c5fd"
-            strokeWidth="1.6"
-          />
-
-          <line
-            x1="9"
-            y1="18"
-            x2="14"
-            y2="18"
-            stroke="#93c5fd"
-            strokeWidth="1.6"
-          />
-
-        </svg>
-
-      </div>
-
-    </div>
-
-    {/* TITLE */}
-    <h3
-      className="
-        relative
-        text-2xl sm:text-4xl
-        font-black
-
-        bg-gradient-to-r
-        from-blue-700
-        via-purple-600
-        to-pink-500
-
-        bg-clip-text
-        text-transparent
-      "
-    >
-      No Articles Yet
-    </h3>
-
-    {/* DESCRIPTION */}
-    <p
-      className="
-        relative
-
-        mt-5
-
-        text-sm sm:text-base
-        leading-relaxed
-
-        text-gray-600
-
-        max-w-lg
-        mx-auto
-      "
-    >
-      Fresh healthcare insights, expert analysis,
-      and research-driven articles will appear here soon.
-      Stay connected for upcoming updates.
-    </p>
-
-    {/* OPTIONAL BUTTON */}
-    <div className="relative mt-8">
-
-      <button
-        className="
-          inline-flex items-center gap-2
-
-          px-6 py-3
-
-          rounded-full
-
-          bg-gradient-to-r
-          from-blue-600
-          via-purple-600
-          to-pink-500
-
-          text-white
-          font-semibold
-
-          shadow-lg
-          hover:scale-105
-
-          transition-all duration-300
-        "
-      >
-
-        Explore Later
-
-        <span
-          className="
-            w-7 h-7
-
-            rounded-full
-
-            bg-white/20
-
-            flex items-center justify-center
-          "
-        >
-          →
-        </span>
-
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
+            </div>
 
           )}
         </>
@@ -2756,3 +2210,245 @@ to-purple
     </div>
   );
 }
+
+
+
+article
+
+
+<motion.article
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: false, amount: 0.3 }}
+  transition={{ duration: 0.6 }}
+
+  className="
+    group relative
+    h-[300px] sm:h-[340px] md:h-[380px]
+    rounded-3xl overflow-hidden
+    border border-gray-100
+    shadow-md hover:shadow-2xl
+    transition-all duration-500
+    hover:-translate-y-1
+    cursor-pointer
+    active:scale-[0.98]
+  "
+>
+
+  {/* IMAGE */}
+  <img
+    src={post.featuredImage || "/placeholder.svg"}
+    alt={post.title}
+    className="
+      absolute inset-0 w-full h-full
+      object-cover
+      transition duration-700
+      group-hover:scale-105
+    "
+  />
+
+  {/* DARK OVERLAY */}
+  <div
+    className="
+      absolute inset-0
+      bg-gradient-to-t
+      from-black/70 via-black/20 to-transparent
+    "
+  />
+
+  {/* CATEGORY */}
+  <span
+    className="
+      absolute top-4 left-4 z-20
+      px-3 py-1 text-xs font-medium
+      bg-white/80 text-black rounded-full shadow
+    "
+  >
+    {post.category || "Healthcare"}
+  </span>
+
+  {/* ARROW */}
+  <Link
+    href={`/blogs/${createSlug(post.title)}-${post.id}`}
+    className="
+      absolute top-3 right-3 z-20
+      w-10 h-10 bg-white/90 rounded-full
+      flex items-center justify-center
+      text-black shadow
+      hover:scale-110 transition
+    "
+  >
+    →
+  </Link>
+
+  {/* ================= MOBILE TITLE ================= */}
+
+  <motion.div
+    initial={{ opacity: 1, y: 0 }}
+    whileInView={{ opacity: 0, y: -20 }}
+    viewport={{ once: false, amount: 0.5 }}
+transition={{
+  duration: 0.5,
+  delay: 1,
+}}
+
+    className="
+      absolute bottom-5 left-5 right-5
+      z-20
+
+      md:hidden
+    "
+  >
+
+    <h3
+      className="
+        text-lg font-semibold
+        text-white drop-shadow-md
+        line-clamp-2
+      "
+    >
+      {post.title}
+    </h3>
+
+  </motion.div>
+
+  {/* ================= MOBILE REVEAL CONTENT ================= */}
+
+  <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: false, amount: 0.5 }}
+    transition={{
+      duration: 0.7,
+      delay: 1.2,
+    }}
+
+    className="
+      absolute inset-0 z-20
+      flex flex-col justify-end
+      p-5
+
+      md:hidden
+    "
+  >
+
+    <div
+      className="
+        bg-black/30
+        backdrop-blur-[2px]
+        rounded-2xl
+        p-4
+      "
+    >
+
+      <p className="text-white text-sm leading-relaxed line-clamp-3 mb-4">
+        {post.excerpt || post.content?.substring(0, 100) + "..."}
+      </p>
+
+      <div className="flex items-center justify-between border-t border-white/20 pt-3">
+
+        <div className="flex items-center gap-2 text-white text-xs">
+          <span>👤</span>
+          <span>{post.author?.name || "Admin"}</span>
+        </div>
+
+        <div className="flex items-center gap-2 text-white text-xs">
+          <span>⏱</span>
+          <span>{Math.ceil(post.content.length / 500)} min</span>
+        </div>
+
+      </div>
+
+      <div className="flex items-center gap-2 text-white/70 text-[11px] mt-2">
+
+        <span>📅</span>
+
+        <span>
+          {new Date(post.createdAt).toLocaleDateString()}
+        </span>
+
+      </div>
+
+    </div>
+
+  </motion.div>
+
+  {/* ================= DESKTOP TITLE ================= */}
+
+  <div
+    className="
+      hidden md:block
+      absolute bottom-5 left-5 right-5 z-10
+      transition duration-300
+      group-hover:opacity-0
+    "
+  >
+
+    <h3 className="text-lg font-semibold text-white drop-shadow-md line-clamp-2">
+      {post.title}
+    </h3>
+
+  </div>
+
+  {/* ================= DESKTOP HOVER CONTENT ================= */}
+
+  <div
+    className="
+      hidden md:flex
+
+      absolute inset-0 z-10
+      flex-col justify-end
+      p-5 sm:p-6
+
+      bg-gradient-to-t
+      from-black/70 via-black/20 to-transparent
+
+      lg:opacity-0
+      lg:group-hover:opacity-100
+
+      transition-all duration-500
+    "
+  >
+
+    <div
+      className="
+        lg:translate-y-8
+        lg:group-hover:translate-y-0
+
+        transition-all duration-500
+      "
+    >
+
+      <p className="text-white text-sm sm:text-base leading-relaxed line-clamp-3 mb-5 max-w-sm">
+        {post.excerpt || post.content?.substring(0, 120) + "..."}
+      </p>
+
+      <div className="flex items-center justify-between border-t border-white/20 pt-4">
+
+        <div className="flex items-center gap-2 text-white text-sm">
+          <span>👤</span>
+          <span>{post.author?.name || "Admin"}</span>
+        </div>
+
+        <div className="flex items-center gap-2 text-white text-sm">
+          <span>⏱</span>
+          <span>{Math.ceil(post.content.length / 500)} min</span>
+        </div>
+
+      </div>
+
+      <div className="flex items-center gap-2 text-white/80 text-xs mt-3">
+
+        <span>📅</span>
+
+        <span>
+          {new Date(post.createdAt).toLocaleDateString()}
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</motion.article>
