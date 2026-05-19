@@ -1,0 +1,2253 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+
+
+.card {
+  @apply relative
+   /* w-[90%] max-w-md h-[320px] */
+   w-[90%] max-w-xl h-[320px]
+  flex items-center justify-center 
+  text-xl font-bold text-gray-800 
+  rounded-3xl cursor-pointer overflow-hidden
+  backdrop-blur-xl border border-gray-200/60
+  shadow-[0_10px_30px_rgba(0,0,0,0.08)]
+  transition-all duration-500;
+
+  background: linear-gradient(to bottom right, #eff6ff, #ffffff, rgba(191,219,254,0.6));
+}
+}
+
+/* Typography Scale - Rank Method */
+@layer base {
+  :root {
+    /* Typography Scale - Modular Scale (1.250 - Major Third) */
+    --text-xs: 0.75rem;      /* 12px - Small labels, captions */
+    --text-sm: 0.875rem;     /* 14px - Body small, metadata */
+    --text-base: 1rem;       /* 16px - Body text, paragraphs */
+    --text-lg: 1.125rem;     /* 18px - Large body, intro text */
+    --text-xl: 1.25rem;      /* 20px - Small headings */
+    --text-2xl: 1.5rem;      /* 24px - Medium headings */
+    --text-3xl: 1.875rem;    /* 30px - Large headings */
+    --text-4xl: 2.25rem;     /* 36px - Extra large headings */
+    --text-5xl: 3rem;        /* 48px - Display headings */
+    --text-6xl: 3.75rem;     /* 60px - Hero headings */
+    
+    /* Line Heights - Optimized for readability */
+    --leading-tight: 1.25;
+    --leading-snug: 1.375;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --leading-loose: 2;
+    
+    /* Font Weights */
+    --font-light: 300;
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+    --font-extrabold: 800;
+    
+    /* Letter Spacing */
+    --tracking-tight: -0.025em;
+    --tracking-normal: 0em;
+    --tracking-wide: 0.025em;
+    --tracking-wider: 0.05em;
+    --tracking-widest: 0.1em;
+  }
+
+  /* Typography Classes */
+  .text-display-1 {
+    font-size: var(--text-6xl);
+    line-height: var(--leading-tight);
+    font-weight: var(--font-extrabold);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .text-display-2 {
+    font-size: var(--text-5xl);
+    line-height: var(--leading-tight);
+    font-weight: var(--font-bold);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .text-heading-1 {
+    font-size: var(--text-4xl);
+    line-height: var(--leading-snug);
+    font-weight: var(--font-bold);
+    letter-spacing: var(--tracking-normal);
+  }
+
+  .text-heading-2 {
+    font-size: var(--text-3xl);
+    line-height: var(--leading-snug);
+    font-weight: var(--font-semibold);
+    letter-spacing: var(--tracking-normal);
+  }
+
+  .text-heading-3 {
+    font-size: var(--text-2xl);
+    line-height: var(--leading-normal);
+    font-weight: var(--font-semibold);
+    letter-spacing: var(--tracking-normal);
+  }
+
+  .text-heading-4 {
+    font-size: var(--text-xl);
+    line-height: var(--leading-normal);
+    font-weight: var(--font-medium);
+    letter-spacing: var(--tracking-normal);
+  }
+
+  .text-body-large {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    font-weight: var(--font-normal);
+    letter-spacing: var(--tracking-normal);
+  }
+
+  .text-body {
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    font-weight: var(--font-normal);
+    letter-spacing: var(--tracking-normal);
+  }
+
+  .text-body-small {
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    font-weight: var(--font-normal);
+    letter-spacing: var(--tracking-normal);
+  }
+
+  .text-caption {
+    font-size: var(--text-xs);
+    line-height: var(--leading-normal);
+    font-weight: var(--font-medium);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .text-label {
+    font-size: var(--text-xs);
+    line-height: var(--leading-normal);
+    font-weight: var(--font-semibold);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+  }
+
+  /* Responsive Typography */
+  @media (max-width: 768px) {
+    .text-display-1 {
+      font-size: var(--text-4xl);
+    }
+    
+    .text-display-2 {
+      font-size: var(--text-3xl);
+    }
+    
+    .text-heading-1 {
+      font-size: var(--text-3xl);
+    }
+    
+    .text-heading-2 {
+      font-size: var(--text-2xl);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .text-display-1 {
+      font-size: var(--text-3xl);
+    }
+    
+    .text-display-2 {
+      font-size: var(--text-2xl);
+    }
+    
+    .text-heading-1 {
+      font-size: var(--text-2xl);
+    }
+    
+    .text-heading-2 {
+      font-size: var(--text-xl);
+    }
+  }
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  
+  /* Aarogya Aadhar Consistent Color Scheme */
+  --primary-color: #5271FF;
+  --primary-dark: #243561;
+  --primary-light: #E8EBFF;
+  --primary-accent: #144EED;
+  --primary-accent-light: #4584E9;
+  --primary-blue: #5578FF;  /* Blue for section headings */
+  
+  --secondary-color: #007bff;
+  --secondary-dark: #0056b3;
+  --secondary-light: #e3f2fd;
+  
+  --accent-orange: #ff6b35;
+  --accent-green: #28a745;
+  
+  --text-primary: #243561;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  
+  --border-light: #e9ecef;
+  --border-medium: #dee2e6;
+  --background-light: #f8f9fa;
+  
+  /* Typography Scale - Professional Healthcare */
+  --text-display-xl: 72px;
+  --text-display-lg: 60px;
+  --text-display-md: 48px;
+  
+  --text-h1: 48px;
+  --text-h1-md: 40px;
+  --text-h1-sm: 36px;
+  
+  --text-h2: 36px;
+  --text-h2-md: 32px;
+  --text-h2-sm: 28px;
+  
+  --text-h3: 28px;
+  --text-h3-md: 24px;
+  --text-h3-sm: 20px;
+  
+  --text-h4: 20px;
+  --text-h4-md: 18px;
+  
+  --text-body-lg: 18px;
+  --text-body: 16px;
+  --text-body-sm: 14px;
+  
+  --text-label: 14px;
+  --text-caption: 12px;
+  --text-xs: 11px;
+  
+  /* Line Heights */
+  --leading-tight: 1.2;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-poppins), 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-size: var(--text-body);
+  line-height: var(--leading-normal);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Rank Method Typography Scale Implementation */
+/* This ensures consistent, professional hierarchy across all pages */
+
+/* Display - Hero/Landing Page Headings */
+h1.display-heading,
+.display-heading {
+  font-size: var(--text-display-lg); /* 60px */
+  font-weight: 800;
+  line-height: var(--leading-tight);
+  font-family: var(--font-poppins);
+}
+
+/* H1 - Main Page Titles */
+h1, .h1 {
+  font-size: var(--text-h1); /* 48px */
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  font-family: var(--font-poppins);
+}
+
+/* H2 - Section Titles */
+h2, .h2 {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: var(--leading-tight);
+  font-family: var(--font-poppins);
+}
+
+/* H3 - Subsection Titles */
+h3, .h3 {
+  font-size: var(--text-h3); /* 28px */
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  font-family: var(--font-poppins);
+}
+
+/* H4 - Card/Component Titles */
+h4, .h4 {
+  font-size: var(--text-h4); /* 20px */
+  font-weight: 600;
+  line-height: var(--leading-normal);
+  font-family: var(--font-poppins);
+}
+
+/* Body Text */
+p, .body-text {
+  font-size: var(--text-body); /* 16px */
+  line-height: var(--leading-normal);
+  font-weight: 400;
+}
+
+/* Large Body Text */
+.body-large {
+  font-size: var(--text-body-lg); /* 18px */
+  line-height: var(--leading-relaxed);
+}
+
+/* Small Body Text */
+.body-small {
+  font-size: var(--text-body-sm); /* 14px */
+  line-height: var(--leading-normal);
+}
+
+/* Caption/Small Text */
+.caption,
+small {
+  font-size: var(--text-caption); /* 12px */
+  line-height: var(--leading-normal);
+  font-weight: 500;
+}
+
+/* Label Text */
+.label {
+  font-size: var(--text-label); /* 14px */
+  font-weight: 600;
+  line-height: var(--leading-normal);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Responsive Typography for Mobile */
+@media (max-width: 768px) {
+  h1, .h1 {
+    font-size: var(--text-h1-md); /* 40px */
+  }
+  
+  h2, .h2 {
+    font-size: 36px;
+  }
+  
+  h3, .h3 {
+    font-size: var(--text-h3-md); /* 24px */
+  }
+  
+  h4, .h4 {
+    font-size: var(--text-h4-md); /* 18px */
+  }
+  
+  .display-heading {
+    font-size: var(--text-display-md); /* 48px */
+  }
+}
+
+@media (max-width: 480px) {
+  h1, .h1 {
+    font-size: var(--text-h1-sm); /* 36px */
+  }
+  
+  h2, .h2 {
+    font-size: 32px;
+  }
+  
+  h3, .h3 {
+    font-size: var(--text-h3-sm); /* 20px */
+  }
+  
+  .display-heading {
+    font-size: var(--text-h1); /* 48px */
+  }
+}
+
+/* Typography Utility Classes - Rank Method */
+
+/* Display Sizes - Hero/Banner Text */
+.text-display-xl {
+  font-size: var(--text-display-xl);
+  line-height: var(--leading-tight);
+  font-weight: 700;
+}
+
+.text-display-lg {
+  font-size: var(--text-display-lg);
+  line-height: var(--leading-tight);
+  font-weight: 700;
+}
+
+.text-display-md {
+  font-size: var(--text-display-md);
+  line-height: var(--leading-tight);
+  font-weight: 700;
+}
+
+/* Heading 1 - Main Page Titles */
+.text-heading-1 {
+  font-size: var(--text-h1);
+  line-height: var(--leading-tight);
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .text-heading-1 {
+    font-size: var(--text-h1-md);
+  }
+}
+
+/* Heading 2 - Section Titles */
+.text-heading-2 {
+  font-size: var(--text-h2);
+  line-height: var(--leading-snug);
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .text-heading-2 {
+    font-size: var(--text-h2-md);
+  }
+}
+
+/* Heading 3 - Subsection Titles */
+.text-heading-3 {
+  font-size: var(--text-h3);
+  line-height: var(--leading-snug);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .text-heading-3 {
+    font-size: var(--text-h3-md);
+  }
+}
+
+/* Heading 4 - Card/Component Titles */
+.text-heading-4 {
+  font-size: var(--text-h4);
+  line-height: var(--leading-snug);
+  font-weight: 600;
+}
+
+/* Body Text Sizes */
+.text-body-large {
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-relaxed);
+}
+
+.text-body {
+  font-size: var(--text-body);
+  line-height: var(--leading-normal);
+}
+
+.text-body-small {
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-normal);
+}
+
+/* Label & Meta Text */
+.text-label {
+  font-size: var(--text-label);
+  line-height: var(--leading-normal);
+  font-weight: 500;
+}
+
+.text-caption {
+  font-size: var(--text-caption);
+  line-height: var(--leading-normal);
+}
+
+.text-meta {
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Button Text Sizes */
+.text-btn-large {
+  font-size: var(--text-body-lg);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.text-btn {
+  font-size: var(--text-body);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.text-btn-small {
+  font-size: var(--text-body-sm);
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Subtle glassy glow */
+.glass-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+/* Sliding Animation for Featured Blogs */
+@keyframes slideRightToLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+.animate-slide-right-to-left {
+  animation: slideRightToLeft 20s linear infinite;
+}
+
+/* Pause animation on hover */
+.animate-slide-right-to-left:hover {
+  animation-play-state: paused;
+}
+
+/* Smooth transitions for blog  */
+.blog-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Enhanced Visual Hierarchy */
+h1, .h1 { 
+  font-size: var(--text-h1); 
+  font-weight: 700; 
+  line-height: var(--leading-tight); 
+}
+
+h2, .h2 { 
+  font-size: var(--text-h2); 
+  font-weight: 700; 
+  line-height: var(--leading-snug); 
+}
+
+h3, .h3 { 
+  font-size: var(--text-h3); 
+  font-weight: 600; 
+  line-height: var(--leading-snug); 
+}
+
+h4, .h4 { 
+  font-size: var(--text-h4); 
+  font-weight: 600; 
+  line-height: var(--leading-snug); 
+}
+
+p { 
+  font-size: var(--text-body); 
+  line-height: var(--leading-normal); 
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .text-display-xl { font-size: var(--text-display-lg); }
+  .text-display-lg { font-size: var(--text-display-md); }
+  .text-display-md { font-size: var(--text-h1); }
+  h1, .h1 { font-size: var(--text-h1-md); }
+  h2, .h2 { font-size: var(--text-h2-md); }
+  h3, .h3 { font-size: var(--text-h3-md); }
+}
+
+/* Aarogya Aadhar Healthcare Theme Styles */
+
+.custom-scroll {
+  scroll-padding-bottom: 1.5rem;
+}
+
+/* Nice blue gradient scrollbar */
+.custom-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #3b82f6, #2563eb);
+  border-radius: 8px;
+}
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #2563eb, #1e40af);
+}
+
+
+/* Healthcare Navbar Styles */
+.healthcare-navbar {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.healthcare-search {
+  background: #ffffff;
+  border: 2px solid var(--border-medium);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: var(--text-body);
+  transition: border-color 0.3s ease;
+}
+
+.healthcare-search:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px var(--primary-blue-light);
+}
+
+.healthcare-btn-primary {
+  background: var(--primary-blue);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: var(--text-body);
+  transition: background-color 0.3s ease;
+}
+
+.healthcare-btn-primary:hover {
+  background: var(--primary-blue-dark);
+}
+
+.healthcare-btn-secondary {
+  background: transparent;
+  color: var(--primary-blue);
+  border: 2px solid var(--primary-blue);
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-weight: 600;
+  font-size: var(--text-body);
+  transition: all 0.3s ease;
+}
+
+.healthcare-btn-secondary:hover {
+  background: var(--primary-blue);
+  color: white;
+}
+
+/* Form Input Styles */
+.healthcare-input {
+  background: #ffffff;
+  border: 2px solid var(--border-medium);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: var(--text-body);
+  color: var(--text-primary);
+  transition: border-color 0.3s ease;
+}
+
+.healthcare-input:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px var(--primary-blue-light);
+}
+
+.healthcare-input::placeholder {
+  color: var(--text-muted);
+}
+/*nav smooth fade animation*/
+nav {
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Card Styles */
+.healthcare-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.healthcare-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Text Colors */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-blue { color: var(--primary-blue); }
+.text-orange { color: var(--secondary-orange); }
+.text-green { color: var(--accent-green); }
+
+/* Background Colors */
+.bg-primary { background-color: var(--primary-blue); }
+.bg-primary-light { background-color: var(--primary-blue-light); }
+.bg-light { background-color: var(--background-light); }
+
+/* Border Colors */
+.border-primary { border-color: var(--primary-blue); }
+.border-light { border-color: var(--border-light); }
+.border-medium { border-color: var(--border-medium); }
+
+/* Professional Healthcare Layout */
+.healthcare-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.healthcare-section {
+  padding: 60px 0;
+}
+
+.healthcare-section-sm {
+  padding: 40px 0;
+}
+
+/* Healthcare Navigation Dropdown */
+.healthcare-dropdown {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  min-width: 200px;
+}
+
+.healthcare-dropdown-item {
+  padding: 12px 20px;
+  color: var(--text-primary);
+  font-size: var(--text-body);
+  transition: background-color 0.2s ease;
+}
+
+.healthcare-dropdown-item:hover {
+  background-color: var(--background-light);
+  color: var(--primary-blue);
+}
+
+/* Healthcare Status Badges */
+.healthcare-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: var(--text-caption);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.healthcare-badge-primary {
+  background-color: var(--primary-blue-light);
+  color: var(--primary-blue);
+}
+
+.healthcare-badge-success {
+  background-color: #d4edda;
+  color: var(--accent-green);
+}
+
+.healthcare-badge-warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.healthcare-badge-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Custom Animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Animation Classes */
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+/* Hover Effects */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.hover-glow {
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #3b82f6, #1d4ed8);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #2563eb, #1e40af);
+}
+
+/* Focus Styles */
+.focus-ring {
+  transition: box-shadow 0.2s ease;
+}
+
+.focus-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* Loading States */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Interactive Elements */
+.interactive {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interactive:hover {
+  transform: translateY(-2px);
+}
+
+.interactive:active {
+  transform: translateY(0);
+}
+
+/* Glass Morphism */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated color tokens for professional healthcare theme */
+    --background: oklch(0.98 0.01 142);        /* Main background */
+  --background-soft: oklch(0.99 0.005 142);  /* Lighter for soft gradient */
+  --background-strong: oklch(0.96 0.015 142); /* Slightly darker for depth */
+
+  --foreground: oklch(0.15 0.02 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.02 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.02 260);
+  --primary: oklch(0.45 0.14 260);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.92 0.02 260);
+  --secondary-foreground: oklch(0.35 0.08 260);
+  --muted: oklch(0.92 0 0);
+  --muted-foreground: oklch(0.55 0.01 260);
+  --accent: oklch(0.55 0.15 200);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.58 0.25 27);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.92 0.01 70);
+  --input: oklch(0.97 0.01 70);
+  --ring: oklch(0.45 0.14 260);
+  --chart-1: oklch(0.45 0.14 260);
+  --chart-2: oklch(0.55 0.15 200);
+  --chart-3: oklch(0.35 0.08 260);
+  --chart-4: oklch(0.65 0.1 150);
+  --chart-5: oklch(0.5 0.12 180);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.98 0.01 70);
+  --sidebar-foreground: oklch(0.15 0.02 260);
+  --sidebar-primary: oklch(0.45 0.14 260);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.92 0.02 260);
+  --sidebar-accent-foreground: oklch(0.45 0.14 260);
+  --sidebar-border: oklch(0.92 0.01 70);
+  --sidebar-ring: oklch(0.45 0.14 260);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(98.511% 0.00011 271.152 / 0.448);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ------------------------------
+   FLOATING ANIMATIONS (REFERENCE)
+--------------------------------*/
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  33% {
+    transform: translateY(-30px) translateX(15px);
+  }
+  66% {
+    transform: translateY(20px) translateX(-10px);
+  }
+}
+
+.animate-float {
+  animation: float linear infinite;
+  will-change: transform;
+}
+
+/* Fade-in for smooth enter */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-in;
+}
+
+
+
+
+.typing-title {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #2563eb;
+  width: 0;
+  max-width: max-content;
+  animation: typingTitle 2s steps(30, end) forwards, blinkCursor 0.7s step-end 4;
+}
+
+@keyframes typingTitle {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blinkCursor {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.typing-title {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #2563eb;
+  max-width: max-content;
+
+  animation: typingLoop 3s steps(30, end) infinite,
+    blinkCursor 0.7s step-end infinite;
+}
+
+/* typing loop */
+@keyframes typingLoop {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  } /* deletes again */
+}
+
+/* blinking cursor */
+@keyframes blinkCursor {
+  50% {
+    border-color: transparent;
+  }
+}
+
+
+
+
+
+/* pencil */
+
+
+.pencil-loader {
+  position: relative;
+  height: 200px;
+  width: 200px;
+  /* border-bottom: 3px solid #ff3d00;
+   */
+   border-bottom: 3px solid #a855f7;
+  box-sizing: border-box;
+  animation: drawLine 4s linear infinite;
+  margin-top: -30px; /* mobile */
+}
+
+@media (min-width: 640px) {
+  .pencil-loader {
+    margin-top: -40px;
+  }
+}
+
+@media (min-width: 768px) {
+  .pencil-loader {
+    margin-top: -50px;
+  }
+}
+
+.pencil-loader::before {
+  content: "";
+  position: absolute;
+  left: calc(100% + 14px);
+  bottom: -6px;
+  width: 16px;
+  height: 100px;
+  border-radius: 20px 20px 50px 50px;
+  background-repeat: no-repeat;
+  background-image: 
+      linear-gradient(#a855f7 6px, transparent 0), /* mixed color */
+    linear-gradient(45deg, rgba(0, 0, 0, 0.02) 49%, white 51%),
+    linear-gradient(315deg, rgba(0, 0, 0, 0.02) 49%, white 51%),
+    linear-gradient(to bottom, #ffffff 10%, #a855f7 10%, #a855f7 90%, #ffffff 90%);
+  background-size: 3px 3px, 8px 8px, 8px 8px, 16px 88px;
+  background-position: center bottom, left 88px, right 88px, left top;
+  transform: rotate(25deg);
+  animation: pencilRot 4s linear infinite;
+} 
+
+
+@keyframes drawLine {
+  0%, 100% {
+    width: 0px;
+  }
+  45%, 55% {
+    width: 200px;
+  }
+}
+
+@keyframes pencilRot {
+  0%, 45% {
+    bottom: -6px;
+    left: calc(100% + 14px);
+    transform: rotate(25deg);
+  }
+
+  55%, 100% {
+    bottom: -12px;
+    left: calc(100% + 16px);
+    transform: rotate(220deg);
+  }
+}
+
+
+
+
+
+
+
+/* loader */
+
+
+
+.loader {
+  --background: linear-gradient(135deg, #23C4F8, #275EFE);
+  --shadow: rgba(39, 94, 254, 0.28);
+
+ --page: #dbeafe;       /* light blue */
+--page-fold: #bfdbfe;  /* slightly darker blue */
+
+/* --page: #ffffff;
+--page-fold: #f1f5ff; */
+
+  --duration: 3s;
+
+  width: 100%;
+  max-width: 180px;
+  aspect-ratio: 10 / 7;
+  position: relative;
+  margin-top: -60px;
+}
+
+/* shadow base */
+.loader:before,
+.loader:after {
+  --r: -6deg;
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  width: 120px;
+  top: 80%;
+  box-shadow: 0 16px 12px var(--shadow);
+  transform: rotate(var(--r));
+}
+
+.loader:before {
+  left: 4px;
+}
+
+.loader:after {
+  --r: 6deg;
+  right: 4px;
+}
+
+
+
+
+/* treading topics */
+
+@keyframes typing {
+  0% { width: 0 }
+  50% { width: 15ch }  /* 👈 FIX (no border touch) */
+  100% { width: 0 }
+}
+
+@keyframes blink {
+  0%, 100% { border-color: transparent }
+  50% { border-color: #091f41 }
+}
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #070f1c;
+  width: 0;
+  display: inline-block;
+    max-width: max-content;
+  animation:
+    typing 4s steps(20, end) infinite,
+    blink 0.8s infinite;
+}
+
+
+
+
+/* hover card */
+
+
+
+.card::before,
+.card::after {
+  content: "";
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: lightblue;
+  transition: all 0.5s;
+}
+
+.card::before {
+  top: 0;
+  right: 0;
+  border-radius: 0 15px 0 100%;
+}
+
+.card::after {
+  bottom: 0;
+  left: 0;
+  border-radius: 0 100% 0 15px;
+}
+
+.card:hover::before,
+.card:hover::after {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+}
+
+.card:hover::after {
+  content: "Explore the most discussed healthcare topics and emerging trends";
+  padding: 20px;
+  text-align: center;
+  white-space: pre-line;
+   display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; /* you missed this */
+
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+
+  background-color: lightblue;
+}
+
+
+/* comment animation */
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s ease-out;
+}
+
+
+.loader {
+  display: inline-block;
+  height: 1.3em;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.words {
+  display: flex;
+  flex-direction: column;
+  animation: slide 8s infinite;
+}
+
+.word {
+  height: 1.3em;
+  line-height: 1.3em;
+  color: #956afa; /* same as your reference */
+  font-weight: 500;
+}
+
+
+/* 🔥 Smooth vertical rotating text */
+@keyframes rotateText {
+  0%, 20% {
+    transform: translateY(0%);
+  }
+  25%, 45% {
+    transform: translateY(-100%);
+  }
+  50%, 70% {
+    transform: translateY(-200%);
+  }
+  75%, 95% {
+    transform: translateY(-300%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.animate-rotateText {
+  animation: rotateText 10s infinite;
+}
+
+
+/* 🔥 Smooth vertical rotating text */
+/* @keyframes rotateText {
+  0%, 20% {
+    transform: translateY(0%);
+  }
+  25%, 45% {
+    transform: translateY(-100%);
+  }
+  50%, 70% {
+    transform: translateY(-200%);
+  }
+  75%, 95% {
+    transform: translateY(-300%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.animate-rotateText {
+  animation: rotateText 10s infinite;
+} */
+/* 
+@tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+/* Wrapper */
+.rotating-wrapper {
+  /* display: inline-block;
+  position: relative;
+  height: 1.2em;
+  width: 16ch;
+  overflow: hidden;
+  vertical-align: bottom; */
+   display: inline-block;
+  position: relative;
+  height: 1.2em;
+
+  width: 15ch;              /* 🔥 better than px */
+  overflow: hidden;
+
+  vertical-align: middle; /* 🔥 fixes alignment */
+  margin-left: 6px;  
+
+
+}
+
+/* Words */
+.word {
+  position: absolute;
+  left: 0;
+    top: 0;   
+  width: max-content;
+  white-space: nowrap;  
+  opacity: 0;
+  transform: translateY(100%);
+
+  background: linear-gradient(to right, #2563eb, #9333ea);
+  -webkit-background-clip: text;
+  color: transparent;
+
+  font-weight: 600;
+}
+
+/* 🔥 KEY IDEA: Each word has its OWN time slot */
+
+/* total cycle = 16s (4 words → 4s each) */
+
+.word:nth-child(1) {
+  animation: slideWord 16s infinite;
+}
+.word:nth-child(2) {
+  animation: slideWord 16s infinite 4s;
+}
+.word:nth-child(3) {
+  animation: slideWord 16s infinite 8s;
+}
+.word:nth-child(4) {
+  animation: slideWord 16s infinite 12s;
+}
+
+/* 🔥 PERFECT TIMING (no overlap) */
+@keyframes slideWord {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  5% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  25% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  30% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+
+/* puju */
+
+
+
+/* main book */
+.loader div {
+  width: 100%;
+  height: 100%;
+  border-radius: 13px;
+  position: relative;
+  z-index: 1;
+  perspective: 600px;
+  box-shadow: 0 4px 6px var(--shadow);
+  background-image: var(--background);
+   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* pages list */
+.loader div ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+ 
+  
+}
+
+/* pages */
+.loader div ul li {
+  --r: 180deg;
+  --o: 0;
+  --c: var(--page);
+
+  position: absolute;
+  top: 10%;
+  left: 10;
+
+  transform-origin: 100% 50%;
+  transform: translate(0, 0) rotateY(var(--r));
+
+  color: var(--c);
+  opacity: var(--o);
+  animation: var(--duration) ease infinite;
+}
+
+.loader div ul li svg {
+ width: 80px;
+  height: 105px;
+  display: block;
+}
+
+/* first page */
+.loader div ul li:first-child {
+  --r: 0deg;
+  --o: 1;
+}
+
+/* last page */
+.loader div ul li:last-child {
+  --o: 1;
+}
+
+/* page colors */
+.loader div ul li:nth-child(2),
+.loader div ul li:nth-child(3),
+.loader div ul li:nth-child(4),
+.loader div ul li:nth-child(5) {
+  --c: var(--page-fold);
+}
+
+/* animations */
+.loader div ul li:nth-child(2) {
+  animation-name: page-2;
+}
+
+.loader div ul li:nth-child(3) {
+  animation-name: page-3;
+}
+
+.loader div ul li:nth-child(4) {
+  animation-name: page-4;
+}
+
+.loader div ul li:nth-child(5) {
+  animation-name: page-5;
+}
+.loader div ul li svg {
+  color: var(--c);
+}
+
+/* keyframes */
+@keyframes page-2 {
+  0% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  35%,
+  100% {
+    opacity: 0;
+  }
+  50%,
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes page-3 {
+  15% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+  65%,
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes page-4 {
+  30% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  65%,
+  100% {
+    opacity: 0;
+  }
+  80%,
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes page-5 {
+  45% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+  65% {
+    opacity: 1;
+  }
+  80%,
+  100% {
+    opacity: 0;
+  }
+  95%,
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+
+
+/* treading topics */
+
+@keyframes typing {
+  0% { width: 0 }
+  50% { width: 15ch }  /* 👈 FIX (no border touch) */
+  100% { width: 0 }
+}
+
+@keyframes blink {
+  0%, 100% { border-color: transparent }
+  50% { border-color: #091f41 }
+}
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #070f1c;
+  width: 0;
+  display: inline-block;
+    max-width: max-content;
+  animation:
+    typing 4s steps(20, end) infinite,
+    blink 0.8s infinite;
+}
+
+
+/* main book */
+.loader div {
+  width: 100%;
+  height: 100%;
+  border-radius: 13px;
+  position: relative;
+  z-index: 1;
+  perspective: 600px;
+  box-shadow: 0 4px 6px var(--shadow);
+  background-image: var(--background);
+   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* pages list */
+.loader div ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+ 
+  
+}
+
+/* pages */
+.loader div ul li {
+  --r: 180deg;
+  --o: 0;
+  --c: var(--page);
+
+  position: absolute;
+  top: 10%;
+  left: 10;
+
+  transform-origin: 100% 50%;
+  transform: translate(0, 0) rotateY(var(--r));
+
+  color: var(--c);
+  opacity: var(--o);
+  animation: var(--duration) ease infinite;
+}
+
+.loader div ul li svg {
+ width: 80px;
+  height: 105px;
+  display: block;
+}
+
+/* first page */
+.loader div ul li:first-child {
+  --r: 0deg;
+  --o: 1;
+}
+
+/* last page */
+.loader div ul li:last-child {
+  --o: 1;
+}
+
+/* page colors */
+.loader div ul li:nth-child(2),
+.loader div ul li:nth-child(3),
+.loader div ul li:nth-child(4),
+.loader div ul li:nth-child(5) {
+  --c: var(--page-fold);
+}
+
+/* animations */
+.loader div ul li:nth-child(2) {
+  animation-name: page-2;
+}
+
+.loader div ul li:nth-child(3) {
+  animation-name: page-3;
+}
+
+.loader div ul li:nth-child(4) {
+  animation-name: page-4;
+}
+
+.loader div ul li:nth-child(5) {
+  animation-name: page-5;
+}
+.loader div ul li svg {
+  color: var(--c);
+}
+
+/* keyframes */
+@keyframes page-2 {
+  0% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  35%,
+  100% {
+    opacity: 0;
+  }
+  50%,
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes page-3 {
+  15% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+  65%,
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes page-4 {
+  30% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  65%,
+  100% {
+    opacity: 0;
+  }
+  80%,
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes page-5 {
+  45% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+  65% {
+    opacity: 1;
+  }
+  80%,
+  100% {
+    opacity: 0;
+  }
+  95%,
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+
+/* puju E */
+
+/* blue bg */
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradientMove 8s ease infinite;
+}
+
+/* button */
+
+.btn-iron .letter {
+  @apply text-white text-[15px] font-bold tracking-[4px] not-italic;
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.btn-iron .btn-text {
+  transition: all 0.2s ease;
+}
+
+.btn-iron:hover .btn-text {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.btn-iron:hover .letter {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Updated delays for 9 letters */
+.btn-iron:hover .letter:nth-child(1) { transition-delay: 0.05s; }
+.btn-iron:hover .letter:nth-child(2) { transition-delay: 0.1s; }
+.btn-iron:hover .letter:nth-child(3) { transition-delay: 0.15s; }
+.btn-iron:hover .letter:nth-child(4) { transition-delay: 0.2s; }
+.btn-iron:hover .letter:nth-child(5) { transition-delay: 0.25s; }
+.btn-iron:hover .letter:nth-child(6) { transition-delay: 0.3s; }
+.btn-iron:hover .letter:nth-child(7) { transition-delay: 0.35s; }
+.btn-iron:hover .letter:nth-child(8) { transition-delay: 0.4s; }
+.btn-iron:hover .letter:nth-child(9) { transition-delay: 0.45s; }
+
+
+/* shiva */
+
+/* Smooth fade + rise for heading */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 3D falling card */
+@keyframes fallCard {
+  0% {
+    opacity: 0;
+    transform: translateY(-120px) scale(0.95) rotateX(25deg);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(20px) scale(1.02) rotateX(0deg);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* subtle exit (optional) */
+@keyframes fadeOutDown {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+
+/* classes */
+.animate-fadeUp {
+  animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-fallCard {
+  animation: fallCard 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* perspective for 3D feel */
+.perspective {
+  perspective: 1200px;
+}
+
+/* 3d animation */
+
+/* @keyframes slideInHeading {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px) scale(0.95);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+} */
+
+@keyframes dropCard {
+  0% {
+    opacity: 0;
+    transform: translateY(-120px) rotateX(40deg) scale(0.9);
+  }
+  60% {
+    transform: translateY(10px) rotateX(0deg) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* .animate-heading {
+  animation: slideInHeading 0.8s ease forwards;
+} */
+
+/* .animate-card {
+  animation: dropCard 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+} */
+
+/* card 3d feel */
+
+/* @keyframes dropSmooth {
+  0% {
+    opacity: 0;
+    transform: translateY(-80px) scale(0.95);
+  }
+  60% {
+    transform: translateY(10px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-card-in {
+  animation: dropSmooth 0.8s ease forwards;
+} */
+
+/* blue heading text */
+@keyframes wordSlideUp {
+  0% {
+    transform: translateY(25px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-word {
+  animation: wordSlideUp 3.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+h1 {
+  text-shadow: 0 2px 20px rgba(0,0,0,0.08);
+}
+
+
+@keyframes headingHold {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(0); }
+}
+
+.heading-hold {
+  animation: headingHold 0.6s ease forwards;
+}
+
+
+/* card fall */
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(220px) rotate(5deg);
+    opacity: 0;
+  }
+}
+
+.animate-fall {
+  animation: fall 0.5s ease forwards;
+}
+
+/* our recent article */
+
+/* Gradient animation */
+@keyframes gradientMove {
+  0% { background-position: 0% center; }
+  100% { background-position: 250% center; }
+}
+.animate-gradient {
+  animation: gradientMove 8s linear infinite;
+}
+
+/* Underline animation */
+@keyframes underlineMove {
+  0% { background-position: 0%; }
+  100% { background-position: 200%; }
+}
+.animate-underline {
+  animation: underlineMove 5s linear infinite;
+}
+
+/* Typing effect */
+.typing {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #111827;
+
+width: fit-content;
+max-width: fit-content;
+margin: 0 auto;
+
+  padding: 6px 10px;
+  border-radius: 6px;
+
+  background: linear-gradient(90deg, #e0e7ff, #f5f3ff, #ffe4e6);
+
+  animation: typing 15s steps(60, end) infinite,
+             blink 1.2s infinite;
+}
+
+/* @keyframes typing {
+  0%   { width: 0 }
+  50%  { width: 100% }
+  100% { width: 0 }
+} */
+ @keyframes typing {
+  0% {
+    width: 0;
+  }
+
+  35% {
+    width: 100%;
+  }
+
+  65% {
+    width: 100%;
+  }
+
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes blink {
+  0%,100% { border-color: transparent }
+  50% { border-color: #111827 }
+}
+
+/* Mobile fix */
+@media (max-width: 640px) {
+  .typing {
+    white-space: normal;
+    border-right: none;
+    animation: none;
+    width: 100%;
+    text-align: center;
+  }
+}
