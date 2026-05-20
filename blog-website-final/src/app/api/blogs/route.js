@@ -3,52 +3,44 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { MongoClient, ObjectId } from 'mongodb'
 
-const uri = process.env.DATABASE_URL
-
-if (!uri) {
-  throw new Error("DATABASE_URL is missing")
-}
-
-// ✅ GLOBAL CONNECTION (IMPORTANT FOR VERCEL)
-let client
-let clientPromise
-
-if (process.env.NODE_ENV === "development") {
-  if (!global._mongoClientPromise) {
-    client = new MongoClient(uri)
-    global._mongoClientPromise = client.connect()
-  }
-  clientPromise = global._mongoClientPromise
-} else {
-  client = new MongoClient(uri)
-  clientPromise = client.connect()
-}
-
-// ========================= GET BLOGS =========================
 export async function GET() {
+  let client;
   try {
-    const client = await clientPromise
-    const db = client.db('aaragya-insights')
+    // client = new MongoClient(process.env.DATABASE_URL || 'mongodb://localhost:27017')
+// client = new MongoClient(process.env.DATABASE_URL)
+const client = new MongoClient(process.env.DATABASE_URL)
 
+    await client.connect()
+    const db = client.db('aaragya-insights')
     const blogs = db.collection('blogs')
     const users = db.collection('users')
 
-    const allBlogs = await blogs
-      .find({})
-      .sort({ createdAt: -1 })
-      .toArray()
-
+    const allBlogs = await blogs.find({}).sort({ createdAt: -1 }).toArray()
+    
+    // Get author info for each blog
     const blogsWithAuthors = await Promise.all(
       allBlogs.map(async (blog) => {
-        let author = null
+        // const author = await users.findOne({ _id: new ObjectId(blog.authorId) })
+        
 
-        if (blog.authorId && ObjectId.isValid(blog.authorId)) {
-          author = await users.findOne({
-            _id: new ObjectId(blog.authorId)
-          })
-        }
+//let author = null;
 
-        return {
+// try {
+//   if (blog.authorId) {
+//     author = await users.findOne({ _id: new ObjectId(blog.authorId) });
+//   }
+// } catch (e) {
+//   console.log("Invalid authorId:", blog.authorId);
+// }
+       
+let author = null;
+
+if (blog.authorId && ObjectId.isValid(blog.authorId)) {
+  author = await users.findOne({ _id: new ObjectId(blog.authorId) });
+}
+
+
+return {
           ...blog,
           id: blog._id.toString(),
           author: {
@@ -60,45 +52,51 @@ export async function GET() {
     )
 
     return NextResponse.json(blogsWithAuthors)
-
   } catch (error) {
     console.error('Error fetching blogs:', error)
-    return NextResponse.json([], { status: 200 })
+    return NextResponse.json({ error: 'Failed to fetch blogs' }, { status: 500 })
+  } finally {
+    if (client) {
+      await client.close()
+    }
   }
 }
 
-// ========================= CREATE BLOG =========================
 export async function POST(request) {
+  let client;
   try {
-    const session = await getServerSession(authOptions)
-    const userId = session?.user?.id || "admin123"
+
+  
+    
+   // if (!session) {
+   //   return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+   // } 
+
+
+// TEMP FIX (allow without login)
+const session = await getServerSession(authOptions)
+
+console.log("SESSION:", session);
+
+const userId = session?.user?.id || "admin123"
 
     const body = await request.json()
-    const {
-      title,
-      content,
-      excerpt,
-      featuredImage,
-      published,
-      featured,
-      categoryId,
-      tags
-    } = body
+    const { title, content, excerpt, featuredImage, published, featured, categoryId, tags } = body
 
+    // Validation
     if (!title || !content) {
-      return NextResponse.json(
-        { error: 'Title and content are required' },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: 'Title and content are required' }, { status: 400 })
     }
 
+    // Create slug from title
     const slug = title
       .toLowerCase()
       .replace(/[^a-z0-9 -]/g, '')
       .replace(/\s+/g, '-')
       .replace(/-+/g, '-')
 
-    const client = await clientPromise
+    client = new MongoClient(process.env.DATABASE_URL || 'mongodb://localhost:27017')
+    await client.connect()
     const db = client.db('aaragya-insights')
     const blogs = db.collection('blogs')
 
@@ -113,6 +111,7 @@ export async function POST(request) {
       featured: featured || false,
       categoryId: categoryId || null,
       tags: tags || [],
+      
       authorId: userId,
       views: 0,
       createdAt: new Date(),
@@ -121,16 +120,26 @@ export async function POST(request) {
 
     await blogs.insertOne(blog)
 
-    return NextResponse.json({
+    // Return blog with string ID
+
+    // const blogResponse = {
+    //   ...blog,
+    //   id: blog._id.toString()
+    // }
+
+    // return NextResponse.json(blogResponse, { status: 201 })
+
+  return NextResponse.json({
       ...blog,
       id: blog._id.toString()
     }, { status: 201 })
 
   } catch (error) {
     console.error('Error creating blog:', error)
-    return NextResponse.json(
-      { error: 'Failed to create blog' },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: 'Failed to create blog' }, { status: 500 })
+  } finally {
+    if (client) {
+      await client.close()
+    }
   }
 }
