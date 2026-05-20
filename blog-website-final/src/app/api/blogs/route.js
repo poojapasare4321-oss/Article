@@ -11,7 +11,7 @@ export async function GET() {
 const client = new MongoClient(process.env.DATABASE_URL)
 
     await client.connect()
-    const db = client.db('aaragya-insights')
+    const db = client.db('aarogya-insights')
     const blogs = db.collection('blogs')
     const users = db.collection('users')
 
@@ -97,7 +97,8 @@ const userId = session?.user?.id || "admin123"
 
     client = new MongoClient(process.env.DATABASE_URL || 'mongodb://localhost:27017')
     await client.connect()
-    const db = client.db('aaragya-insights')
+    // const db = client.db('aaragya-insights')
+    const db = client.db('aarogya-insights')
     const blogs = db.collection('blogs')
 
     const blog = {
