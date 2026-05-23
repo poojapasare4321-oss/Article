@@ -53,6 +53,18 @@ const [showCard, setShowCard] = useState(false);
  const [activeIndex, setActiveIndex] = useState(0);
 const [isFalling, setIsFalling] = useState(false);
 
+const [showInfo, setShowInfo] = useState(false)
+
+useEffect(() => {
+  const handleScroll = () => {
+    setShowInfo(false)
+  }
+
+  window.addEventListener("scroll", handleScroll)
+
+  return () => window.removeEventListener("scroll", handleScroll)
+}, [])
+
 
 const visibleCards =
   blogs.length > 0
@@ -1124,111 +1136,175 @@ useEffect(() => {
 
       ) : (
         /* -------------------- NO FEATURED STORY -------------------- */
-        <section className="py-5 bg-white">
-         
-        <div className="relative overflow-hidden">
+       
+<section className="py-0 bg-white">
 
-          {/*  BACKGROUND LAYERS (NEW - SAFE ADD) */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-purple-50/60 to-blue-100/70"></div>
+  <div className="relative overflow-hidden">
 
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-10 left-1/4 w-[28rem] h-[28rem] bg-blue-400/30 rounded-full blur-[120px]"></div>
-            <div className="absolute bottom-10 right-1/3 w-[22rem] h-[22rem] bg-purple-400/30 rounded-full blur-[120px]"></div>
+    {/* BACKGROUND LAYERS */}
+    <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-purple-50/60 to-blue-100/70"></div>
 
+    <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute top-10 left-1/4 w-[28rem] h-[28rem] bg-blue-400/30 rounded-full blur-[120px]"></div>
+      <div className="absolute bottom-10 right-1/3 w-[22rem] h-[22rem] bg-purple-400/30 rounded-full blur-[120px]"></div>
+    </div>
 
+    {/* MAIN CONTENT */}
+    <div
+      className="
+        bg-background
+        animated-bg
+        py-4
+        flex items-start justify-center
+        px-3 sm:px-4
+      "
+    >
 
-          </div>
+      <div
+        className="
+          group w-full max-w-lg mx-auto relative
 
-          {/*ORIGINAL CODE */}
-          <div className="
-        
-         bg-background
-          animated-bg
-        py-4 flex items-start justify-center">
+          bg-gradient-to-br
+          from-blue-50
+          via-white
+          to-blue-200/60
+
+          bg-white/70
+          backdrop-blur-xl
+
+          rounded-3xl
+          border border-gray-200/60
+
+          shadow-[0_10px_30px_rgba(0,0,0,0.08)]
+
+          px-4 sm:px-5
+          pt-[145px] sm:pt-[165px] md:pt-[185px]
+          pb-5 sm:pb-6
+
+          text-center
+
+          transition-all duration-500
+          hover:-translate-y-2
+          hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)]
+        "
+      >
+
+        {/* PENCIL */}
+        <div className="absolute -top-2 sm:top-0 left-1/2 -translate-x-1/2">
+          <div className="pencil-loader scale-75 sm:scale-90 md:scale-100"></div>
+        </div>
+
+        {/* TITLE */}
+        <h2
+          className="
+            relative
+            text-2xl sm:text-3xl
+            font-semibold
+            text-blue-900
+            mb-1 sm:mb-2
+            tracking-tight
+            px-2
+          "
+        >
+          <span className="typing-title group-hover:text-blue-700 transition-colors duration-300">
+            No Featured Story Yet
+          </span>
+        </h2>
+
+        {/* EXPLORE BUTTON + REVEAL TEXT */}
+        <div className="relative mt-3 mb-2 sm:mb-4 flex justify-center items-center min-h-[65px] sm:min-h-[72px]">
+
+          {/* BUTTON */}
+          <button
+            onClick={() => setShowInfo(true)}
+            className={`
+              absolute
+
+              px-4 sm:px-5
+              py-2
+
+              rounded-full
+
+              text-sm font-medium
+              text-blue-600
+
+              bg-blue-50
+              border border-blue-100
+
+              transition-all duration-500
+
+              hover:bg-blue-100
+              hover:text-blue-700
+              hover:shadow-md
+
+              active:scale-95
+
+              ${showInfo
+                ? "opacity-0 scale-90 pointer-events-none"
+                : "opacity-100 scale-100"}
+            `}
+          >
+            Explore Articles
+          </button>
+
+          {/* PARAGRAPH CARD */}
+          <div
+            className={`
+              w-full
+              max-w-[260px] sm:max-w-sm
+
+              transition-all duration-500
+
+              ${showInfo
+                ? "opacity-100 translate-y-0 scale-100"
+                : "opacity-0 translate-y-3 scale-95 pointer-events-none absolute"}
+            `}
+          >
 
             <div
-              className="group w-full max-w-lg mx-auto  relative 
-                             bg-gradient-to-br from-blue-50 via-white to-blue-200/60
-                             bg-white/70 backdrop-blur-xl 
-                              rounded-3xl 
-                                  border border-gray-200/60
-                                  shadow-[0_10px_30px_rgba(0,0,0,0.08)]
-                                p-5 pt-[180px] sm:pt-[200px] text-center
-                                        transition-all duration-500
-                                    hover:-translate-y-2 
-                                 hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)]"
+              className="
+                relative overflow-hidden
+
+                rounded-2xl
+                border border-blue-100/80
+
+                bg-gradient-to-br
+                from-blue-50/90
+                via-white
+                to-cyan-50/80
+
+                px-4 sm:px-5
+                py-4
+
+                shadow-lg shadow-blue-100/40
+                backdrop-blur-md
+              "
             >
 
-              <div className="absolute top-0 left-1/2 -translate-x-1/2">
-                <div className="pencil-loader scale-75 sm:scale-90 md:scale-100"></div>
-              </div>
+              {/* TOP ACCENT */}
+              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-400"></div>
 
-              {/* 🏷️ TITLE SECTION */}
-              <h2 className="relative text-3xl font-semibold text-blue-900 mb-2 tracking-tight">
-                <span className="typing-title group-hover:text-blue-700 transition-colors duration-300">
-                  No Featured Story Yet
-                </span>
-
-                <span
-                  className="absolute left-0 -bottom-1 h-[3px] w-0 
-                              bg-gradient-to-r from-blue-500 to-cyan-400
-                                  transition-all duration-300
-                            group-hover:w-full"
-                ></span>
-              </h2>
-
-              {/* 📄 DESCRIPTION TEXT */}
-              <p
-                className="text-gray-500 text-sm leading-relaxed mb-6
-                       transition-all duration-300
-                     group-hover:text-gray-600"
-              >
+              <p className="text-sm leading-relaxed text-gray-600 text-center">
                 Check back soon for{" "}
-                <span className="font-medium text-gray-700 group-hover:text-blue-600">
+                <span className="font-semibold text-blue-700">
                   featured blog posts
                 </span>
                 !
               </p>
 
-              {/* 🔘 BUTTON SECTION */}
-             
-{/* RIGHT SIDE BUTTON - DESKTOP ONLY */}
-<div className="hidden lg:block">
-  {!showAll && (
-    <button
-      onClick={() => setShowAll(true)}
-      className="
-      group flex items-center gap-3
-      px-5 py-3 rounded-full
-      font-semibold text-white
-      bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600
-      shadow-md hover:shadow-xl
-      transition-all duration-300 hover:scale-105
-      whitespace-nowrap
-    "
-    >
-      <span>View All Articles</span>
-
-      <span
-        className="
-        flex items-center justify-center
-        w-8 h-8 rounded-full
-        bg-white text-indigo-600
-      "
-      >
-        →
-      </span>
-    </button>
-  )}
-</div>
-
             </div>
-
           </div>
 
         </div>
 
-        </section>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
 
       )}
  
@@ -1252,6 +1328,8 @@ useEffect(() => {
   <div className="max-w-7xl mx-auto">
 
     {/* 🔷 TOP HEADER ROW */}
+{blogs.length > 0 && (
+
     <div
       className={`
         flex flex-col
@@ -1275,50 +1353,6 @@ useEffect(() => {
 
         {/* Heading */}
 
-{/* <h2
-  id="recent-articles"
-  aria-label="Our Recent Articles — Fresh Insights Weekly"
-  data-AOI="recent-articles-heading"
-  tabIndex={0}
-  className="
-    text-[28px]
-    sm:text-[34px]
-    md:text-[48px]
-    lg:text-[56px]
-
-    font-black
-    leading-[1.02]
-    tracking-[-0.05em]
-
-    text-[#111827]
-
-    focus:outline
-    focus:outline-2
-    focus:outline-[#5B9DD9]
-  "
->
-  Our Recent Articles —
-
-  <span
-    className="
-      block
-
-      mt-2
-
-      text-sm
-      sm:text-base
-      md:text-lg
-
-      font-medium
-      leading-relaxed
-      tracking-normal
-
-      text-gray-600
-    "
-  >
-    Stay informed with our latest healthcare insights and expert analysis
-  </span>
-</h2> */}
 
 <h2
   id="recent-articles"
@@ -1353,121 +1387,33 @@ to-[#000000]
 
   <span
     class="
-          block
-          mt-3
+         block
+    mt-3
+ 
+    text-sm
+    sm:text-base
+    md:text-lg
 
-          text-sm
-          sm:text-base
-          md:text-lg
+    font-medium
+    leading-relaxed
+    tracking-normal
 
-          font-medium
-          leading-relaxed
-          tracking-normal
+    bg-gradient-to-r
+    from-[#2563eb]
+    via-[#a855f7]
+    to-[#ec4899]
 
-          bg-gradient-to-r
-          from-[#a855f7]
-          to-[#ec4899]
+    bg-[length:250%_auto]
 
-          bg-clip-text
-          text-transparent
+    bg-clip-text
+    text-transparent
+
+    animate-gradient
         "
   >
     Stay informed with our latest healthcare insights and expert analysis
   </span>
 </h2>
-
-
-
-      
-{/* <h2
-  id="recent-articles"
-  aria-label="Our Recent Articles — Fresh Insights Weekly"
-  data-AOI="recent-articles-heading"
-  tabIndex={0}
-  className="
-      text-[28px]
-    sm:text-[34px]
-    md:text-[48px]
-    lg:text-[56px]
-    font-black
-    leading-[1.02]
-   
-     tracking-[-0.05em]
-
-    text-[#111827]
-
-    mb-5
-
-    focus:outline
-    focus:outline-2
-    focus:outline-[#5B9DD9]
-  "
->
-  Our Recent Articles — 
-</h2> */}
-      
-
-        {/* Paragraph */}
-        {/* <p
-          className="
-            mt-5
-            text-base md:text-lg
-            leading-relaxed
-            max-w-2xl
-            mx-auto
-
-            bg-gradient-to-r
-            from-blue-600
-            via-purple-600
-            to-pink-500
-
-            bg-clip-text
-            text-transparent
-            animate-gradient-smooth
-          "
-        >
-          Stay informed with our latest healthcare insights and expert analysis
-        </p> */}
-
-{/* 
-<p
-  className="
-    lead-paragraph
-
-    mt-5
-    max-w-2xl
-
-    text-base md:text-[18px]
-    leading-[1.5]
-    font-medium
-
-    text-[#333333]
-  "
-  aria-describedby="articles-section"
->
-   Stay informed with our latest healthcare insights and expert analysis
-
-</p> */}
-
-  {/* <span
-    className="
-      block
-
-      mt-3
-
-      text-sm
-      sm:text-base
-      md:text-lg
-
-      font-medium
-
-      tracking-normal
-
-      text-gray-600
-    "
-  >
-      Stay informed with our latest healthcare insights and expert analysis
-  </span> */}
 
 
 
@@ -1511,6 +1457,7 @@ to-[#000000]
       </div>
 
     </div>
+)}
 
     {/* BLOG GRID */}
     {(() => {
@@ -2032,196 +1979,276 @@ to-[#000000]
 
             // </div>
 
-<div className="flex justify-center py-14 sm:py-20 px-4">
 
+<div className="flex justify-center pt-20 pb-3 sm:pt-14 sm:pb-5 px-4">
+
+  {/* CARD WRAPPER */}
   <div
     className="
+      group
       relative
-      overflow-hidden
 
       w-full
-      max-w-2xl
+      max-w-xl
 
-      rounded-[32px]
+      min-h-[240px]
+      sm:min-h-[300px]
+      md:min-h-[340px]
 
-      bg-white/55
-      backdrop-blur-2xl
+      bg-gradient-to-br
+      from-blue-100
+      via-white
+      to-blue-300/60
 
-      border border-white/50
+      backdrop-blur-xl
 
-      shadow-[0_10px_50px_rgba(0,0,0,0.08)]
+      rounded-3xl
 
-      px-6 sm:px-10
-      py-12 sm:py-16
+      border border-gray-200/60
 
-      text-center
+      shadow-[0_10px_30px_rgba(0,0,0,0.08)]
+
+      flex
+
+      overflow-visible
+
+      transition-all
+      duration-500
+
+      hover:-translate-y-2
+      hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)]
     "
   >
 
-    {/* BACKGROUND GLOW */}
-    <div className="absolute -top-20 -left-20 w-56 h-56 bg-blue-300/30 rounded-full blur-3xl"></div>
+    {/* ================= LEFT PANEL ================= */}
+    <div
+      className="
+        absolute
+        left-0
+        top-0
 
-    <div className="absolute -bottom-20 -right-20 w-56 h-56 bg-purple-300/30 rounded-full blur-3xl"></div>
+        h-full
+        w-[42%]
 
-    {/* ICON */}
-    <div className="relative flex justify-center mb-8">
+        bg-gradient-to-br
+        from-indigo-500/80
+      via-purple-500/70
+        to-blue-400/80
+shadow-[8px_0_30px_rgba(79,70,229,0.25)]
+
+        rounded-l-3xl
+
+        flex items-center
+
+        px-5
+
+        z-0
+
+        opacity-0
+        -translate-x-full
+
+        group-hover:opacity-100
+        group-hover:translate-x-0
+
+        group-active:opacity-100
+        group-active:translate-x-0
+
+        transition-all
+        duration-[900ms]
+        ease-[cubic-bezier(0.22,1,0.36,1)]
+      "
+    >
 
       <div
         className="
-          w-24 h-24 sm:w-28 sm:h-28
+          text-white
 
-          rounded-3xl
+          px-4
 
-          bg-gradient-to-br
-          from-blue-500
-          via-cyan-400
-          to-purple-500
+          opacity-0
+          translate-x-[-25px]
+          scale-95
 
-          flex items-center justify-center
+          group-hover:opacity-100
+          group-hover:translate-x-0
+          group-hover:scale-100
 
-          shadow-[0_15px_35px_rgba(59,130,246,0.35)]
+          group-active:opacity-100
+          group-active:translate-x-0
+          group-active:scale-100
+
+          transition-all
+          duration-700
+          delay-300
+
+          ease-out
         "
       >
 
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          className="w-12 h-12 text-white"
+        <h2
+          className="
+            text-lg sm:text-xl
+            font-semibold
+
+            leading-tight
+            tracking-tight
+          "
         >
+          No Articles Available
+        </h2>
 
-          <path
-            d="M7 3H14L19 8V21H7V3Z"
-            fill="white"
-            opacity="0.95"
-          />
+        <p
+          className="
+            mt-2
 
-          <path
-            d="M14 3V8H19"
-            fill="#bfdbfe"
-          />
+            text-[11px]
+            sm:text-xs
 
-          <line
-            x1="9"
-            y1="12"
-            x2="16"
-            y2="12"
-            stroke="#93c5fd"
-            strokeWidth="1.6"
-          />
-
-          <line
-            x1="9"
-            y1="15"
-            x2="16"
-            y2="15"
-            stroke="#93c5fd"
-            strokeWidth="1.6"
-          />
-
-          <line
-            x1="9"
-            y1="18"
-            x2="14"
-            y2="18"
-            stroke="#93c5fd"
-            strokeWidth="1.6"
-          />
-
-        </svg>
+            leading-relaxed
+            opacity-90
+          "
+        >
+          Check back soon for the latest healthcare insights
+          and expert analysis.
+        </p>
 
       </div>
 
     </div>
 
-    {/* TITLE */}
-    <h3
+    {/* ================= RIGHT PANEL ================= */}
+    <div
       className="
+        flex-1
+        h-full
+
+        p-4
+
+        flex items-center justify-center
+
         relative
-        text-2xl sm:text-4xl
-        font-black
-
-        bg-gradient-to-r
-        from-blue-700
-        via-purple-600
-        to-pink-500
-
-        bg-clip-text
-        text-transparent
+        z-10
       "
     >
-      No Articles Yet
-    </h3>
 
-    {/* DESCRIPTION */}
-    <p
-      className="
-        relative
-
-        mt-5
-
-        text-sm sm:text-base
-        leading-relaxed
-
-        text-gray-600
-
-        max-w-lg
-        mx-auto
-      "
-    >
-      Fresh healthcare insights, expert analysis,
-      and research-driven articles will appear here soon.
-      Stay connected for upcoming updates.
-    </p>
-
-    {/* OPTIONAL BUTTON */}
-    <div className="relative mt-8">
-
-      <button
+      {/* RIGHT INNER CARD WRAPPER */}
+      <div
         className="
-          inline-flex items-center gap-2
+          w-full
+          h-full
 
-          px-6 py-3
+          flex items-center justify-center
 
-          rounded-full
+          transition-all
+          duration-[900ms]
+          ease-[cubic-bezier(0.22,1,0.36,1)]
 
-          bg-gradient-to-r
-          from-blue-600
-          via-purple-600
-          to-pink-500
+          group-hover:translate-x-[20%]
+sm:group-hover:translate-x-[30%]
+md:group-hover:translate-x-[44%]
 
-          text-white
-          font-semibold
+group-active:translate-x-[20%]
+sm:group-active:translate-x-[30%]
+md:group-active:translate-x-[44%]
 
-          shadow-lg
-          hover:scale-105
+will-change-transform
 
-          transition-all duration-300
+group-hover:opacity-0
+group-active:opacity-0
+
+md:group-hover:opacity-100
+md:group-active:opacity-100
+
+
         "
       >
 
-        Explore Later
-
-        <span
+        {/* RIGHT INNER CARD */}
+        <div
           className="
-            w-7 h-7
+            w-full
+            h-full
 
-            rounded-full
+            bg-white/75
+            backdrop-blur-lg
 
-            bg-white/20
+            rounded-2xl
 
-            flex items-center justify-center
+            border border-white/40
+
+            shadow-lg
+
+            p-4
+
+            flex flex-col
+            gap-4
+
+            relative
+            overflow-visible
+
+            transition-all
+            duration-[900ms]
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+
+            will-change-transform
           "
         >
-          →
-        </span>
 
-      </button>
+          {/* GLOW */}
+          <div className="absolute -top-10 -right-10 w-40 h-40 bg-blue-300/20 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-purple-300/20 rounded-full blur-3xl"></div>
+
+          {/* CONTENT */}
+          <div className="relative z-10 flex flex-col h-full">
+
+            {/* LOADER */}
+            <div className="flex justify-center items-center h-[180px] sm:h-[200px]">
+
+              <div className="loader">
+                <div>
+                  <ul>
+                    {[...Array(5)].map((_, i) => (
+                      <li key={i}>
+                        <svg fill="currentColor" viewBox="0 0 90 120">
+                          <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z" />
+                        </svg>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+
+            {/* TEXT */}
+            <div className="text-center space-y-1 -mt-4">
+
+              <h2 className="text-base sm:text-lg font-semibold text-blue-900">
+                Recent Articles
+              </h2>
+
+              <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
+                Stay informed with the latest healthcare insights, research
+                updates, and expert-backed analysis curated just for you.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
 
   </div>
 
 </div>
+
+
+
+
 
           )}
         </>
@@ -2289,7 +2316,7 @@ to-[#000000]
   className="
     block
     mt-3
-
+ 
     text-sm
     sm:text-base
     md:text-lg
@@ -2320,28 +2347,6 @@ to-[#000000]
 </div>
 
 
-      {/* Paragraph */}
-      {/* <p
-        className="
-          mt-5
-          text-base
-          md:text-lg
-          leading-relaxed
-          max-w-2xl
-          mx-auto
-
-          bg-gradient-to-r
-          from-pink-600
-          via-purple-600
-          to-blue-600
-
-          bg-clip-text
-          text-transparent
-          animate-gradient-smooth
-        "
-      >
-        Explore the most discussed healthcare topics and emerging trends
-      </p> */}
 
     </div>
 
@@ -2401,9 +2406,43 @@ to-[#000000]
   </div>
 </section>
 
+
+
       {/* Category Filter Section */}
-      <section className="relative py-10 md:py-16 bg-background overflow-hidden bg-gradient-to-br from-blue-500/50 via-white to-purple-400/70">
-        {/* Animated Bokeh Lights */}
+      <section className="relative py-10 md:py-16 bg-background overflow-hidden white-100/30">
+       
+
+  {/* Floating Small Bubbles */}
+
+<div className="absolute inset-0 overflow-hidden pointer-events-none">
+
+
+
+  {/* Top Left */}
+  <div className="absolute top-[6%] left-[4%] w-[110px] h-[110px] rotate-[18deg] rounded-[34px] bg-purple-300/10 border border-purple-300/20 backdrop-blur-[20px] animate-float" />
+
+  {/* Top Right */}
+  <div className="absolute top-[12%] right-[8%] w-[220px] h-[220px] -rotate-[16deg] rounded-[42px] bg-purple-300/10 border border-purple-300/20 backdrop-blur-[20px] animate-float" />
+
+  {/* Left Bottom */}
+  <div className="absolute bottom-[14%] left-[16%] w-[120px] h-[120px] rotate-[12deg] rounded-[34px] bg-blue-400/10 border border-blue-300/20 backdrop-blur-[20px] animate-float" />
+
+  {/* Bottom Center */}
+  <div className="absolute bottom-[6%] left-[42%] w-[160px] h-[160px] -rotate-[10deg] rounded-[38px] bg-violet-300/10 border border-violet-300/20 backdrop-blur-[20px] animate-float" />
+
+  {/* Right Mid */}
+  <div className="absolute top-[48%] right-[12%] w-[100px] h-[100px] rotate-[14deg] rounded-[30px] bg-sky-300/10 border border-sky-400/20 backdrop-blur-[20px] animate-float" />
+
+
+{/* Small Bottom Left Purple */}
+<div className="absolute bottom-[4%] left-[4%] w-[70px] h-[70px] rotate-[18deg] rounded-[28px] bg-purple-500/10 border border-purple-200/20 backdrop-blur-[20px] animate-float" />
+
+
+
+</div>
+
+
+ {/* Animated Bokeh Lights */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-primary/5 blur-3xl animate-pulse"></div>
           <div

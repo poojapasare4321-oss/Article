@@ -138,21 +138,12 @@ hover:after:w-full
             {!session ? (
               <>
                 {/* LOGIN (click dropdown) */}
-                <div 
-               className="relative cursor-pointer group"
-  onMouseEnter={() => setShowLoginDropdown(true)}
-  onMouseLeave={() => setShowLoginDropdown(false)}
-                >
+                <div className="relative cursor-pointer">
                 
- {/* <button
+ <button
   onClick={() => setShowLoginDropdown(!showLoginDropdown)}
   className="group relative flex items-center gap-1 px-4 py-2 rounded-xl text-sm font-extrabold text-[#243782] transition-all duration-300 ease-out hover:bg-blue-100/70 hover:text-blue-700 cursor-pointer"
-> */}
-<button
-  className="group relative flex items-center gap-1 px-4 py-2 rounded-xl text-sm font-extrabold text-[#243782] transition-all duration-300 ease-out hover:bg-blue-100/70 hover:text-blue-700 cursor-pointer"
 >
-
-
   {/* LOGIN TEXT */}
   <span className="relative">
     Login
@@ -179,103 +170,69 @@ hover:after:w-full
   </svg>
 </button>
 
-   {showLoginDropdown && (
+                  {showLoginDropdown && (
+                    <div className="absolute top-full right-0 mt-3 w-48 bg-white/70 backdrop-blur-xl shadow-xl rounded-xl border border-white/20 py-2 z-50 transition-all duration-300">
+                      <Link
+                        href="/admin/login"
+                        className="block px-4 py-2 text-sm hover:bg-secondary/40 rounded-lg cursor-pointer"
+                      >
+                        Admin Login
+                      </Link>
+                      <Link
+                        href="/blogger/login"
+                        className="block px-4 py-2 text-sm hover:bg-secondary/40 rounded-lg cursor-pointer"
+                      >
+                        Blogger Login
+                      </Link>
 
+                      <Link
+                        href="/super_admin/login"
+                        className="block px-4 py-2 text-sm font-medium text-primary hover:bg-primary/20 rounded-lg cursor-pointer"
+                      >
+                        Super Admin Login
+                      </Link>
 
-<div className="absolute top-full right-0 pt-3 z-50">
-  <div className="w-60 overflow-hidden rounded-[28px] border border-white/30 bg-white/75 backdrop-blur-2xl shadow-[0_12px_40px_rgba(0,0,0,0.08)] transition-all duration-300">
-    
-    <Link
-      href="/admin/login"
-      className="flex items-center px-5 py-4 text-sm font-medium text-gray-800 transition-all duration-300 hover:bg-black/[0.04] hover:pl-7 cursor-pointer border-b border-black/[0.04]"
-    >
-      Admin Login
-    </Link>
-
-    <Link
-      href="/blogger/login"
-      className="flex items-center px-5 py-4 text-sm font-medium text-gray-800 transition-all duration-300 hover:bg-black/[0.04] hover:pl-7 cursor-pointer border-b border-black/[0.04]"
-    >
-      Blogger Login
-    </Link>
-
-    <Link
-      href="/super_admin/login"
-      className="flex items-center px-5 py-4 text-sm font-medium text-primary transition-all duration-300 hover:bg-primary/10 hover:pl-7 cursor-pointer"
-    >
-      Super Admin Login
-    </Link>
-
-  </div>
-</div>
-
-                   )}
-                 </div>
-
-
+                    </div>
+                  )}
+                </div>
 
                 {/* REGISTER (click dropdown) */}
+                <div className="relative cursor-pointer">
+                  <button
+                    onClick={() => setShowRegisterDropdown(!showRegisterDropdown)}
+                    className="flex items-center gap-1 text-sm font-extrabold text-[#243782] hover:text-blue-700 transition-colors cursor-pointer"
+                  >
+                    Register
+                    <svg
+                      className={`w-4 h-4 transition-transform duration-300 ${showRegisterDropdown ? "rotate-180" : "rotate-0"
+                        }`}
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
 
-              
-              <div
-  className="relative cursor-pointer group"
-  onMouseEnter={() => setShowRegisterDropdown(true)}
-  onMouseLeave={() => setShowRegisterDropdown(false)}
->
-  <button
-    className="group relative flex items-center gap-1 px-4 py-2 rounded-xl text-sm font-extrabold text-[#243782] transition-all duration-300 ease-out hover:bg-blue-100/70 hover:text-blue-700 cursor-pointer"
-  >
-    {/* REGISTER TEXT */}
-    <span className="relative">
-      Register
-
-      {/* UNDERLINE */}
-      <span className="absolute left-0 -bottom-1 h-[2px] w-0 rounded-full bg-blue-600 transition-all duration-300 ease-out group-hover:w-full" />
-    </span>
-
-    {/* ARROW */}
-    <svg
-      className={`w-4 h-4 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:rotate-180 ${
-        showRegisterDropdown ? "rotate-180" : "rotate-0"
-      }`}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M19 9l-7 7-7-7"
-      />
-    </svg>
-  </button>
-
-  {showRegisterDropdown && (
-    <div className="absolute top-full right-0 pt-3 z-50">
-      <div className="w-60 overflow-hidden rounded-[28px] border border-white/30 bg-white/75 backdrop-blur-2xl shadow-[0_12px_40px_rgba(0,0,0,0.08)] transition-all duration-300">
-
-        <Link
-          href="/admin/signup"
-          className="flex items-center px-5 py-4 text-sm font-medium text-gray-800 transition-all duration-300 hover:bg-black/[0.04] hover:pl-7 cursor-pointer border-b border-black/[0.04]"
-        >
-          Admin Signup
-        </Link>
-
-        <Link
-          href="/blogger/signup"
-          className="flex items-center px-5 py-4 text-sm font-medium text-gray-800 transition-all duration-300 hover:bg-black/[0.04] hover:pl-7 cursor-pointer"
-        >
-          Blogger Signup
-        </Link>
-
-      </div>
-    </div>
-  )}
-</div>
-
-
-
+                  {showRegisterDropdown && (
+                    <div className="absolute top-full right-0 mt-3 w-48 bg-white/70 backdrop-blur-xl shadow-xl rounded-xl border border-white/20 py-2 z-50 
+                    transition-all duration-300">
+                      <Link
+                        href="/admin/signup"
+                        className="block px-4 py-2 text-sm hover:bg-secondary/40 rounded-lg cursor-pointer"
+                      >
+                        Admin Signup
+                      </Link>
+                      <Link
+                        href="/blogger/signup"
+                        className="block px-4 py-2 text-sm hover:bg-secondary/40 rounded-lg cursor-pointer"
+                      >
+                        Blogger Signup
+                      </Link>
+                    </div>
+                  )}
+                </div>
               </>
             ) : (
               <ProfileDropdown />
