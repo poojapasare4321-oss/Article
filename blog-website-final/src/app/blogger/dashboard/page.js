@@ -5,6 +5,7 @@ import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import ImageUpload from '@/components/ImageUpload'
+import { motion } from "framer-motion";
 
 export default function BloggerDashboard() {
   const { data: session, status } = useSession()
@@ -15,6 +16,7 @@ export default function BloggerDashboard() {
   const [editingBlog, setEditingBlog] = useState(null)
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [newBlog, setNewBlog] = useState({
     title: '',
     content: '',
@@ -214,9 +216,15 @@ export default function BloggerDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="
+  min-h-screen
+bg-[radial-gradient(circle_at_10%_20%,rgba(255,182,193,0.65)_0%,transparent_38%),radial-gradient(circle_at_50%_0%,rgba(196,181,253,0.55)_0%,transparent_42%),radial-gradient(circle_at_95%_15%,rgba(147,197,253,0.65)_0%,transparent_40%),radial-gradient(circle_at_30%_60%,rgba(255,255,255,0.45)_0%,transparent_45%),linear-gradient(to_bottom,#fde7f3_0%,#efe7ff_45%,#dbeafe_75%,#f8fafc_100%)]
+
+    ">
+
       {/* Header */}
-      <header className="bg-white border-b border-slate-200">
+
+      {/* <header className="bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center py-4 md:py-6 space-y-4 md:space-y-0">
             <div className="flex items-center">
@@ -254,74 +262,1023 @@ export default function BloggerDashboard() {
             </div>
           </div>
         </div>
-      </header>
+      </header> */}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
-        {/* Key Metrics Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
-          {/* My Blogs */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6">
-            <div className="flex flex-col items-center justify-center text-center">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-100 rounded-full flex items-center justify-center mb-3">
-                <svg className="w-5 h-5 md:w-6 md:h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-              <p className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
-                {Array.isArray(blogs) ? blogs.length : 0}
-              </p>
-              <p className="text-xs md:text-sm font-medium text-gray-600 uppercase tracking-wide">My Blogs</p>
-            </div>
-          </div>
+<header className="relative">
 
-          {/* Published */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6">
-            <div className="flex flex-col items-center justify-center text-center">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-green-100 rounded-full flex items-center justify-center mb-3">
-                <svg className="w-5 h-5 md:w-6 md:h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <p className="text-2xl md:text-3xl font-bold text-green-600 mb-1">
-                {Array.isArray(blogs) ? blogs.filter(blog => blog.published).length : 0}
-              </p>
-              <p className="text-xs md:text-sm font-medium text-gray-600 uppercase tracking-wide">Published</p>
-            </div>
-          </div>
+  <div
+    className="
+    flex
+    items-center
+    justify-between
 
-          {/* Drafts */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6">
-            <div className="flex flex-col items-center justify-center text-center">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-yellow-100 rounded-full flex items-center justify-center mb-3">
-                <svg className="w-5 h-5 md:w-6 md:h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg>
-              </div>
-              <p className="text-2xl md:text-3xl font-bold text-yellow-600 mb-1">
-                {Array.isArray(blogs) ? blogs.filter(blog => !blog.published).length : 0}
-              </p>
-              <p className="text-xs md:text-sm font-medium text-gray-600 uppercase tracking-wide">Drafts</p>
-            </div>
-          </div>
+    max-[150px]:flex-col
+    max-[150px]:items-end
 
-          {/* Featured */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6">
-            <div className="flex flex-col items-center justify-center text-center">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-purple-100 rounded-full flex items-center justify-center mb-3">
-                <svg className="w-5 h-5 md:w-6 md:h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                </svg>
-              </div>
-              <p className="text-2xl md:text-3xl font-bold text-purple-600 mb-1">
-                {Array.isArray(blogs) ? blogs.filter(blog => blog.featured).length : 0}
-              </p>
-              <p className="text-xs md:text-sm font-medium text-gray-600 uppercase tracking-wide">Featured</p>
-            </div>
-          </div>
+    px-4
+    sm:px-6
+    md:px-12
+    lg:px-24
+    py-5
+    "
+  >
+
+
+    {/* LEFT SIDE */}
+    <div className="flex items-center gap-4 sm:gap-8">
+
+
+
+    <div className="flex flex-col justify-center min-w-0">
+
+  {/* Heading */}
+  <h1
+    className="
+      text-[15px]
+      min-[380px]:text-lg
+      sm:text-2xl
+      md:text-3xl
+
+      font-extrabold
+      tracking-tight
+      text-[#610f94]
+
+      leading-tight
+
+      break-all
+      min-[380px]:break-normal
+    "
+  >
+    Aarogya Insights
+  </h1>
+
+  {/* Subtitle */}
+  <div
+    className="
+      mt-1.5
+      sm:mt-2
+
+      inline-flex
+      items-center
+      gap-1.5
+      sm:gap-2
+
+      w-fit
+      max-w-full
+    "
+  >
+    <span
+      className="
+        h-2
+        w-2
+        rounded-full
+        bg-gradient-to-r
+        from-pink-500
+        to-violet-500
+        animate-pulse
+        flex-shrink-0
+      "
+    />
+
+    <p
+      className="
+        text-[9px]
+        min-[380px]:text-[10px]
+        sm:text-xs
+
+        font-semibold
+        tracking-wide
+        text-[#7b4bb3]
+
+        leading-tight
+
+        break-all
+        min-[380px]:break-normal
+      "
+    >
+      Blogger Dashboard
+
+    </p>
+  </div>
+
+</div>  
+
+
+    </div>
+
+    {/* DESKTOP RIGHT SIDE */}
+    <div className="hidden md:flex items-center gap-4">
+
+      {/* Profile Card */}
+      <div
+        className="
+          flex
+          items-center
+          gap-3
+          px-4
+          py-2 rounded-2xl bg-white/35 backdrop-blur-xl border border-white/40
+          shadow-[0_8px_24px_rgba(255,255,255,0.25)]
+        "
+      >
+
+        {/* Avatar */}
+        <div
+          className="
+            w-10
+            h-10
+            rounded-full
+            bg-gradient-to-br
+            from-pink-400
+            via-purple-400
+            to-blue-400
+            flex
+            items-center
+            justify-center
+            text-white
+            font-bold
+            text-sm
+            shadow-lg
+          "
+        >
+          {session?.user?.name?.charAt(0) || "A"}
         </div>
 
+        {/* Text */}
+        <div className="leading-tight">
+          <p className="text-sm font-semibold text-slate-800">
+            {session?.user?.name || session?.user?.email}
+          </p>
+
+          <p className="text-xs font-medium text-purple-700/80">
+           Blogger
+          </p>
+        </div>
+
+      </div>
+
+
+  
+
+      {/* NAV BUTTONS */}
+      <div
+        className="
+          relative
+          flex
+          items-center
+          rounded-2xl
+          overflow-hidden
+          bg-white/35
+          backdrop-blur-xl
+          border border-white/40
+          shadow-[0_8px_24px_rgba(255,255,255,0.2)]
+        "
+      >
+
+        <Link
+          href="/"
+          className="
+            pl-4
+            pr-3
+            py-3
+            text-sm
+            font-semibold
+            text-blue-700
+            hover:bg-white/20
+            transition-all
+            duration-300
+          "
+        >
+          Visit Home
+        </Link>
+
+        <div className="w-[1px] h-6 bg-white/30"></div>
+
+        <button
+          onClick={() => signOut()}
+          className="
+            pl-3
+            pr-4
+            py-3
+            text-sm
+            font-semibold
+            text-red-600
+            hover:bg-white/20
+            transition-all
+            duration-300
+          "
+        >
+          Sign Out
+        </button>
+
+      </div>
+
+    </div>
+
+    {/* MOBILE MENU BUTTON */}
+    <button
+      onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+      className="
+        md:hidden
+        p-2
+        rounded-xl
+        bg-white/30
+        backdrop-blur-lg
+        border border-white/30
+      "
+    >
+      {isMobileMenuOpen ? (
+        <svg
+          className="w-6 h-6 text-[#610f94]"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      ) : (
+        <svg
+          className="w-6 h-6 text-[#610f94]"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      )}
+    </button>
+
+  </div>
+
+  {/* MOBILE MENU */}
+  {isMobileMenuOpen && (
+    <div
+      className="
+        md:hidden
+        px-4
+        pb-5
+      "
+    >
+
+      <div
+        className="
+          rounded-3xl
+          bg-white/40
+          backdrop-blur-2xl
+          border border-white/30
+          shadow-xl
+          p-4
+          space-y-4
+        "
+      >
+
+        {/* Profile */}
+        <div className="flex items-center gap-2">
+
+          <div
+            className="
+              w-11
+              h-11
+              rounded-full
+              bg-gradient-to-br
+              from-pink-400
+              via-purple-400
+              to-blue-400
+              flex
+              items-center
+              justify-center
+              text-white
+              font-bold
+            "
+          >
+            {session?.user?.name?.charAt(0) || "A"}
+          </div>
+
+          <div>
+            <p className="text-sm font-semibold text-slate-800">
+              {session?.user?.name || session?.user?.email}
+            </p>
+
+            <p className="text-xs text-purple-700/80 font-medium">
+              Blogger
+            </p>
+          </div>
+
+        </div>
+
+        {/* Buttons */}
+        <div className="flex flex-col gap-3">
+
+          <Link
+            href="/"
+            className="
+              px-4
+              py-3
+              rounded-2xl
+              bg-white/30
+              text-sm
+              font-semibold
+              text-blue-700
+              hover:bg-white/50
+              transition-all
+            "
+          >
+            Visit Home
+          </Link>
+
+          <button
+            onClick={() => signOut()}
+            className="
+              px-4
+              py-3
+              rounded-2xl
+              bg-white/30
+              text-sm
+              font-semibold
+              text-red-600
+              hover:bg-white/50
+              transition-all
+              text-left
+            "
+          >
+            Sign Out
+          </button>
+
+         <svg
+                  className="outline absolute inset-0 w-full h-full pointer-events-none"
+                  viewBox="0 0 400 75"
+                  preserveAspectRatio="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    className="rect"
+                    pathLength="100"
+                    x="0"
+                    y="0"
+                    width="400"
+                    height="75"
+                    rx="10"
+                    ry="10"
+                    fill="transparent"
+                    strokeWidth="1.5"
+                  />
+                </svg>
+
+        </div>
+
+
+
+
+
+
+
+      </div>
+
+    </div>
+  )}
+
+</header>
+
+
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
+        {/* Key Metrics Cards */}
+      
+
+ <div
+  className="
+    grid
+  grid-cols-1
+  sm:grid-cols-2
+  lg:grid-cols-4
+  gap-3
+  sm:gap-4
+  md:gap-6
+  relative
+  z-10
+  "
+>
+                  
+        
+                  {/* Total Blogs */}
+                  <div className="
+          relative
+          group
+         h-full min-h-[180px] sm:min-h-[220px] md:min-h-[260px]
+          flex-shrink-0
+          bg-white
+          rounded-[28px]
+          p-3 sm:p-4 md:p-6
+          overflow-hidden
+          border border-[#e8eef5]
+          shadow-[0_6px_18px_rgba(15,23,42,.05)]
+          transition-all duration-500 ease-out
+          hover:-translate-y-2
+          hover:scale-[1.02]
+          hover:border-blue-100
+          hover:shadow-[0_20px_35px_rgba(59,130,246,.10)]
+        ">
+        
+                    {/* Animated Top Border */}
+                    <div className="
+            absolute
+            top-0
+            left-[-100%]
+            w-full
+            h-1
+            bg-gradient-to-r
+            from-blue-500
+            to-cyan-400
+            transition-all
+            duration-700
+            group-hover:left-0
+          "></div>
+        
+                    {/* Glow Circle */}
+                    <div className="
+            absolute
+            -top-20
+            -right-20
+            w-44
+            h-44
+            rounded-full
+            bg-blue-500/10
+            blur-3xl
+            opacity-0
+            transition-all
+            duration-500
+            group-hover:opacity-100
+            group-hover:scale-110
+          "></div>
+        
+                    {/* Content */}
+                    {/* <div className="relative z-10 flex flex-col items-center justify-center text-center"> */}
+                   <div className="relative z-10 flex flex-col items-center justify-center text-center min-h-[170px] h-full">
+        
+                      {/* Icon Wrapper */}
+                      <div className="
+             w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16
+              rounded-[22px]
+              bg-gradient-to-br
+              from-blue-50
+              to-cyan-100
+              flex
+              items-center
+              justify-center
+              mb-5
+              shadow-[inset_0_1px_0_rgba(255,255,255,.8),0_8px_20px_rgba(59,130,246,.10)]
+              transition-all
+              duration-500
+              group-hover:-translate-y-1
+              group-hover:-rotate-3
+              group-hover:shadow-[0_15px_25px_rgba(59,130,246,.18)]
+            ">
+        
+
+        
+        
+        {/* Icon Wrapper */}
+        
+
+        
+        
+        <div
+          className="
+            relative
+           w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16
+            rounded-2xl
+            bg-white/70
+            border
+            border-white/80
+            backdrop-blur-xl
+            flex
+            items-center
+            justify-center
+            overflow-hidden
+            transition-all
+            duration-500
+            cursor-pointer
+            shadow-[0_10px_30px_rgba(59,130,246,0.12)]
+            group-hover:-translate-y-1
+            group-hover:shadow-[0_20px_40px_rgba(59,130,246,0.18)]
+          "
+        >
+          {/* Glow */}
+          <div
+            className="
+              absolute
+              -top-8
+              -left-8
+              w-28
+              h-28
+              rounded-full
+              bg-blue-400/20
+              blur-2xl
+              transition-all
+              duration-500
+              group-hover:scale-125
+            "
+          />
+        
+          {/* File */}
+          <div
+            className="
+              relative
+              w-[34px]
+              h-[42px]
+              rounded-xl
+              bg-gradient-to-b
+              from-white
+              to-blue-50
+              shadow-[0_8px_20px_rgba(37,99,235,0.12)]
+              transition-all
+              duration-300
+              group-hover:scale-110
+              group-hover:-rotate-2
+              z-10
+            "
+          >
+            {/* Folded corner */}
+            <div
+              className="
+                absolute
+                top-0
+                right-0
+                w-4
+                h-4
+                bg-blue-200
+                clip-path-triangle
+              "
+              style={{
+                clipPath: "polygon(100% 0,0 0,100% 100%)",
+              }}
+            />
+        
+            {/* Lines */}
+            <div className="mt-4 ml-2 w-5 h-[3px] rounded-full bg-blue-600" />
+            <div className="mt-2 ml-2 w-4 h-[3px] rounded-full bg-blue-500" />
+            <div className="mt-2 ml-2 w-6 h-[3px] rounded-full bg-blue-400" />
+          </div>
+        </div>
+        
+        
+                      </div>
+        
+                      {/* Number */}
+                      <p className="
+              text-2xl sm:text-3xl md:text-5xl
+              font-extrabold
+              text-slate-800
+              leading-none
+              mb-2
+              transition-all
+              duration-300
+              group-hover:scale-110
+            ">
+                        {Array.isArray(blogs) ? blogs.length : 0}
+                      </p>
+        
+                      {/* Label */}
+                      <p className="
+              text-xs
+              md:text-sm
+              font-bold
+              text-slate-500
+              uppercase
+              tracking-[2px]
+            ">
+                        My Blogs
+                      </p>
+        
+                    </div>
+                  </div>
+        
+        
+                  {/* Published Blogs */}
+        
+                  {/* Published Blogs */}
+                  <div className="
+          relative
+          h-full min-h-[180px] sm:min-h-[220px] md:min-h-[260px]
+          flex-shrink-0
+          bg-white
+          rounded-[28px]
+          p-3 sm:p-4 md:p-6
+          overflow-hidden
+          border border-[#e8eef5]
+          shadow-[0_6px_18px_rgba(15,23,42,.05)]
+          transition-all duration-500 ease-out
+          hover:-translate-y-2
+          hover:scale-[1.02]
+          hover:border-green-100
+          hover:shadow-[0_20px_35px_rgba(34,197,94,.10)]
+          group
+        ">
+        
+                    {/* Animated Top Border */}
+                    <div className="
+            absolute
+            top-0
+            left-[-100%]
+            w-full
+            h-1
+            bg-gradient-to-r
+            from-green-500
+            to-emerald-400
+            transition-all
+            duration-700
+            group-hover:left-0
+          "></div>
+        
+                    {/* Glow Circle */}
+                    <div className="
+            absolute
+            -top-20
+            -right-20
+            w-44
+            h-44
+            rounded-full
+            bg-green-500/10
+            blur-3xl
+            opacity-0
+            transition-all
+            duration-500
+            group-hover:opacity-100
+            group-hover:scale-110
+          "></div>
+        
+                    {/* Content */}
+                    {/* <div className="relative z-10 flex flex-col items-center justify-center text-center"> */}
+                    <div className="relative z-10 flex flex-col items-center justify-center text-center min-h-[170px] h-full">
+        
+                      {/* Icon Wrapper */}
+                      <div className="
+             w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16
+              rounded-[22px]
+              bg-gradient-to-br
+              from-green-50
+              to-emerald-100
+              flex
+              items-center
+              justify-center
+              mb-5
+              shadow-[inset_0_1px_0_rgba(255,255,255,.8),0_8px_20px_rgba(34,197,94,.10)]
+              transition-all
+              duration-500
+              group-hover:-translate-y-1
+              group-hover:-rotate-3
+              group-hover:shadow-[0_15px_25px_rgba(34,197,94,.18)]
+            ">
+        
+
+        
+                        <div
+          className="
+            relative
+           w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16
+            rounded-full
+            border-[5px]
+            border-[#2ddc34]
+            transition-all
+            duration-300
+            group-hover:scale-110
+          "
+        >
+          <div
+            className="
+               absolute
+    left-1/2
+    top-1/2
+
+    w-[22%]
+    h-[45%]
+
+    border-r-[5px]
+    border-b-[5px]
+    border-[#2ddc34]
+
+    rotate-45
+
+    -translate-x-1/2
+    -translate-y-[65%]
+            "
+          ></div>
+        </div>
+        
+        
+        
+                      </div>
+        
+                      {/* Number */}
+                      <p className="
+             text-2xl sm:text-3xl md:text-5xl
+              font-extrabold
+              text-green-700
+              leading-none
+              mb-2
+              transition-all
+              duration-300
+              group-hover:scale-110
+            ">
+                        {Array.isArray(blogs)
+                          ? blogs.filter(blog => blog.published).length
+                          : 0}
+                      </p>
+        
+                      {/* Label */}
+                      <p className="
+              text-xs
+              md:text-sm
+              font-bold
+              text-slate-500
+              uppercase
+              tracking-[2px]
+            ">
+                        Published
+                      </p>
+        
+                    </div>
+                  </div>
+        
+                  {/* Draft Blogs */}
+        
+                  <div className="
+          relative
+          h-full min-h-[180px] sm:min-h-[220px] md:min-h-[260px]
+          flex-shrink-0
+          bg-white
+          rounded-[28px]
+          p-3 sm:p-4 md:p-6
+          overflow-hidden
+          border border-[#e8eef5]
+          shadow-[0_6px_18px_rgba(15,23,42,.05)]
+          transition-all duration-500 ease-out
+          hover:-translate-y-2
+          hover:scale-[1.02]
+          hover:border-yellow-100
+          hover:shadow-[0_20px_35px_rgba(234,179,8,.10)]
+          group
+        ">
+        
+                    {/* Animated Top Border */}
+                    <div className="
+            absolute
+            top-0
+            left-[-100%]
+            w-full
+            h-1
+            bg-gradient-to-r
+            from-yellow-500
+            to-amber-400
+            transition-all
+            duration-700
+            group-hover:left-0
+          "></div>
+        
+                    {/* Glow Circle */}
+                    <div className="
+            absolute
+            -top-20
+            -right-20
+            w-44
+            h-44
+            rounded-full
+            bg-yellow-500/10
+            blur-3xl
+            opacity-0
+            transition-all
+            duration-500
+            group-hover:opacity-100
+            group-hover:scale-110
+          "></div>
+        
+                    {/* Content */}
+                    {/* <div className="relative z-10 flex flex-col items-center justify-center text-center"> */}
+                      <div className="relative z-10 flex flex-col items-center justify-center text-center min-h-[170px] h-full">
+        
+                      {/* Icon Wrapper */}
+                      <div className="
+             w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16
+              rounded-[22px]
+              bg-gradient-to-br
+              from-yellow-50
+              to-amber-100
+              flex
+              items-center
+              justify-center
+              mb-5
+              shadow-[inset_0_1px_0_rgba(255,255,255,.8),0_8px_20px_rgba(234,179,8,.10)]
+              transition-all
+              duration-500
+              group-hover:-translate-y-1
+              group-hover:-rotate-3
+              group-hover:shadow-[0_15px_25px_rgba(234,179,8,.18)]
+            ">
+        
+                        <svg
+                          className="
+                 w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16
+                  text-yellow-600
+                  transition-all
+                  duration-300
+                  group-hover:scale-110
+                "
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                          />
+                        </svg>
+        
+                     
+        
+        
+        
+                      </div>
+        
+                      {/* Number */}
+                      <p className="
+              text-2xl sm:text-3xl md:text-5xl
+              font-extrabold
+              text-yellow-700
+              leading-none
+              mb-2
+              transition-all
+              duration-300
+              group-hover:scale-110
+            ">
+                        {Array.isArray(blogs)
+                          ? blogs.filter(blog => !blog.published).length
+                          : 0}
+                      </p>
+        
+                      {/* Label */}
+                      <p className="
+              text-xs
+              md:text-sm
+              font-bold
+              text-slate-500
+              uppercase
+              tracking-[2px]
+            ">
+                        Drafts
+                      </p>
+        
+                    </div>
+                  </div>
+        
+        
+                  {/* Featured Blogs */}
+        
+                  <div className="
+          relative
+          h-full min-h-[180px] sm:min-h-[220px] md:min-h-[260px]
+          flex-shrink-0
+          bg-white
+          rounded-[28px]
+          p-3 sm:p-4 md:p-6
+          overflow-hidden
+          border border-[#e8eef5]
+          shadow-[0_6px_18px_rgba(15,23,42,.05)]
+          transition-all duration-500 ease-out
+          hover:-translate-y-2
+          hover:scale-[1.02]
+          hover:border-purple-100
+          hover:shadow-[0_20px_35px_rgba(168,85,247,.10)]
+          group
+        ">
+        
+                    {/* Animated Top Border */}
+                    <div className="
+            absolute
+            top-0
+            left-[-100%]
+            w-full
+            h-1
+            bg-gradient-to-r
+            from-purple-500
+            to-fuchsia-400
+            transition-all
+            duration-700
+            group-hover:left-0
+          "></div>
+        
+                    {/* Glow Circle */}
+                    <div className="
+            absolute
+            -top-20
+            -right-20
+            w-44
+            h-44
+            rounded-full
+            bg-purple-500/10
+            blur-3xl
+            opacity-0
+            transition-all
+            duration-500
+            group-hover:opacity-100
+            group-hover:scale-110
+          "></div>
+        
+                    {/* Content */}
+                    {/* <div className="relative z-10 flex flex-col items-center justify-center text-center"> */}
+                    <div className="relative z-10 flex flex-col items-center justify-center text-center min-h-[170px] h-full">
+        
+                      {/* Icon Wrapper */}
+                      <div className="
+              w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16
+              rounded-[22px]
+              bg-gradient-to-br
+              from-purple-50
+              to-fuchsia-100
+              flex
+              items-center
+              justify-center
+              mb-5
+              shadow-[inset_0_1px_0_rgba(255,255,255,.8),0_8px_20px_rgba(168,85,247,.10)]
+              transition-all
+              duration-500
+              group-hover:-translate-y-1
+              group-hover:-rotate-3
+              group-hover:shadow-[0_15px_25px_rgba(168,85,247,.18)]
+            ">
+        
+                        <svg
+                          className="
+                 w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16
+                  text-purple-600
+                  transition-all
+                  duration-300
+                  group-hover:scale-110
+                "
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                          />
+                        </svg>
+        
+        
+        
+                      </div>
+        
+                      {/* Number */}
+                      <p className="
+             text-2xl sm:text-3xl md:text-5xl
+              font-extrabold
+              text-purple-700
+              leading-none
+              mb-2
+              transition-all
+              duration-300
+              group-hover:scale-110
+            ">
+                        {Array.isArray(blogs)
+                          ? blogs.filter(blog => blog.featured).length
+                          : 0}
+                      </p>
+        
+                      {/* Label */}
+                      <p className="
+              text-xs
+              md:text-sm
+              font-bold
+              text-slate-500
+              uppercase
+              tracking-[2px]
+            ">
+                        Featured
+                      </p>
+        
+                    </div>
+                  </div>
+        
+        
+                </div>
+                </div>
+
+<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
+
         {/* Blog Management Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 md:mb-8 space-y-4 md:space-y-0">
+        {/* <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 md:mb-8 space-y-4 md:space-y-0">
           <div>
             <h2 className="text-xl md:text-2xl font-bold text-gray-900">My Articles</h2>
             <p className="text-sm text-gray-600 mt-1">Create and manage your blog posts</p>
@@ -343,7 +1300,131 @@ export default function BloggerDashboard() {
               <span>{showCreateForm ? 'Cancel' : 'Create New Blog'}</span>
             </button>
           </div>
+        </div> */}
+
+ <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4 mb-5 sm:mb-6 md:mb-8">
+          
+ <div className="min-w-0 w-full md:w-auto">
+    
+    <h2
+      className="
+        text-[17px]
+        xs:text-lg
+        sm:text-xl
+        md:text-2xl
+        font-bold
+        text-[#610f94]
+        leading-tight
+        break-words
+      "
+    >
+      My Articles
+    </h2>
+
+    <p
+      className="
+        text-[11px]
+        sm:text-sm
+        text-gray-600
+        mt-1
+        leading-relaxed
+        break-words
+      "
+    >
+      Create and manage your blog posts
+    </p>
+
+  </div>
+
+          {/* <div className="flex items-center justify-between md:justify-end space-x-4 w-full lg:w-[400px] md:w-auto"> */}
+          {/* <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between md:justify-end gap-3 sm:gap-4 w-full md:w-auto"> */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between md:justify-end gap-3 sm:gap-4 w-full md:w-auto">
+            {/* <div className="text-left md:text-right"> */}
+            <div className="text-left md:text-right w-full xs:w-auto">
+              <div className="text-2xl sm:text-3xl md:text-2xl font-bold text-blue-600 mb-1 md:mb-0 leading-none md:leading-8">
+                {Array.isArray(blogs) ? blogs.length : 0}
+              </div>
+              <div className="text-[10px] sm:text-xs md:text-sm text-gray-500 md:text-gray-600 font-medium md:font-normal uppercase md:normal-case tracking-wide md:tracking-normal">Total Posts</div>
+            </div>
+
+     
+  <button
+  onClick={() => setShowCreateForm(!showCreateForm)}
+  className="
+    w-full
+    min-[380px]:w-auto
+
+    px-3
+    min-[380px]:px-4
+    sm:px-6
+
+    py-2
+    min-[380px]:py-2.5
+    sm:py-3
+
+    text-xs
+    min-[380px]:text-sm
+    sm:text-base
+
+    bg-blue-600
+    text-white
+    font-semibold
+    rounded-lg
+
+    hover:bg-blue-700
+    transition-all
+    duration-200
+
+    shadow-lg
+    hover:shadow-xl
+
+    transform
+    hover:-translate-y-0.5
+
+    flex
+    items-center
+    justify-center
+    gap-1.5
+    min-[380px]:gap-2
+
+      whitespace-normal
+    min-[480px]:whitespace-nowrap
+  "
+>
+  <svg
+    className="
+      w-4 h-4
+      min-[380px]:w-5 min-[380px]:h-5
+    "
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+    />
+  </svg>
+
+ <span
+  className="
+    text-center
+    leading-tight
+
+    break-normal
+    
+  "
+>
+  {showCreateForm ? "Cancel" : "Create New Blog"}
+</span>
+</button>       
+
+
+          </div>
         </div>
+
 
         {/* Success Message */}
         {message && (
@@ -620,155 +1701,925 @@ export default function BloggerDashboard() {
         )}
 
         {/* Blog Management Section - Matching Admin Design */}
-        <div className="space-y-6">
-          {/* Blog Posts Cards - Exact Admin Match */}
-          <div className="space-y-4">
-            {Array.isArray(blogs) && blogs.map((blog, index) => (
-              <div key={blog.id} className="bg-white rounded-xl border border-gray-200 shadow-sm">
-                <div className="p-6">
-                  {/* Top Row: Author + Status Badges */}
-                  <div className="flex items-start justify-between mb-4">
-                    {/* Author Section */}
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
-                        <span className="text-sm font-bold text-white">
-                          {blog.author?.name ? blog.author.name.charAt(0).toUpperCase() : session?.user?.name?.charAt(0).toUpperCase() || 'B'}
-                        </span>
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-gray-900">
-                          {blog.author?.name || session?.user?.name || 'Blogger'}
-                        </p>
-                        <p className="text-xs text-gray-500 capitalize">
-                          Blogger
-                        </p>
-                      </div>
+       
+
+
+
+
+
+        {/* Premium Blog Management UI */}
+        <div className="space-y-10">
+          {Array.isArray(blogs) &&
+            blogs.map((blog, index) => (
+              <div
+                key={blog.id}
+                className={`flex items-center relative ${index % 2 !== 0 ? "flex-row-reverse" : ""
+                  } max-lg:flex-col`}
+              >
+                {/* BLUE PANEL */}
+                <div
+                  className="
+            relative z-10 shrink-0
+            w-full
+max-w-[400px]
+min-h-[480px]
+           
+            px-12 pt-6 pb-10
+            text-white
+            overflow-visible
+            shadow-[0_30px_60px_rgba(70,65,220,.18)]
+            bg-[linear-gradient(135deg,#5148f0,#4037d3)]
+            flex flex-col justify-between
+            max-lg:w-full
+          "
+                >
+                  {/* Triangle */}
+       
+
+
+{index % 2 === 0 && (
+  <>
+    {/* Exact Triangle Fold */}
+    <div
+      className="
+        absolute
+        bottom-[-60px]
+        right-0
+        z-20
+        w-[60px]
+        h-[60px]
+        bg-gradient-to-br
+        from-[#0d32ad]
+        to-[#1e5bf2]
+      "
+      style={{
+        clipPath: "polygon(0 0, 100% 0, 0 100%)",
+      }}
+    />
+
+    {/* Fold Joining Line */}
+    <div
+      className="
+        absolute
+        bottom-0
+        right-0
+        z-30
+        w-[84px]
+        h-[1.5px]
+        bg-white/15
+        origin-right
+        rotate-[-45deg]
+      "
+    />
+  </>
+)}
+
+
+
+
+<div className="flex items-center justify-between gap-10 flex-wrap mt-6">
+  
+  {/* AUTHOR */}
+  {/* <div className="flex items-center gap-2">
+    <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center border border-white/20 backdrop-blur-sm">
+      <span className="text-lg font-bold">
+        {blog.author?.name
+          ? blog.author.name.charAt(0).toUpperCase()
+          : "R"}
+      </span>
+    </div>
+
+    <div>
+      <p className="text-[22px] font-medium">
+        {blog.author?.name || "reddy"}
+      </p>
+
+      <p className="text-sm text-white/70 capitalize">
+        {blog.author?.role || "Blogger"}
+      </p>
+    </div>
+  </div> */}
+
+  <div className="flex items-center gap-2 min-w-0 overflow-hidden">
+
+  {/* Avatar */}
+  <div
+    className="
+      w-10 h-10
+      sm:w-12 sm:h-12
+
+      rounded-full
+      bg-white/20
+
+      flex
+      items-center
+      justify-center
+
+      border border-white/20
+      backdrop-blur-sm
+
+      shrink-0
+    "
+  >
+    <span className="text-base sm:text-lg font-bold">
+      {blog.author?.name
+        ? blog.author.name.charAt(0).toUpperCase()
+        : "B"}
+    </span>
+  </div>
+
+  {/* Text */}
+  <div className="min-w-0 max-w-full overflow-hidden">
+
+    <p
+      className="
+        text-base
+        min-[380px]:text-lg
+        sm:text-[22px]
+
+        font-medium
+        leading-tight
+
+        break-all
+        min-[380px]:break-normal
+      "
+    >
+      {blog.author?.name || session?.user?.name || "Blogger"}
+    </p>
+
+    <p
+      className="
+        text-xs
+        sm:text-sm
+
+        text-white/70
+        capitalize
+
+        leading-tight
+
+        break-all
+        min-[380px]:break-normal
+      "
+    >
+      {blog.author?.role || "Blogger"}
+    </p>
+
+  </div>
+
+</div>
+
+  {/* TAGS */}
+  {/* {blog.tags && blog.tags.length > 0 && (
+    <div className="flex flex-wrap gap-2">
+      {blog.tags.slice(0, 6).map((tag, tagIndex) => (
+        <span
+          key={tagIndex}
+          className="
+            inline-flex
+            px-5 py-3
+            rounded-full
+            bg-white/20 border-white/20 backdrop-blur-sm
+            text-[#edf4ff]
+            text-sm
+            font-semibold
+          "
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+  )} */}
+
+{blog.tags && blog.tags.length > 0 && (
+  <div className="flex flex-wrap gap-2 max-w-full overflow-hidden">
+
+    {blog.tags.slice(0, 6).map((tag, tagIndex) => (
+      <span
+        key={tagIndex}
+        className="
+          inline-flex
+
+          px-2
+          min-[380px]:px-4
+          sm:px-5
+
+          py-1.5
+          sm:py-3
+
+          rounded-full
+
+          bg-white/20
+          border border-white/20
+          backdrop-blur-sm
+
+          text-[#edf4ff]
+
+          text-[10px]
+          min-[380px]:text-sm
+
+          font-semibold
+
+          break-all
+          min-[380px]:break-normal
+
+          max-w-full
+          overflow-hidden
+        "
+      >
+        {tag}
+      </span>
+    ))}
+
+  </div>
+)}
+
+</div>
+
+
+
+                    {/* HEADING */}
+          
+
+                    <h2
+  className="
+    mt-8
+    sm:mt-12
+
+    text-[28px]
+    min-[380px]:text-[34px]
+    sm:text-[48px]
+    lg:text-[64px]
+
+    leading-tight
+    sm:leading-[1.3]
+    lg:leading-[1.55]
+
+    font-extrabold
+    tracking-[-1px]
+
+    break-words
+  "
+>
+  {blog.title}
+</h2>
+
+                    {/* LINE */}
+                    {/* <div className="w-[80px] h-[5px] rounded-full bg-cyan-400 mt-8" /> */}
+                    <div
+  className="
+    w-[40px]
+    min-[380px]:w-[60px]
+    sm:w-[80px]
+
+    h-[3px]
+    sm:h-[5px]
+
+    rounded-full
+    bg-cyan-400
+
+    mt-4
+    sm:mt-8
+  "
+/>
+             
+
+                  {/* BOTTOM META */}
+                  {/* <div className="flex gap-14 mt-14">
+                    <div>
+                      <p className="text-lg text-white/70 mb-1">Created</p>
+
+                      <h4 className="text-[34px] font-bold">
+                        {new Date(blog.createdAt).getDate()}
+                      </h4>
                     </div>
 
-                    {/* Status Badges - Top Right */}
-                    <div className="flex items-center space-x-2">
-                      {blog.featured && (
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-purple-100 text-purple-800">
-                          <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                          </svg>
-                          Featured
-                        </span>
-                      )}
-                      <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${blog.published
-                        ? 'bg-green-100 text-green-800'
-                        : 'bg-yellow-100 text-yellow-800'
-                        }`}>
-                        <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                        {blog.published ? 'Published' : 'Draft'}
-                      </span>
+                    <div>
+                      <p className="text-lg text-white/70 mb-1">Views</p>
+
+                      <h4 className="text-[34px] font-bold">
+                        {blog.views || 0}
+                      </h4>
                     </div>
-                  </div>
+                  </div> */}
 
-                  {/* Blog Title */}
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight">
-                    {blog.title}
-                  </h3>
 
-                  {/* Blog Excerpt */}
-                  <p className="text-gray-600 mb-4 leading-relaxed">
-                    {blog.excerpt || blog.content.substring(0, 200) + '...'}
-                  </p>
+<div className="flex flex-wrap gap-6 sm:gap-10 lg:gap-14 mt-8 sm:mt-14 overflow-hidden">
 
-                  {/* Metadata Section */}
-                  <div className="flex items-center space-x-6 mb-4 text-sm text-gray-500">
-                    <div className="flex items-center space-x-1">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      <span>Created</span>
-                      <span className="font-medium">{new Date(blog.createdAt).toLocaleDateString()}</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                      </svg>
-                      <span>Views</span>
-                      <span className="font-medium">{blog.views || 0}</span>
-                    </div>
-                  </div>
+  {/* CREATED */}
+  <div className="min-w-0 max-w-full">
 
-                  {/* Category Tags */}
-                  {blog.tags && blog.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {blog.tags.slice(0, 6).map((tag, tagIndex) => (
-                        <span key={tagIndex} className="px-3 py-1 text-xs bg-blue-100 text-blue-800 rounded-full">
-                          {tag}
-                        </span>
-                      ))}
-                      {blog.tags.length > 6 && (
-                        <span className="px-3 py-1 text-xs bg-gray-100 text-gray-600 rounded-full">
-                          +{blog.tags.length - 6} more
-                        </span>
-                      )}
-                    </div>
-                  )}
+    <p
+      className="
+        text-[10px]
+        min-[380px]:text-xs
+        sm:text-lg
 
-                  {/* Action Buttons - Bottom */}
-                  <div className="flex items-center space-x-3">
-                    <button
+        text-white/70
+        mb-1
+
+        break-all
+        min-[380px]:break-normal
+      "
+    >
+      Created
+    </p>
+
+    <h4
+      className="
+        text-xl
+        sm:text-2xl
+        lg:text-[34px]
+
+        font-bold
+
+        break-all
+        min-[380px]:break-normal
+      "
+    >
+      
+          {new Date(blog.createdAt).toLocaleDateString()}
+    </h4>
+  </div>
+
+  {/* VIEWS */}
+  <div className="min-w-0 max-w-full">
+
+    <p
+      className="
+        text-[10px]
+        min-[380px]:text-xs
+        sm:text-lg
+
+        text-white/70
+        mb-1
+
+        break-all
+        min-[380px]:break-normal
+      "
+    >
+      Views
+    </p>
+
+    <h4
+      className="
+        text-xl
+        sm:text-2xl
+        lg:text-[34px]
+
+        font-bold
+
+        break-all
+        min-[380px]:break-normal
+      "
+    >
+      {blog.views || 0}
+    </h4>
+
+  </div>
+
+</div>
+
+                  
+                </div>
+
+                {/* WHITE CARD */}
+            
+
+
+<div
+  className={`
+    grid
+    ${
+      index % 2 !== 0
+        ? "lg:grid-cols-[480px_minmax(150px,1fr)]"
+        : "lg:grid-cols-[minmax(150px,1fr)_480px]"
+    }
+    items-center
+    gap-x-[2px]
+    gap-y-[20px]
+  `}
+>
+  {/* BLUE CARD */}
+  <div
+    className={`
+      relative
+      ${index % 2 !== 0 ? "lg:order-2" : ""}
+    `}
+  >
+    {/* YOUR BLUE CARD HERE */}
+  </div>
+
+  {/* WHITE CONTENT */}
+<motion.div
+  initial={{
+    opacity: 0,
+    y: 120,
+  }}
+  whileInView={{
+    opacity: 1,
+    y: 0,
+  }}
+  whileOutOfView={{
+    opacity: 0,
+    y: -80,
+  }}
+  transition={{
+    duration: 0.9,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  viewport={{
+    amount: 0.25,
+  }}
+>
+
+
+
+    {/* BADGES */}
+    {/* <div className="flex items-center gap-3 flex-wrap mb-5">
+      {blog.featured && (
+      <span
+    className="
+      inline-flex
+      items-center
+      gap-2
+    
+      py-2.5
+      rounded-full
+     
+      text-[#6b3df4]
+      text-[20px]
+      font-semibold
+      tracking-[0.3px]
+    "
+  >
+    <svg
+      className="w-4 h-4 text-[#6b3df4]"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118L2.98 10.1c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+    </svg>
+
+    Featured
+  </span>
+      )}
+
+     <span
+  className={`
+    inline-flex
+    items-center
+    gap-2
+    px-5 py-2.5
+    rounded-full
+    text-[20px]
+    font-semibold
+    ${
+      blog.published
+        ? "text-green-700"
+        : "text-yellow-700"
+    }
+  `}
+>
+  {blog.published ? (
+    <svg
+      className="w-5 h-5 text-green-600"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
+    </svg>
+  ) : (
+    <svg
+      className="w-5 h-5 text-yellow-600"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
+    </svg>
+  )}
+
+  {blog.published ? "Published" : "Draft"}
+</span>
+    </div> */}
+
+<div className="flex items-center gap-3 flex-wrap mb-5 overflow-hidden">
+
+  {/* FEATURED */}
+  {blog.featured && (
+    <span
+      className="
+        inline-flex
+        items-center
+        gap-2
+
+        py-2
+        sm:py-2.5
+
+        text-[10px]
+        min-[380px]:text-sm
+        sm:text-[20px]
+
+        font-semibold
+        tracking-[0.3px]
+
+        text-[#6b3df4]
+
+        break-all
+        min-[380px]:break-normal
+      "
+    >
+      <svg
+        className="w-4 h-4 text-[#6b3df4] flex-shrink-0"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118L2.98 10.1c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+      </svg>
+
+      Featured
+    </span>
+  )}
+
+  {/* STATUS */}
+  <span
+    className={`
+      inline-flex
+      items-center
+      gap-2
+
+     
+      py-2 sm:py-2.5
+
+      text-[10px]
+      min-[380px]:text-sm
+      sm:text-[20px]
+
+      font-semibold
+
+      ${
+        blog.published ? "text-green-700" : "text-yellow-700"
+      }
+
+      break-all
+      min-[380px]:break-normal
+    `}
+  >
+    {blog.published ? (
+      <svg
+        className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 flex-shrink-0"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+    ) : (
+      <svg
+        className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-600 flex-shrink-0"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+    )}
+
+    {blog.published ? "Published" : "Draft"}
+  </span>
+
+</div>
+
+
+
+    {/* TEXT */}
+    {/* <p
+      className="
+          text-[18px]
+  leading-[1.9]
+  text-[#4b5563]
+  font-[450]
+  max-w-[500px]
+  text-left
+      "
+    >
+      {blog.excerpt ||
+        blog.content.substring(0, 200) + "..."}
+    </p> */}
+
+<p
+  className="
+    text-[14px]
+    min-[380px]:text-[16px]
+    sm:text-[18px]
+
+    leading-[1.7]
+    sm:leading-[1.9]
+
+    text-[#4b5563]
+    font-[450]
+
+    w-full
+    max-w-full
+
+    break-words
+  "
+>
+  {blog.excerpt ||
+    blog.content.substring(0, 200) + "..."}
+</p>
+
+
+    {/* BUTTONS */}
+    {/* <div className="flex items-center gap-4 flex-wrap mt-8">
+      <button
+        className="
+          h-[48px]
+          px-7
+          rounded-2xl
+          bg-[#f5f7fb]
+          text-[#374151]
+          text-sm
+          font-semibold
+        "
+      >
+        Edit
+      </button>
+
+      <button
+        className={`
+          h-[48px]
+          px-7
+          rounded-2xl
+          text-sm
+          font-semibold
+          ${
+            blog.published
+              ? "bg-orange-50 text-orange-700"
+              : "bg-green-50 text-green-700"
+          }
+        `}
+      >
+        {blog.published ? "Unpublish" : "Publish"}
+      </button>
+
+      <button
+        className="
+          h-[48px]
+          px-7
+          rounded-2xl
+          bg-red-50
+          text-red-700
+          text-sm
+          font-semibold
+        "
+      >
+        Delete
+      </button>
+    </div> */}
+
+
+ <div className="flex items-center gap-4 flex-wrap mt-8">
+                    {/* <button
                       onClick={() => handleStartEdit(blog)}
-                      className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors flex items-center space-x-2"
+                      className="px-4 py-2 text-sm font-medium text-gray-700
+                      bg-white/20 backdrop-blur-xl border border-white/20 shadow-lg rounded-lg hover:bg-gray-200 transition-colors flex items-center space-x-2"
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                       </svg>
                       <span>Edit</span>
-                    </button>
-                    <button
+                    </button> */}
+
+<button
+  onClick={() => handleStartEdit(blog)}
+  className="
+    flex items-center justify-center gap-2
+
+    px-3 sm:px-4
+    py-2
+
+    text-xs sm:text-sm
+    font-medium
+
+    text-gray-700
+
+    bg-white/20
+    backdrop-blur-xl
+    border border-white/20
+    shadow-lg
+
+    rounded-lg
+
+    hover:bg-gray-200
+    transition-colors
+
+    shrink-0
+  "
+>
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+    />
+  </svg>
+
+  <span className="break-all min-[360px]:break-normal">
+    Edit
+  </span>
+</button>
+
+                    {/* <button
                       onClick={() => togglePublish(blog.id, blog.published)}
                       className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors flex items-center space-x-2 ${blog.published
-                        ? 'text-orange-700 bg-orange-100 hover:bg-orange-200'
-                        : 'text-green-700 bg-green-100 hover:bg-green-200'
+                      ? 'text-orange-700 bg-white/20 backdrop-blur-xl border border-white/20 shadow-lg hover:bg-orange-200'
+: 'text-green-700 bg-white/20 backdrop-blur-xl border border-white/20 shadow-lg hover:bg-green-200'
                         }`}
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                       </svg>
                       <span>{blog.published ? 'Unpublish' : 'Publish'}</span>
-                    </button>
-                    <button
+                    </button> */}
+
+<button
+  onClick={() => togglePublish(blog.id, blog.published)}
+  className={`
+    flex items-center justify-center gap-2
+
+    px-3 sm:px-4
+    py-2
+
+    text-xs sm:text-sm
+    font-medium
+
+    rounded-lg
+    transition-colors
+
+    bg-white/20
+    backdrop-blur-xl
+    border border-white/20
+    shadow-lg
+
+    shrink-0
+
+    ${
+      blog.published
+        ? "text-orange-700 hover:bg-orange-200"
+        : "text-green-700 hover:bg-green-200"
+    }
+  `}
+>
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M6 18L18 6M6 6l12 12"
+    />
+  </svg>
+
+  <span className="break-all min-[360px]:break-normal">
+    {blog.published ? "Unpublish" : "Publish"}
+  </span>
+</button>
+
+
+
+                    {/* <button
                       onClick={() => handleDeleteBlog(blog.id)}
-                      className="px-4 py-2 text-sm font-medium text-red-700 bg-red-100 rounded-lg hover:bg-red-200 transition-colors flex items-center space-x-2"
+                      className="px-4 py-2 text-sm font-medium text-red-700
+                      bg-white/20 backdrop-blur-xl border border-white/20 shadow-lg rounded-lg
+                        hover:bg-red-200 transition-colors flex items-center space-x-2"
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                       </svg>
                       <span>Delete</span>
-                    </button>
+                    </button> */}
+
+<button
+  onClick={() => handleDeleteBlog(blog.id)}
+  className="
+    flex items-center justify-center gap-2
+
+    px-3 sm:px-4
+    py-2
+
+    text-xs sm:text-sm
+    font-medium
+
+    text-red-700
+
+    bg-white/20
+    backdrop-blur-xl
+    border border-white/20
+    shadow-lg
+
+    rounded-lg
+
+    hover:bg-red-200
+    transition-colors
+
+    shrink-0
+  "
+>
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+    />
+  </svg>
+
+  <span className="break-all min-[360px]:break-normal">
+    Delete
+  </span>
+</button>
+
                   </div>
-                </div>
+
+
+
+
+
+ </motion.div>
+    {/* this one */}
+</div>
+
+
               </div>
             ))}
-          </div>
-
-          {(!Array.isArray(blogs) || blogs.length === 0) && (
-            <div className="text-center py-16">
-              <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">No blogs yet</h3>
-              <p className="text-gray-600 mb-6">Get started by creating your first blog post.</p>
-              <button
-                onClick={() => setShowCreateForm(true)}
-                className="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                Create Your First Blog
-              </button>
-            </div>
-          )}
         </div>
       </div>
+
+
+
+      {(!Array.isArray(blogs) || blogs.length === 0) && (
+        <div className="text-center py-16">
+          <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+
+          <h3 className="text-heading-4 text-gray-900 mb-2">
+            No blogs yet
+          </h3>
+
+          <p className="text-body text-gray-600 mb-6">
+            Get started by creating your first blog post.
+          </p>
+
+          <button
+            onClick={() => setShowCreateForm(true)}
+            className="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Create Your First Blog
+          </button>
+        </div>
+      )}
     </div>
   )
 }
+
+

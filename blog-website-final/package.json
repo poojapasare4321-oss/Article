@@ -20,7 +20,7 @@
     "bson": "^7.2.0",
     "cloudinary": "^2.9.0",
     "dns-cache": "^2.0.0",
-    "framer-motion": "^12.38.0",
+    "framer-motion": "^12.40.0",
     "lucide-react": "^0.553.0",
     "mongodb": "^6.21.0",
     "multer": "^2.1.1",

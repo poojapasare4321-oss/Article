@@ -30,7 +30,6 @@ function createSlug(title) {
     .trim(); // Remove leading/trailing spaces
 }
 
-// shiva
 
 export default function Home() {
   const [blogs, setBlogs] = useState([]);
@@ -638,7 +637,7 @@ useEffect(() => {
 
 
 
-{/* puju 1*/}
+
 
       {/* Featured Story Section */}
       {loading ? (
@@ -2522,11 +2521,11 @@ to-purple
         className="py-10 md:py-16 bg-gradient-to-br from-background via-background to-secondary/5"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-3 gap-8 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
             {/* Featured Card (2 columns) */}
             <div className="lg:col-span-2">
               {blogs.length > 0 && (
-                <div className="relative group rounded-3xl overflow-hidden shadow-2xl h-full min-h-[480px]">
+                <div className="relative group rounded-3xl overflow-hidden shadow-2xl h-full min-h-[50vh] md:min-h-[480px]">
                   <Image
                     src={blogs[currentIndex]?.featuredImage || "/default.jpg"}
                     alt={blogs[currentIndex]?.title || "Featured Blog"}
@@ -2536,7 +2535,7 @@ to-purple
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
 
-                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white z-10">
+                  <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 md:p-8 text-white z-10">
                     <span className="inline-block bg-primary/80 backdrop-blur-sm px-4 py-1.5 rounded-full mb-4 text-xs font-semibold tracking-wide">
                       {blogs[currentIndex]?.category || "Health"}
                     </span>
@@ -2577,7 +2576,7 @@ to-purple
             </div>
 
             {/* Subscribe Box */}
-            <div className="lg:col-span-1">
+            {/* <div className="lg:col-span-1">
               <div className="h-full min-h-[480px] bg-gradient-to-br from-primary to-secondary text-primary-foreground rounded-3xl p-8 shadow-2xl flex flex-col justify-center">
                 <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
                 <p className="text-primary-foreground/80 mb-8 text-sm leading-relaxed">
@@ -2612,7 +2611,65 @@ to-purple
                   </div>
                 )}
               </div>
-            </div>
+            </div> */}
+
+{/* Subscribe Box */}
+<div className="lg:col-span-1 w-full">
+  <div className="w-full h-full overflow-hidden
+    min-h-[320px] sm:min-h-[380px] lg:min-h-[480px]
+    bg-gradient-to-br from-primary to-secondary
+    text-primary-foreground rounded-3xl
+    p-5 sm:p-6 md:p-8
+    shadow-2xl flex flex-col justify-center"
+  >
+    
+    <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+      Stay Updated
+    </h2>
+
+    <p className="text-primary-foreground/80 mb-6 text-sm sm:text-base leading-relaxed">
+      Subscribe to get the latest healthcare insights and wellness updates.
+    </p>
+
+    <form
+      onSubmit={handleSubscribeSubmit}
+      className="flex flex-col gap-4 mb-6 w-full"
+    >
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Enter your email"
+        required
+        className="w-full px-4 py-3 rounded-xl 
+        bg-white/10 border border-white/20
+        text-primary-foreground
+        placeholder-primary-foreground/50
+        focus:outline-none focus:ring-2
+        focus:ring-white/40 transition-all"
+      />
+
+      <button
+        type="submit"
+        disabled={loading}
+        className="w-full bg-white text-primary
+        font-semibold px-6 py-3 rounded-xl
+        hover:bg-gray-100 hover:shadow-lg
+        transition-all duration-300 disabled:opacity-60"
+      >
+        {loading ? "Subscribing..." : "Subscribe"}
+      </button>
+    </form>
+
+    {success && (
+      <div className="bg-green-500/20 border border-green-400/40 
+      text-green-100 px-4 py-3 rounded-xl text-sm">
+        ✓ Successfully subscribed!
+      </div>
+    )}
+  </div>
+</div>
+
           </div>
         </div>
       </section>

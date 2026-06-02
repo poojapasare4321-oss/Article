@@ -9250,4 +9250,106 @@ h-[320px] md:h-[360px]
                             </div>
                           );
                         }
+
+                        subsribe
+
+                         <section
+                                id="subscribe-section"
+                                className="py-10 md:py-16 bg-gradient-to-br from-background via-background to-secondary/5"
+                              >
+                                <div className="max-w-7xl mx-auto px-4 sm:px-6">
+                                  <div className="grid lg:grid-cols-3 gap-8 items-stretch">
+                                    {/* Featured Card (2 columns) */}
+                                    <div className="lg:col-span-2">
+                                      {blogs.length > 0 && (
+                                        <div className="relative group rounded-3xl overflow-hidden shadow-2xl h-full min-h-[50vh] md:min-h-[480px]">
+                                          <Image
+                                            src={blogs[currentIndex]?.featuredImage || "/default.jpg"}
+                                            alt={blogs[currentIndex]?.title || "Featured Blog"}
+                                            fill
+                                            className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                          />
+                        
+                                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                        
+                                          <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 md:p-8 text-white z-10">
+                                            <span className="inline-block bg-primary/80 backdrop-blur-sm px-4 py-1.5 rounded-full mb-4 text-xs font-semibold tracking-wide">
+                                              {blogs[currentIndex]?.category || "Health"}
+                                            </span>
+                        
+                                            <h3 className="text-3xl md:text-4xl font-bold mb-3 leading-tight line-clamp-2">
+                                              {blogs[currentIndex]?.title || "Featured Insight"}
+                                            </h3>
+                        
+                                            <p className="text-gray-200 text-sm md:text-base line-clamp-2 mb-6">
+                                              {blogs[currentIndex]?.excerpt ||
+                                                blogs[currentIndex]?.content?.substring(0, 120) + "..."}
+                                            </p>
+                        
+                                            <Link
+                                              href={`/blogs/${createSlug(blogs[currentIndex]?.title)}-${blogs[currentIndex]?.id}`}
+                                              className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-secondary text-primary-foreground px-8 py-3 rounded-full font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300"
+                                            >
+                                              Read More →
+                                            </Link>
+                                          </div>
+                        
+                                          {/* Indicators */}
+                                          <div className="absolute top-6 right-6 flex gap-2 z-20">
+                                            {blogs.slice(0, 3).map((_, index) => (
+                                              <button
+                                                key={index}
+                                                onClick={() => setCurrentIndex(index)}
+                                                className={`rounded-full transition-all duration-300 ${
+                                                  currentIndex === index
+                                                    ? "bg-white w-8 h-2"
+                                                    : "bg-white/40 w-2 h-2 hover:bg-white/60"
+                                                }`}
+                                              ></button>
+                                            ))}
+                                          </div>
+                                        </div>
+                                      )}
+                                    </div>
+                        
+                                    {/* Subscribe Box */}
+                                    <div className="lg:col-span-1">
+                                      <div className="h-full min-h-[480px] bg-gradient-to-br from-primary to-secondary text-primary-foreground rounded-3xl p-8 shadow-2xl flex flex-col justify-center">
+                                        <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
+                                        <p className="text-primary-foreground/80 mb-8 text-sm leading-relaxed">
+                                          Subscribe to get the latest healthcare insights and wellness
+                                          updates.
+                                        </p>
+                        
+                                        <form
+                                          onSubmit={handleSubscribeSubmit}
+                                          className="flex flex-col gap-4 mb-6"
+                                        >
+                                          <input
+                                            type="email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            placeholder="Enter your email"
+                                            required
+                                            className="px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-primary-foreground placeholder-primary-foreground/50 focus:outline-none focus:ring-2 focus:ring-white/40 transition-all"
+                                          />
+                                          <button
+                                            type="submit"
+                                            disabled={loading}
+                                            className="bg-white text-primary font-semibold px-6 py-3 rounded-xl hover:scale-105 hover:shadow-lg transition-all duration-300 disabled:opacity-60"
+                                          >
+                                            {loading ? "Subscribing..." : "Subscribe"}
+                                          </button>
+                                        </form>
+                        
+                                        {success && (
+                                          <div className="bg-green-500/20 border border-green-400/40 text-green-100 px-4 py-3 rounded-xl text-sm animate-fade-in">
+                                            ✓ Successfully subscribed! Thank you for joining us.
+                                          </div>
+                                        )}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </section>
                         
