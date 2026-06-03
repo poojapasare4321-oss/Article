@@ -24,7 +24,7 @@ export default function Navbar({ variant = 'default' }) {
   if (variant === 'blog') {
     return (
       <nav className="bg-white sticky top-0 z-50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
           <div className="flex items-center justify-between py-3 md:py-4">
             {/* Left Side - Logo Only */}
             <div className="flex items-center">
@@ -73,7 +73,7 @@ export default function Navbar({ variant = 'default' }) {
         : "backdrop-blur-xl bg-white/5"
         }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
         <div className="flex items-center justify-between h-16">
 
           {/* LEFT: LOGO */}

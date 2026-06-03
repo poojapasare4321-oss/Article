@@ -439,7 +439,7 @@ bg-[radial-gradient(circle_at_10%_20%,rgba(255,182,193,0.65)_0%,transparent_38%)
           className="
             pl-4
             pr-3
-            py-3
+            py-5
             text-sm
             font-semibold
             text-blue-700
@@ -458,7 +458,7 @@ bg-[radial-gradient(circle_at_10%_20%,rgba(255,182,193,0.65)_0%,transparent_38%)
           className="
             pl-3
             pr-4
-            py-3
+            py-5
             text-sm
             font-semibold
             text-red-600

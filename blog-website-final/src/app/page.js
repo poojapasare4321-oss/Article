@@ -695,11 +695,11 @@ useEffect(() => {
 <section className="bg-background py-10 md:py-16 -mt-8 md:-mt-14">
 
   {/* BLUE SECTION */}
-  <div className="max-w-7xl mx-auto px-4">
+  <div className="max-w-7xl mx-auto px-4 lg:px-3">
 
     <div
       key={animateKey}
-      className="relative bg-cover bg-center min-h-[520px] md:min-h-[500px] pt-16 md:pt-28 pb-14 md:pb-28 px-4 md:px-8 -mt-2 text-center overflow-hidden"
+      className="relative bg-cover bg-center min-h-[520px] md:min-h-[500px] pt-16 md:pt-28 pb-14 md:pb-28 px-4 md:px-8 -mt-2 text-center overflow-hidden rounded-3xl"
       style={{
         backgroundImage: "url('/hero-bg.jpeg')",
       }}
@@ -1324,7 +1324,7 @@ useEffect(() => {
     to-pink-50
   "
 >
-  <div className="max-w-7xl mx-auto">
+  <div className="max-w-7xl mx-auto lg:px-2"> 
 
     {/* 🔷 TOP HEADER ROW */}
 {blogs.length > 0 && (
@@ -1966,17 +1966,7 @@ to-[#000000]
 
           ) : (
 
-            // <div className="text-center py-16">
-
-            //   <h3 className="text-2xl font-bold mb-3 text-gray-900">
-            //     No articles yet
-            //   </h3>
-
-            //   <p className="text-gray-600 text-base">
-            //     Check back soon for the latest healthcare insights and expert analysis.
-            //   </p>
-
-            // </div>
+           
 
 
 <div className="flex justify-center pt-20 pb-3 sm:pt-14 sm:pb-5 px-4">
@@ -2269,7 +2259,7 @@ md:group-active:opacity-100
     to-blue-100/70
   "
 >
-  <div className="max-w-7xl mx-auto px-4 sm:px-6">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4">
 
     {/* Header */}
     <div className="text-center mb-14 px-4">
@@ -2520,7 +2510,7 @@ to-purple
         id="subscribe-section"
         className="py-10 md:py-16 bg-gradient-to-br from-background via-background to-secondary/5"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-2">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
             {/* Featured Card (2 columns) */}
             <div className="lg:col-span-2">
@@ -2675,7 +2665,7 @@ to-purple
       </section>
 
       <footer className="bg-foreground text-background py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4">
           {/* Top Grid */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             {/* Know Us */}

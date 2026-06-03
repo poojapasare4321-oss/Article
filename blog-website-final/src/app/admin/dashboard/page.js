@@ -418,7 +418,7 @@ bg-[radial-gradient(circle_at_10%_20%,rgba(255,182,193,0.65)_0%,transparent_38%)
           className="
             pl-4
             pr-3
-            py-3
+            py-5
             text-sm
             font-semibold
             text-blue-700
@@ -437,7 +437,7 @@ bg-[radial-gradient(circle_at_10%_20%,rgba(255,182,193,0.65)_0%,transparent_38%)
           className="
             pl-3
             pr-4
-            py-3
+            py-5
             text-sm
             font-semibold
             text-red-600
@@ -592,7 +592,7 @@ bg-[radial-gradient(circle_at_10%_20%,rgba(255,182,193,0.65)_0%,transparent_38%)
             Sign Out
           </button>
 
-         <svg
+         {/* <svg
                   className="outline absolute inset-0 w-full h-full pointer-events-none"
                   viewBox="0 0 400 75"
                   preserveAspectRatio="none"
@@ -610,7 +610,7 @@ bg-[radial-gradient(circle_at_10%_20%,rgba(255,182,193,0.65)_0%,transparent_38%)
                     fill="transparent"
                     strokeWidth="1.5"
                   />
-                </svg>
+                </svg> */}
 
         </div>
 
@@ -1685,7 +1685,7 @@ bg-[radial-gradient(circle_at_10%_20%,rgba(255,182,193,0.65)_0%,transparent_38%)
                   } max-lg:flex-col`}
               >
                 {/* BLUE PANEL */}
-                <div
+                {/* <div
                   className="
             relative z-10 shrink-0
             w-full
@@ -1700,10 +1700,28 @@ min-h-[480px]
             flex flex-col justify-between
             max-lg:w-full
           "
-                >
-                  {/* Triangle */}
-       
+                > */}
 
+                <div
+  className={`
+    relative z-10 shrink-0
+    w-full
+    max-w-[400px]
+    min-h-[480px]
+    px-12 pt-6 pb-10
+    text-white
+    overflow-visible
+    shadow-[0_30px_60px_rgba(70,65,220,.18)]
+    bg-[linear-gradient(135deg,#5148f0,#4037d3)]
+    flex flex-col justify-between
+    max-lg:w-full
+
+    ${index % 2 !== 0 ? "rounded-[42px]" : ""}
+  `}
+>
+
+
+                  {/* Triangle */}
 
 {index % 2 === 0 && (
   <>
@@ -1719,6 +1737,7 @@ min-h-[480px]
         bg-gradient-to-br
         from-[#0d32ad]
         to-[#1e5bf2]
+        
       "
       style={{
         clipPath: "polygon(0 0, 100% 0, 0 100%)",
@@ -1743,6 +1762,42 @@ min-h-[480px]
 )}
 
 
+{/* {index % 2 !== 0 && (
+  <>
+   
+    <div
+      className="
+        absolute
+        bottom-[-60px]
+        left-[-60px]
+        z-20
+        w-[60px]
+        h-[60px]
+        bg-gradient-to-br
+        from-[#0d32ad]
+        to-[#1e5bf2]
+      "
+      style={{
+        clipPath: "polygon(100% 0, 0 100%, 100% 100%)"
+      }}
+    />
+
+  
+    <div
+      className="
+        absolute
+        bottom-0
+        left-[-42px]
+        z-30
+        w-[84px]
+        h-[1.5px]
+        bg-white/15
+        origin-left
+        rotate-[45deg]
+      "
+    />
+  </>
+)} */}
 
 
 <div className="flex items-center justify-between gap-10 flex-wrap mt-6">
